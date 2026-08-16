@@ -1,0 +1,69 @@
+---
+import { footerNav } from '../data/nav';
+import { siteConfig } from '../data/site';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="mt-auto border-t border-slate-200 bg-white text-slate-600 text-sm relative overflow-hidden">
+  <!-- Subtle Background Grid Pattern -->
+  <div class="absolute inset-0 bg-dot-pattern opacity-40 pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 relative z-10 text-center">
+    
+    <!-- Square Logo Mark & Brand Title -->
+    <a href="/" class="inline-flex items-center gap-3 group mb-4">
+      <div class="w-11 h-11 rounded-xl bg-black flex items-center justify-center text-white font-black text-xl shadow-md group-hover:scale-105 transition-transform">
+        ⚡
+      </div>
+      <span class="text-2xl font-black text-slate-900 tracking-tight">
+        {siteConfig.name}
+      </span>
+    </a>
+
+    <p class="max-w-2xl mx-auto text-slate-500 text-sm leading-relaxed mb-8">
+      {siteConfig.description}
+    </p>
+
+    <!-- Multi-Column Links Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto py-6 border-y border-slate-100 text-left">
+      {footerNav.columns.map((col) => (
+        <div class="space-y-3">
+          <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">
+            {col.title}
+          </h3>
+          <ul class="space-y-2">
+            {col.items.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="text-slate-600 hover:text-rose-600 transition-colors text-xs sm:text-sm font-medium"
+                >
+                  {item.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <!-- Compliance & Disclaimer Notice Box -->
+    <div class="mt-8 max-w-4xl mx-auto bg-slate-50 border border-slate-200/80 rounded-2xl p-5 text-xs text-slate-500 leading-relaxed text-left">
+      <p class="font-bold text-slate-800 mb-1">⚖️ 透明度与合规说明：</p>
+      <p>{siteConfig.disclaimer}</p>
+    </div>
+
+    <!-- Bottom Copyright -->
+    <div class="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+      <p>© {currentYear} {siteConfig.name}. 基于公开监测数据自动生成。</p>
+      <div class="flex items-center gap-4 font-medium text-slate-600">
+        <a href="/about/" class="hover:text-rose-600 transition-colors">关于本站</a>
+        <span>·</span>
+        <a href="/robots.txt" target="_blank" class="hover:text-rose-600 transition-colors">Robots.txt</a>
+        <span>·</span>
+        <a href="/sitemap-index.xml" target="_blank" class="hover:text-rose-600 transition-colors">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>

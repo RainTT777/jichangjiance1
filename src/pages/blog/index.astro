@@ -1,0 +1,52 @@
+---
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import CategoryNav from '../../components/CategoryNav.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+posts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+---
+
+<LandingLayout
+  seo={{
+    title: "博客文章中心 - 机场测评与技术教程",
+    description: "汇聚全网最新机场代理节点检测报告、客户端配置教程、选购对比与技术说明。",
+  }}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+    
+    <SectionTitle
+      badge="博客中心"
+      title="技术沉淀与客观测评报告"
+      subtitle="探寻全球优质加速节点，掌握全平台 Client 配置技巧"
+    />
+
+    <!-- Category Filter Bar -->
+    <CategoryNav currentCategory="all" />
+
+    <!-- Articles Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+      {posts.map((post) => (
+        <ArticleCard
+          title={post.data.title}
+          description={post.data.description}
+          slug={post.slug}
+          pubDate={post.data.pubDate}
+          category={post.data.category}
+          tags={post.data.tags}
+          author={post.data.author}
+          featured={post.data.featured}
+        />
+      ))}
+    </div>
+
+    {posts.length === 0 && (
+      <div class="text-center py-16 text-slate-500 gr-card rounded-2xl">
+        <p>目前尚无已发布的文章。</p>
+      </div>
+    )}
+
+  </div>
+</LandingLayout>

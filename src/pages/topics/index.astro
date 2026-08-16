@@ -1,0 +1,50 @@
+---
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import TopicCluster from '../../components/TopicCluster.astro';
+import { topicClustersData } from '../../data/homepage';
+import { getCollection } from 'astro:content';
+
+const topicDocs = await getCollection('topics');
+---
+
+<LandingLayout
+  seo={{
+    title: "SEO 专题聚合中心 - 精选技术资源与下载",
+    description: "涵盖客户端下载、AI工具加速、4K流媒体解锁与美区Apple ID共享等高频专题。",
+  }}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+    
+    <SectionTitle
+      badge="专题聚合"
+      title="高频知识与常用资源专题"
+      subtitle="系统化归纳常见网络场景下的工具链与教程全集"
+    />
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {topicClustersData.map((topic) => (
+        <TopicCluster {...topic} />
+      ))}
+    </div>
+
+    <!-- Extra dynamic collection topic cards -->
+    {topicDocs.length > 0 && (
+      <div class="pt-6 border-t border-slate-200">
+        <h3 class="text-xl font-black text-slate-900 mb-6">📁 拓展 Markdown 专题集合</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {topicDocs.map((t) => (
+            <TopicCluster
+              title={t.data.title}
+              description={t.data.description}
+              slug={t.slug}
+              count={3}
+              badge="扩展专题"
+            />
+          ))}
+        </div>
+      </div>
+    )}
+
+  </div>
+</LandingLayout>

@@ -1,0 +1,81 @@
+---
+import LandingLayout from '../layouts/LandingLayout.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import { siteConfig } from '../data/site';
+
+const breadcrumbs = [
+  { name: '关于我们', url: '/about/' },
+];
+---
+
+<LandingLayout
+  seo={{
+    title: "关于我们 - 机场检测实验室",
+    description: "了解机场检测指南的设立初衷、客观测评标准、技术路线图与合规声明。",
+  }}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
+    
+    <Breadcrumb items={breadcrumbs} />
+
+    <header class="gr-card p-8 sm:p-10 rounded-2xl border border-slate-200 bg-white space-y-4">
+      <span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-50 text-rose-600 border border-rose-200 inline-block">
+        📢 实验室定位
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+        关于机场检测指南 (JICHANGJIANCE.NET)
+      </h1>
+      <p class="text-base text-slate-600 max-w-3xl leading-relaxed">
+        我们是一个专注于网络连接效率、协议安全分析与节点连通率探针测试的独立技术知识站。
+      </p>
+    </header>
+
+    <!-- Main Content Sections -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      
+      <div class="gr-card p-6 sm:p-8 rounded-2xl border border-slate-200 bg-white space-y-3">
+        <h2 class="text-lg font-black text-slate-900 flex items-center gap-2">
+          <span>🎯 网站立意与原则</span>
+        </h2>
+        <ul class="space-y-2.5 text-sm text-slate-600 leading-relaxed list-disc list-inside">
+          <li><strong>独立客观</strong>：坚持基于自动化探针与真实网络环境数据发表分析，不接受夸大宣传。</li>
+          <li><strong>技术导向</strong>：深入研究 Vless, Hysteria 2, Tuic 等新代际协议机制，推动加密技术的科普。</li>
+          <li><strong>体验优先</strong>：注重中文阅读排版与移动端交互体验，无繁杂广告弹窗扰乱视线。</li>
+        </ul>
+      </div>
+
+      <div class="gr-card p-6 sm:p-8 rounded-2xl border border-slate-200 bg-white space-y-3">
+        <h2 class="text-lg font-black text-slate-900 flex items-center gap-2">
+          <span>📑 内容涵盖方向</span>
+        </h2>
+        <ul class="space-y-2.5 text-sm text-slate-600 leading-relaxed list-disc list-inside">
+          <li><strong>机场评测报告</strong>：覆盖晚高峰速率、丢包率、延迟抖动与流媒体解锁能力。</li>
+          <li><strong>全平台客户端下载</strong>：整理 Clash Verge Rev, Sing-box, Shadowrocket 安全官方来源。</li>
+          <li><strong>实用长尾工具</strong>：提供免费苹果 ID 共享、节点规则集转换与分流词条排错。</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Contact & Disclaimer Section -->
+    <div class="gr-card p-8 sm:p-10 rounded-2xl border border-slate-200 bg-white space-y-6">
+      <SectionTitle
+        badge="联系与免责"
+        title="联系预留与合规说明"
+      />
+      <div class="space-y-4 text-sm text-slate-600 leading-relaxed">
+        <p>
+          <strong>📧 联系方式预留：</strong> 如果您有技术交流、探针点位提交或内容修正建议，欢迎通过 Telegram 频道或 GitHub Issue 与我们联系。
+        </p>
+        <div class="pt-4 border-t border-slate-100">
+          <p class="font-bold text-slate-900 mb-1">⚖️ 免责声明预留：</p>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            {siteConfig.disclaimer}
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</LandingLayout>

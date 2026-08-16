@@ -1,0 +1,62 @@
+---
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+  const allTags = new Set(allPosts.flatMap((p) => p.data.tags || []));
+
+  return Array.from(allTags).map((tag) => {
+    const posts = allPosts.filter((p) => p.data.tags?.includes(tag));
+    return {
+      params: { tag },
+      props: { tag, posts },
+    };
+  });
+}
+
+const { tag, posts } = Astro.props;
+
+const breadcrumbs = [
+  { name: '博客中心', url: '/blog/' },
+  { name: `标签: #${tag}` },
+];
+---
+
+<LandingLayout
+  seo={{
+    title: `标签 #${tag} 文章汇总`,
+    description: `收录与标签 #${tag} 相关的全部测试报告、教程与配置说明。`,
+  }}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+    
+    <Breadcrumb items={breadcrumbs} />
+
+    <SectionTitle
+      badge="标签检索"
+      title={`标签：#${tag}`}
+      subtitle={`共找到 ${posts.length} 篇相关长文与测评报告`}
+    />
+
+    <!-- Articles Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+      {posts.map((post) => (
+        <ArticleCard
+          title={post.data.title}
+          description={post.data.description}
+          slug={post.slug}
+          pubDate={post.data.pubDate}
+          category={post.data.category}
+          tags={post.data.tags}
+          author={post.data.author}
+          featured={post.data.featured}
+        />
+      ))}
+    </div>
+
+  </div>
+</LandingLayout>

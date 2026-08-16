@@ -1,0 +1,11 @@
+# dependencies
+node_modules/
+
+# build & cache outputs
+dist/
+.astro/
+
+# environment & logs
+.env
+.env.*
+*.log

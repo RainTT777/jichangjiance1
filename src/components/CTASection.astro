@@ -1,0 +1,51 @@
+---
+import { ctaData } from '../data/homepage';
+
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  primaryText?: string;
+  primaryHref?: string;
+  secondaryText?: string;
+  secondaryHref?: string;
+}
+
+const {
+  title = ctaData.title,
+  subtitle = ctaData.subtitle,
+  primaryText = ctaData.primaryButton.text,
+  primaryHref = ctaData.primaryButton.href,
+  secondaryText = ctaData.secondaryButton.text,
+  secondaryHref = ctaData.secondaryButton.href,
+} = Astro.props;
+---
+
+<section class="py-6 my-8">
+  <div class="gr-card rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden bg-black text-white border border-slate-800 shadow-xl">
+    <div class="max-w-2xl mx-auto space-y-5 relative z-10">
+      <span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-600 text-white inline-block">
+        探索更多测评
+      </span>
+      <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight">
+        {title}
+      </h2>
+      <p class="text-slate-300 text-sm leading-relaxed font-normal">
+        {subtitle}
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+        <a
+          href={primaryHref}
+          class="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-100 text-black font-extrabold text-sm shadow-md transition-all hover:scale-[1.02]"
+        >
+          {primaryText}
+        </a>
+        <a
+          href={secondaryHref}
+          class="px-6 py-3.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-slate-500 text-slate-200 font-semibold text-sm transition-all"
+        >
+          {secondaryText}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

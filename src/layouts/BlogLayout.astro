@@ -1,0 +1,177 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import RelatedPosts from '../components/RelatedPosts.astro';
+import FAQ from '../components/FAQ.astro';
+import CTASection from '../components/CTASection.astro';
+import { faqData } from '../data/homepage';
+
+export interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  category: string;
+  tags?: string[];
+  author?: string;
+  headings?: Array<{ depth: number; slug: string; text: string }>;
+  relatedPosts?: any[];
+}
+
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  category,
+  tags = [],
+  author = "机场检测实验室",
+  headings = [],
+  relatedPosts = [],
+} = Astro.props;
+
+const formattedPubDate = new Date(pubDate).toLocaleDateString('zh-CN', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const formattedUpdatedDate = updatedDate
+  ? new Date(updatedDate).toLocaleDateString('zh-CN', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+  : null;
+
+const breadcrumbs = [
+  { name: '博客中心', url: '/blog/' },
+  { name: category === 'tutorials' ? '客户端教程' : category === 'evaluation' ? '机场评测' : category, url: `/category/${category}/` },
+  { name: title },
+];
+---
+
+<BaseLayout
+  seo={{
+    title,
+    description,
+    ogType: 'article',
+    publishedTime: pubDate,
+    modifiedTime: updatedDate,
+  }}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    
+    <!-- Top Breadcrumbs -->
+    <Breadcrumb items={breadcrumbs} />
+
+    <!-- Article Main Layout Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-4">
+      
+      <!-- Left / Main Article Column -->
+      <article class="lg:col-span-8 space-y-8">
+        
+        <!-- Header Info Card -->
+        <header class="gr-card p-6 sm:p-8 rounded-2xl border border-slate-200 bg-white space-y-4">
+          <div class="flex flex-wrap items-center gap-2">
+            <a
+              href={`/category/${category}/`}
+              class="px-3 py-1 rounded-full text-xs font-bold bg-rose-50 text-rose-600 border border-rose-200"
+            >
+              {category === 'tutorials' ? '客户端教程' : category === 'evaluation' ? '机场评测' : category}
+            </a>
+            {tags.map((tag) => (
+              <a
+                href={`/tag/${tag}/`}
+                class="px-2.5 py-1 rounded-full text-xs bg-slate-100 text-slate-600 hover:bg-slate-200 border border-slate-200"
+              >
+                #{tag}
+              </a>
+            ))}
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+            {title}
+          </h1>
+
+          <p class="text-base text-slate-600 leading-relaxed font-normal">
+            {description}
+          </p>
+
+          <!-- Author & Date Bar -->
+          <div class="pt-4 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-500 font-mono border-t border-slate-100">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center font-black text-xs">
+                {author.substring(0, 1)}
+              </div>
+              <div class="flex flex-col">
+                <span class="text-slate-900 font-bold">{author}</span>
+                <span class="text-[11px] text-slate-400">资深网络观察员</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <div>发布时间：<time datetime={pubDate.toISOString()}>{formattedPubDate}</time></div>
+              {formattedUpdatedDate && (
+                <div class="text-rose-600 font-bold">更新时间：{formattedUpdatedDate}</div>
+              )}
+            </div>
+          </div>
+        </header>
+
+        <!-- Markdown Body Content -->
+        <div class="gr-card p-6 sm:p-10 rounded-2xl border border-slate-200 bg-white prose max-w-none">
+          <slot />
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="mt-8">
+          <FAQ items={faqData.slice(0, 3)} />
+        </div>
+
+        <!-- Related Posts -->
+        {relatedPosts.length > 0 && <RelatedPosts posts={relatedPosts} />}
+
+        <!-- Bottom CTA -->
+        <CTASection />
+
+      </article>
+
+      <!-- Right Sidebar / Table of Contents (TOC) -->
+      <aside class="hidden lg:block lg:col-span-4 space-y-6">
+        <div class="sticky top-24 gr-card p-6 rounded-2xl border border-slate-200 bg-white space-y-4">
+          <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+            <span>📋 文章目录</span>
+          </h3>
+
+          {headings.length > 0 ? (
+            <nav class="space-y-2 text-xs">
+              {headings.filter(h => h.depth <= 3).map((h) => (
+                <a
+                  href={`#${h.slug}`}
+                  class={`block hover:text-rose-600 transition-colors ${
+                    h.depth === 2 ? 'text-slate-800 font-bold pl-0' : 'text-slate-500 pl-3 border-l border-slate-200'
+                  }`}
+                >
+                  {h.text}
+                </a>
+              ))}
+            </nav>
+          ) : (
+            <p class="text-xs text-slate-400">暂无目录节点</p>
+          )}
+
+          <div class="pt-4 border-t border-slate-100">
+            <a
+              href="/compare/"
+              class="w-full py-2.5 rounded-xl bg-black hover:bg-slate-800 text-white font-bold text-xs text-center block shadow-sm"
+            >
+              查看全网服务对比榜
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</BaseLayout>

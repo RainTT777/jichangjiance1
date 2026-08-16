@@ -1,0 +1,84 @@
+---
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import CategoryNav from '../../components/CategoryNav.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { categories } from '../../data/categories';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+  const catSlugs = new Set([
+    ...categories.map((c) => c.slug),
+    ...allPosts.map((p) => p.data.category),
+  ]);
+
+  return Array.from(catSlugs).map((slug) => {
+    const catInfo = categories.find((c) => c.slug === slug) || {
+      id: slug,
+      name: slug,
+      slug,
+      description: `包含 ${slug} 相关的技术测评与配置指南文章。`,
+      icon: 'Folder',
+      color: 'from-teal-500 to-sky-600',
+    };
+    const posts = allPosts.filter((p) => p.data.category === slug);
+    return {
+      params: { category: slug },
+      props: { categoryObj: catInfo, posts },
+    };
+  });
+}
+
+const { categoryObj, posts } = Astro.props;
+
+const breadcrumbs = [
+  { name: '博客中心', url: '/blog/' },
+  { name: categoryObj.name },
+];
+---
+
+<LandingLayout
+  seo={{
+    title: `${categoryObj.name} - 文章归档`,
+    description: categoryObj.description,
+  }}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+    
+    <Breadcrumb items={breadcrumbs} />
+
+    <SectionTitle
+      badge="分类归档"
+      title={`${categoryObj.name} 专题列表`}
+      subtitle={categoryObj.description}
+    />
+
+    <!-- Category Filter Bar -->
+    <CategoryNav currentCategory={categoryObj.slug} />
+
+    <!-- Articles Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+      {posts.map((post) => (
+        <ArticleCard
+          title={post.data.title}
+          description={post.data.description}
+          slug={post.slug}
+          pubDate={post.data.pubDate}
+          category={post.data.category}
+          tags={post.data.tags}
+          author={post.data.author}
+          featured={post.data.featured}
+        />
+      ))}
+    </div>
+
+    {posts.length === 0 && (
+      <div class="text-center py-16 text-slate-500 gr-card rounded-2xl">
+        <p>该分类下暂无已发布的文章，我们将持续添加相关内容。</p>
+      </div>
+    )}
+
+  </div>
+</LandingLayout>

@@ -1,0 +1,21 @@
+---
+// src/pages/index.astro
+import LandingLayout from '../layouts/LandingLayout.astro';
+import Hero from '../components/Hero.astro';
+import AirportDetector from '../components/AirportDetector.astro';
+---
+
+<LandingLayout
+  seo={{
+    title: "机场检测 | 2026 全网机场实时连通性与性能检测中心",
+    description: "专为科学上网用户打造的全网机场检测中心。实时监测 EdgeNova、极连云、光年梯、云图、快狸、极速Cloud、瞬云、速界、寰宇云、可信云等 10 大优质机场的晚高峰延迟、丢包率、流媒体/AI解锁与套餐价格。",
+  }}
+>
+  <!-- 仅保留 Hero 首屏 -->
+  <Hero />
+
+  <!-- 核心机场检测板块 -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+    <AirportDetector />
+  </div>
+</LandingLayout>

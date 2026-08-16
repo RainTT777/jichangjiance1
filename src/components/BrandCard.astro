@@ -1,0 +1,66 @@
+---
+export interface Props {
+  name: string;
+  description: string;
+  slug: string;
+  category?: string;
+  tags?: string[];
+  featured?: boolean;
+}
+
+const {
+  name,
+  description,
+  slug,
+  category = "IEPL 专线",
+  tags = [],
+  featured = false,
+} = Astro.props;
+---
+
+<div class={`gr-card gr-card-hover p-6 rounded-2xl border flex flex-col justify-between group ${featured ? 'border-rose-200 bg-gradient-to-b from-rose-50/20 to-white' : 'border-slate-200 bg-white'}`}>
+  <div class="space-y-3">
+    <div class="flex items-center justify-between">
+      <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-700 border border-slate-200">
+        {category}
+      </span>
+      {featured && (
+        <span class="text-xs font-extrabold text-rose-600 flex items-center gap-1">
+          ★ 高精质检
+        </span>
+      )}
+    </div>
+
+    <h3 class="text-xl font-black text-slate-900 group-hover:text-rose-600 transition-colors">
+      <a href={`/brands/${slug}/`}>
+        {name}
+      </a>
+    </h3>
+
+    <p class="text-sm text-slate-600 leading-relaxed line-clamp-3">
+      {description}
+    </p>
+
+    {tags.length > 0 && (
+      <div class="flex flex-wrap gap-1.5 pt-2">
+        {tags.map((tag) => (
+          <span class="px-2 py-0.5 rounded text-[11px] bg-slate-100 text-slate-600 font-mono">
+            #{tag}
+          </span>
+        ))}
+      </div>
+    )}
+  </div>
+
+  <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+    <a
+      href={`/brands/${slug}/`}
+      class="text-xs font-bold text-rose-600 hover:text-rose-700 flex items-center gap-1"
+    >
+      <span>查看品牌测评与详细规格</span>
+      <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </a>
+  </div>
+</div>

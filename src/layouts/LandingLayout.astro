@@ -1,0 +1,14 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import type { Props as SeoProps } from '../components/SeoHead.astro';
+
+export interface Props {
+  seo?: SeoProps;
+}
+
+const { seo } = Astro.props;
+---
+
+<BaseLayout seo={seo}>
+  <slot />
+</BaseLayout>

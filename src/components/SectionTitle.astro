@@ -1,0 +1,42 @@
+---
+export interface Props {
+  badge?: string;
+  title: string;
+  subtitle?: string;
+  linkText?: string;
+  linkHref?: string;
+  center?: boolean;
+}
+
+const { badge, title, subtitle, linkText, linkHref, center = false } = Astro.props;
+---
+
+<div class={`mb-8 ${center ? 'text-center' : 'flex flex-col md:flex-row md:items-end justify-between gap-3'}`}>
+  <div class="space-y-1">
+    {badge && (
+      <span class="inline-block text-[11px] font-black text-rose-600 uppercase tracking-widest">
+        {badge}
+      </span>
+    )}
+    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+      {title}
+    </h2>
+    {subtitle && (
+      <p class="text-sm text-slate-500 max-w-2xl font-normal">
+        {subtitle}
+      </p>
+    )}
+  </div>
+
+  {linkText && linkHref && (
+    <a
+      href={linkHref}
+      class="inline-flex items-center gap-1 text-xs font-bold text-slate-700 hover:text-rose-600 transition-colors shrink-0 group"
+    >
+      <span>{linkText}</span>
+      <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+      </svg>
+    </a>
+  )}
+</div>

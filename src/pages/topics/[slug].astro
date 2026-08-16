@@ -1,0 +1,107 @@
+---
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import CTASection from '../../components/CTASection.astro';
+import { topicClustersData } from '../../data/homepage';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+  const collectionTopics = await getCollection('topics');
+
+  const homepageTopicPaths = topicClustersData.map((t) => ({
+    params: { slug: t.slug },
+    props: {
+      title: t.title,
+      description: t.description,
+      slug: t.slug,
+      content: null,
+      posts: allPosts.slice(0, 3),
+    },
+  }));
+
+  const docTopicPaths = await Promise.all(
+    collectionTopics.map(async (t) => {
+      const { Content } = await t.render();
+      return {
+        params: { slug: t.slug },
+        props: {
+          title: t.data.title,
+          description: t.data.description,
+          slug: t.slug,
+          content: Content,
+          posts: allPosts.slice(0, 3),
+        },
+      };
+    })
+  );
+
+  const existingSlugs = new Set(homepageTopicPaths.map(p => p.params.slug));
+  const uniqueDocTopicPaths = docTopicPaths.filter(p => !existingSlugs.has(p.params.slug));
+
+  return [...homepageTopicPaths, ...uniqueDocTopicPaths];
+}
+
+const { title, description, content: Content, posts } = Astro.props;
+
+const breadcrumbs = [
+  { name: '专题聚合', url: '/topics/' },
+  { name: title },
+];
+---
+
+<LandingLayout
+  seo={{
+    title: `${title} - 专题指南`,
+    description,
+  }}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+    
+    <Breadcrumb items={breadcrumbs} />
+
+    <header class="gr-card p-8 sm:p-10 rounded-2xl border border-slate-200 bg-white space-y-3">
+      <span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-50 text-rose-600 border border-rose-200 inline-block">
+        📌 专题合集
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+        {title}
+      </h1>
+      <p class="text-base text-slate-600 max-w-3xl leading-relaxed">
+        {description}
+      </p>
+    </header>
+
+    {Content && (
+      <div class="gr-card p-8 rounded-2xl border border-slate-200 bg-white prose max-w-none">
+        <Content />
+      </div>
+    )}
+
+    <section>
+      <SectionTitle
+        badge="包含文章"
+        title="本专题相关精选指南"
+        subtitle="深入阅读以下技术分析与配置步骤"
+      />
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {posts.map((post: any) => (
+          <ArticleCard
+            title={post.data.title}
+            description={post.data.description}
+            slug={post.slug}
+            pubDate={post.data.pubDate}
+            category={post.data.category}
+            tags={post.data.tags}
+            author={post.data.author}
+          />
+        ))}
+      </div>
+    </section>
+
+    <CTASection />
+
+  </div>
+</LandingLayout>

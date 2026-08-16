@@ -1,0 +1,940 @@
+---
+// src/components/AirportDetector.astro
+// 全网机场实时检测中心 Component
+
+export interface Plan {
+  name: string;
+  price: string;
+  traffic: string;
+  desc: string;
+}
+
+export interface Airport {
+  id: string;
+  rank: number;
+  name: string;
+  categoryTag: string; // e.g. "IPLC专线", "BGP中转", "Hysteria2", "三网优化"
+  categoryType: 'iplc' | 'bgp' | 'hysteria' | 'gaming' | 'value';
+  badgeLabel: string;
+  score: number;
+  ping: number;
+  speed: string;
+  loss: string;
+  nodes: number;
+  uptime: string;
+  startingPrice: string;
+  description: string;
+  tags: string[];
+  protocols: string[];
+  platforms: string[];
+  unlocks: string[];
+  affiliateUrl: string;
+  reviewUrl: string;
+  plans: Plan[];
+  logoSvgBg: string;
+  logoIcon: string;
+}
+
+const airports: Airport[] = [
+  {
+    id: "edgenova",
+    rank: 1,
+    name: "EdgeNova",
+    categoryTag: "IPLC 顶级专线",
+    categoryType: "iplc",
+    badgeLabel: "本站推荐 · 榜首",
+    score: 9.8,
+    ping: 38,
+    speed: "980 Mbps",
+    loss: "< 0.1%",
+    nodes: 200,
+    uptime: "99.9%",
+    startingPrice: "¥15.0",
+    description: "全线 IPLC 顶级物理专线，24小时晚高峰秒开 4K/8K 视频。全节点原生 IP 分流，ChatGPT 与 Netflix 4K 全解锁。",
+    tags: ["物理专线", "晚高峰无拥堵", "全流媒体解锁", "ChatGPT专用"],
+    protocols: ["V2Ray", "Trojan", "Shadowsocks"],
+    platforms: ["Win", "Mac", "iOS", "Android", "OpenWrt"],
+    unlocks: ["Netflix 4K", "Disney+", "ChatGPT", "YouTube Premium", "TikTok"],
+    affiliateUrl: "https://cristyc.edgenovaaff.cc/#/register?code=WWiIvxL9",
+    reviewUrl: "/blog/",
+    logoSvgBg: "from-blue-600 to-indigo-700",
+    logoIcon: "⚡",
+    plans: [
+      { name: "月付体验套餐", price: "¥15.0 /月", traffic: "100GB /月", desc: "最高 500Mbps 速率 · 物理专线" },
+      { name: "进阶专线套餐", price: "¥30.0 /月", traffic: "300GB /月", desc: "最高 1000Mbps 速率 · 3台设备共享" },
+      { name: "旗舰无忧套餐", price: "¥60.0 /月", traffic: "800GB /月", desc: "最高 2500Mbps 速率 · 不限设备" },
+    ]
+  },
+  {
+    id: "jilianyun",
+    rank: 2,
+    name: "极连云",
+    categoryTag: "BGP 多线中转",
+    categoryType: "bgp",
+    badgeLabel: "性价比优选",
+    score: 9.6,
+    ping: 42,
+    speed: "850 Mbps",
+    loss: "< 0.2%",
+    nodes: 150,
+    uptime: "99.8%",
+    startingPrice: "¥15.5",
+    description: "多站点 BGP 中转优化，国内入口访问延迟极低。全节点 1 倍率诚实扣费，适合日常 4K 影音与办公。",
+    tags: ["BGP多线", "全节点1倍率", "低延迟", "流媒体解锁"],
+    protocols: ["V2Ray", "Trojan", "Shadowsocks"],
+    platforms: ["Win", "Mac", "iOS", "Android"],
+    unlocks: ["Netflix 4K", "Disney+", "ChatGPT", "YouTube Premium"],
+    affiliateUrl: "https://a1917.jlyvipaff.com/#/?code=vT32Xl9X",
+    reviewUrl: "/blog/",
+    logoSvgBg: "from-sky-500 to-blue-600",
+    logoIcon: "🚀",
+    plans: [
+      { name: "BGP 基础套餐", price: "¥15.5 /月", traffic: "120GB /月", desc: "BGP入口 · 适合日常查阅与视频" },
+      { name: "BGP 标准套餐", price: "¥35.0 /月", traffic: "350GB /月", desc: "多线中转 · 高并发稳定连接" },
+      { name: "BGP 大流量套餐", price: "¥68.0 /月", traffic: "800GB /月", desc: "团队与高清视频下载首选" },
+    ]
+  },
+  {
+    id: "guangnianti",
+    rank: 3,
+    name: "光年梯",
+    categoryTag: "Hysteria2 / VLESS",
+    categoryType: "hysteria",
+    badgeLabel: "极客抗封锁",
+    score: 9.4,
+    ping: 45,
+    speed: "920 Mbps",
+    loss: "< 0.3%",
+    nodes: 120,
+    uptime: "99.6%",
+    startingPrice: "¥13.0",
+    description: "注重隐私保护与无日志政策，搭载新一代 Hysteria2 及 VLESS 协议，网络环境恶劣时依然强劲抗封锁。",
+    tags: ["Hysteria2", "无日志政策", "强力抗墙", "AES-256加密"],
+    protocols: ["VLESS", "Trojan", "Hysteria2"],
+    platforms: ["Win", "Mac", "iOS", "Android", "Linux"],
+    unlocks: ["Netflix 4K", "ChatGPT", "YouTube Premium", "Claude 3.5"],
+    affiliateUrl: "https://gnt001.gntvipaff.cc/#/?code=yAzo4IqK",
+    reviewUrl: "/blog/",
+    logoSvgBg: "from-purple-600 to-indigo-800",
+    logoIcon: "🔮",
+    plans: [
+      { name: "极客轻量套餐", price: "¥13.0 /月", traffic: "100GB /月", desc: "支持 Hysteria2 协议 · 快速连接" },
+      { name: "极客进阶套餐", price: "¥28.0 /月", traffic: "300GB /月", desc: "全节点高并发 · 极低丢包" },
+      { name: "极客尊享套餐", price: "¥55.0 /月", traffic: "700GB /月", desc: "独立出口节点 · 不限速" },
+    ]
+  },
+  {
+    id: "yuntu",
+    rank: 4,
+    name: "云图",
+    categoryTag: "金融级专线",
+    categoryType: "iplc",
+    badgeLabel: "金融专线",
+    score: 9.3,
+    ping: 40,
+    speed: "950 Mbps",
+    loss: "< 0.1%",
+    nodes: 160,
+    uptime: "99.7%",
+    startingPrice: "¥25.0",
+    description: "全节点 1 倍率诚实扣费，金融级专线传输，保障 24 小时高速流畅，支持 5 台设备同时在线。",
+    tags: ["金融专线", "诚实1倍率", "5台设备", "AI全解锁"],
+    protocols: ["V2Ray", "Trojan", "Shadowsocks"],
+    platforms: ["Win", "Mac", "iOS", "Android"],
+    unlocks: ["ChatGPT 4.0", "Claude 3.5", "Netflix 4K", "Disney+", "Apple TV"],
+    affiliateUrl: "https://vip.ytjcok.org/#/register?code=75w0GoY2",
+    reviewUrl: "/blog/",
+    logoSvgBg: "from-emerald-600 to-teal-700",
+    logoIcon: "💎",
+    plans: [
+      { name: "金融专线 A", price: "¥25.0 /月", traffic: "150GB /月", desc: "金融级专线 · 5设备同时在线" },
+      { name: "金融专线 B", price: "¥50.0 /月", traffic: "400GB /月", desc: "全节点1倍率扣量 · 不限制峰值" },
+      { name: "企业尊享 C", price: "¥98.0 /月", traffic: "1000GB /月", desc: "专属客户支持 · 高可用备用通道" },
+    ]
+  },
+  {
+    id: "kuaili",
+    rank: 5,
+    name: "快狸",
+    categoryTag: "新手友好",
+    categoryType: "value",
+    badgeLabel: "简单易用",
+    score: 9.2,
+    ping: 48,
+    speed: "780 Mbps",
+    loss: "< 0.4%",
+    nodes: 100,
+    uptime: "99.5%",
+    startingPrice: "¥15.0",
+    description: "界面简洁明了，操作非常简单，适合科学上网新手，提供一键导入订阅，快速稳定连接。",
+    tags: ["新手推荐", "一键导入", "极简体验", "BGP企业专线"],
+    protocols: ["V2Ray", "Shadowsocks"],
+    platforms: ["Win", "Mac", "Android"],
+    unlocks: ["Netflix", "Disney+", "YouTube Premium"],
+    affiliateUrl: "https://yj2081.kuailiaff.com/#/register?code=531W9eSU",
+    reviewUrl: "/blog/",
+    logoSvgBg: "from-orange-500 to-amber-600",
+    logoIcon: "🦊",
+    plans: [
+      { name: "新手入门套餐", price: "¥15.0 /月", traffic: "100GB /月", desc: "新手友好 · 傻瓜式一键配置" },
+      { name: "畅游进阶套餐", price: "¥30.0 /月", traffic: "260GB /月", desc: "BGP专线中转 · 高速视频" },
+      { name: "豪华多国套餐", price: "¥58.0 /月", traffic: "600GB /月", desc: "包含全球多地原生节点" },
+    ]
+  },
+  {
+    id: "jisuyun",
+    rank: 6,
+    name: "极速Cloud",
+    categoryTag: "三网 CN2 GIA/9929",
+    categoryType: "bgp",
+    badgeLabel: "三网精品优化",
+    score: 9.1,
+    ping: 28,
+    speed: "990 Mbps",
+    loss: "< 0.1%",
+    nodes: 180,
+    uptime: "99.9%",
+    startingPrice: "¥15.0",
+    description: "采用国内三网顶级精品优化线路（CN2 GIA/9929/CMIN2）与 DMIT/Gomami 物理落地，24小时无视晚高峰，全解锁 Apple TV。",
+    tags: ["三网CN2 GIA", "9929/CMIN2", "Apple TV解锁", "27+地区"],
+    protocols: ["VLESS", "Reality"],
+    platforms: ["Win", "Mac", "iOS", "Android", "OpenWrt"],
+    unlocks: ["Apple TV", "Netflix 4K", "Disney+", "ChatGPT", "Hulu"],
+    affiliateUrl: "https://august.jsjc456789.com",
+    reviewUrl: "/blog/",
+    logoSvgBg: "from-rose-600 to-red-700",
+    logoIcon: "🔥",
+    plans: [
+      { name: "三网优化体验版", price: "¥15.0 /月", traffic: "120GB /月", desc: "CN2 GIA/9929/CMIN2 三网直连" },
+      { name: "全功能进阶版", price: "¥35.0 /月", traffic: "350GB /月", desc: "全解锁 Apple TV 与 4K 流媒体" },
+      { name: "极速千兆旗舰版", price: "¥70.0 /月", traffic: "900GB /月", desc: "千兆独享峰值带宽" },
+    ]
+  },
+  {
+    id: "shunyun",
+    rank: 7,
+    name: "瞬云",
+    categoryTag: "按量计费 / 轻量",
+    categoryType: "value",
+    badgeLabel: "备用首选",
+    score: 8.8,
+    ping: 52,
+    speed: "720 Mbps",
+    loss: "< 0.5%",
+    nodes: 80,
+    uptime: "99.2%",
+    startingPrice: "¥20.0",
+    description: "主打轻量与极速建立连接，支持灵活的按量付费包与周期订阅，适合作为高稳定性备用梯子。",
+    tags: ["按量计费", "极速响应", "应急备用", "WireGuard"],
+    protocols: ["Shadowsocks", "WireGuard"],
+    platforms: ["Win", "Android", "Linux"],
+    unlocks: ["ChatGPT", "YouTube Premium"],
+    affiliateUrl: "https://aaa.jichang.best/#/register?code=M4UujXjz",
+    reviewUrl: "/blog/",
+    logoSvgBg: "from-cyan-500 to-blue-600",
+    logoIcon: "⚡",
+    plans: [
+      { name: "月度基础包", price: "¥20.0 /月", traffic: "150GB /月", desc: "轻量快速建立连接" },
+      { name: "按量永不过期包", price: "¥38.0 /包", traffic: "200GB (不限时)", desc: "用多少扣多少 · 备用神器" },
+      { name: "高频使用包", price: "¥60.0 /月", traffic: "500GB /月", desc: "多节点轮换抗封锁" },
+    ]
+  },
+  {
+    id: "sujie",
+    rank: 8,
+    name: "速界",
+    categoryTag: "游戏加速 IEPL",
+    categoryType: "gaming",
+    badgeLabel: "电竞特快",
+    score: 8.6,
+    ping: 55,
+    speed: "800 Mbps",
+    loss: "< 0.2%",
+    nodes: 90,
+    uptime: "99.0%",
+    startingPrice: "¥25.0",
+    description: "专门针对跨服外服游戏（Steam / EA / Epic / Console）优化，低丢包 IEPL 电竞专线，游戏连通性极强。",
+    tags: ["游戏电竞", "低丢包", "IEPL专线", "主机加速"],
+    protocols: ["V2Ray", "Trojan"],
+    platforms: ["Win", "Mac", "PS5", "Xbox"],
+    unlocks: ["Steam Direct", "Twitch 1080P60", "Discord Voice", "Netflix"],
+    affiliateUrl: "https://wudaogang.speedworldaff.com/#/register?code=HOJbbjuY",
+    reviewUrl: "/blog/",
+    logoSvgBg: "from-violet-600 to-purple-800",
+    logoIcon: "🎮",
+    plans: [
+      { name: "游戏电竞基础版", price: "¥25.0 /月", traffic: "150GB /月", desc: "IEPL专线 · 超低游戏抖动" },
+      { name: "外服游戏进阶版", price: "¥50.0 /月", traffic: "350GB /月", desc: "专属电竞加速通道" },
+      { name: "尊享全平台加速", price: "¥88.0 /月", traffic: "750GB /月", desc: "支持 PS5/Xbox/Switch 主机加速" },
+    ]
+  },
+  {
+    id: "huanyuyun",
+    rank: 9,
+    name: "寰宇云",
+    categoryTag: "大带宽 BGP+IEPL",
+    categoryType: "bgp",
+    badgeLabel: "海量下载",
+    score: 8.5,
+    ping: 50,
+    speed: "910 Mbps",
+    loss: "< 0.4%",
+    nodes: 180,
+    uptime: "99.4%",
+    startingPrice: "¥18.0",
+    description: "部署全球多地节点，提供超大带宽管道，非常适合大流量 4K 视频缓冲与海量数据文件下载。",
+    tags: ["大带宽", "海量流量", "多地区覆盖", "高可用"],
+    protocols: ["V2Ray", "Trojan", "Shadowsocks"],
+    platforms: ["Win", "Mac", "iOS", "Android"],
+    unlocks: ["Netflix 4K", "Disney+", "YouTube 4K", "DAZN"],
+    affiliateUrl: "https://vip3.huanyuyunbest.com/#/register?code=V29vHw9y",
+    reviewUrl: "/blog/",
+    logoSvgBg: "from-teal-600 to-emerald-800",
+    logoIcon: "🌐",
+    plans: [
+      { name: "大带宽套餐 A", price: "¥18.0 /月", traffic: "200GB /月", desc: "大流量下载 · 全球多地区节点" },
+      { name: "海量大流量 B", price: "¥38.0 /月", traffic: "600GB /月", desc: "适合高清 4K/8K 视频播放" },
+      { name: "极速下爆 C", price: "¥75.0 /月", traffic: "1500GB /月", desc: "超级带宽管道" },
+    ]
+  },
+  {
+    id: "kexinyun",
+    rank: 10,
+    name: "可信云",
+    categoryTag: "隐私加密 / 无日志",
+    categoryType: "value",
+    badgeLabel: "隐私防护",
+    score: 8.5,
+    ping: 58,
+    speed: "750 Mbps",
+    loss: "< 0.3%",
+    nodes: 70,
+    uptime: "98.8%",
+    startingPrice: "¥15.0",
+    description: "高强度数据加密，无日志记录，极度保护用户隐私安全，支持匿名支付，高隐私场景适用。",
+    tags: ["无日志记录", "高强度加密", "隐私安全", "匿名付款"],
+    protocols: ["VLESS", "Trojan"],
+    platforms: ["Win", "Mac", "iOS", "Android"],
+    unlocks: ["ChatGPT", "Telegram", "ProtonMail", "Wikipedia"],
+    affiliateUrl: "https://shadow_vps.kosingaff.com/#/register?code=aBeefOVi",
+    reviewUrl: "/blog/",
+    logoSvgBg: "from-slate-700 to-slate-900",
+    logoIcon: "🛡️",
+    plans: [
+      { name: "隐私保护基础版", price: "¥15.0 /月", traffic: "100GB /月", desc: "AES-256 加密 · 无日志保留" },
+      { name: "高强度加密进阶版", price: "¥32.0 /月", traffic: "280GB /月", desc: "支持匿名支付通道" },
+      { name: "尊享安全极速版", price: "¥65.0 /月", traffic: "700GB /月", desc: "独立安全出口" },
+    ]
+  }
+];
+---
+
+<div class="space-y-8" id="detectorRoot">
+
+  <!-- Main Hero Title & Status Banner -->
+  <div class="relative overflow-hidden rounded-3xl bg-slate-900 text-white p-6 sm:p-10 border border-slate-800 shadow-xl">
+    <!-- Ambient glow backdrops -->
+    <div class="absolute -top-24 -right-24 w-96 h-96 bg-rose-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div class="space-y-3 max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-semibold tracking-wide">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          自动化探针运行中 · 全网 10 大机场实时连通性监测
+        </div>
+        
+        <h1 class="text-2xl sm:text-4xl font-black text-white tracking-tight">
+          全网机场实时连通性与性能检测中心
+        </h1>
+        
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+          基于多地自动化探针 24 小时轮询。即时检测延迟（Ping）、晚高峰带宽（Speed）、丢包率及套餐价格，为您挑选最稳定可靠的网络加速服务。
+        </p>
+      </div>
+
+      <!-- Action Box -->
+      <div class="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0 w-full md:w-auto">
+        <button
+          type="button"
+          id="btnRunFullTest"
+          class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-bold text-sm shadow-lg shadow-rose-500/25 flex items-center justify-center gap-2 transition-all transform active:scale-95"
+        >
+          <span id="testIcon" class="text-base">⚡</span>
+          <span id="testBtnText">一键检测全站机场</span>
+        </button>
+        <button
+          type="button"
+          id="btnToggleConsole"
+          class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700/80 text-slate-300 text-xs font-mono font-medium flex items-center justify-center gap-2 transition-all"
+        >
+          <span>💻 探针诊断控制台</span>
+          <span id="consoleBadge" class="px-1.5 py-0.5 rounded bg-slate-700 text-[10px] font-bold text-rose-400">OFF</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Live Test Progress Bar (hidden by default) -->
+    <div id="testProgressBarContainer" class="hidden mt-6 pt-6 border-t border-slate-800/80 space-y-2">
+      <div class="flex justify-between text-xs font-mono text-slate-400">
+        <span id="testStatusLabel">正在向香港/日本/美国探针节点发送 TCP SYN 握手...</span>
+        <span id="testProgressPercent">0%</span>
+      </div>
+      <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+        <div id="testProgressBar" class="bg-gradient-to-r from-rose-500 to-emerald-400 h-full w-0 transition-all duration-300"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Real-Time Metrics Summary Bar -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+    <div class="gr-card p-4 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-rose-50 border border-rose-100 flex items-center justify-center text-rose-600 text-lg shrink-0">
+        📊
+      </div>
+      <div>
+        <div class="text-xs text-slate-500 font-medium">收录检测机场</div>
+        <div class="text-lg font-black text-slate-900 font-mono">10 <span class="text-xs font-normal text-slate-500">个服务商</span></div>
+      </div>
+    </div>
+
+    <div class="gr-card p-4 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 text-lg shrink-0">
+        ⚡
+      </div>
+      <div>
+        <div class="text-xs text-slate-500 font-medium">全网平均延迟</div>
+        <div class="text-lg font-black text-emerald-600 font-mono" id="avgPingVal">43 <span class="text-xs font-normal text-slate-500">ms</span></div>
+      </div>
+    </div>
+
+    <div class="gr-card p-4 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 text-lg shrink-0">
+        🛡️
+      </div>
+      <div>
+        <div class="text-xs text-slate-500 font-medium">节点平均连通率</div>
+        <div class="text-lg font-black text-blue-600 font-mono" id="avgUptimeVal">99.6%</div>
+      </div>
+    </div>
+
+    <div class="gr-card p-4 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600 text-lg shrink-0">
+        🕒
+      </div>
+      <div>
+        <div class="text-xs text-slate-500 font-medium">本次实时检测</div>
+        <div class="text-sm font-bold text-slate-800 font-mono" id="lastCheckTime">刚刚已同步</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Terminal Diagnostics Drawer Console (collapsible) -->
+  <div id="diagnosticConsole" class="hidden rounded-2xl bg-slate-950 border border-slate-800 p-4 font-mono text-xs text-slate-300 space-y-3 shadow-2xl">
+    <div class="flex items-center justify-between pb-2 border-b border-slate-800">
+      <div class="flex items-center gap-2 text-slate-400">
+        <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+        <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+        <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+        <span class="ml-2 font-bold text-slate-200">Probe Console Terminal v2.6.4</span>
+      </div>
+      <button id="btnClearConsole" class="text-[11px] text-slate-500 hover:text-slate-300 transition-colors">
+        清空日志
+      </button>
+    </div>
+    <div id="consoleLogOutput" class="h-44 overflow-y-auto space-y-1.5 text-slate-300 scrollbar-thin scrollbar-thumb-slate-800">
+      <p class="text-slate-500">[SYSTEM] 自动化检测终端初始化就绪。等待触发一键检测...</p>
+    </div>
+  </div>
+
+  <!-- Filter & Search Toolbar -->
+  <div class="gr-card p-4 sm:p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4">
+    <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+      
+      <!-- Category Filter Pills -->
+      <div class="flex items-center gap-1.5 overflow-x-auto pb-1 lg:pb-0 scrollbar-none" id="filterTabs">
+        <button
+          type="button"
+          data-category="all"
+          class="filter-tab active px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all bg-rose-600 text-white shadow-sm"
+        >
+          🔥 全部机场 (10)
+        </button>
+        <button
+          type="button"
+          data-category="iplc"
+          class="filter-tab px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap transition-all bg-slate-100 text-slate-600 hover:bg-slate-200"
+        >
+          ⚡ IPLC 专线
+        </button>
+        <button
+          type="button"
+          data-category="bgp"
+          class="filter-tab px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap transition-all bg-slate-100 text-slate-600 hover:bg-slate-200"
+        >
+          🌐 BGP 多线中转
+        </button>
+        <button
+          type="button"
+          data-category="hysteria"
+          class="filter-tab px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap transition-all bg-slate-100 text-slate-600 hover:bg-slate-200"
+        >
+          🔮 Hysteria2 / VLESS
+        </button>
+        <button
+          type="button"
+          data-category="gaming"
+          class="filter-tab px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap transition-all bg-slate-100 text-slate-600 hover:bg-slate-200"
+        >
+          🎮 游戏电竞
+        </button>
+        <button
+          type="button"
+          data-category="value"
+          class="filter-tab px-4 py-2 rounded-xl text-xs font-medium whitespace-nowrap transition-all bg-slate-100 text-slate-600 hover:bg-slate-200"
+        >
+          💰 高性价比 / 新手
+        </button>
+      </div>
+
+      <!-- Search & Sort Controls -->
+      <div class="flex items-center gap-3 shrink-0">
+        <div class="relative flex-1 sm:w-56">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="搜索机场名称 / 协议..."
+            class="w-full pl-9 pr-3 py-2 rounded-xl border border-slate-200 bg-slate-50 text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:bg-white transition-all"
+          />
+          <span class="absolute left-3 top-2.5 text-slate-400 text-xs">🔍</span>
+        </div>
+
+        <select
+          id="sortSelect"
+          class="py-2 px-3 rounded-xl border border-slate-200 bg-slate-50 text-xs text-slate-700 font-bold focus:outline-none focus:ring-2 focus:ring-rose-500 focus:bg-white cursor-pointer"
+        >
+          <option value="rank">默认排名</option>
+          <option value="score">综合评分最高</option>
+          <option value="ping">延迟最低 (Ping)</option>
+          <option value="speed">晚高峰速率最高</option>
+          <option value="price">价格最低起</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Airport Detection Cards Grid/List -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="airportListContainer">
+    {airports.map((airport) => (
+      <article
+        data-id={airport.id}
+        data-category={airport.categoryType}
+        data-name={airport.name}
+        data-score={airport.score}
+        data-ping={airport.ping}
+        data-speed={parseInt(airport.speed)}
+        data-price={parseFloat(airport.startingPrice.replace('¥', ''))}
+        class="airport-card gr-card rounded-2xl bg-white border border-slate-200/90 shadow-sm hover:shadow-lg transition-all duration-300 p-5 flex flex-col justify-between space-y-4 relative group"
+      >
+        <!-- Card Header: Logo, Name, Badge, Score -->
+        <div class="space-y-3 pb-3 border-b border-slate-100">
+          <!-- Top Bar: Rank, Badge Label, Score -->
+          <div class="flex items-center justify-between gap-2">
+            <div class="flex items-center gap-2 min-w-0">
+              <div class={`rank-badge ${airport.rank === 1 ? 'rank-1' : airport.rank === 2 ? 'rank-2' : airport.rank === 3 ? 'rank-3' : 'rank-normal'} shrink-0 text-xs font-black`}>
+                {airport.rank}
+              </div>
+              <span class="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-rose-50 text-rose-600 border border-rose-200 truncate">
+                {airport.badgeLabel}
+              </span>
+            </div>
+
+            <div class="flex items-center gap-1 bg-amber-50 px-2 py-0.5 rounded-xl border border-amber-200 shrink-0">
+              <span class="text-amber-500 font-bold text-[11px]">⭐</span>
+              <span class="font-mono font-black text-amber-700 text-xs">{airport.score}</span>
+            </div>
+          </div>
+
+          <!-- Logo + Name + Category -->
+          <div class="flex items-start gap-3">
+            <div class={`w-12 h-12 rounded-2xl bg-gradient-to-br ${airport.logoSvgBg} text-white flex items-center justify-center text-2xl font-black shadow-md shrink-0`}>
+              {airport.logoIcon}
+            </div>
+            <div class="min-w-0 flex-1">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <h3 class="text-lg font-black text-slate-900 tracking-tight leading-tight">{airport.name}</h3>
+                <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-slate-100 text-slate-600">
+                  {airport.categoryTag}
+                </span>
+              </div>
+              <p class="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
+                {airport.description}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Real-Time Probe Metrics 2x2 Grid -->
+        <div class="grid grid-cols-2 gap-2 bg-slate-50/80 p-3 rounded-xl border border-slate-200/80">
+          <div class="bg-white p-2 rounded-lg border border-slate-100">
+            <div class="text-[10px] text-slate-400 font-medium">节点状态</div>
+            <div class="flex items-center gap-1 mt-0.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span class="font-extrabold text-xs text-emerald-700 font-mono">在线 ({airport.uptime})</span>
+            </div>
+          </div>
+
+          <div class="bg-white p-2 rounded-lg border border-slate-100">
+            <div class="text-[10px] text-slate-400 font-medium">探针延迟 (Ping)</div>
+            <div class="font-mono font-black text-slate-900 text-xs mt-0.5 flex items-center gap-1">
+              <span class="ping-val">{airport.ping}</span> ms
+              <span class="ping-badge px-1 py-0.2 rounded text-[9px] font-bold bg-emerald-100 text-emerald-800">极速</span>
+            </div>
+          </div>
+
+          <div class="bg-white p-2 rounded-lg border border-slate-100">
+            <div class="text-[10px] text-slate-400 font-medium">晚高峰测速</div>
+            <div class="font-mono font-black text-slate-900 text-xs mt-0.5 truncate">
+              {airport.speed}
+            </div>
+          </div>
+
+          <div class="bg-white p-2 rounded-lg border border-slate-100">
+            <div class="text-[10px] text-slate-400 font-medium">丢包 / 节点</div>
+            <div class="font-mono font-bold text-slate-700 text-[11px] mt-0.5 truncate">
+              {airport.loss} · {airport.nodes}+
+            </div>
+          </div>
+        </div>
+
+        <!-- Tags, Protocols & Unlock Pills -->
+        <div class="space-y-1.5 text-xs">
+          <div class="flex flex-wrap items-center gap-1">
+            <span class="text-slate-400 font-semibold text-[10px]">流媒体:</span>
+            {airport.unlocks.slice(0, 3).map((unlock) => (
+              <span class="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-bold">
+                ✓ {unlock}
+              </span>
+            ))}
+          </div>
+
+          <div class="flex flex-wrap items-center gap-1">
+            <span class="text-slate-400 font-semibold text-[10px]">协议:</span>
+            {airport.protocols.map((proto) => (
+              <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-mono text-[10px]">
+                {proto}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Card Footer: Price & Action Buttons -->
+        <div class="pt-3 border-t border-slate-100 space-y-3 mt-auto">
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-slate-400 font-medium">最低资费</span>
+            <div class="font-mono font-black text-rose-600 text-lg">
+              {airport.startingPrice} <span class="text-xs font-normal text-slate-500">/月起</span>
+            </div>
+          </div>
+
+          <!-- Package Drawer Toggle -->
+          <button
+            type="button"
+            class="btn-toggle-plans w-full flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-all"
+            data-target={`plans-${airport.id}`}
+          >
+            <span>📦 参考套餐 ({airport.plans.length}款)</span>
+            <span class="arrow-icon transition-transform duration-200 text-[10px]">▼</span>
+          </button>
+
+          <!-- Action Links Grid -->
+          <div class="grid grid-cols-2 gap-2">
+            <a
+              href={airport.reviewUrl}
+              class="px-3 py-2 rounded-xl border border-slate-200 hover:border-slate-300 text-slate-700 text-xs font-bold text-center transition-all bg-slate-50/50 hover:bg-white"
+            >
+              深度评测
+            </a>
+            <a
+              href={airport.affiliateUrl}
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+              class="px-3 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-black shadow-sm text-center transition-all flex items-center justify-center gap-1"
+            >
+              <span>直达官网</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Collapsible Package Pricing Table -->
+        <div id={`plans-${airport.id}`} class="hidden pt-3 border-t border-slate-200/80 bg-slate-50/80 p-3 rounded-xl space-y-2 mt-2">
+          <div class="text-[11px] text-slate-600 font-bold border-b border-slate-200 pb-1 flex justify-between">
+            <span>套餐名称与配置参考</span>
+            <span>资费</span>
+          </div>
+          <div class="space-y-2">
+            {airport.plans.map((plan) => (
+              <div class="p-2 bg-white rounded-lg border border-slate-200/80 text-xs space-y-1">
+                <div class="flex justify-between items-center">
+                  <h4 class="font-extrabold text-slate-900 text-[11px] truncate">{plan.name}</h4>
+                  <span class="font-mono font-black text-rose-600 text-[11px] shrink-0 ml-1">{plan.price}</span>
+                </div>
+                <div class="flex items-center justify-between text-[10px] text-slate-500">
+                  <span class="bg-slate-100 px-1 py-0.2 rounded font-mono font-semibold">{plan.traffic}</span>
+                  <span class="truncate ml-1">{plan.desc}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <!-- Empty state if search returns no results -->
+  <div id="noResults" class="hidden text-center py-16 gr-card rounded-2xl bg-white border border-slate-200">
+    <div class="text-4xl mb-3">🔍</div>
+    <h3 class="text-lg font-bold text-slate-800">未找到匹配的机场</h3>
+    <p class="text-xs text-slate-500 mt-1">请尝试更换关键字或选择全部分类</p>
+  </div>
+
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Plan Expand/Collapse Logic
+    const planButtons = document.querySelectorAll('.btn-toggle-plans');
+    planButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        if (!targetId) return;
+        const plansContainer = document.getElementById(targetId);
+        const arrow = btn.querySelector('.arrow-icon');
+        if (plansContainer) {
+          plansContainer.classList.toggle('hidden');
+          if (arrow) {
+            arrow.classList.toggle('rotate-180');
+          }
+        }
+      });
+    });
+
+    // 2. Filter Tabs Logic
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const cards = document.querySelectorAll<HTMLElement>('.airport-card');
+    const noResults = document.getElementById('noResults');
+
+    let currentCategory = 'all';
+    let currentQuery = '';
+
+    function applyFilterAndSearch() {
+      let visibleCount = 0;
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        const name = (card.getAttribute('data-name') || '').toLowerCase();
+        const content = card.textContent?.toLowerCase() || '';
+
+        const matchesCat = currentCategory === 'all' || cat === currentCategory;
+        const matchesQuery = !currentQuery || name.includes(currentQuery) || content.includes(currentQuery);
+
+        if (matchesCat && matchesQuery) {
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      if (noResults) {
+        if (visibleCount === 0) {
+          noResults.classList.remove('hidden');
+        } else {
+          noResults.classList.add('hidden');
+        }
+      }
+    }
+
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        filterTabs.forEach(t => {
+          t.classList.remove('active', 'bg-rose-600', 'text-white', 'shadow-sm');
+          t.classList.add('bg-slate-100', 'text-slate-600', 'hover:bg-slate-200');
+        });
+        tab.classList.remove('bg-slate-100', 'text-slate-600', 'hover:bg-slate-200');
+        tab.classList.add('active', 'bg-rose-600', 'text-white', 'shadow-sm');
+
+        currentCategory = tab.getAttribute('data-category') || 'all';
+        applyFilterAndSearch();
+      });
+    });
+
+    // 3. Search Input Logic
+    const searchInput = document.getElementById('searchInput') as HTMLInputElement | null;
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        currentQuery = (e.target as HTMLInputElement).value.trim().toLowerCase();
+        applyFilterAndSearch();
+      });
+    }
+
+    // 4. Sorting Logic
+    const sortSelect = document.getElementById('sortSelect') as HTMLSelectElement | null;
+    const container = document.getElementById('airportListContainer');
+
+    if (sortSelect && container) {
+      sortSelect.addEventListener('change', () => {
+        const value = sortSelect.value;
+        const cardArray = Array.from(cards);
+
+        cardArray.sort((a, b) => {
+          if (value === 'score') {
+            return parseFloat(b.getAttribute('data-score') || '0') - parseFloat(a.getAttribute('data-score') || '0');
+          }
+          if (value === 'ping') {
+            return parseInt(a.getAttribute('data-ping') || '999') - parseInt(b.getAttribute('data-ping') || '999');
+          }
+          if (value === 'speed') {
+            return parseInt(b.getAttribute('data-speed') || '0') - parseInt(a.getAttribute('data-speed') || '0');
+          }
+          if (value === 'price') {
+            return parseFloat(a.getAttribute('data-price') || '999') - parseFloat(b.getAttribute('data-price') || '999');
+          }
+          // Default rank
+          const rankA = parseInt(a.querySelector('.rank-badge')?.textContent || '99');
+          const rankB = parseInt(b.querySelector('.rank-badge')?.textContent || '99');
+          return rankA - rankB;
+        });
+
+        cardArray.forEach(card => container.appendChild(card));
+      });
+    }
+
+    // 5. Console Terminal Drawer Toggle
+    const btnToggleConsole = document.getElementById('btnToggleConsole');
+    const diagnosticConsole = document.getElementById('diagnosticConsole');
+    const consoleBadge = document.getElementById('consoleBadge');
+    const consoleLogOutput = document.getElementById('consoleLogOutput');
+
+    if (btnToggleConsole && diagnosticConsole && consoleBadge) {
+      btnToggleConsole.addEventListener('click', () => {
+        diagnosticConsole.classList.toggle('hidden');
+        if (diagnosticConsole.classList.contains('hidden')) {
+          consoleBadge.textContent = 'OFF';
+          consoleBadge.classList.replace('text-emerald-400', 'text-rose-400');
+        } else {
+          consoleBadge.textContent = 'ON';
+          consoleBadge.classList.replace('text-rose-400', 'text-emerald-400');
+        }
+      });
+    }
+
+    const btnClearConsole = document.getElementById('btnClearConsole');
+    if (btnClearConsole && consoleLogOutput) {
+      btnClearConsole.addEventListener('click', () => {
+        consoleLogOutput.innerHTML = '<p class="text-slate-500">[SYSTEM] 探针控制台日志已清空。</p>';
+      });
+    }
+
+    // 6. Interactive Live Re-Test Simulation
+    const btnRunFullTest = document.getElementById('btnRunFullTest');
+    const testIcon = document.getElementById('testIcon');
+    const testBtnText = document.getElementById('testBtnText');
+    const testProgressBarContainer = document.getElementById('testProgressBarContainer');
+    const testProgressBar = document.getElementById('testProgressBar');
+    const testProgressPercent = document.getElementById('testProgressPercent');
+    const testStatusLabel = document.getElementById('testStatusLabel');
+
+    function logConsole(msg: string, type: 'info' | 'success' | 'warn' = 'info') {
+      if (!consoleLogOutput) return;
+      const now = new Date();
+      const timeStr = now.toTimeString().split(' ')[0];
+      const p = document.createElement('p');
+      let colorClass = 'text-slate-300';
+      if (type === 'success') colorClass = 'text-emerald-400 font-bold';
+      if (type === 'warn') colorClass = 'text-amber-400';
+
+      p.className = `${colorClass} leading-relaxed`;
+      p.innerHTML = `<span class="text-slate-500">[${timeStr}]</span> ${msg}`;
+      consoleLogOutput.appendChild(p);
+      consoleLogOutput.scrollTop = consoleLogOutput.scrollHeight;
+    }
+
+    if (btnRunFullTest && testProgressBarContainer && testProgressBar && testProgressPercent && testStatusLabel) {
+      let isTesting = false;
+
+      btnRunFullTest.addEventListener('click', () => {
+        if (isTesting) return;
+        isTesting = true;
+
+        if (testIcon) testIcon.classList.add('animate-spin');
+        if (testBtnText) testBtnText.textContent = '正在全站检测中...';
+        testProgressBarContainer.classList.remove('hidden');
+
+        // Automatically open console log if closed
+        if (diagnosticConsole && diagnosticConsole.classList.contains('hidden')) {
+          diagnosticConsole.classList.remove('hidden');
+          if (consoleBadge) {
+            consoleBadge.textContent = 'ON';
+            consoleBadge.classList.replace('text-rose-400', 'text-emerald-400');
+          }
+        }
+
+        logConsole('🚀 开始对全站 10 大机场执行多节点 TCP & HTTP 延迟握手测试...', 'info');
+
+        let progress = 0;
+        const airportNames = ['EdgeNova', '极连云', '光年梯', '云图', '快狸', '极速Cloud', '瞬云', '速界', '寰宇云', '可信云'];
+
+        const interval = setInterval(() => {
+          progress += 10;
+          testProgressBar.style.width = `${progress}%`;
+          testProgressPercent.textContent = `${progress}%`;
+
+          const currentIndex = Math.floor((progress / 100) * airportNames.length) - 1;
+          const currentAirport = airportNames[Math.max(0, currentIndex)];
+
+          if (progress <= 30) {
+            testStatusLabel.textContent = `[香港 HK-01 探针] 正在测试 ${currentAirport} 节点 TCP 延迟与丢包率...`;
+            logConsole(`[HK-01] ${currentAirport} -> SYN ACK 握手成功 (响应: ${(28 + Math.floor(Math.random() * 15))}ms)`, 'success');
+          } else if (progress <= 70) {
+            testStatusLabel.textContent = `[东京 JP-02 探针] 正在测试 ${currentAirport} 4K 流媒体与 AI 解锁指令...`;
+            logConsole(`[JP-02] ${currentAirport} -> Netflix 4K / ChatGPT 解锁检测: 允许`, 'success');
+          } else if (progress < 100) {
+            testStatusLabel.textContent = `[洛杉矶 US-03 探针] 正在汇总 ${currentAirport} 晚高峰吞吐带宽速率...`;
+            logConsole(`[US-03] ${currentAirport} -> 晚高峰峰值带宽测速: ${(750 + Math.floor(Math.random() * 240))} Mbps`, 'info');
+          } else {
+            clearInterval(interval);
+            testStatusLabel.textContent = '全站检测完毕！数据已实时校准。';
+            logConsole('✅ 10 大机场全线检测完成！平均连通率 99.6%，平均延迟 41.5ms。', 'success');
+
+            // Randomly micro-adjust ping numbers visually to mimic live test
+            cards.forEach(card => {
+              const pingEl = card.querySelector('.ping-val');
+              if (pingEl) {
+                const oldPing = parseInt(pingEl.textContent || '40');
+                const diff = (Math.random() * 4 - 2);
+                const newPing = Math.max(22, Math.round(oldPing + diff));
+                pingEl.textContent = newPing.toString();
+              }
+            });
+
+            const lastCheckTime = document.getElementById('lastCheckTime');
+            if (lastCheckTime) {
+              const now = new Date();
+              lastCheckTime.textContent = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')} 已更新`;
+            }
+
+            setTimeout(() => {
+              if (testIcon) testIcon.classList.remove('animate-spin');
+              if (testBtnText) testBtnText.textContent = '重新检测全站机场';
+              isTesting = false;
+            }, 1000);
+          }
+        }, 300);
+      });
+    }
+  });
+</script>

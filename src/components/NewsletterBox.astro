@@ -1,0 +1,47 @@
+---
+export interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  title = "订阅节点测速与防封中转动态",
+  subtitle = "获取最新的机场稳定性月报、客户端安全更新提醒与美区 Apple ID 共享资讯。",
+} = Astro.props;
+---
+
+<div class="gr-card rounded-2xl p-6 sm:p-8 border border-slate-200 bg-white my-8">
+  <div class="max-w-xl mx-auto text-center space-y-4">
+    <div class="w-12 h-12 rounded-xl bg-black text-white mx-auto flex items-center justify-center text-2xl font-black shadow-md">
+      📬
+    </div>
+    <h3 class="text-xl font-extrabold text-slate-900">{title}</h3>
+    <p class="text-sm text-slate-600 leading-relaxed font-normal">{subtitle}</p>
+    
+    <form id="newsletter-form" class="flex flex-col sm:flex-row gap-2 pt-2">
+      <input
+        type="email"
+        placeholder="输入您的电子邮箱地址..."
+        required
+        class="px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:border-black flex-1"
+      />
+      <button
+        type="submit"
+        class="px-6 py-3 rounded-xl bg-black hover:bg-slate-800 text-white font-bold text-sm shadow-md transition-all shrink-0"
+      >
+        免费订阅
+      </button>
+    </form>
+    <p class="text-[11px] text-slate-400">我们尊重隐私，绝不会发送任何垃圾广告。</p>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('newsletter-form');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('感谢关注！我们将持续更新技术内容。');
+    });
+  }
+</script>

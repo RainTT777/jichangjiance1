@@ -1,0 +1,23 @@
+---
+import { statsData } from '../data/homepage';
+---
+
+<section class="py-6 border-y border-slate-200/80 bg-white my-6">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      {statsData.map((stat) => (
+        <div class="gr-card p-4 text-center rounded-2xl border border-slate-200 bg-white">
+          <div class="text-2xl sm:text-3xl font-black text-slate-900 font-mono tracking-tight">
+            {stat.value}
+          </div>
+          <div class="text-xs font-extrabold text-slate-700 mt-1">
+            {stat.label}
+          </div>
+          <div class="text-[11px] text-slate-400 mt-0.5">
+            {stat.subtext}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

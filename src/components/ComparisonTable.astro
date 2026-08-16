@@ -1,0 +1,63 @@
+---
+import { comparisonData } from '../data/homepage';
+---
+
+<div class="gr-card overflow-hidden shadow-sm border border-slate-200 bg-white">
+  <div class="overflow-x-auto">
+    <table class="w-full text-left border-collapse text-sm">
+      <thead>
+        <tr class="bg-slate-50/90 border-b border-slate-200 text-slate-500 font-extrabold text-xs uppercase tracking-wider">
+          <th class="py-3.5 px-4 w-16 text-center">排名</th>
+          <th class="py-3.5 px-4">线路架构方案</th>
+          <th class="py-3.5 px-4">晚高峰速率</th>
+          <th class="py-3.5 px-4">稳定性指数</th>
+          <th class="py-3.5 px-4">流媒体 / AI 解锁</th>
+          <th class="py-3.5 px-4">价格预算</th>
+          <th class="py-3.5 px-4 text-right">操作入口</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-100 text-slate-700">
+        {comparisonData.rows.map((row, index) => {
+          const rankNum = index + 1;
+          const badgeClass = rankNum === 1 ? 'rank-1' : rankNum === 2 ? 'rank-2' : rankNum === 3 ? 'rank-3' : 'rank-normal';
+          return (
+            <tr class="hover:bg-slate-50/80 transition-colors">
+              <td class="py-4 px-4 text-center">
+                <span class={`rank-badge ${badgeClass}`}>
+                  {rankNum}
+                </span>
+              </td>
+              <td class="py-4 px-4">
+                <div class="font-extrabold text-slate-900 text-base">{row.type}</div>
+                <div class="text-xs text-slate-500 mt-0.5 line-clamp-1">{row.recommendation}</div>
+              </td>
+              <td class="py-4 px-4 font-mono font-bold text-slate-900 whitespace-nowrap">
+                {row.speed}
+              </td>
+              <td class="py-4 px-4 whitespace-nowrap">
+                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                  {row.stability}
+                </span>
+              </td>
+              <td class="py-4 px-4 text-xs font-semibold text-slate-700">
+                {row.unblock}
+              </td>
+              <td class="py-4 px-4 text-xs text-slate-500 font-mono">
+                {row.price}
+              </td>
+              <td class="py-4 px-4 text-right">
+                <a
+                  href="/compare/"
+                  class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-slate-200 text-slate-700 hover:border-rose-300 hover:text-rose-600 hover:bg-rose-50 text-xs font-bold transition-all"
+                >
+                  评测详情 &rarr;
+                </a>
+              </td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  </div>
+</div>

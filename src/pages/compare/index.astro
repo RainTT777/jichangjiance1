@@ -1,0 +1,95 @@
+---
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import ComparisonTable from '../../components/ComparisonTable.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTASection from '../../components/CTASection.astro';
+import { faqData } from '../../data/homepage';
+
+const breadcrumbs = [
+  { name: '选购对比', url: '/compare/' },
+];
+
+const dimensionGuides = [
+  {
+    title: "1. 线路传输通道 (直连 vs 中转 vs 专线)",
+    description: "直连线路成本低但容易受到国际出口拥堵影响；BGP 中转提供较强的抗波动能力；IPLC/IEPL 专线走独立内网通道，延迟极低且全天无丢包。",
+  },
+  {
+    title: "2. 加密协议代际 (SS vs Vless vs Hysteria 2)",
+    description: "经典 Shadowsocks 协议开销小但易被识别特征；Sing-box 采用的 Vless Reality 与 Hysteria 2 基于 UDP 伪装，在弱网环境下抗丢包表现更优。",
+  },
+  {
+    title: "3. 节点解封与 IP 质量 (原生 IP vs 广播 IP)",
+    description: "访问 ChatGPT、Netflix 4K 等高度依赖原生住宅 IP 分流。广播 IP 容易遭遇风控提示“无法在当前国家使用”。",
+  },
+];
+---
+
+<LandingLayout
+  seo={{
+    title: "网络加速服务选购对比矩阵 - 架构与维度说明",
+    description: "客观对比 IPLC 专线、BGP 中转与直连线路的高峰期速率、稳定性、流媒体解锁能力与预算分配。",
+  }}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+    
+    <Breadcrumb items={breadcrumbs} />
+
+    <SectionTitle
+      badge="选购对比矩阵"
+      title="网络线路架构与选购维度横向对比"
+      subtitle="理清不同技术方案的优势与局限，助您找到最匹配使用场景的加速服务"
+    />
+
+    <!-- Comparison Table Matrix -->
+    <ComparisonTable />
+
+    <!-- Dimension Explanations -->
+    <section class="space-y-6">
+      <SectionTitle
+        badge="核心维度"
+        title="评测工程师建议关注的 3 大核心维度"
+      />
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {dimensionGuides.map((guide) => (
+          <div class="gr-card p-6 rounded-2xl border border-slate-200 bg-white space-y-2">
+            <h3 class="font-extrabold text-slate-900 text-base">{guide.title}</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">{guide.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Choice Recommendations -->
+    <section class="gr-card rounded-2xl p-8 sm:p-10 border border-slate-200 bg-white space-y-6">
+      <SectionTitle
+        badge="场景推荐"
+        title="按使用需求快速选择"
+      />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-slate-700">
+        <div class="space-y-2 p-5 rounded-xl bg-slate-50 border border-slate-200">
+          <h4 class="font-extrabold text-slate-900 text-base">🎬 影音流媒体与追剧用户</h4>
+          <p class="text-xs sm:text-sm">建议选择包含香港/台湾/新加坡原生 IP 分流解锁的 BGP 中转或 IEPL 专线，保证 4K 高画质无卡顿。</p>
+        </div>
+        <div class="space-y-2 p-5 rounded-xl bg-slate-50 border border-slate-200">
+          <h4 class="font-extrabold text-slate-900 text-base">🤖 AI 办公与科研开发群体</h4>
+          <p class="text-xs sm:text-sm">建议选择原生美区/欧区节点且稳定性 99.9% 的 IPLC 专线，避免因节点 IP 变动导致 OpenAI/Claude 封号。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparison FAQ -->
+    <section>
+      <SectionTitle
+        badge="常见疑问"
+        title="选购对比 FAQ"
+      />
+      <FAQ items={faqData.slice(0, 4)} />
+    </section>
+
+    <CTASection />
+
+  </div>
+</LandingLayout>

@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg-base: #fafafa;
+    --color-bg-card: #ffffff;
+    --color-border: #e5e5e5;
+    --color-text-main: #171717;
+    --color-text-muted: #737373;
+    --color-rose: #e11d48;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #fafafa;
+    color: #171717;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  body {
+    @apply bg-[#fafafa] text-slate-800 antialiased min-h-screen flex flex-col font-sans selection:bg-rose-100 selection:text-rose-700;
+  }
+}
+
+/* GateRank Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #fafafa;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a3a3a3;
+}
+
+/* GateRank Dot Grid Background Utility */
+.bg-dot-pattern {
+  background-color: #ffffff;
+  background-image: radial-gradient(#e5e7eb 1.2px, transparent 1.2px);
+  background-size: 20px 20px;
+}
+
+/* GateRank Card & Shadow System */
+.gr-card {
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 18px;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.035);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gr-card-hover:hover {
+  border-color: #fecdd3;
+  box-shadow: 0 12px 32px rgba(225, 29, 72, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Pill Navigation Links */
+.gr-nav-pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  color: #737373;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+.gr-nav-pill:hover {
+  background: #f5f5f5;
+  color: #171717;
+}
+
+.gr-nav-pill.is-active {
+  background: #fff1f2;
+  color: #e11d48;
+  box-shadow: inset 0 0 0 1px rgba(254, 205, 211, 0.8), 0 1px 3px rgba(17, 17, 17, 0.04);
+}
+
+/* GateRank Ranking Badges */
+.rank-badge {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-weight: 900;
+  font-size: 13px;
+}
+.rank-1 {
+  background: #fbbf24;
+  color: #ffffff;
+  border: 2px solid #fcd34d;
+  box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);
+}
+.rank-2 {
+  background: #94a3b8;
+  color: #ffffff;
+  border: 2px solid #cbd5e1;
+  box-shadow: 0 2px 8px rgba(148, 163, 184, 0.3);
+}
+.rank-3 {
+  background: #fb923c;
+  color: #ffffff;
+  border: 2px solid #fdba74;
+  box-shadow: 0 2px 8px rgba(251, 146, 60, 0.3);
+}
+.rank-normal {
+  background: #f5f5f5;
+  color: #737373;
+  border: 1px solid #e5e5e5;
+}
+
+/* Prose Formatting for GateRank Light Mode */
+.prose {
+  @apply text-slate-700 max-w-none;
+}
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  @apply text-slate-900 font-bold tracking-tight text-balance scroll-mt-24;
+}
+.prose h2 {
+  @apply text-2xl mt-10 mb-4 pb-2 border-b border-slate-200 text-slate-900 flex items-center gap-2;
+}
+.prose h3 {
+  @apply text-xl mt-8 mb-3 text-slate-800;
+}
+.prose p {
+  @apply leading-relaxed mb-5 text-slate-700 text-[16.5px];
+}
+.prose ul {
+  @apply list-disc list-inside space-y-2 mb-6 text-slate-700;
+}
+.prose ol {
+  @apply list-decimal list-inside space-y-2 mb-6 text-slate-700;
+}
+.prose code {
+  @apply bg-slate-100 text-rose-600 px-1.5 py-0.5 rounded text-sm font-mono border border-slate-200;
+}
+.prose pre {
+  @apply bg-slate-900 border border-slate-800 rounded-xl p-4 my-6 overflow-x-auto text-sm text-slate-100;
+}
+.prose pre code {
+  @apply bg-transparent p-0 text-slate-100 border-none;
+}
+.prose blockquote {
+  @apply border-l-4 border-rose-500 bg-rose-50/60 px-4 py-3 rounded-r-lg my-6 text-slate-800 italic;
+}
+.prose table {
+  @apply w-full text-left border-collapse my-6 text-sm rounded-lg overflow-hidden border border-slate-200;
+}
+.prose th {
+  @apply bg-slate-100 text-slate-900 font-semibold p-3 border-b border-slate-200;
+}
+.prose td {
+  @apply p-3 border-b border-slate-200 text-slate-700 bg-white;
+}

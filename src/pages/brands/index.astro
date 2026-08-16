@@ -1,0 +1,44 @@
+---
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import BrandCard from '../../components/BrandCard.astro';
+import { getCollection } from 'astro:content';
+
+const brands = await getCollection('brands');
+---
+
+<LandingLayout
+  seo={{
+    title: "网络加速服务商品牌档案库 - 机场品牌推荐",
+    description: "汇聚全网常见网络加速服务商的详细履历、架构特点、协议支持与历史连通性评价。",
+  }}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+    
+    <SectionTitle
+      badge="品牌档案"
+      title="网络加速服务商品牌库"
+      subtitle="客观收录全网主流品牌词落地页，供用户查阅架构履历与实测数据"
+    />
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {brands.map((brand) => (
+        <BrandCard
+          name={brand.data.name}
+          description={brand.data.description}
+          slug={brand.slug}
+          category={brand.data.category}
+          tags={brand.data.tags}
+          featured={brand.data.featured}
+        />
+      ))}
+    </div>
+
+    {brands.length === 0 && (
+      <div class="text-center py-16 text-slate-500 gr-card rounded-2xl">
+        <p>目前尚无已收录的品牌数据。</p>
+      </div>
+    )}
+
+  </div>
+</LandingLayout>

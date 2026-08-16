@@ -1,0 +1,109 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import CTASection from '../../components/CTASection.astro';
+import FAQ from '../../components/FAQ.astro';
+import { faqData } from '../../data/homepage';
+
+export async function getStaticPaths() {
+  const brands = await getCollection('brands');
+  return brands.map((brand) => ({
+    params: { slug: brand.slug },
+    props: { brand },
+  }));
+}
+
+export interface Props {
+  brand: CollectionEntry<'brands'>;
+}
+
+const { brand } = Astro.props;
+const { Content } = await brand.render();
+
+const formattedUpdatedDate = new Date(brand.data.updatedDate).toLocaleDateString('zh-CN', {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+});
+
+const breadcrumbs = [
+  { name: '品牌库', url: '/brands/' },
+  { name: brand.data.name },
+];
+---
+
+<LandingLayout
+  seo={{
+    title: `${brand.data.name} 测评与架构评析`,
+    description: brand.data.description,
+  }}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+    
+    <Breadcrumb items={breadcrumbs} />
+
+    <!-- Brand Header -->
+    <div class="gr-card p-8 sm:p-10 rounded-2xl border border-slate-200 bg-white space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-50 text-rose-600 border border-rose-200">
+          {brand.data.category}
+        </span>
+        <span class="text-xs text-slate-400 font-mono">
+          档案更新：{formattedUpdatedDate}
+        </span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+        {brand.data.name}
+      </h1>
+
+      <p class="text-base text-slate-600 max-w-3xl leading-relaxed">
+        {brand.data.description}
+      </p>
+
+      {brand.data.tags.length > 0 && (
+        <div class="flex flex-wrap gap-2 pt-2">
+          {brand.data.tags.map((tag) => (
+            <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-mono">
+              #{tag}
+            </span>
+          ))}
+        </div>
+      )}
+
+      <div class="pt-4 flex flex-wrap items-center gap-3">
+        <a
+          href="/compare/"
+          class="px-6 py-3 rounded-xl bg-black hover:bg-slate-800 text-white font-bold text-sm shadow-sm transition-all"
+        >
+          查看全网横向对比
+        </a>
+        <a
+          href={`/go/example-brand-1`}
+          class="px-6 py-3 rounded-xl bg-slate-100 border border-slate-200 hover:bg-slate-200 text-slate-800 font-semibold text-sm transition-all"
+        >
+          安全入口跳转中转
+        </a>
+      </div>
+    </div>
+
+    <!-- Brand Content Markdown Body -->
+    <div class="gr-card p-8 sm:p-10 rounded-2xl border border-slate-200 bg-white prose max-w-none">
+      <Content />
+    </div>
+
+    <!-- Relevant FAQ -->
+    <section>
+      <SectionTitle
+        badge="常见疑问"
+        title="关于品牌评测的问答说明"
+      />
+      <FAQ items={faqData.slice(0, 3)} />
+    </section>
+
+    <CTASection />
+
+  </div>
+</LandingLayout>
