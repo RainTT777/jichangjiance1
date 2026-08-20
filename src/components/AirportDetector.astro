@@ -526,7 +526,7 @@ const airports: Airport[] = [
     </div>
   </div>
 
-  <!-- Airport Detection Cards Grid/List -->
+  <!-- Airport Detection Cards Grid (每一横排只放 3 个，长方体纵向卡片式) -->
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="airportListContainer">
     {airports.map((airport) => (
       <article
@@ -537,11 +537,11 @@ const airports: Airport[] = [
         data-ping={airport.ping}
         data-speed={parseInt(airport.speed)}
         data-price={parseFloat(airport.startingPrice.replace('¥', ''))}
-        class="airport-card gr-card rounded-2xl bg-white border border-slate-200/90 shadow-sm hover:shadow-lg transition-all duration-300 p-5 flex flex-col justify-between space-y-4 relative group"
+        class="airport-card gr-card rounded-2xl bg-white border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-rose-300 transition-all duration-300 p-5 flex flex-col justify-between space-y-4 relative group h-full"
       >
-        <!-- Card Header: Logo, Name, Badge, Score -->
+        <!-- Card Header: Rank Badge, Category, Score & Brand Info -->
         <div class="space-y-3 pb-3 border-b border-slate-100">
-          <!-- Top Bar: Rank, Badge Label, Score -->
+          <!-- Top Row: Rank & Badges -->
           <div class="flex items-center justify-between gap-2">
             <div class="flex items-center gap-2 min-w-0">
               <div class={`rank-badge ${airport.rank === 1 ? 'rank-1' : airport.rank === 2 ? 'rank-2' : airport.rank === 3 ? 'rank-3' : 'rank-normal'} shrink-0 text-xs font-black`}>
@@ -552,33 +552,33 @@ const airports: Airport[] = [
               </span>
             </div>
 
-            <div class="flex items-center gap-1 bg-amber-50 px-2 py-0.5 rounded-xl border border-amber-200 shrink-0">
-              <span class="text-amber-500 font-bold text-[11px]">⭐</span>
-              <span class="font-mono font-black text-amber-700 text-xs">{airport.score}</span>
+            <div class="flex items-center gap-1 bg-amber-50 px-2.5 py-0.5 rounded-xl border border-amber-200 shrink-0">
+              <span class="text-amber-500 font-bold text-xs">⭐</span>
+              <span class="font-mono font-black text-amber-800 text-xs">{airport.score}</span>
             </div>
           </div>
 
-          <!-- Logo + Name + Category -->
-          <div class="flex items-start gap-3">
-            <div class={`w-12 h-12 rounded-2xl bg-gradient-to-br ${airport.logoSvgBg} text-white flex items-center justify-center text-2xl font-black shadow-md shrink-0`}>
+          <!-- Brand Logo, Title & Tag -->
+          <div class="flex items-start gap-3 pt-1">
+            <div class={`w-12 h-12 rounded-2xl bg-gradient-to-br ${airport.logoSvgBg} text-white flex items-center justify-center text-2xl font-black shadow-md shrink-0 transition-transform group-hover:scale-105`}>
               {airport.logoIcon}
             </div>
             <div class="min-w-0 flex-1">
               <div class="flex items-center gap-1.5 flex-wrap">
-                <h3 class="text-lg font-black text-slate-900 tracking-tight leading-tight">{airport.name}</h3>
+                <h3 class="text-lg font-black text-slate-900 tracking-tight leading-tight group-hover:text-rose-600 transition-colors">{airport.name}</h3>
                 <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-slate-100 text-slate-600">
                   {airport.categoryTag}
                 </span>
               </div>
-              <p class="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
+              <p class="text-xs text-slate-500 mt-1.5 line-clamp-2 leading-relaxed">
                 {airport.description}
               </p>
             </div>
           </div>
         </div>
 
-        <!-- Real-Time Probe Metrics 2x2 Grid -->
-        <div class="grid grid-cols-2 gap-2 bg-slate-50/80 p-3 rounded-xl border border-slate-200/80">
+        <!-- Real-Time Probe Metrics (2x2 Grid) -->
+        <div class="grid grid-cols-2 gap-2 bg-slate-50/90 p-3 rounded-xl border border-slate-200/80">
           <div class="bg-white p-2 rounded-lg border border-slate-100">
             <div class="text-[10px] text-slate-400 font-medium">节点状态</div>
             <div class="flex items-center gap-1 mt-0.5">
@@ -610,10 +610,10 @@ const airports: Airport[] = [
           </div>
         </div>
 
-        <!-- Tags, Protocols & Unlock Pills -->
+        <!-- Capabilities & Tags -->
         <div class="space-y-1.5 text-xs">
           <div class="flex flex-wrap items-center gap-1">
-            <span class="text-slate-400 font-semibold text-[10px]">流媒体:</span>
+            <span class="text-slate-400 font-semibold text-[10px] shrink-0">流媒体:</span>
             {airport.unlocks.slice(0, 3).map((unlock) => (
               <span class="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-bold">
                 ✓ {unlock}
@@ -622,7 +622,7 @@ const airports: Airport[] = [
           </div>
 
           <div class="flex flex-wrap items-center gap-1">
-            <span class="text-slate-400 font-semibold text-[10px]">协议:</span>
+            <span class="text-slate-400 font-semibold text-[10px] shrink-0">协议:</span>
             {airport.protocols.map((proto) => (
               <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-mono text-[10px]">
                 {proto}
@@ -631,9 +631,9 @@ const airports: Airport[] = [
           </div>
         </div>
 
-        <!-- Card Footer: Price & Action Buttons -->
+        <!-- Card Footer: Price & Actions -->
         <div class="pt-3 border-t border-slate-100 space-y-3 mt-auto">
-          <div class="flex items-center justify-between">
+          <div class="flex items-baseline justify-between">
             <span class="text-xs text-slate-400 font-medium">最低资费</span>
             <div class="font-mono font-black text-rose-600 text-lg">
               {airport.startingPrice} <span class="text-xs font-normal text-slate-500">/月起</span>
@@ -643,18 +643,18 @@ const airports: Airport[] = [
           <!-- Package Drawer Toggle -->
           <button
             type="button"
-            class="btn-toggle-plans w-full flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-all"
+            class="btn-toggle-plans w-full flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-all"
             data-target={`plans-${airport.id}`}
           >
             <span>📦 参考套餐 ({airport.plans.length}款)</span>
             <span class="arrow-icon transition-transform duration-200 text-[10px]">▼</span>
           </button>
 
-          <!-- Action Links Grid -->
-          <div class="grid grid-cols-2 gap-2">
+          <!-- Action Buttons Grid -->
+          <div class="grid grid-cols-2 gap-2 pt-1">
             <a
               href={airport.reviewUrl}
-              class="px-3 py-2 rounded-xl border border-slate-200 hover:border-slate-300 text-slate-700 text-xs font-bold text-center transition-all bg-slate-50/50 hover:bg-white"
+              class="px-3 py-2.5 rounded-xl border border-slate-200 hover:border-slate-300 text-slate-700 text-xs font-bold text-center transition-all bg-slate-50/50 hover:bg-white flex items-center justify-center"
             >
               深度评测
             </a>
@@ -662,10 +662,10 @@ const airports: Airport[] = [
               href={airport.affiliateUrl}
               target="_blank"
               rel="nofollow noopener noreferrer"
-              class="px-3 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-black shadow-sm text-center transition-all flex items-center justify-center gap-1"
+              class="px-3 py-2.5 rounded-xl bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white text-xs font-black shadow-sm text-center transition-all flex items-center justify-center gap-1 group/btn"
             >
               <span>直达官网</span>
-              <span>&rarr;</span>
+              <span class="transition-transform group-hover/btn:translate-x-0.5">&rarr;</span>
             </a>
           </div>
         </div>
