@@ -577,35 +577,35 @@ const airports: Airport[] = [
           </div>
         </div>
 
-        <!-- Real-Time Probe Metrics (2x2 Grid) -->
+        <!-- Real-Time Probe Metrics (2x2 Grid inside 3-column Vertical Card) -->
         <div class="grid grid-cols-2 gap-2 bg-slate-50/90 p-3 rounded-xl border border-slate-200/80">
-          <div class="bg-white p-2 rounded-lg border border-slate-100">
-            <div class="text-[10px] text-slate-400 font-medium">节点状态</div>
+          <div class="bg-white p-2 rounded-lg border border-slate-100/90">
+            <div class="text-[10px] text-slate-400 font-medium">实时节点状态</div>
             <div class="flex items-center gap-1 mt-0.5">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
               <span class="font-extrabold text-xs text-emerald-700 font-mono">在线 ({airport.uptime})</span>
             </div>
           </div>
 
-          <div class="bg-white p-2 rounded-lg border border-slate-100">
-            <div class="text-[10px] text-slate-400 font-medium">探针延迟 (Ping)</div>
+          <div class="bg-white p-2 rounded-lg border border-slate-100/90">
+            <div class="text-[10px] text-slate-400 font-medium">测速探针延迟 (Ping)</div>
             <div class="font-mono font-black text-slate-900 text-xs mt-0.5 flex items-center gap-1">
               <span class="ping-val">{airport.ping}</span> ms
               <span class="ping-badge px-1 py-0.2 rounded text-[9px] font-bold bg-emerald-100 text-emerald-800">极速</span>
             </div>
           </div>
 
-          <div class="bg-white p-2 rounded-lg border border-slate-100">
-            <div class="text-[10px] text-slate-400 font-medium">晚高峰测速</div>
+          <div class="bg-white p-2 rounded-lg border border-slate-100/90">
+            <div class="text-[10px] text-slate-400 font-medium">晚高峰测速带宽</div>
             <div class="font-mono font-black text-slate-900 text-xs mt-0.5 truncate">
               {airport.speed}
             </div>
           </div>
 
-          <div class="bg-white p-2 rounded-lg border border-slate-100">
-            <div class="text-[10px] text-slate-400 font-medium">丢包 / 节点</div>
+          <div class="bg-white p-2 rounded-lg border border-slate-100/90">
+            <div class="text-[10px] text-slate-400 font-medium">丢包率 / 节点规模</div>
             <div class="font-mono font-bold text-slate-700 text-[11px] mt-0.5 truncate">
-              {airport.loss} · {airport.nodes}+
+              {airport.loss} · {airport.nodes}+ 节点
             </div>
           </div>
         </div>
@@ -613,7 +613,7 @@ const airports: Airport[] = [
         <!-- Capabilities & Tags -->
         <div class="space-y-1.5 text-xs">
           <div class="flex flex-wrap items-center gap-1">
-            <span class="text-slate-400 font-semibold text-[10px] shrink-0">流媒体:</span>
+            <span class="text-slate-400 font-semibold text-[10px] shrink-0">流媒体解锁:</span>
             {airport.unlocks.slice(0, 3).map((unlock) => (
               <span class="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-bold">
                 ✓ {unlock}
@@ -622,7 +622,7 @@ const airports: Airport[] = [
           </div>
 
           <div class="flex flex-wrap items-center gap-1">
-            <span class="text-slate-400 font-semibold text-[10px] shrink-0">协议:</span>
+            <span class="text-slate-400 font-semibold text-[10px] shrink-0">协议支持:</span>
             {airport.protocols.map((proto) => (
               <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 font-mono text-[10px]">
                 {proto}
@@ -646,7 +646,7 @@ const airports: Airport[] = [
             class="btn-toggle-plans w-full flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-all"
             data-target={`plans-${airport.id}`}
           >
-            <span>📦 参考套餐 ({airport.plans.length}款)</span>
+            <span>查看参考套餐价格 ({airport.plans.length}款)</span>
             <span class="arrow-icon transition-transform duration-200 text-[10px]">▼</span>
           </button>
 
@@ -664,7 +664,7 @@ const airports: Airport[] = [
               rel="nofollow noopener noreferrer"
               class="px-3 py-2.5 rounded-xl bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white text-xs font-black shadow-sm text-center transition-all flex items-center justify-center gap-1 group/btn"
             >
-              <span>直达官网</span>
+              <span>直达官网 / 立即访问</span>
               <span class="transition-transform group-hover/btn:translate-x-0.5">&rarr;</span>
             </a>
           </div>
