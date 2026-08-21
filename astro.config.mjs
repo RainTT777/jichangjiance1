@@ -5,7 +5,6 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://jichangjiance.net',
-  base: './',
   build: {
     format: 'file',
   },
