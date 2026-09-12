@@ -2,7 +2,6 @@
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
-<<<<<<< HEAD
     extend: {
       colors: {
         primary: {
@@ -36,25 +35,7 @@ export default {
           'Noto Color Emoji',
         ],
       },
-      typography: {
-        DEFAULT: {
-          css: {
-            maxWidth: 'none',
-            color: '#334155',
-            lineHeight: '1.75',
-            a: {
-              color: '#2563eb',
-              '&:hover': {
-                color: '#1d4ed8',
-              },
-            },
-          },
-        },
-      },
     },
-=======
-    extend: {},
->>>>>>> e7d312c4149c0d49821ad728dcd033c438193bbc
   },
   plugins: [],
 }

@@ -60,7 +60,7 @@ const relatedArticles = articles.slice(0, 3);
 
         <!-- 特性标签 -->
         <div class="flex flex-wrap gap-2 mb-6">
-          {brand.features.map(feature => (
+          {(brand.pros || []).map(feature => (
             <span class="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-primary-700 bg-primary-50 rounded-lg border border-primary-200">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
@@ -75,7 +75,7 @@ const relatedArticles = articles.slice(0, 3);
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
           </svg>
-          <span>{brand.articleCount} 篇相关文章</span>
+          <span>{brand.articleCount || 3} 篇相关文章</span>
         </div>
       </div>
 
@@ -90,7 +90,7 @@ const relatedArticles = articles.slice(0, 3);
           <p>详细介绍该品牌的核心特性、技术优势、服务亮点等内容。</p>
 
           <ul>
-            {brand.features.map(feature => (
+            {(brand.pros || []).map(feature => (
               <li>{feature}：详细说明该特性的具体表现和使用体验。</li>
             ))}
           </ul>

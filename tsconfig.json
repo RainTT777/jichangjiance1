@@ -1,13 +1,10 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-<<<<<<< HEAD
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    }
-=======
+    },
     "strictNullChecks": true
->>>>>>> e7d312c4149c0d49821ad728dcd033c438193bbc
   }
 }

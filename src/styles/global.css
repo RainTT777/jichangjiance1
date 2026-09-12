@@ -3,22 +3,16 @@
 @tailwind utilities;
 
 @layer base {
-<<<<<<< HEAD
   html {
     @apply scroll-smooth;
   }
 
   body {
     @apply bg-slate-50 text-slate-900 antialiased;
-=======
-  body {
-    @apply bg-slate-50 text-slate-900;
->>>>>>> e7d312c4149c0d49821ad728dcd033c438193bbc
   }
 }
 
 @layer components {
-<<<<<<< HEAD
   /* 容器 */
   .container-custom {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
@@ -57,6 +51,22 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-green {
+    @apply badge bg-green-100 text-green-800;
+  }
+
+  .badge-yellow {
+    @apply badge bg-yellow-100 text-yellow-800;
+  }
+
+  .badge-red {
+    @apply badge bg-red-100 text-red-800;
+  }
 }
 
 /* 自定义滚动条 */
@@ -90,29 +100,3 @@ details summary {
 code {
   @apply px-1.5 py-0.5 bg-slate-100 text-slate-900 rounded text-sm font-mono;
 }
-=======
-  .badge {
-    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
-  }
-
-  .badge-green {
-    @apply badge bg-green-100 text-green-800;
-  }
-
-  .badge-yellow {
-    @apply badge bg-yellow-100 text-yellow-800;
-  }
-
-  .badge-red {
-    @apply badge bg-red-100 text-red-800;
-  }
-
-  .btn {
-    @apply px-4 py-2 rounded-lg font-medium transition-colors;
-  }
-
-  .btn-primary {
-    @apply btn bg-blue-600 text-white hover:bg-blue-700;
-  }
-}
->>>>>>> e7d312c4149c0d49821ad728dcd033c438193bbc

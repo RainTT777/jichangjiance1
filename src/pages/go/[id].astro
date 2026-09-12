@@ -4,7 +4,7 @@ import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import { getRedirect } from '@/data/redirects';
 
-export function getStaticPaths() {
+export async function getStaticPaths() {
   const { redirects } = await import('@/data/redirects');
   return Object.keys(redirects).map(id => ({
     params: { id },
