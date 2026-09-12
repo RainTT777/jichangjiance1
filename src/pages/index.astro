@@ -294,7 +294,7 @@ const airports = [
                   已收录 10 家顶级机场
                 </span>
               </h1>
-              <p class="text-xs text-slate-500 mt-1">首尾相连交替布局 · 品牌 Logo 插入 · 实时延迟 / 丢包率 / 4K流媒体测试</p>
+              <p class="text-xs text-slate-500 mt-1">首尾相连交替布局 · 品牌 Logo 完好展示 · 实时延迟 / 丢包率 / 4K流媒体测试</p>
             </div>
             
             <!-- PROMINENT BIG PROBE BUTTON (大按钮·极显眼) -->
@@ -333,8 +333,8 @@ const airports = [
                         <span class="text-xs text-slate-300 font-medium">评分: <strong class="text-amber-400">{ap.rating}</strong> / 10</span>
                       </div>
                       <div class="flex items-center gap-3.5 mb-3">
-                        <div class="w-14 h-14 bg-white/10 rounded-2xl p-1 flex items-center justify-center shadow-lg border border-white/20 overflow-hidden shrink-0">
-                          <img src={ap.logo} alt={ap.name} class="w-full h-full object-cover rounded-xl" onerror={`this.onerror=null;this.parentElement.innerHTML='<span class="text-2xl">${ap.icon}</span>';`} />
+                        <div class="w-24 sm:w-28 h-14 bg-white rounded-xl p-1.5 flex items-center justify-center shadow-md border border-slate-100 overflow-hidden shrink-0">
+                          <img src={ap.logo} alt={ap.name} class="w-full h-full object-contain rounded-lg" onerror={`this.onerror=null;this.parentElement.innerHTML='<span class="text-lg font-bold text-slate-800">${ap.name}</span>';`} />
                         </div>
                         <div>
                           <h3 class="text-xl font-bold text-white tracking-wide">{ap.name}</h3>
@@ -428,8 +428,8 @@ const airports = [
                         <span class="text-xs text-slate-300 font-medium">评分: <strong class="text-amber-400">{ap.rating}</strong> / 10</span>
                       </div>
                       <div class="flex items-center gap-3.5 mb-3">
-                        <div class="w-14 h-14 bg-white/10 rounded-2xl p-1 flex items-center justify-center shadow-lg border border-white/20 overflow-hidden shrink-0">
-                          <img src={ap.logo} alt={ap.name} class="w-full h-full object-cover rounded-xl" onerror={`this.onerror=null;this.parentElement.innerHTML='<span class="text-2xl">${ap.icon}</span>';`} />
+                        <div class="w-24 sm:w-28 h-14 bg-white rounded-xl p-1.5 flex items-center justify-center shadow-md border border-slate-100 overflow-hidden shrink-0">
+                          <img src={ap.logo} alt={ap.name} class="w-full h-full object-contain rounded-lg" onerror={`this.onerror=null;this.parentElement.innerHTML='<span class="text-lg font-bold text-slate-800">${ap.name}</span>';`} />
                         </div>
                         <div>
                           <h3 class="text-xl font-bold text-white tracking-wide">{ap.name}</h3>
