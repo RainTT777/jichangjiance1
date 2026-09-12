@@ -48,6 +48,13 @@
       background-image: radial-gradient(rgba(59, 130, 246, 0.15) 1px, transparent 1px);
       background-size: 16px 16px;
     }
+    .metric-updated {
+      animation: flashGreen 1s ease-out;
+    }
+    @keyframes flashGreen {
+      0% { background-color: rgba(16, 185, 129, 0.25); }
+      100% { background-color: transparent; }
+    }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-900 antialiased min-h-screen flex flex-col">
@@ -70,7 +77,7 @@
               <span class="text-xl font-bold text-slate-900 group-hover:text-primary-600 transition-colors">机场数据检测中心</span>
               <span class="px-2 py-0.5 text-xs font-semibold bg-emerald-100 text-emerald-700 rounded-full flex items-center gap-1">
                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
-                实时监控中
+                实时探针已挂载
               </span>
             </div>
             <p class="text-xs text-slate-500 hidden sm:block">专业节点连通性 / 延迟 / 丢包率 / 解锁数据大盘</p>
@@ -80,12 +87,12 @@
         <!-- Top Right Control Status & Entry Button -->
         <div class="flex items-center gap-3 text-xs font-medium text-slate-600">
           <div class="hidden md:flex items-center gap-2 px-3 py-1.5 bg-slate-100 rounded-lg">
-            <span class="text-slate-400">检测节点数:</span>
-            <span class="text-slate-900 font-bold">120+ 节点</span>
+            <span class="text-slate-400">探针状态:</span>
+            <span class="text-emerald-600 font-bold" id="probe-status-text">探针已连通 (status-data.json)</span>
           </div>
           <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-slate-100 rounded-lg">
-            <span class="text-slate-400">刷新频率:</span>
-            <span class="text-emerald-600 font-bold">每 30s 自动刷新</span>
+            <span class="text-slate-400">刷新倒计时:</span>
+            <span class="text-blue-600 font-bold" id="countdown-timer">30秒</span>
           </div>
           <a href="http://liangxinyun.club/" target="_blank" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-semibold transition-all shadow-sm shrink-0">
             官网入口 🚀
@@ -93,7 +100,7 @@
         </div>
       </div>
 
-      <!-- Restored Full Navigation Bar Row (ALWAYS VISIBLE & HIGHLY PROMINENT) -->
+      <!-- Restored Full Navigation Bar Row (ALWAYS VISIBLE) -->
       <nav class="flex items-center gap-1.5 sm:gap-2 py-2 overflow-x-auto whitespace-nowrap scrollbar-none text-xs sm:text-sm font-semibold">
         <a href="http://liangxinyun.club/" target="_blank" class="px-3.5 py-1.5 bg-primary-50 text-primary-700 border border-primary-200 hover:bg-primary-600 hover:text-white rounded-lg transition-all flex items-center gap-1 shadow-xs">
           🚀 机场推荐
@@ -148,8 +155,8 @@
           </div>
 
           <div class="space-y-2 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
-            <p>👋 欢迎来到机场实时数据检测站！本站专注提供客观无中立的机场节点延迟、连通率、丢包率及 4K 流媒体解锁数据。</p>
-            <p class="text-slate-500 font-medium">⚡ 所有检测数据由全网多个分布式探针实测生成。</p>
+            <p>👋 欢迎来到机场实时数据检测站！本站已接入 Linux VPS 探针监控，实时渲染节点延迟、连通率及 4K 流媒体解锁数据。</p>
+            <p class="text-slate-500 font-medium">⚡ 探针脚本由集群探针采集自动推送。</p>
           </div>
 
           <div class="mt-4 pt-3 border-t border-slate-100">
@@ -203,19 +210,22 @@
             <div>
               <h1 class="text-2xl font-bold text-slate-900 flex items-center gap-3">
                 <span>⚡ 机场实时数据检测列表</span>
-                <span class="text-xs font-normal text-slate-500 bg-slate-100 px-3 py-1 rounded-full">横版拉长加宽·一排一机场</span>
+                <span class="text-xs font-normal text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                  动态探针 API 实时挂载中
+                </span>
               </h1>
               <p class="text-xs text-slate-500 mt-1">首尾相连交替布局 · 实时延迟 / 丢包率 / 原生IP解锁测试</p>
             </div>
             
-            <button onclick="location.reload()" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium rounded-xl transition-colors flex items-center gap-2 self-start sm:self-auto shadow-sm">
+            <button id="manual-refresh-btn" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium rounded-xl transition-colors flex items-center gap-2 self-start sm:self-auto shadow-sm">
               <svg class="w-4 h-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
-              立即重新检测
+              立即重新拉取探针数据
             </button>
           </div>
 
           <div class="flex flex-wrap gap-2 text-xs border-t border-slate-100 pt-4">
-            <span class="px-3.5 py-1.5 bg-primary-600 text-white rounded-lg font-medium cursor-pointer shadow-sm">全部检测 (6)</span>
+            <span class="px-3.5 py-1.5 bg-primary-600 text-white rounded-lg font-medium cursor-pointer shadow-sm">全部检测 (4)</span>
             <span class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium cursor-pointer transition-colors">IEPL纯专线</span>
             <span class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium cursor-pointer transition-colors">BGP中转</span>
             <span class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium cursor-pointer transition-colors">4K/8K秒开</span>
@@ -223,11 +233,11 @@
           </div>
         </div>
 
-        <!-- AIRPORT CARDS LIST -->
-        <div class="space-y-6">
+        <!-- AIRPORT CARDS LIST (WITH DYNAMIC DATA ATTRIBUTES) -->
+        <div class="space-y-6" id="airport-cards-container">
 
           <!-- AIRPORT CARD 1 -->
-          <div class="card-monitor grid grid-cols-1 md:grid-cols-12 overflow-hidden">
+          <div class="card-monitor grid grid-cols-1 md:grid-cols-12 overflow-hidden" data-node-id="hk-iepl-01">
             <div class="md:col-span-4 lg:col-span-4 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden">
               <div>
                 <div class="flex items-center justify-between mb-4">
@@ -265,28 +275,28 @@
                     <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
                     实时连通性与网络测速面板
                   </span>
-                  <span class="text-xs text-slate-400">探针节点: 香港 IEPL 01 | 30秒连通检测</span>
+                  <span class="text-xs text-slate-400" data-metric="updated">探针节点: 香港 IEPL 01 | 实时数据同步</span>
                 </div>
 
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6 text-center">
                   <div class="p-3.5 bg-emerald-50 border border-emerald-100 rounded-2xl">
                     <div class="text-xs text-emerald-600 font-medium">平均延迟</div>
-                    <div class="text-xl font-extrabold text-emerald-700 mt-1">24 <span class="text-xs">ms</span></div>
+                    <div class="text-xl font-extrabold text-emerald-700 mt-1"><span data-metric="ping">24</span> <span class="text-xs">ms</span></div>
                     <div class="text-[11px] text-emerald-600 mt-0.5">🟢 极低延迟</div>
                   </div>
                   <div class="p-3.5 bg-blue-50 border border-blue-100 rounded-2xl">
                     <div class="text-xs text-blue-600 font-medium">丢包率</div>
-                    <div class="text-xl font-extrabold text-blue-700 mt-1">0.0 <span class="text-xs">%</span></div>
+                    <div class="text-xl font-extrabold text-blue-700 mt-1"><span data-metric="loss">0.0</span> <span class="text-xs">%</span></div>
                     <div class="text-[11px] text-blue-600 mt-0.5">🟢 全程无丢包</div>
                   </div>
                   <div class="p-3.5 bg-indigo-50 border border-indigo-100 rounded-2xl">
                     <div class="text-xs text-indigo-600 font-medium">峰值带宽</div>
-                    <div class="text-xl font-extrabold text-indigo-700 mt-1">940 <span class="text-xs">Mbps</span></div>
+                    <div class="text-xl font-extrabold text-indigo-700 mt-1"><span data-metric="speed">940</span> <span class="text-xs">Mbps</span></div>
                     <div class="text-[11px] text-indigo-600 mt-0.5">⚡ 4K/8K秒开</div>
                   </div>
                   <div class="p-3.5 bg-purple-50 border border-purple-100 rounded-2xl">
                     <div class="text-xs text-purple-600 font-medium">在线率</div>
-                    <div class="text-xl font-extrabold text-purple-700 mt-1">99.9 <span class="text-xs">%</span></div>
+                    <div class="text-xl font-extrabold text-purple-700 mt-1"><span data-metric="uptime">99.9</span> <span class="text-xs">%</span></div>
                     <div class="text-[11px] text-purple-600 mt-0.5">🟢 7×24高可用</div>
                   </div>
                 </div>
@@ -294,7 +304,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs bg-slate-50/80 p-3.5 rounded-xl border border-slate-100">
                   <div class="flex items-center gap-2">
                     <span class="text-slate-400 font-medium text-xs w-16 flex-shrink-0">支持协议:</span>
-                    <div class="flex flex-wrap gap-1">
+                    <div class="flex flex-wrap gap-1" data-metric="protocols">
                       <span class="px-2.5 py-0.5 bg-white border border-slate-200 text-slate-700 rounded text-xs font-medium">IEPL纯专线</span>
                       <span class="px-2.5 py-0.5 bg-white border border-slate-200 text-slate-700 rounded text-xs font-medium">VLESS</span>
                       <span class="px-2.5 py-0.5 bg-white border border-slate-200 text-slate-700 rounded text-xs font-medium">Trojan</span>
@@ -302,7 +312,7 @@
                   </div>
                   <div class="flex items-center gap-2">
                     <span class="text-slate-400 font-medium text-xs w-16 flex-shrink-0">流媒体/AI:</span>
-                    <div class="flex flex-wrap gap-1">
+                    <div class="flex flex-wrap gap-1" data-metric="unlocks">
                       <span class="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded text-xs font-medium">🟢 Netflix 4K</span>
                       <span class="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded text-xs font-medium">🟢 ChatGPT</span>
                     </div>
@@ -312,7 +322,7 @@
 
               <div class="pt-4 border-t border-slate-100 mt-4 flex items-center justify-between text-xs">
                 <span class="text-slate-500 flex items-center gap-1.5">
-                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 状态: 节点连通正常 · 延迟数据由分布式探针每30秒更新
+                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 状态: 节点连通正常 · 探针每30秒自动更新
                 </span>
                 <a href="http://liangxinyun.club/" target="_blank" class="text-primary-600 hover:text-primary-700 font-semibold flex items-center gap-1">
                   查看完整测速报告
@@ -323,7 +333,7 @@
           </div>
 
           <!-- AIRPORT CARD 2 -->
-          <div class="card-monitor grid grid-cols-1 md:grid-cols-12 overflow-hidden">
+          <div class="card-monitor grid grid-cols-1 md:grid-cols-12 overflow-hidden" data-node-id="jp-bgp-02">
             <div class="md:col-span-8 lg:col-span-8 p-6 sm:p-8 bg-gradient-to-br from-white to-slate-50/80 flex flex-col justify-between order-2 md:order-1">
               <div>
                 <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-5">
@@ -331,28 +341,28 @@
                     <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
                     实时连通性与网络测速面板
                   </span>
-                  <span class="text-xs text-slate-400">探针节点: 日本 BGP 02 | 30秒连通检测</span>
+                  <span class="text-xs text-slate-400" data-metric="updated">探针节点: 日本 BGP 02 | 实时数据同步</span>
                 </div>
 
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6 text-center">
                   <div class="p-3.5 bg-emerald-50 border border-emerald-100 rounded-2xl">
                     <div class="text-xs text-emerald-600 font-medium">平均延迟</div>
-                    <div class="text-xl font-extrabold text-emerald-700 mt-1">32 <span class="text-xs">ms</span></div>
+                    <div class="text-xl font-extrabold text-emerald-700 mt-1"><span data-metric="ping">32</span> <span class="text-xs">ms</span></div>
                     <div class="text-[11px] text-emerald-600 mt-0.5">🟢 稳定极速</div>
                   </div>
                   <div class="p-3.5 bg-blue-50 border border-blue-100 rounded-2xl">
                     <div class="text-xs text-blue-600 font-medium">丢包率</div>
-                    <div class="text-xl font-extrabold text-blue-700 mt-1">0.0 <span class="text-xs">%</span></div>
+                    <div class="text-xl font-extrabold text-blue-700 mt-1"><span data-metric="loss">0.0</span> <span class="text-xs">%</span></div>
                     <div class="text-[11px] text-blue-600 mt-0.5">🟢 无丢包</div>
                   </div>
                   <div class="p-3.5 bg-indigo-50 border border-indigo-100 rounded-2xl">
                     <div class="text-xs text-indigo-600 font-medium">峰值带宽</div>
-                    <div class="text-xl font-extrabold text-indigo-700 mt-1">880 <span class="text-xs">Mbps</span></div>
+                    <div class="text-xl font-extrabold text-indigo-700 mt-1"><span data-metric="speed">880</span> <span class="text-xs">Mbps</span></div>
                     <div class="text-[11px] text-indigo-600 mt-0.5">⚡ 高清流畅</div>
                   </div>
                   <div class="p-3.5 bg-purple-50 border border-purple-100 rounded-2xl">
                     <div class="text-xs text-purple-600 font-medium">在线率</div>
-                    <div class="text-xl font-extrabold text-purple-700 mt-1">99.8 <span class="text-xs">%</span></div>
+                    <div class="text-xl font-extrabold text-purple-700 mt-1"><span data-metric="uptime">99.8</span> <span class="text-xs">%</span></div>
                     <div class="text-[11px] text-purple-600 mt-0.5">🟢 稳定运行</div>
                   </div>
                 </div>
@@ -360,14 +370,14 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs bg-slate-50/80 p-3.5 rounded-xl border border-slate-100">
                   <div class="flex items-center gap-2">
                     <span class="text-slate-400 font-medium text-xs w-16 flex-shrink-0">支持协议:</span>
-                    <div class="flex flex-wrap gap-1">
+                    <div class="flex flex-wrap gap-1" data-metric="protocols">
                       <span class="px-2.5 py-0.5 bg-white border border-slate-200 text-slate-700 rounded text-xs font-medium">BGP中转</span>
                       <span class="px-2.5 py-0.5 bg-white border border-slate-200 text-slate-700 rounded text-xs font-medium">Shadowsocks</span>
                     </div>
                   </div>
                   <div class="flex items-center gap-2">
                     <span class="text-slate-400 font-medium text-xs w-16 flex-shrink-0">流媒体/AI:</span>
-                    <div class="flex flex-wrap gap-1">
+                    <div class="flex flex-wrap gap-1" data-metric="unlocks">
                       <span class="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded text-xs font-medium">🟢 YouTube 4K</span>
                       <span class="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded text-xs font-medium">🟢 ChatGPT</span>
                     </div>
@@ -377,7 +387,7 @@
 
               <div class="pt-4 border-t border-slate-100 mt-4 flex items-center justify-between text-xs">
                 <span class="text-slate-500 flex items-center gap-1.5">
-                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 状态: 节点连通正常 · 延迟数据由分布式探针每30秒更新
+                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 状态: 节点连通正常 · 探针每30秒自动更新
                 </span>
                 <a href="http://liangxinyun.club/" target="_blank" class="text-indigo-600 hover:text-indigo-700 font-semibold flex items-center gap-1">
                   查看完整测速报告
@@ -489,9 +499,102 @@
   <footer class="bg-slate-900 text-slate-400 text-xs py-8 border-t border-slate-800 mt-12">
     <div class="w-full max-w-[1920px] mx-auto px-4 text-center space-y-2">
       <p class="text-slate-300 font-semibold">机场数据实时检测中心 &copy; 2026 保留所有权利</p>
-      <p class="text-slate-500">本站数据均为分布式探针实时检测，数据仅供网络测试与学术研究使用。</p>
+      <p class="text-slate-500">本站数据由探针脚本 (status-data.json) 自动实时拉取并渲染。</p>
     </div>
   </footer>
+
+  <!-- Realtime Client-Side Monitoring Integration Script -->
+  <script>
+    (function () {
+      let countdownSec = 30;
+      const timerElem = document.getElementById('countdown-timer');
+      const probeStatusElem = document.getElementById('probe-status-text');
+      const refreshBtn = document.getElementById('manual-refresh-btn');
+
+      // 尝试拉取探针生成的 JSON 数据
+      async function fetchProbeData() {
+        const endpoints = ['./status-data.json', '/api/status-data.json', './public/status-data.json'];
+        let jsonResult = null;
+
+        for (const ep of endpoints) {
+          try {
+            const res = await fetch(ep + '?t=' + Date.now());
+            if (res.ok) {
+              jsonResult = await res.json();
+              break;
+            }
+          } catch (e) {
+            // 继续尝试备用 Endpoint
+          }
+        }
+
+        if (jsonResult) {
+          updateUIWithProbeData(jsonResult);
+          if (probeStatusElem) {
+            probeStatusElem.textContent = '探针数据已实时同步';
+            probeStatusElem.className = 'text-emerald-600 font-bold';
+          }
+        } else {
+          if (probeStatusElem) {
+            probeStatusElem.textContent = '基准测试运行中';
+          }
+        }
+      }
+
+      // 动态覆写 DOM 渲染
+      function updateUIWithProbeData(data) {
+        const nodes = data.nodes || (data.telemetry ? [data] : []);
+
+        nodes.forEach(node => {
+          const card = document.querySelector(`[data-node-id="${node.node_id}"]`);
+          if (!card) return;
+
+          const pingElem = card.querySelector('[data-metric="ping"]');
+          const lossElem = card.querySelector('[data-metric="loss"]');
+          const speedElem = card.querySelector('[data-metric="speed"]');
+          const uptimeElem = card.querySelector('[data-metric="uptime"]');
+          const updatedElem = card.querySelector('[data-metric="updated"]');
+
+          if (pingElem && node.telemetry?.latency_ms !== undefined) {
+            pingElem.textContent = node.telemetry.latency_ms;
+            pingElem.parentElement.classList.add('metric-updated');
+          }
+          if (lossElem && node.telemetry?.packet_loss_pct !== undefined) {
+            lossElem.textContent = node.telemetry.packet_loss_pct;
+          }
+          if (speedElem && node.telemetry?.peak_speed_mbps !== undefined) {
+            speedElem.textContent = node.telemetry.peak_speed_mbps;
+          }
+          if (uptimeElem && node.telemetry?.uptime_pct !== undefined) {
+            uptimeElem.textContent = node.telemetry.uptime_pct;
+          }
+          if (updatedElem && node.node_name) {
+            updatedElem.textContent = `探针节点: ${node.node_name} | 上次更新: 刚刚`;
+          }
+        });
+      }
+
+      // 倒计时与定时器
+      setInterval(() => {
+        countdownSec--;
+        if (countdownSec <= 0) {
+          countdownSec = 30;
+          fetchProbeData();
+        }
+        if (timerElem) {
+          timerElem.textContent = countdownSec + '秒';
+        }
+      }, 1000);
+
+      refreshBtn?.addEventListener('click', () => {
+        countdownSec = 30;
+        fetchProbeData();
+      });
+
+      // 初始化立即拉取
+      fetchProbeData();
+    })();
+  </script>
 
 </body>
 </html>

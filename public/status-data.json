@@ -1,0 +1,79 @@
+{
+  "status": "success",
+  "generated_at": "2026-09-12T16:55:00Z",
+  "next_refresh_seconds": 30,
+  "nodes": [
+    {
+      "node_id": "hk-iepl-01",
+      "node_name": "香港 IEPL 01 [专线]",
+      "last_updated": "2026-09-12T16:55:00Z",
+      "telemetry": {
+        "latency_ms": 24,
+        "packet_loss_pct": 0.0,
+        "peak_speed_mbps": 940,
+        "uptime_pct": 99.9,
+        "latency_history": [24, 25, 23, 26, 31, 28, 24]
+      },
+      "unlock_status": {
+        "netflix": { "supported": true, "quality": "4K" },
+        "chatgpt": { "supported": true, "label": "原生解锁" },
+        "disney": { "supported": true, "quality": "4K" }
+      },
+      "protocols": ["IEPL纯专线", "VLESS", "Trojan", "Hysteria2"]
+    },
+    {
+      "node_id": "jp-bgp-02",
+      "node_name": "日本 BGP 02 [中转]",
+      "last_updated": "2026-09-12T16:55:00Z",
+      "telemetry": {
+        "latency_ms": 32,
+        "packet_loss_pct": 0.0,
+        "peak_speed_mbps": 880,
+        "uptime_pct": 99.8,
+        "latency_history": [32, 33, 31, 35, 34, 32, 32]
+      },
+      "unlock_status": {
+        "netflix": { "supported": true, "quality": "4K" },
+        "chatgpt": { "supported": true, "label": "原生解锁" },
+        "disney": { "supported": true, "quality": "4K" }
+      },
+      "protocols": ["BGP中转", "Shadowsocks", "Trojan"]
+    },
+    {
+      "node_id": "sg-iepl-01",
+      "node_name": "新加坡 IEPL 01 [专线]",
+      "last_updated": "2026-09-12T16:55:00Z",
+      "telemetry": {
+        "latency_ms": 28,
+        "packet_loss_pct": 0.1,
+        "peak_speed_mbps": 910,
+        "uptime_pct": 99.7,
+        "latency_history": [28, 29, 27, 30, 28, 28, 28]
+      },
+      "unlock_status": {
+        "netflix": { "supported": true, "quality": "HD" },
+        "chatgpt": { "supported": true, "label": "原生解锁" },
+        "disney": { "supported": true, "quality": "4K" }
+      },
+      "protocols": ["IEPL专线", "Trojan", "Shadowsocks"]
+    },
+    {
+      "node_id": "us-bgp-01",
+      "node_name": "美国 BGP 01 [直连]",
+      "last_updated": "2026-09-12T16:55:00Z",
+      "telemetry": {
+        "latency_ms": 35,
+        "packet_loss_pct": 0.0,
+        "peak_speed_mbps": 750,
+        "uptime_pct": 99.5,
+        "latency_history": [35, 37, 34, 36, 35, 35, 35]
+      },
+      "unlock_status": {
+        "netflix": { "supported": true, "quality": "HD" },
+        "chatgpt": { "supported": true, "label": "原生解锁" },
+        "disney": { "supported": false, "quality": "受限" }
+      },
+      "protocols": ["BGP直连", "Shadowsocks"]
+    }
+  ]
+}

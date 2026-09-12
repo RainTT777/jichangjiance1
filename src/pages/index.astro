@@ -1,13 +1,12 @@
 ---
-<<<<<<< HEAD
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 
-// 机场数据列表（奇偶行首尾交替）
+// 机场初始节点列表
 const airports = [
   {
-    id: 1,
+    id: 'hk-iepl-01',
     name: '良心云机场',
     tagline: '2元起 IEPL 纯专线',
     desc: '100% 足额带宽，无隐形限速。全节点原生 IP 覆盖，解锁 Netflix / ChatGPT。',
@@ -27,7 +26,7 @@ const airports = [
     link: 'http://liangxinyun.club/'
   },
   {
-    id: 2,
+    id: 'jp-bgp-02',
     name: '悠兔机场',
     tagline: '全球 80+ 高速节点',
     desc: '专为追剧与游戏用户设计，智能 BGP 线路自动分流，4K高清观影无压力。',
@@ -47,7 +46,7 @@ const airports = [
     link: 'http://liangxinyun.club/'
   },
   {
-    id: 3,
+    id: 'sg-iepl-01',
     name: '赔钱机场',
     tagline: '平民救济专线 · 大流量包',
     desc: 'Pelican 战术箱品质，高抗封锁传输通道，性价比超高，适合大流量下载用户。',
@@ -67,7 +66,7 @@ const airports = [
     link: 'http://liangxinyun.club/'
   },
   {
-    id: 4,
+    id: 'us-bgp-01',
     name: '一元机场',
     tagline: '1元/月 极致门槛',
     desc: '适合备用节点与入门轻度上网用户，超低价格，简单实用。',
@@ -100,7 +99,7 @@ const airports = [
     
     <div class="flex flex-col lg:flex-row gap-6 items-start">
       
-      <!-- 左侧边栏：靠最左端 (~300px) -->
+      <!-- 左侧边栏 -->
       <aside class="w-full lg:w-[300px] xl:w-[320px] shrink-0 space-y-6">
         
         <!-- 1. 个人介绍栏 -->
@@ -117,8 +116,8 @@ const airports = [
           </div>
 
           <div class="space-y-2 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
-            <p>👋 欢迎来到机场实时数据检测站！本站专注提供客观无中立的机场节点延迟、连通率、丢包率及 4K 流媒体解锁数据。</p>
-            <p class="text-slate-500 font-medium">⚡ 所有检测数据由全网多个分布式探针实测生成。</p>
+            <p>👋 欢迎来到机场实时数据检测站！本站已接入 Linux VPS 探针监控，实时渲染节点延迟、连通率及 4K 流媒体解锁数据。</p>
+            <p class="text-slate-500 font-medium">⚡ 探针脚本自动写入 status-data.json 推送渲染。</p>
           </div>
 
           <div class="mt-4 pt-3 border-t border-slate-100">
@@ -149,21 +148,9 @@ const airports = [
           </div>
         </div>
 
-        <!-- 3. 预留广告位 2 -->
-        <div class="bg-gradient-to-br from-indigo-500/10 via-purple-500/5 to-blue-500/10 border-2 border-dashed border-indigo-300 rounded-2xl p-5 relative">
-          <div class="flex items-center justify-between mb-2">
-            <span class="px-2 py-0.5 text-[10px] font-bold bg-indigo-600 text-white rounded">广告预留</span>
-            <span class="text-[11px] text-indigo-700">赞助推荐</span>
-          </div>
-          <div class="py-4 text-center space-y-2">
-            <h5 class="text-xs font-bold text-slate-800">【推荐】商家广告预留栏位</h5>
-            <p class="text-[11px] text-slate-500">点击此处展示您的专属活动或月付优惠信息</p>
-          </div>
-        </div>
-
       </aside>
 
-      <!-- 中间主区域：大幅加宽 (flex-1) -->
+      <!-- 中间主区域：大幅加宽 -->
       <section class="flex-1 min-w-0 w-full space-y-6">
         
         <!-- 板块头部 -->
@@ -172,10 +159,18 @@ const airports = [
             <div>
               <h1 class="text-2xl font-bold text-slate-900 flex items-center gap-3">
                 <span>⚡ 机场实时数据检测列表</span>
-                <span class="text-xs font-normal text-slate-500 bg-slate-100 px-3 py-1 rounded-full">横版拉长加宽·一排一机场</span>
+                <span class="text-xs font-normal text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                  动态探针 API 挂载中 (status-data.json)
+                </span>
               </h1>
               <p class="text-xs text-slate-500 mt-1">首尾相连交替布局 · 实时延迟 / 丢包率 / 原生IP解锁测试</p>
             </div>
+            
+            <button id="manual-refresh-btn" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium rounded-xl transition-colors flex items-center gap-2 self-start sm:self-auto shadow-sm">
+              <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+              拉取最新探针数据
+            </button>
           </div>
 
           <div class="flex flex-wrap gap-2 text-xs border-t border-slate-100 pt-4">
@@ -187,14 +182,14 @@ const airports = [
           </div>
         </div>
 
-        <!-- 机场卡片列表 (加宽展示) -->
+        <!-- 机场卡片列表 -->
         <div class="space-y-6">
           {airports.map((ap, index) => {
             const isOdd = index % 2 === 0;
             return (
-              <div class="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 grid grid-cols-1 md:grid-cols-12 overflow-hidden border-hover">
+              <div class="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 grid grid-cols-1 md:grid-cols-12 overflow-hidden border-hover" data-node-id={ap.id}>
                 
-                {/* 奇数行：Logo在左边 (isOdd=true) */}
+                {/* 奇数行：Logo在左边 */}
                 {isOdd && (
                   <div class={`md:col-span-4 lg:col-span-4 bg-gradient-to-br ${ap.gradient} text-white p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden`}>
                     <div>
@@ -225,7 +220,7 @@ const airports = [
                   </div>
                 )}
 
-                {/* 数据检测部分（8栏超宽） */}
+                {/* 数据检测部分 */}
                 <div class={`md:col-span-8 lg:col-span-8 p-6 sm:p-8 bg-gradient-to-br from-white to-slate-50/80 flex flex-col justify-between ${!isOdd ? 'order-2 md:order-1' : ''}`}>
                   <div>
                     <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-5">
@@ -233,28 +228,28 @@ const airports = [
                         <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
                         实时连通性与网络测速面板
                       </span>
-                      <span class="text-xs text-slate-400">上次更新: 刚刚</span>
+                      <span class="text-xs text-slate-400" data-metric="updated">探针节点: {ap.probeNode} | 实时数据同步</span>
                     </div>
 
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6 text-center">
                       <div class="p-3.5 bg-emerald-50 border border-emerald-100 rounded-2xl">
                         <div class="text-xs text-emerald-600 font-medium">平均延迟</div>
-                        <div class="text-xl font-extrabold text-emerald-700 mt-1">{ap.ping} <span class="text-xs">ms</span></div>
+                        <div class="text-xl font-extrabold text-emerald-700 mt-1"><span data-metric="ping">{ap.ping}</span> <span class="text-xs">ms</span></div>
                         <div class="text-[11px] text-emerald-600 mt-0.5">{ap.pingStatus}</div>
                       </div>
                       <div class="p-3.5 bg-blue-50 border border-blue-100 rounded-2xl">
                         <div class="text-xs text-blue-600 font-medium">丢包率</div>
-                        <div class="text-xl font-extrabold text-blue-700 mt-1">{ap.loss} <span class="text-xs">%</span></div>
+                        <div class="text-xl font-extrabold text-blue-700 mt-1"><span data-metric="loss">{ap.loss}</span> <span class="text-xs">%</span></div>
                         <div class="text-[11px] text-blue-600 mt-0.5">🟢 极低丢包</div>
                       </div>
                       <div class="p-3.5 bg-indigo-50 border border-indigo-100 rounded-2xl">
                         <div class="text-xs text-indigo-600 font-medium">峰值带宽</div>
-                        <div class="text-xl font-extrabold text-indigo-700 mt-1">{ap.speed} <span class="text-xs">Mbps</span></div>
+                        <div class="text-xl font-extrabold text-indigo-700 mt-1"><span data-metric="speed">{ap.speed}</span> <span class="text-xs">Mbps</span></div>
                         <div class="text-[11px] text-indigo-600 mt-0.5">⚡ 高速极速</div>
                       </div>
                       <div class="p-3.5 bg-purple-50 border border-purple-100 rounded-2xl">
                         <div class="text-xs text-purple-600 font-medium">在线率</div>
-                        <div class="text-xl font-extrabold text-purple-700 mt-1">{ap.uptime} <span class="text-xs">%</span></div>
+                        <div class="text-xl font-extrabold text-purple-700 mt-1"><span data-metric="uptime">{ap.uptime}</span> <span class="text-xs">%</span></div>
                         <div class="text-[11px] text-purple-600 mt-0.5">🟢 高可用</div>
                       </div>
                     </div>
@@ -281,7 +276,7 @@ const airports = [
 
                   <div class="pt-4 border-t border-slate-100 mt-4 flex items-center justify-between text-xs">
                     <span class="text-slate-500 flex items-center gap-1.5">
-                      <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 探针节点: {ap.probeNode} · 每30秒连通检测
+                      <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 状态: 节点连通正常 · 探针每30秒更新
                     </span>
                     <a href={ap.link} target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-1">
                       查看完整测速报告 →
@@ -289,7 +284,7 @@ const airports = [
                   </div>
                 </div>
 
-                {/* 偶数行：Logo在右边 (isOdd=false) */}
+                {/* 偶数行：Logo在右边 */}
                 {!isOdd && (
                   <div class={`md:col-span-4 lg:col-span-4 bg-gradient-to-br ${ap.gradient} text-white p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden order-1 md:order-2`}>
                     <div>
@@ -327,7 +322,7 @@ const airports = [
 
       </section>
 
-      <!-- 右侧边栏：靠最右端 (~300px) -->
+      <!-- 右侧边栏 -->
       <aside class="w-full lg:w-[300px] xl:w-[320px] shrink-0 space-y-6">
         
         <!-- 1. 预留广告位 3 -->
@@ -385,18 +380,6 @@ const airports = [
           </ul>
         </div>
 
-        <!-- 3. 预留广告位 4 -->
-        <div class="bg-gradient-to-br from-cyan-500/10 via-teal-500/5 to-cyan-500/10 border-2 border-dashed border-cyan-300 rounded-2xl p-5 relative">
-          <div class="flex items-center justify-between mb-2">
-            <span class="px-2 py-0.5 text-[10px] font-bold bg-cyan-600 text-white rounded">广告预留</span>
-            <span class="text-[11px] text-cyan-700">底部推荐</span>
-          </div>
-          <div class="py-4 text-center space-y-2">
-            <h5 class="text-xs font-bold text-slate-800">预留个人推荐 / 品牌加盟位</h5>
-            <p class="text-[11px] text-slate-500">此区域专为合作伙伴广告展示预留</p>
-          </div>
-        </div>
-
       </aside>
 
     </div>
@@ -404,105 +387,57 @@ const airports = [
   </main>
 
   <Footer />
-=======
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
-
-// 获取所有评测文章
-const reviews = await getCollection('reviews');
-const sortedReviews = reviews.sort((a, b) =>
-  new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
-);
----
-
-<BaseLayout title="机场测评 - 专业的性能审计与测评平台">
-  <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-blue-600 to-indigo-700 text-white py-20">
-    <div class="max-w-6xl mx-auto px-4 text-center">
-      <h1 class="text-5xl font-bold mb-6">机场深度测评</h1>
-      <p class="text-xl text-blue-100 mb-8">客观 · 数据驱动 · 专业审计</p>
-      <div class="flex gap-4 justify-center">
-        <a href="/reviews" class="btn bg-white text-blue-600 hover:bg-blue-50">
-          查看所有评测
-        </a>
-        <a href="/about" class="btn bg-blue-500 text-white hover:bg-blue-400">
-          了解更多
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 最新评测 -->
-  <section class="max-w-6xl mx-auto px-4 py-16">
-    <h2 class="text-3xl font-bold mb-8 text-slate-900">最新评测</h2>
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {sortedReviews.map((review) => (
-        <a href={`/reviews/${review.slug}`}
-           class="block bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow overflow-hidden">
-          <div class="p-6">
-            <h3 class="text-xl font-bold mb-2 text-slate-900 line-clamp-2">
-              {review.data.title}
-            </h3>
-            <p class="text-slate-600 text-sm mb-4 line-clamp-3">
-              {review.data.description}
-            </p>
-
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-1">
-                {Array.from({ length: Math.floor(review.data.score) }).map(() => (
-                  <span class="text-yellow-400">⭐</span>
-                ))}
-                <span class="text-sm font-semibold text-slate-700 ml-1">
-                  {review.data.score.toFixed(1)}
-                </span>
-              </div>
-
-              <time class="text-xs text-slate-500">
-                {new Date(review.data.date).toLocaleDateString('zh-CN')}
-              </time>
-            </div>
-
-            {review.data.tags && review.data.tags.length > 0 && (
-              <div class="flex flex-wrap gap-1 mt-3">
-                {review.data.tags.slice(0, 3).map(tag => (
-                  <span class="badge bg-blue-50 text-blue-700 text-xs">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
-          </div>
-        </a>
-      ))}
-    </div>
-  </section>
-
-  <!-- 特色功能 -->
-  <section class="bg-slate-100 py-16">
-    <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-3xl font-bold mb-12 text-center text-slate-900">为什么选择我们</h2>
-
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-white p-6 rounded-xl shadow-sm">
-          <div class="text-4xl mb-4">📊</div>
-          <h3 class="text-xl font-bold mb-2 text-slate-900">数据驱动</h3>
-          <p class="text-slate-600">基于真实测试数据，包含速率、延迟、丢包率等核心指标</p>
-        </div>
-
-        <div class="bg-white p-6 rounded-xl shadow-sm">
-          <div class="text-4xl mb-4">🎯</div>
-          <h3 class="text-xl font-bold mb-2 text-slate-900">客观中立</h3>
-          <p class="text-slate-600">杜绝推销，结论严格从测试数据推导，提供真实用户参考</p>
-        </div>
-
-        <div class="bg-white p-6 rounded-xl shadow-sm">
-          <div class="text-4xl mb-4">🔧</div>
-          <h3 class="text-xl font-bold mb-2 text-slate-900">专业审计</h3>
-          <p class="text-slate-600">深度路由追踪、IP纯净度分析、流媒体解锁测试</p>
-        </div>
-      </div>
-    </div>
-  </section>
->>>>>>> e7d312c4149c0d49821ad728dcd033c438193bbc
 </BaseLayout>
+
+<script>
+  (function () {
+    async function fetchProbeData() {
+      const endpoints = ['./status-data.json', '/api/status-data.json', './public/status-data.json'];
+      let jsonResult = null;
+
+      for (const ep of endpoints) {
+        try {
+          const res = await fetch(ep + '?t=' + Date.now());
+          if (res.ok) {
+            jsonResult = await res.json();
+            break;
+          }
+        } catch (e) {}
+      }
+
+      if (jsonResult) {
+        updateUIWithProbeData(jsonResult);
+      }
+    }
+
+    function updateUIWithProbeData(data) {
+      const nodes = data.nodes || (data.telemetry ? [data] : []);
+
+      nodes.forEach((node: any) => {
+        const card = document.querySelector(`[data-node-id="${node.node_id}"]`);
+        if (!card) return;
+
+        const pingElem = card.querySelector('[data-metric="ping"]');
+        const lossElem = card.querySelector('[data-metric="loss"]');
+        const speedElem = card.querySelector('[data-metric="speed"]');
+        const uptimeElem = card.querySelector('[data-metric="uptime"]');
+
+        if (pingElem && node.telemetry?.latency_ms !== undefined) {
+          pingElem.textContent = node.telemetry.latency_ms;
+        }
+        if (lossElem && node.telemetry?.packet_loss_pct !== undefined) {
+          lossElem.textContent = node.telemetry.packet_loss_pct;
+        }
+        if (speedElem && node.telemetry?.peak_speed_mbps !== undefined) {
+          speedElem.textContent = node.telemetry.peak_speed_mbps;
+        }
+        if (uptimeElem && node.telemetry?.uptime_pct !== undefined) {
+          uptimeElem.textContent = node.telemetry.uptime_pct;
+        }
+      });
+    }
+
+    fetchProbeData();
+    setInterval(fetchProbeData, 30000);
+  })();
+</script>
