@@ -1,0 +1,75 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import ArticleCard from '@/components/ArticleCard.astro';
+import { articles, getArticlesByTag } from '@/data/articles';
+
+// 收集所有唯一标签
+const allTags = [...new Set(articles.flatMap(article => article.tags))];
+
+export function getStaticPaths() {
+  const allTags = [...new Set(articles.flatMap(article => article.tags))];
+
+  return allTags.map(tag => ({
+    params: { tag },
+    props: { tag }
+  }));
+}
+
+const { tag } = Astro.props;
+const tagArticles = getArticlesByTag(tag);
+---
+
+<BaseLayout
+  title={`#${tag} - 机场指南`}
+  description={`浏览所有包含"${tag}"标签的文章。`}
+>
+  <Header />
+
+  <main class="py-12 lg:py-16">
+    <div class="container-custom">
+      <!-- 面包屑 -->
+      <nav class="flex items-center gap-2 text-sm text-slate-600 mb-8">
+        <a href="/" class="hover:text-primary-600">首页</a>
+        <span>/</span>
+        <a href="/blog/" class="hover:text-primary-600">博客</a>
+        <span>/</span>
+        <span class="text-slate-900">#{tag}</span>
+      </nav>
+
+      <!-- 标签标题 -->
+      <div class="mb-12">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-4xl">#</span>
+          <h1 class="text-4xl lg:text-5xl font-bold text-slate-900">{tag}</h1>
+        </div>
+        <p class="text-lg text-slate-600">共 {tagArticles.length} 篇文章包含此标签</p>
+      </div>
+
+      <!-- 文章列表 -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {tagArticles.map(article => (
+          <ArticleCard article={article} />
+        ))}
+      </div>
+
+      <!-- 其他热门标签 -->
+      <section class="mt-16">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">其他标签</h2>
+        <div class="flex flex-wrap gap-3">
+          {allTags.filter(t => t !== tag).slice(0, 15).map(t => (
+            <a
+              href={`/tag/${t}/`}
+              class="px-4 py-2 text-sm font-medium text-slate-700 bg-slate-100 hover:bg-primary-100 hover:text-primary-700 rounded-lg transition-colors"
+            >
+              #{t}
+            </a>
+          ))}
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

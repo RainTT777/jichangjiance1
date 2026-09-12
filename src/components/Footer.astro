@@ -1,0 +1,74 @@
+---
+const currentYear = new Date().getFullYear();
+
+const footerLinks = {
+  '内容分类': [
+    { label: '新手教程', href: '/category/新手教程/' },
+    { label: '使用教程', href: '/category/使用教程/' },
+    { label: '客户端教程', href: '/category/客户端教程/' },
+    { label: '评测对比', href: '/category/评测对比/' },
+  ],
+  '重要页面': [
+    { label: '机场推荐', href: '/brands/' },
+    { label: '专题聚合', href: '/topics/' },
+    { label: '对比工具', href: '/compare/' },
+    { label: '关于我们', href: '/about/' },
+  ],
+  '友情链接': [
+    { label: '博客首页', href: '/blog/' },
+    { label: 'AI工具', href: '/topics/ai-tools/' },
+    { label: '流媒体', href: '/topics/streaming-unlock/' },
+    { label: '免费资源', href: '/free-nodes/' },
+  ],
+};
+---
+
+<footer class="bg-white border-t border-slate-200 mt-20">
+  <div class="container-custom py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- 站点简介 -->
+      <div class="lg:col-span-1">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <span class="text-lg font-bold text-slate-900">机场指南</span>
+        </div>
+        <p class="text-sm text-slate-600 leading-relaxed">
+          专注于提供机场服务相关的教程、评测和对比内容，帮助用户做出明智选择。
+        </p>
+      </div>
+
+      <!-- 链接列 -->
+      {Object.entries(footerLinks).map(([title, links]) => (
+        <div>
+          <h3 class="text-sm font-semibold text-slate-900 mb-4">{title}</h3>
+          <ul class="space-y-2">
+            {links.map(link => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-sm text-slate-600 hover:text-primary-600 transition-colors"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <!-- 底部版权 -->
+    <div class="mt-12 pt-8 border-t border-slate-200">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-600">
+        <p>© {currentYear} 机场指南. 保留所有权利.</p>
+        <p class="text-xs text-slate-500">
+          本站内容仅供参考，不构成购买建议 · 请遵守当地法律法规
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

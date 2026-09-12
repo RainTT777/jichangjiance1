@@ -1,0 +1,298 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+---
+
+<BaseLayout
+  title="免费节点 - 机场指南"
+  description="免费节点分享和使用说明。"
+>
+  <Header />
+
+  <main class="py-12 lg:py-16">
+    <div class="container-custom max-w-4xl">
+      <!-- 面包屑 -->
+      <nav class="flex items-center gap-2 text-sm text-slate-600 mb-8">
+        <a href="/" class="hover:text-primary-600">首页</a>
+        <span>/</span>
+        <span class="text-slate-900">免费节点</span>
+      </nav>
+
+      <!-- 页面标题 -->
+      <div class="mb-12">
+        <h1 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-4">免费节点</h1>
+        <p class="text-lg text-slate-600">免费节点的获取渠道和使用注意事项</p>
+      </div>
+
+      <!-- 重要提示 -->
+      <div class="card p-6 mb-8 bg-amber-50 border-2 border-amber-200">
+        <div class="flex items-start gap-3">
+          <svg class="w-6 h-6 text-amber-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+          </svg>
+          <div>
+            <h3 class="text-lg font-bold text-amber-900 mb-2">重要提示</h3>
+            <div class="text-sm text-amber-900 space-y-2">
+              <p>免费节点存在较多安全风险，建议仅用于临时应急或测试用途。</p>
+              <p>不建议在使用免费节点时进行任何涉及个人隐私的操作（登录账号、输入密码、支付等）。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 免费节点的优缺点 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">免费节点的优缺点</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="card p-6 border-green-200">
+            <div class="flex items-center gap-2 mb-4">
+              <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900">优点</h3>
+            </div>
+            <ul class="space-y-2 text-sm text-slate-600">
+              <li class="flex items-start gap-2">
+                <span class="text-green-600 mt-1">•</span>
+                <span>无需付费，降低使用门槛</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-600 mt-1">•</span>
+                <span>适合临时应急使用</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-600 mt-1">•</span>
+                <span>可用于测试客户端配置</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-600 mt-1">•</span>
+                <span>帮助新手了解工作原理</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="card p-6 border-red-200">
+            <div class="flex items-center gap-2 mb-4">
+              <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
+                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900">缺点</h3>
+            </div>
+            <ul class="space-y-2 text-sm text-slate-600">
+              <li class="flex items-start gap-2">
+                <span class="text-red-600 mt-1">•</span>
+                <span>速度慢，延迟高</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-red-600 mt-1">•</span>
+                <span>稳定性差，经常失效</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-red-600 mt-1">•</span>
+                <span>存在安全隐患和隐私风险</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-red-600 mt-1">•</span>
+                <span>可能被用于恶意目的</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-red-600 mt-1">•</span>
+                <span>用户过多导致拥堵</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 获取渠道 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">常见获取渠道</h2>
+        <div class="card p-8">
+          <div class="prose prose-slate max-w-none">
+            <div class="space-y-4 text-sm text-slate-600">
+              <div class="flex items-start gap-3">
+                <div class="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span class="text-xs font-bold text-primary-600">1</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-slate-900 mb-1">GitHub 开源项目</h4>
+                  <p>一些开源项目会定期更新免费节点列表，但质量参差不齐。</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span class="text-xs font-bold text-primary-600">2</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-slate-900 mb-1">Telegram 频道</h4>
+                  <p>部分频道会分享免费节点，但需要注意甄别真伪。</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span class="text-xs font-bold text-primary-600">3</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-slate-900 mb-1">免费试用</h4>
+                  <p>一些付费服务会提供短期免费试用，相对更安全可靠。</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span class="text-xs font-bold text-primary-600">4</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-slate-900 mb-1">社区分享</h4>
+                  <p>论坛、社群中的用户分享，需谨慎使用。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 使用注意事项 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">使用注意事项</h2>
+        <div class="card p-8 bg-red-50 border-red-200">
+          <ul class="space-y-3 text-sm text-red-900">
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+              </svg>
+              <span><strong>隐私保护：</strong>不要在使用免费节点时登录重要账号或进行支付操作</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+              </svg>
+              <span><strong>流量劫持：</strong>免费节点可能会劫持流量、注入广告或窃取信息</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+              </svg>
+              <span><strong>病毒风险：</strong>从不明来源获取的节点配置文件可能含有恶意代码</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+              </svg>
+              <span><strong>法律风险：</strong>使用节点访问非法内容可能触犯当地法律</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+              </svg>
+              <span><strong>恶意用途：</strong>您的连接可能被用于非法活动，导致法律纠纷</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 推荐建议 -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">我们的建议</h2>
+        <div class="card p-8">
+          <div class="prose prose-slate max-w-none">
+            <p class="text-slate-600 leading-relaxed mb-4">
+              虽然免费节点可以作为临时应急方案，但从长期使用和安全性考虑，我们<strong>强烈建议选择正规的付费服务</strong>：
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-4 my-6">
+              <div class="bg-primary-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-slate-900 mb-2">付费服务的优势</h4>
+                <ul class="text-sm text-slate-600 space-y-1">
+                  <li>✓ 速度快，延迟低</li>
+                  <li>✓ 稳定可靠</li>
+                  <li>✓ 隐私有保障</li>
+                  <li>✓ 提供技术支持</li>
+                  <li>✓ 流媒体解锁</li>
+                </ul>
+              </div>
+
+              <div class="bg-slate-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-slate-900 mb-2">性价比选择</h4>
+                <ul class="text-sm text-slate-600 space-y-1">
+                  <li>• 新用户试用套餐</li>
+                  <li>• 按需付费套餐</li>
+                  <li>• 小流量月付套餐</li>
+                  <li>• 年付优惠套餐</li>
+                  <li>• 查看<a href="/brands/" class="text-primary-600 hover:text-primary-700">推荐服务</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <p class="text-slate-600 leading-relaxed">
+              即使是最便宜的付费套餐，在使用体验和安全性上也远超免费节点。对于日常使用，付费服务是更明智的选择。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section>
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">常见问题</h2>
+        <div class="space-y-4">
+          <details class="card group">
+            <summary class="px-6 py-4 cursor-pointer list-none flex items-center justify-between">
+              <span class="font-semibold text-slate-900">免费节点真的免费吗？</span>
+              <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </summary>
+            <div class="px-6 pb-4 text-slate-600 leading-relaxed">
+              表面上免费，但可能通过收集用户数据、注入广告、出售流量等方式获利。天下没有免费的午餐。
+            </div>
+          </details>
+
+          <details class="card group">
+            <summary class="px-6 py-4 cursor-pointer list-none flex items-center justify-between">
+              <span class="font-semibold text-slate-900">可以长期使用免费节点吗？</span>
+              <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </summary>
+            <div class="px-6 pb-4 text-slate-600 leading-relaxed">
+              不建议。免费节点不仅速度慢、不稳定，还存在严重的安全隐患。长期使用可能导致个人信息泄露。
+            </div>
+          </details>
+
+          <details class="card group">
+            <summary class="px-6 py-4 cursor-pointer list-none flex items-center justify-between">
+              <span class="font-semibold text-slate-900">如何判断免费节点是否安全？</span>
+              <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </summary>
+            <div class="px-6 pb-4 text-slate-600 leading-relaxed">
+              很难判断。即使看起来正常的节点也可能在后台窃取数据。最安全的做法是避免使用免费节点进行敏感操作。
+            </div>
+          </details>
+
+          <details class="card group">
+            <summary class="px-6 py-4 cursor-pointer list-none flex items-center justify-between">
+              <span class="font-semibold text-slate-900">付费服务最低多少钱？</span>
+              <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </summary>
+            <div class="px-6 pb-4 text-slate-600 leading-relaxed">
+              入门级套餐通常每月10-20元左右，提供基本的流量和速度保障。相比免费节点的风险，这个投入是非常值得的。
+            </div>
+          </details>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

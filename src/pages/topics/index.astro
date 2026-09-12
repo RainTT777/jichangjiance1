@@ -1,0 +1,50 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import TopicCard from '@/components/TopicCard.astro';
+import { topics } from '@/data/topics';
+---
+
+<BaseLayout
+  title="专题聚合 - 机场指南"
+  description="按主题整理的系统化内容，帮助您快速找到需要的教程和指南。"
+>
+  <Header />
+
+  <main class="py-12 lg:py-16">
+    <div class="container-custom">
+      <!-- 面包屑 -->
+      <nav class="flex items-center gap-2 text-sm text-slate-600 mb-8">
+        <a href="/" class="hover:text-primary-600">首页</a>
+        <span>/</span>
+        <span class="text-slate-900">专题聚合</span>
+      </nav>
+
+      <!-- 页面标题 -->
+      <div class="mb-12">
+        <h1 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-4">专题聚合</h1>
+        <p class="text-lg text-slate-600">按主题整理的系统化内容，从入门到进阶的完整学习路径</p>
+      </div>
+
+      <!-- 专题列表 -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {topics.map(topic => (
+          <TopicCard topic={topic} />
+        ))}
+      </div>
+
+      <!-- 底部说明 -->
+      <section class="mt-16 card p-8 bg-gradient-to-br from-slate-50 to-white">
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">关于专题聚合</h2>
+        <div class="prose prose-slate max-w-none">
+          <p class="text-slate-600 leading-relaxed">
+            专题聚合是将相关主题的文章系统化整理，帮助您更高效地学习和查找信息。每个专题都包含从基础到进阶的完整内容，无论您是新手还是有经验的用户，都能找到适合的学习路径。
+          </p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

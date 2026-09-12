@@ -1,0 +1,59 @@
+---
+import type { Article } from '@/data/articles';
+
+interface Props {
+  article: Article;
+  showExcerpt?: boolean;
+}
+
+const { article, showExcerpt = true } = Astro.props;
+---
+
+<article class="card group">
+  <a href={`/blog/${article.slug}/`} class="block">
+    <!-- 分类标签 -->
+    <div class="px-6 pt-6 pb-4">
+      <span class="inline-block px-3 py-1 text-xs font-medium text-primary-700 bg-primary-50 rounded-full">
+        {article.category}
+      </span>
+    </div>
+
+    <!-- 标题 -->
+    <div class="px-6 pb-4">
+      <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary-600 transition-colors mb-2 line-clamp-2">
+        {article.title}
+      </h3>
+      {showExcerpt && (
+        <p class="text-sm text-slate-600 line-clamp-2 leading-relaxed">
+          {article.description}
+        </p>
+      )}
+    </div>
+
+    <!-- 底部信息 -->
+    <div class="px-6 pb-6">
+      <div class="flex items-center gap-4 text-xs text-slate-500">
+        <span>{article.author}</span>
+        <span>·</span>
+        <time datetime={article.publishDate}>
+          {new Date(article.publishDate).toLocaleDateString('zh-CN', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          })}
+        </time>
+      </div>
+
+      <!-- 标签 -->
+      {article.tags.length > 0 && (
+        <div class="flex flex-wrap gap-2 mt-3">
+          {article.tags.slice(0, 3).map(tag => (
+            <span class="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  </a>
+</article>

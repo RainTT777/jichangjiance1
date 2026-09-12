@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased;
+  }
+}
+
+@layer components {
+  /* 容器 */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* 卡片 */
+  .card {
+    @apply bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300;
+  }
+
+  /* 按钮 */
+  .btn-primary {
+    @apply px-6 py-3 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-colors shadow-sm hover:shadow-md;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-white text-slate-700 font-medium rounded-lg border border-slate-300 hover:bg-slate-50 transition-colors;
+  }
+
+  /* 阴影工具 */
+  .shadow-soft {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+
+  /* 文本截断 */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-400;
+}
+
+/* Details 元素优化 */
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details summary {
+  list-style: none;
+}
+
+/* 代码块样式 */
+code {
+  @apply px-1.5 py-0.5 bg-slate-100 text-slate-900 rounded text-sm font-mono;
+}

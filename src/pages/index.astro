@@ -1,0 +1,406 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+
+// 机场数据列表（奇偶行首尾交替）
+const airports = [
+  {
+    id: 1,
+    name: '良心云机场',
+    tagline: '2元起 IEPL 纯专线',
+    desc: '100% 足额带宽，无隐形限速。全节点原生 IP 覆盖，解锁 Netflix / ChatGPT。',
+    price: '¥2.00 / 月起',
+    rating: '4.9',
+    badge: 'NO.01 优选专线',
+    icon: '⚡',
+    gradient: 'from-slate-900 via-slate-800 to-slate-900',
+    ping: '24',
+    pingStatus: '🟢 极低延迟',
+    loss: '0.0',
+    speed: '940',
+    uptime: '99.9',
+    probeNode: '香港 IEPL 01',
+    protocols: ['IEPL纯专线', 'VLESS', 'Trojan', 'Hysteria2'],
+    unlocks: ['🟢 Netflix 4K', '🟢 ChatGPT', '🟢 Disney+'],
+    link: 'http://liangxinyun.club/'
+  },
+  {
+    id: 2,
+    name: '悠兔机场',
+    tagline: '全球 80+ 高速节点',
+    desc: '专为追剧与游戏用户设计，智能 BGP 线路自动分流，4K高清观影无压力。',
+    price: '¥15.00 / 月起',
+    rating: '4.8',
+    badge: 'NO.02 热门品牌',
+    icon: '🐰',
+    gradient: 'from-indigo-900 via-purple-900 to-slate-900',
+    ping: '32',
+    pingStatus: '🟢 稳定极速',
+    loss: '0.0',
+    speed: '880',
+    uptime: '99.8',
+    probeNode: '日本 BGP 02',
+    protocols: ['BGP中转', 'Shadowsocks', 'Trojan'],
+    unlocks: ['🟢 YouTube 4K', '🟢 ChatGPT', '🟢 TikTok'],
+    link: 'http://liangxinyun.club/'
+  },
+  {
+    id: 3,
+    name: '赔钱机场',
+    tagline: '平民救济专线 · 大流量包',
+    desc: 'Pelican 战术箱品质，高抗封锁传输通道，性价比超高，适合大流量下载用户。',
+    price: '¥9.90 / 月起',
+    rating: '4.7',
+    badge: 'NO.03 战术空投',
+    icon: '📦',
+    gradient: 'from-emerald-950 via-slate-900 to-teal-950',
+    ping: '28',
+    pingStatus: '🟢 极低延迟',
+    loss: '0.1',
+    speed: '910',
+    uptime: '99.7',
+    probeNode: '新加坡 01',
+    protocols: ['IEPL专线', 'Trojan', 'Shadowsocks'],
+    unlocks: ['🟢 Netflix', '🟢 ChatGPT', '🟢 Steam外服'],
+    link: 'http://liangxinyun.club/'
+  },
+  {
+    id: 4,
+    name: '一元机场',
+    tagline: '1元/月 极致门槛',
+    desc: '适合备用节点与入门轻度上网用户，超低价格，简单实用。',
+    price: '¥1.00 / 月起',
+    rating: '4.6',
+    badge: 'NO.04 极致低价',
+    icon: '🪙',
+    gradient: 'from-amber-900 via-yellow-900 to-slate-900',
+    ping: '35',
+    pingStatus: '🟢 良好',
+    loss: '0.0',
+    speed: '750',
+    uptime: '99.5',
+    probeNode: '美国 01',
+    protocols: ['BGP直连', 'Shadowsocks'],
+    unlocks: ['🟢 网页浏览', '🟢 YouTube 1080P'],
+    link: 'http://liangxinyun.club/'
+  }
+];
+---
+
+<BaseLayout
+  title="机场实时数据检测中心 - 节点连通性 / 延迟 / 丢包率大盘"
+  description="专业的机场节点测速与数据检测平台，实时评测各大机场连通性、网络延迟、丢包率与4K流媒体解锁表现。"
+>
+  <Header />
+
+  <!-- 顶满两端 (Max width 1920px)，中间超宽 -->
+  <main class="w-full max-w-[1920px] mx-auto px-3 sm:px-6 lg:px-8 py-6 min-h-screen">
+    
+    <div class="flex flex-col lg:flex-row gap-6 items-start">
+      
+      <!-- 左侧边栏：靠最左端 (~300px) -->
+      <aside class="w-full lg:w-[300px] xl:w-[320px] shrink-0 space-y-6">
+        
+        <!-- 1. 个人介绍栏 -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm relative overflow-hidden">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 bg-gradient-to-tr from-slate-900 via-slate-800 to-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold border-2 border-white shadow-md">
+              👨‍💻
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900 text-sm">站长 / 测评官</h3>
+              <p class="text-[11px] text-blue-600 font-medium">机场连通性实时监测</p>
+              <span class="inline-block mt-0.5 px-2 py-0.5 bg-slate-100 text-slate-600 text-[10px] rounded">5年测评经验</span>
+            </div>
+          </div>
+
+          <div class="space-y-2 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+            <p>👋 欢迎来到机场实时数据检测站！本站专注提供客观无中立的机场节点延迟、连通率、丢包率及 4K 流媒体解锁数据。</p>
+            <p class="text-slate-500 font-medium">⚡ 所有检测数据由全网多个分布式探针实测生成。</p>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-100">
+            <a href="http://liangxinyun.club/" target="_blank" class="w-full py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs text-center font-medium rounded-lg transition-colors flex items-center justify-center gap-2">
+              <svg class="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.67-.52.36-1 .54-1.43.53-.47-.01-1.37-.27-2.04-.49-.82-.27-1.47-.42-1.42-.88.03-.24.37-.49 1.02-.75 3.99-1.74 6.66-2.89 8.01-3.46 3.82-1.61 4.61-1.89 5.13-1.9.11 0 .37.03.54.17.14.12.18.28.2.45-.01.07.01.21 0 .26z"/></svg>
+              官方 Telegram 频道
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. 预留广告位 1 -->
+        <div class="bg-gradient-to-br from-amber-500/10 via-orange-500/5 to-amber-500/10 border-2 border-dashed border-amber-300 rounded-2xl p-5 relative overflow-hidden">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-0.5 text-[10px] font-bold uppercase bg-amber-500 text-white rounded shadow-sm">广告 / AD</span>
+            <span class="text-[11px] text-amber-700 font-medium">黄金广告位 01</span>
+          </div>
+          <div class="text-center py-5 space-y-2">
+            <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center mx-auto text-2xl font-bold">
+              📢
+            </div>
+            <h4 class="font-bold text-slate-900 text-sm">赞助广告位预留区</h4>
+            <p class="text-xs text-slate-600 leading-relaxed">适用于优质机场品牌推广 / 横幅 Banner / 独家优惠码展示</p>
+            <div class="pt-2">
+              <a href="http://liangxinyun.club/" target="_blank" class="inline-block px-4 py-1.5 bg-amber-500 hover:bg-amber-600 text-white text-xs font-semibold rounded-lg transition-colors shadow">
+                联系投放广告
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. 预留广告位 2 -->
+        <div class="bg-gradient-to-br from-indigo-500/10 via-purple-500/5 to-blue-500/10 border-2 border-dashed border-indigo-300 rounded-2xl p-5 relative">
+          <div class="flex items-center justify-between mb-2">
+            <span class="px-2 py-0.5 text-[10px] font-bold bg-indigo-600 text-white rounded">广告预留</span>
+            <span class="text-[11px] text-indigo-700">赞助推荐</span>
+          </div>
+          <div class="py-4 text-center space-y-2">
+            <h5 class="text-xs font-bold text-slate-800">【推荐】商家广告预留栏位</h5>
+            <p class="text-[11px] text-slate-500">点击此处展示您的专属活动或月付优惠信息</p>
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- 中间主区域：大幅加宽 (flex-1) -->
+      <section class="flex-1 min-w-0 w-full space-y-6">
+        
+        <!-- 板块头部 -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+            <div>
+              <h1 class="text-2xl font-bold text-slate-900 flex items-center gap-3">
+                <span>⚡ 机场实时数据检测列表</span>
+                <span class="text-xs font-normal text-slate-500 bg-slate-100 px-3 py-1 rounded-full">横版拉长加宽·一排一机场</span>
+              </h1>
+              <p class="text-xs text-slate-500 mt-1">首尾相连交替布局 · 实时延迟 / 丢包率 / 原生IP解锁测试</p>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2 text-xs border-t border-slate-100 pt-4">
+            <span class="px-3.5 py-1.5 bg-blue-600 text-white rounded-lg font-medium cursor-pointer shadow-sm">全部检测</span>
+            <span class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium cursor-pointer transition-colors">IEPL纯专线</span>
+            <span class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium cursor-pointer transition-colors">BGP中转</span>
+            <span class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium cursor-pointer transition-colors">4K/8K秒开</span>
+            <span class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium cursor-pointer transition-colors">ChatGPT/AI解锁</span>
+          </div>
+        </div>
+
+        <!-- 机场卡片列表 (加宽展示) -->
+        <div class="space-y-6">
+          {airports.map((ap, index) => {
+            const isOdd = index % 2 === 0;
+            return (
+              <div class="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 grid grid-cols-1 md:grid-cols-12 overflow-hidden border-hover">
+                
+                {/* 奇数行：Logo在左边 (isOdd=true) */}
+                {isOdd && (
+                  <div class={`md:col-span-4 lg:col-span-4 bg-gradient-to-br ${ap.gradient} text-white p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden`}>
+                    <div>
+                      <div class="flex items-center justify-between mb-4">
+                        <span class="px-2.5 py-1 bg-white/10 text-white border border-white/20 text-[11px] font-bold rounded-md">
+                          {ap.badge}
+                        </span>
+                        <span class="text-xs text-slate-300 font-medium">评分: <strong class="text-amber-400">{ap.rating}</strong> / 5.0</span>
+                      </div>
+                      <div class="flex items-center gap-3 mb-3">
+                        <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center text-2xl font-extrabold shadow-lg">
+                          {ap.icon}
+                        </div>
+                        <div>
+                          <h3 class="text-xl font-bold text-white tracking-wide">{ap.name}</h3>
+                          <p class="text-xs text-slate-300">{ap.tagline}</p>
+                        </div>
+                      </div>
+                      <p class="text-xs text-slate-300 leading-relaxed mb-4">{ap.desc}</p>
+                    </div>
+
+                    <div class="pt-3 border-t border-white/20 flex items-center justify-between gap-2">
+                      <span class="text-xs text-slate-300">套餐: <strong class="text-white text-sm">{ap.price}</strong></span>
+                      <a href={ap.link} target="_blank" rel="noopener" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-xl transition-colors shadow-md">
+                        直达官网 🚀
+                      </a>
+                    </div>
+                  </div>
+                )}
+
+                {/* 数据检测部分（8栏超宽） */}
+                <div class={`md:col-span-8 lg:col-span-8 p-6 sm:p-8 bg-gradient-to-br from-white to-slate-50/80 flex flex-col justify-between ${!isOdd ? 'order-2 md:order-1' : ''}`}>
+                  <div>
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-5">
+                      <span class="text-xs font-bold text-slate-700 flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                        实时连通性与网络测速面板
+                      </span>
+                      <span class="text-xs text-slate-400">上次更新: 刚刚</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6 text-center">
+                      <div class="p-3.5 bg-emerald-50 border border-emerald-100 rounded-2xl">
+                        <div class="text-xs text-emerald-600 font-medium">平均延迟</div>
+                        <div class="text-xl font-extrabold text-emerald-700 mt-1">{ap.ping} <span class="text-xs">ms</span></div>
+                        <div class="text-[11px] text-emerald-600 mt-0.5">{ap.pingStatus}</div>
+                      </div>
+                      <div class="p-3.5 bg-blue-50 border border-blue-100 rounded-2xl">
+                        <div class="text-xs text-blue-600 font-medium">丢包率</div>
+                        <div class="text-xl font-extrabold text-blue-700 mt-1">{ap.loss} <span class="text-xs">%</span></div>
+                        <div class="text-[11px] text-blue-600 mt-0.5">🟢 极低丢包</div>
+                      </div>
+                      <div class="p-3.5 bg-indigo-50 border border-indigo-100 rounded-2xl">
+                        <div class="text-xs text-indigo-600 font-medium">峰值带宽</div>
+                        <div class="text-xl font-extrabold text-indigo-700 mt-1">{ap.speed} <span class="text-xs">Mbps</span></div>
+                        <div class="text-[11px] text-indigo-600 mt-0.5">⚡ 高速极速</div>
+                      </div>
+                      <div class="p-3.5 bg-purple-50 border border-purple-100 rounded-2xl">
+                        <div class="text-xs text-purple-600 font-medium">在线率</div>
+                        <div class="text-xl font-extrabold text-purple-700 mt-1">{ap.uptime} <span class="text-xs">%</span></div>
+                        <div class="text-[11px] text-purple-600 mt-0.5">🟢 高可用</div>
+                      </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs bg-slate-50/80 p-3.5 rounded-xl border border-slate-100">
+                      <div class="flex items-center gap-2">
+                        <span class="text-slate-400 font-medium text-xs w-16 flex-shrink-0">支持协议:</span>
+                        <div class="flex flex-wrap gap-1">
+                          {ap.protocols.map(pt => (
+                            <span class="px-2.5 py-0.5 bg-white border border-slate-200 text-slate-700 rounded text-xs font-medium">{pt}</span>
+                          ))}
+                        </div>
+                      </div>
+                      <div class="flex items-center gap-2">
+                        <span class="text-slate-400 font-medium text-xs w-16 flex-shrink-0">流媒体/AI:</span>
+                        <div class="flex flex-wrap gap-1">
+                          {ap.unlocks.map(ul => (
+                            <span class="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded text-xs font-medium">{ul}</span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="pt-4 border-t border-slate-100 mt-4 flex items-center justify-between text-xs">
+                    <span class="text-slate-500 flex items-center gap-1.5">
+                      <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 探针节点: {ap.probeNode} · 每30秒连通检测
+                    </span>
+                    <a href={ap.link} target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-1">
+                      查看完整测速报告 →
+                    </a>
+                  </div>
+                </div>
+
+                {/* 偶数行：Logo在右边 (isOdd=false) */}
+                {!isOdd && (
+                  <div class={`md:col-span-4 lg:col-span-4 bg-gradient-to-br ${ap.gradient} text-white p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden order-1 md:order-2`}>
+                    <div>
+                      <div class="flex items-center justify-between mb-4">
+                        <span class="px-2.5 py-1 bg-white/10 text-white border border-white/20 text-[11px] font-bold rounded-md">
+                          {ap.badge}
+                        </span>
+                        <span class="text-xs text-slate-300 font-medium">评分: <strong class="text-amber-400">{ap.rating}</strong> / 5.0</span>
+                      </div>
+                      <div class="flex items-center gap-3 mb-3">
+                        <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center text-2xl font-extrabold shadow-lg">
+                          {ap.icon}
+                        </div>
+                        <div>
+                          <h3 class="text-xl font-bold text-white tracking-wide">{ap.name}</h3>
+                          <p class="text-xs text-slate-300">{ap.tagline}</p>
+                        </div>
+                      </div>
+                      <p class="text-xs text-slate-300 leading-relaxed mb-4">{ap.desc}</p>
+                    </div>
+
+                    <div class="pt-3 border-t border-white/20 flex items-center justify-between gap-2">
+                      <span class="text-xs text-slate-300">套餐: <strong class="text-white text-sm">{ap.price}</strong></span>
+                      <a href={ap.link} target="_blank" rel="noopener" class="px-5 py-2.5 bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold rounded-xl transition-colors shadow-md">
+                        直达官网 🚀
+                      </a>
+                    </div>
+                  </div>
+                )}
+
+              </div>
+            );
+          })}
+        </div>
+
+      </section>
+
+      <!-- 右侧边栏：靠最右端 (~300px) -->
+      <aside class="w-full lg:w-[300px] xl:w-[320px] shrink-0 space-y-6">
+        
+        <!-- 1. 预留广告位 3 -->
+        <div class="bg-gradient-to-br from-rose-500/10 via-pink-500/5 to-rose-500/10 border-2 border-dashed border-rose-300 rounded-2xl p-5 relative overflow-hidden">
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-0.5 text-[10px] font-bold uppercase bg-rose-600 text-white rounded shadow-sm">广告 / AD</span>
+            <span class="text-[11px] text-rose-700 font-medium">右侧侧栏 01</span>
+          </div>
+          <div class="text-center py-5 space-y-2">
+            <div class="w-12 h-12 bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center mx-auto text-2xl font-bold">
+              💎
+            </div>
+            <h4 class="font-bold text-slate-900 text-sm">右侧侧栏广告展示位</h4>
+            <p class="text-xs text-slate-600 leading-relaxed">支持置顶活动推荐 / VPS服务器 / 客户端工具推广</p>
+            <div class="pt-2">
+              <a href="http://liangxinyun.club/" target="_blank" class="inline-block px-4 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold rounded-lg transition-colors shadow">
+                商务合作 / 投放广告
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. 常用客户端速查 -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+          <div class="flex items-center gap-2 mb-4 border-b border-slate-100 pb-3">
+            <span class="text-lg">🛠️</span>
+            <h3 class="font-bold text-slate-900 text-sm">常用客户端速查下载</h3>
+          </div>
+
+          <ul class="space-y-2.5 text-xs">
+            <li>
+              <a href="http://liangxinyun.club/" target="_blank" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-700 rounded-xl transition-colors group">
+                <span class="font-medium flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-blue-500"></span> Clash for Windows
+                </span>
+                <span class="text-[11px] text-slate-400 group-hover:text-blue-600">下载 →</span>
+              </a>
+            </li>
+            <li>
+              <a href="http://liangxinyun.club/" target="_blank" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-700 rounded-xl transition-colors group">
+                <span class="font-medium flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-purple-500"></span> Clash Party (最新版)
+                </span>
+                <span class="text-[11px] text-slate-400 group-hover:text-blue-600">下载 →</span>
+              </a>
+            </li>
+            <li>
+              <a href="http://liangxinyun.club/" target="_blank" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-700 rounded-xl transition-colors group">
+                <span class="font-medium flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Sing-box 全平台
+                </span>
+                <span class="text-[11px] text-slate-400 group-hover:text-blue-600">下载 →</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 3. 预留广告位 4 -->
+        <div class="bg-gradient-to-br from-cyan-500/10 via-teal-500/5 to-cyan-500/10 border-2 border-dashed border-cyan-300 rounded-2xl p-5 relative">
+          <div class="flex items-center justify-between mb-2">
+            <span class="px-2 py-0.5 text-[10px] font-bold bg-cyan-600 text-white rounded">广告预留</span>
+            <span class="text-[11px] text-cyan-700">底部推荐</span>
+          </div>
+          <div class="py-4 text-center space-y-2">
+            <h5 class="text-xs font-bold text-slate-800">预留个人推荐 / 品牌加盟位</h5>
+            <p class="text-[11px] text-slate-500">此区域专为合作伙伴广告展示预留</p>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+
+  </main>
+
+  <Footer />
+</BaseLayout>

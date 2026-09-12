@@ -1,0 +1,223 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+---
+
+<BaseLayout
+  title="关于我们 - 机场指南"
+  description="了解机场指南的创建初衷、内容方向和运营理念。"
+>
+  <Header />
+
+  <main class="py-12 lg:py-16">
+    <div class="container-custom max-w-4xl">
+      <!-- 面包屑 -->
+      <nav class="flex items-center gap-2 text-sm text-slate-600 mb-8">
+        <a href="/" class="hover:text-primary-600">首页</a>
+        <span>/</span>
+        <span class="text-slate-900">关于我们</span>
+      </nav>
+
+      <!-- 页面标题 -->
+      <div class="mb-12">
+        <h1 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-4">关于我们</h1>
+        <p class="text-lg text-slate-600">了解机场指南的创建初衷和内容方向</p>
+      </div>
+
+      <!-- 网站定位 -->
+      <section class="card p-8 mb-8">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">网站定位</h2>
+        <div class="prose prose-slate max-w-none">
+          <p class="text-slate-600 leading-relaxed mb-4">
+            机场指南是一个专注于提供机场服务相关知识和使用教程的内容平台。我们致力于帮助用户了解和选择适合的网络服务，提供客观、详实的评测和教程内容。
+          </p>
+          <p class="text-slate-600 leading-relaxed">
+            我们的目标是成为用户值得信赖的信息来源，通过专业的内容帮助用户做出明智的选择。
+          </p>
+        </div>
+      </section>
+
+      <!-- 内容方向 -->
+      <section class="card p-8 mb-8">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">内容方向</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="flex items-start gap-3">
+            <div class="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900 mb-1">新手教程</h3>
+              <p class="text-sm text-slate-600">从零开始的入门指南，帮助新手快速上手。</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900 mb-1">深度评测</h3>
+              <p class="text-sm text-slate-600">基于实际使用的客观评测和分析。</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900 mb-1">客户端配置</h3>
+              <p class="text-sm text-slate-600">各平台客户端的详细配置指南。</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900 mb-1">问题解答</h3>
+              <p class="text-sm text-slate-600">常见问题的详细解答和故障排查。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 更新说明 -->
+      <section class="card p-8 mb-8">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">内容更新</h2>
+        <div class="prose prose-slate max-w-none">
+          <p class="text-slate-600 leading-relaxed mb-4">
+            我们致力于保持内容的时效性和准确性，定期更新评测数据和教程内容。网络环境和服务都在不断变化，我们会持续跟踪最新的发展动态。
+          </p>
+          <ul class="text-sm text-slate-600 space-y-2">
+            <li>每周更新最新的使用教程和技巧</li>
+            <li>每月进行服务评测数据更新</li>
+            <li>及时响应用户反馈和问题</li>
+            <li>持续优化内容质量和用户体验</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 联系方式预留 -->
+      <section class="card p-8 mb-8">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">联系我们</h2>
+        <div class="prose prose-slate max-w-none">
+          <p class="text-slate-600 leading-relaxed mb-4">
+            如果您有任何问题、建议或合作意向，欢迎通过以下方式联系我们：
+          </p>
+          <div class="space-y-3">
+            <div class="flex items-center gap-3 text-sm">
+              <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+              <span class="text-slate-600">邮箱：contact@example.com（示例）</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+              <svg class="w-5 h-5 text-primary-600" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+              </svg>
+              <span class="text-slate-600">Twitter：@example（示例）</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 免责声明预留 -->
+      <section class="card p-8 mb-8 bg-slate-50">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">免责声明</h2>
+        <div class="prose prose-slate max-w-none text-sm">
+          <p class="text-slate-600 leading-relaxed mb-3">
+            本站提供的所有内容仅供学习和参考使用，不构成任何购买建议或使用推荐。
+          </p>
+          <p class="text-slate-600 leading-relaxed mb-3">
+            用户在使用任何服务前，应自行了解相关法律法规，并对自己的行为负责。本站不对用户的任何使用行为承担责任。
+          </p>
+          <p class="text-slate-600 leading-relaxed mb-3">
+            本站内容基于公开信息和实际测试，但不保证信息的完全准确性和时效性。服务商的政策和服务质量可能随时变化，请以实际情况为准。
+          </p>
+          <p class="text-slate-600 leading-relaxed">
+            请用户遵守当地法律法规，合理合法使用网络服务。
+          </p>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">常见问题</h2>
+        <div class="space-y-4">
+          <details class="card group">
+            <summary class="px-6 py-4 cursor-pointer list-none flex items-center justify-between">
+              <span class="font-semibold text-slate-900">网站内容是否收费？</span>
+              <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </summary>
+            <div class="px-6 pb-4 text-slate-600 leading-relaxed">
+              本站所有教程和评测内容完全免费，无需注册即可阅读。我们致力于为用户提供有价值的免费内容。
+            </div>
+          </details>
+
+          <details class="card group">
+            <summary class="px-6 py-4 cursor-pointer list-none flex items-center justify-between">
+              <span class="font-semibold text-slate-900">如何保证内容的客观性？</span>
+              <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </summary>
+            <div class="px-6 pb-4 text-slate-600 leading-relaxed">
+              我们的评测都基于实际使用体验和测试数据，保持独立客观的态度。我们不接受任何会影响内容客观性的商业合作。
+            </div>
+          </details>
+
+          <details class="card group">
+            <summary class="px-6 py-4 cursor-pointer list-none flex items-center justify-between">
+              <span class="font-semibold text-slate-900">可以投稿或提出建议吗？</span>
+              <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </summary>
+            <div class="px-6 pb-4 text-slate-600 leading-relaxed">
+              非常欢迎！如果您有好的文章想要分享，或者对网站内容有任何建议，请通过上述联系方式与我们沟通。
+            </div>
+          </details>
+
+          <details class="card group">
+            <summary class="px-6 py-4 cursor-pointer list-none flex items-center justify-between">
+              <span class="font-semibold text-slate-900">内容转载需要授权吗？</span>
+              <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </summary>
+            <div class="px-6 pb-4 text-slate-600 leading-relaxed">
+              如需转载本站内容，请注明出处并链接回原文。商业使用请提前联系我们获得授权。
+            </div>
+          </details>
+
+          <details class="card group">
+            <summary class="px-6 py-4 cursor-pointer list-none flex items-center justify-between">
+              <span class="font-semibold text-slate-900">如何获取最新更新？</span>
+              <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </summary>
+            <div class="px-6 pb-4 text-slate-600 leading-relaxed">
+              您可以定期访问我们的网站，或者关注我们的社交媒体账号，我们会在那里发布最新的文章和更新动态。
+            </div>
+          </details>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

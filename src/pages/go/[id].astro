@@ -1,0 +1,135 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { getRedirect } from '@/data/redirects';
+
+export function getStaticPaths() {
+  const { redirects } = await import('@/data/redirects');
+  return Object.keys(redirects).map(id => ({
+    params: { id },
+  }));
+}
+
+const { id } = Astro.params;
+const redirect = getRedirect(id);
+
+// 如果找到跳转配置，3秒后自动跳转
+if (redirect) {
+  // 注意：实际跳转由客户端JavaScript处理
+}
+---
+
+<BaseLayout
+  title={redirect ? `跳转到 ${redirect.name}` : '链接不存在 - 机场指南'}
+  description={redirect ? redirect.description : '您访问的跳转链接不存在。'}
+>
+  <Header />
+
+  <main class="py-12 lg:py-16">
+    <div class="container-custom max-w-2xl">
+      {redirect ? (
+        <div class="text-center">
+          <!-- 跳转说明 -->
+          <div class="card p-12">
+            <div class="w-20 h-20 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg class="w-10 h-10 text-primary-600 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+              </svg>
+            </div>
+
+            <h1 class="text-3xl font-bold text-slate-900 mb-4">正在跳转...</h1>
+            <p class="text-lg text-slate-600 mb-6">{redirect.name}</p>
+            <p class="text-sm text-slate-500 mb-8">{redirect.description}</p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href={redirect.url}
+                class="btn-primary"
+                id="manual-link"
+              >
+                立即访问
+              </a>
+              <a href="/" class="btn-secondary">
+                返回首页
+              </a>
+            </div>
+
+            <div class="mt-8 pt-8 border-t border-slate-200">
+              <p class="text-xs text-slate-500">
+                页面将在 <span id="countdown" class="font-semibold text-primary-600">3</span> 秒后自动跳转
+              </p>
+            </div>
+          </div>
+
+          <!-- 温馨提示 -->
+          <div class="card p-6 mt-6 bg-amber-50 border-amber-200">
+            <div class="flex items-start gap-3 text-left">
+              <svg class="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <div class="text-sm text-amber-900">
+                <p class="font-semibold mb-1">温馨提示</p>
+                <p>您即将离开机场指南，前往外部链接。请注意保护个人信息和账号安全。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <!-- 链接不存在 -->
+        <div class="text-center">
+          <div class="card p-12">
+            <div class="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg class="w-10 h-10 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+              </svg>
+            </div>
+
+            <h1 class="text-3xl font-bold text-slate-900 mb-4">链接不存在</h1>
+            <p class="text-lg text-slate-600 mb-8">
+              抱歉，您访问的跳转链接 <code class="px-2 py-1 bg-slate-100 text-slate-900 rounded text-sm">{id}</code> 不存在或已失效。
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/" class="btn-primary">
+                返回首页
+              </a>
+              <a href="/blog/" class="btn-secondary">
+                浏览文章
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  </main>
+
+  <Footer />
+
+  {redirect && (
+    <script define:vars={{ url: redirect.url }}>
+      let countdown = 3;
+      const countdownElement = document.getElementById('countdown');
+
+      const timer = setInterval(() => {
+        countdown--;
+        if (countdownElement) {
+          countdownElement.textContent = countdown.toString();
+        }
+
+        if (countdown <= 0) {
+          clearInterval(timer);
+          window.location.href = url;
+        }
+      }, 1000);
+
+      // 手动点击时清除定时器
+      const manualLink = document.getElementById('manual-link');
+      if (manualLink) {
+        manualLink.addEventListener('click', () => {
+          clearInterval(timer);
+        });
+      }
+    </script>
+  )}
+</BaseLayout>

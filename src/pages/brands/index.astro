@@ -1,0 +1,66 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import BrandCard from '@/components/BrandCard.astro';
+import { brands } from '@/data/brands';
+---
+
+<BaseLayout
+  title="品牌库 - 机场指南"
+  description="主流机场服务商和客户端品牌的详细介绍与评测。"
+>
+  <Header />
+
+  <main class="py-12 lg:py-16">
+    <div class="container-custom">
+      <!-- 面包屑 -->
+      <nav class="flex items-center gap-2 text-sm text-slate-600 mb-8">
+        <a href="/" class="hover:text-primary-600">首页</a>
+        <span>/</span>
+        <span class="text-slate-900">品牌库</span>
+      </nav>
+
+      <!-- 页面标题 -->
+      <div class="mb-12">
+        <h1 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-4">品牌库</h1>
+        <p class="text-lg text-slate-600">主流服务商和客户端品牌的详细介绍、特性分析与使用评测</p>
+      </div>
+
+      <!-- 说明卡片 -->
+      <div class="card p-6 mb-8 bg-amber-50 border-amber-200">
+        <div class="flex items-start gap-3">
+          <svg class="w-6 h-6 text-amber-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <div class="text-sm text-amber-900">
+            <p class="font-semibold mb-1">说明</p>
+            <p>品牌库内容仅供展示网站结构，所有品牌信息均为示例数据。本站不提供真实推广链接，也不构成购买建议。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 品牌列表 -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {brands.map(brand => (
+          <BrandCard brand={brand} />
+        ))}
+      </div>
+
+      <!-- 底部说明 -->
+      <section class="mt-16 card p-8">
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">关于品牌库</h2>
+        <div class="prose prose-slate max-w-none">
+          <p class="text-slate-600 leading-relaxed mb-4">
+            品牌库收录了主流的机场服务商和客户端品牌信息，包含详细的特性介绍、使用评测和相关教程。
+          </p>
+          <p class="text-slate-600 leading-relaxed">
+            每个品牌页面都包含完整的介绍、特性分析、优缺点对比以及相关的使用教程和配置指南，帮助您全面了解和选择。
+          </p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
