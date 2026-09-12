@@ -52,12 +52,14 @@
 </head>
 <body class="bg-slate-50 text-slate-900 antialiased min-h-screen flex flex-col">
 
-  <!-- Header Section (Max width 1920px for edge-to-edge layout) -->
+  <!-- Header Section with Dedicated Restored Navigation Bar -->
   <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
     <div class="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
+      
+      <!-- Top Row: Logo & Live System Status -->
+      <div class="flex items-center justify-between h-16 border-b border-slate-100">
         <!-- Logo & Monitor Title -->
-        <a href="/" class="flex items-center gap-3 group">
+        <a href="/" class="flex items-center gap-3 group shrink-0">
           <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
@@ -71,40 +73,69 @@
                 实时监控中
               </span>
             </div>
-            <p class="text-xs text-slate-500">专业节点连通性 / 延迟 / 丢包率 / 解锁数据大盘</p>
+            <p class="text-xs text-slate-500 hidden sm:block">专业节点连通性 / 延迟 / 丢包率 / 解锁数据大盘</p>
           </div>
         </a>
 
-        <!-- Top Right Control Status -->
-        <div class="hidden sm:flex items-center gap-4 text-xs font-medium text-slate-600">
-          <div class="flex items-center gap-2 px-3 py-1.5 bg-slate-100 rounded-lg">
+        <!-- Top Right Control Status & Entry Button -->
+        <div class="flex items-center gap-3 text-xs font-medium text-slate-600">
+          <div class="hidden md:flex items-center gap-2 px-3 py-1.5 bg-slate-100 rounded-lg">
             <span class="text-slate-400">检测节点数:</span>
             <span class="text-slate-900 font-bold">120+ 节点</span>
           </div>
-          <div class="flex items-center gap-2 px-3 py-1.5 bg-slate-100 rounded-lg">
+          <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-slate-100 rounded-lg">
             <span class="text-slate-400">刷新频率:</span>
             <span class="text-emerald-600 font-bold">每 30s 自动刷新</span>
           </div>
-          <a href="http://liangxinyun.club/" target="_blank" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-semibold transition-all shadow-sm">
+          <a href="http://liangxinyun.club/" target="_blank" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-semibold transition-all shadow-sm shrink-0">
             官网入口 🚀
           </a>
         </div>
       </div>
+
+      <!-- Restored Full Navigation Bar Row (ALWAYS VISIBLE & HIGHLY PROMINENT) -->
+      <nav class="flex items-center gap-1.5 sm:gap-2 py-2 overflow-x-auto whitespace-nowrap scrollbar-none text-xs sm:text-sm font-semibold">
+        <a href="http://liangxinyun.club/" target="_blank" class="px-3.5 py-1.5 bg-primary-50 text-primary-700 border border-primary-200 hover:bg-primary-600 hover:text-white rounded-lg transition-all flex items-center gap-1 shadow-xs">
+          🚀 机场推荐
+        </a>
+        <a href="http://liangxinyun.club/" target="_blank" class="px-3.5 py-1.5 bg-slate-100 hover:bg-primary-600 hover:text-white text-slate-700 rounded-lg transition-all flex items-center gap-1">
+          📊 机场评测
+        </a>
+        <a href="http://liangxinyun.club/" target="_blank" class="px-3.5 py-1.5 bg-slate-100 hover:bg-primary-600 hover:text-white text-slate-700 rounded-lg transition-all flex items-center gap-1">
+          📖 客户端教程
+        </a>
+        <a href="http://liangxinyun.club/" target="_blank" class="px-3.5 py-1.5 bg-slate-100 hover:bg-primary-600 hover:text-white text-slate-700 rounded-lg transition-all flex items-center gap-1">
+          📥 客户端下载
+        </a>
+        <a href="http://liangxinyun.club/" target="_blank" class="px-3.5 py-1.5 bg-slate-100 hover:bg-primary-600 hover:text-white text-slate-700 rounded-lg transition-all flex items-center gap-1">
+          🤖 AI工具推荐
+        </a>
+        <a href="http://liangxinyun.club/" target="_blank" class="px-3.5 py-1.5 bg-slate-100 hover:bg-primary-600 hover:text-white text-slate-700 rounded-lg transition-all flex items-center gap-1">
+          🎬 流媒体工具
+        </a>
+        <a href="http://liangxinyun.club/" target="_blank" class="px-3.5 py-1.5 bg-slate-100 hover:bg-primary-600 hover:text-white text-slate-700 rounded-lg transition-all flex items-center gap-1">
+          🍎 免费苹果ID
+        </a>
+        <a href="http://liangxinyun.club/" target="_blank" class="px-3.5 py-1.5 bg-slate-100 hover:bg-primary-600 hover:text-white text-slate-700 rounded-lg transition-all flex items-center gap-1">
+          ⚡ 免费节点
+        </a>
+        <a href="http://liangxinyun.club/" target="_blank" class="px-3.5 py-1.5 bg-slate-100 hover:bg-primary-600 hover:text-white text-slate-700 rounded-lg transition-all flex items-center gap-1">
+          ℹ️ 关于我们
+        </a>
+      </nav>
+
     </div>
   </header>
 
-  <!-- Main Edge-to-Edge Container: Left/Right Docked to Ends, Center Stretched & Wide -->
+  <!-- Main Edge-to-Edge Container -->
   <main class="w-full max-w-[1920px] mx-auto px-3 sm:px-6 lg:px-8 py-6 flex-1">
-    
     <div class="flex flex-col lg:flex-row gap-6 items-start">
       
-      <!-- ================= LEFT SIDEBAR: DOCKED TO LEFT EDGE (~300px) ================= -->
+      <!-- LEFT SIDEBAR -->
       <aside class="w-full lg:w-[300px] xl:w-[320px] shrink-0 space-y-6">
         
-        <!-- 1. 个人介绍栏 (Personal Profile Widget) -->
+        <!-- 1. 个人介绍栏 -->
         <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm relative overflow-hidden">
-          <div class="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary-100/50 to-transparent rounded-bl-full pointer-events-none"></div>
-          
           <div class="flex items-center gap-3 mb-4">
             <div class="w-12 h-12 bg-gradient-to-tr from-slate-900 via-slate-800 to-primary-600 text-white rounded-full flex items-center justify-center text-xl font-bold border-2 border-white shadow-md">
               👨‍💻
@@ -163,10 +194,10 @@
 
       </aside>
 
-      <!-- ================= CENTER MAIN CONTENT: EXPANDED & EXTRA WIDE (flex-1) ================= -->
+      <!-- CENTER MAIN CONTENT -->
       <section class="flex-1 min-w-0 w-full space-y-6">
         
-        <!-- Board Header & Filter Options -->
+        <!-- Board Header -->
         <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
             <div>
@@ -183,7 +214,6 @@
             </button>
           </div>
 
-          <!-- Protocol & Filter Badges -->
           <div class="flex flex-wrap gap-2 text-xs border-t border-slate-100 pt-4">
             <span class="px-3.5 py-1.5 bg-primary-600 text-white rounded-lg font-medium cursor-pointer shadow-sm">全部检测 (6)</span>
             <span class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium cursor-pointer transition-colors">IEPL纯专线</span>
@@ -193,14 +223,12 @@
           </div>
         </div>
 
-        <!-- AIRPORT CARDS LIST (WIDER GRID) -->
+        <!-- AIRPORT CARDS LIST -->
         <div class="space-y-6">
 
-          <!-- ---------------- AIRPORT CARD 1 (Row 1 - Odd: Logo LEFT, Data RIGHT) ---------------- -->
+          <!-- AIRPORT CARD 1 -->
           <div class="card-monitor grid grid-cols-1 md:grid-cols-12 overflow-hidden">
-            <!-- Left Side: Logo & Brand Area -->
             <div class="md:col-span-4 lg:col-span-4 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden">
-              <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-primary-500/20 rounded-full blur-xl pointer-events-none"></div>
               <div>
                 <div class="flex items-center justify-between mb-4">
                   <span class="px-2.5 py-1 bg-primary-500/20 text-primary-300 border border-primary-500/30 text-[11px] font-bold rounded-md">
@@ -230,7 +258,6 @@
               </div>
             </div>
 
-            <!-- Right Side: Data Monitoring Area (Expanded Width) -->
             <div class="md:col-span-8 lg:col-span-8 p-6 sm:p-8 bg-gradient-to-br from-white to-slate-50/80 flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-5">
@@ -241,7 +268,6 @@
                   <span class="text-xs text-slate-400">探针节点: 香港 IEPL 01 | 30秒连通检测</span>
                 </div>
 
-                <!-- 4 Metrics Grid (Spacious Layout) -->
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6 text-center">
                   <div class="p-3.5 bg-emerald-50 border border-emerald-100 rounded-2xl">
                     <div class="text-xs text-emerald-600 font-medium">平均延迟</div>
@@ -265,7 +291,6 @@
                   </div>
                 </div>
 
-                <!-- Supported Protocols & Unlocks -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs bg-slate-50/80 p-3.5 rounded-xl border border-slate-100">
                   <div class="flex items-center gap-2">
                     <span class="text-slate-400 font-medium text-xs w-16 flex-shrink-0">支持协议:</span>
@@ -273,7 +298,6 @@
                       <span class="px-2.5 py-0.5 bg-white border border-slate-200 text-slate-700 rounded text-xs font-medium">IEPL纯专线</span>
                       <span class="px-2.5 py-0.5 bg-white border border-slate-200 text-slate-700 rounded text-xs font-medium">VLESS</span>
                       <span class="px-2.5 py-0.5 bg-white border border-slate-200 text-slate-700 rounded text-xs font-medium">Trojan</span>
-                      <span class="px-2.5 py-0.5 bg-white border border-slate-200 text-slate-700 rounded text-xs font-medium">Hysteria2</span>
                     </div>
                   </div>
                   <div class="flex items-center gap-2">
@@ -281,13 +305,11 @@
                     <div class="flex flex-wrap gap-1">
                       <span class="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded text-xs font-medium">🟢 Netflix 4K</span>
                       <span class="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded text-xs font-medium">🟢 ChatGPT</span>
-                      <span class="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded text-xs font-medium">🟢 Disney+</span>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <!-- Bottom Bar -->
               <div class="pt-4 border-t border-slate-100 mt-4 flex items-center justify-between text-xs">
                 <span class="text-slate-500 flex items-center gap-1.5">
                   <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 状态: 节点连通正常 · 延迟数据由分布式探针每30秒更新
@@ -300,10 +322,8 @@
             </div>
           </div>
 
-
-          <!-- ---------------- AIRPORT CARD 2 (Row 2 - Even: Data LEFT, Logo RIGHT) ---------------- -->
+          <!-- AIRPORT CARD 2 -->
           <div class="card-monitor grid grid-cols-1 md:grid-cols-12 overflow-hidden">
-            <!-- Left Side: Data Monitoring Area (Expanded Width) -->
             <div class="md:col-span-8 lg:col-span-8 p-6 sm:p-8 bg-gradient-to-br from-white to-slate-50/80 flex flex-col justify-between order-2 md:order-1">
               <div>
                 <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-5">
@@ -314,7 +334,6 @@
                   <span class="text-xs text-slate-400">探针节点: 日本 BGP 02 | 30秒连通检测</span>
                 </div>
 
-                <!-- 4 Metrics Grid -->
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6 text-center">
                   <div class="p-3.5 bg-emerald-50 border border-emerald-100 rounded-2xl">
                     <div class="text-xs text-emerald-600 font-medium">平均延迟</div>
@@ -338,14 +357,12 @@
                   </div>
                 </div>
 
-                <!-- Supported Protocols & Unlocks -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs bg-slate-50/80 p-3.5 rounded-xl border border-slate-100">
                   <div class="flex items-center gap-2">
                     <span class="text-slate-400 font-medium text-xs w-16 flex-shrink-0">支持协议:</span>
                     <div class="flex flex-wrap gap-1">
                       <span class="px-2.5 py-0.5 bg-white border border-slate-200 text-slate-700 rounded text-xs font-medium">BGP中转</span>
                       <span class="px-2.5 py-0.5 bg-white border border-slate-200 text-slate-700 rounded text-xs font-medium">Shadowsocks</span>
-                      <span class="px-2.5 py-0.5 bg-white border border-slate-200 text-slate-700 rounded text-xs font-medium">Trojan</span>
                     </div>
                   </div>
                   <div class="flex items-center gap-2">
@@ -353,13 +370,11 @@
                     <div class="flex flex-wrap gap-1">
                       <span class="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded text-xs font-medium">🟢 YouTube 4K</span>
                       <span class="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded text-xs font-medium">🟢 ChatGPT</span>
-                      <span class="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded text-xs font-medium">🟢 TikTok</span>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <!-- Bottom Bar -->
               <div class="pt-4 border-t border-slate-100 mt-4 flex items-center justify-between text-xs">
                 <span class="text-slate-500 flex items-center gap-1.5">
                   <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 状态: 节点连通正常 · 延迟数据由分布式探针每30秒更新
@@ -371,9 +386,7 @@
               </div>
             </div>
 
-            <!-- Right Side: Logo & Brand Area (RIGHT SIDE) -->
             <div class="md:col-span-4 lg:col-span-4 bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-900 text-white p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden order-1 md:order-2">
-              <div class="absolute -left-6 -top-6 w-32 h-32 bg-purple-500/20 rounded-full blur-xl pointer-events-none"></div>
               <div>
                 <div class="flex items-center justify-between mb-4">
                   <span class="px-2.5 py-1 bg-purple-500/20 text-purple-300 border border-purple-500/30 text-[11px] font-bold rounded-md">
@@ -404,214 +417,14 @@
             </div>
           </div>
 
-
-          <!-- ---------------- AIRPORT CARD 3 (Row 3 - Odd: Logo LEFT, Data RIGHT) ---------------- -->
-          <div class="card-monitor grid grid-cols-1 md:grid-cols-12 overflow-hidden">
-            <!-- Left Side: Logo & Brand Area -->
-            <div class="md:col-span-4 lg:col-span-4 bg-gradient-to-br from-emerald-950 via-slate-900 to-teal-950 text-white p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden">
-              <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-emerald-500/20 rounded-full blur-xl pointer-events-none"></div>
-              <div>
-                <div class="flex items-center justify-between mb-4">
-                  <span class="px-2.5 py-1 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[11px] font-bold rounded-md">
-                    NO.03 战术空投
-                  </span>
-                  <span class="text-xs text-slate-400 font-medium">评分: <strong class="text-amber-400">4.7</strong> / 5.0</span>
-                </div>
-                <div class="flex items-center gap-3 mb-3">
-                  <div class="w-14 h-14 bg-gradient-to-tr from-emerald-600 to-teal-500 rounded-2xl flex items-center justify-center text-2xl font-extrabold shadow-lg">
-                    📦
-                  </div>
-                  <div>
-                    <h3 class="text-xl font-bold text-white tracking-wide">赔钱机场</h3>
-                    <p class="text-xs text-emerald-200">平民救济专线 · 大流量包</p>
-                  </div>
-                </div>
-                <p class="text-xs text-slate-300 leading-relaxed mb-4">
-                   Pelican 战术箱品质，高抗封锁传输通道，性价比超高，适合大流量下载用户。
-                </p>
-              </div>
-
-              <div class="pt-3 border-t border-slate-700/60 flex items-center justify-between gap-2">
-                <span class="text-xs text-slate-300">套餐: <strong class="text-white text-sm">¥9.90 / 月起</strong></span>
-                <a href="http://liangxinyun.club/" target="_blank" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-xl transition-colors shadow-md">
-                  直达官网 🚀
-                </a>
-              </div>
-            </div>
-
-            <!-- Right Side: Data Monitoring Area -->
-            <div class="md:col-span-8 lg:col-span-8 p-6 sm:p-8 bg-gradient-to-br from-white to-slate-50/80 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-5">
-                  <span class="text-xs font-bold text-slate-700 flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                    实时连通性与网络测速面板
-                  </span>
-                  <span class="text-xs text-slate-400">探针节点: 新加坡 01 | 30秒连通检测</span>
-                </div>
-
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6 text-center">
-                  <div class="p-3.5 bg-emerald-50 border border-emerald-100 rounded-2xl">
-                    <div class="text-xs text-emerald-600 font-medium">平均延迟</div>
-                    <div class="text-xl font-extrabold text-emerald-700 mt-1">28 <span class="text-xs">ms</span></div>
-                    <div class="text-[11px] text-emerald-600 mt-0.5">🟢 极低延迟</div>
-                  </div>
-                  <div class="p-3.5 bg-blue-50 border border-blue-100 rounded-2xl">
-                    <div class="text-xs text-blue-600 font-medium">丢包率</div>
-                    <div class="text-xl font-extrabold text-blue-700 mt-1">0.1 <span class="text-xs">%</span></div>
-                    <div class="text-[11px] text-blue-600 mt-0.5">🟢 极微微丢包</div>
-                  </div>
-                  <div class="p-3.5 bg-indigo-50 border border-indigo-100 rounded-2xl">
-                    <div class="text-xs text-indigo-600 font-medium">峰值带宽</div>
-                    <div class="text-xl font-extrabold text-indigo-700 mt-1">910 <span class="text-xs">Mbps</span></div>
-                    <div class="text-[11px] text-indigo-600 mt-0.5">⚡ 大带宽下载</div>
-                  </div>
-                  <div class="p-3.5 bg-purple-50 border border-purple-100 rounded-2xl">
-                    <div class="text-xs text-purple-600 font-medium">在线率</div>
-                    <div class="text-xl font-extrabold text-purple-700 mt-1">99.7 <span class="text-xs">%</span></div>
-                    <div class="text-[11px] text-purple-600 mt-0.5">🟢 稳定响应</div>
-                  </div>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs bg-slate-50/80 p-3.5 rounded-xl border border-slate-100">
-                  <div class="flex items-center gap-2">
-                    <span class="text-slate-400 font-medium text-xs w-16 flex-shrink-0">支持协议:</span>
-                    <div class="flex flex-wrap gap-1">
-                      <span class="px-2.5 py-0.5 bg-white border border-slate-200 text-slate-700 rounded text-xs font-medium">IEPL专线</span>
-                      <span class="px-2.5 py-0.5 bg-white border border-slate-200 text-slate-700 rounded text-xs font-medium">Trojan</span>
-                      <span class="px-2.5 py-0.5 bg-white border border-slate-200 text-slate-700 rounded text-xs font-medium">Shadowsocks</span>
-                    </div>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <span class="text-slate-400 font-medium text-xs w-16 flex-shrink-0">流媒体/AI:</span>
-                    <div class="flex flex-wrap gap-1">
-                      <span class="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded text-xs font-medium">🟢 Netflix</span>
-                      <span class="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded text-xs font-medium">🟢 ChatGPT</span>
-                      <span class="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded text-xs font-medium">🟢 Steam外服</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="pt-4 border-t border-slate-100 mt-4 flex items-center justify-between text-xs">
-                <span class="text-slate-500 flex items-center gap-1.5">
-                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 状态: 节点连通正常 · 延迟数据由分布式探针每30秒更新
-                </span>
-                <a href="http://liangxinyun.club/" target="_blank" class="text-emerald-600 hover:text-emerald-700 font-semibold flex items-center gap-1">
-                  查看完整测速报告
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </a>
-              </div>
-            </div>
-          </div>
-
-
-          <!-- ---------------- AIRPORT CARD 4 (Row 4 - Even: Data LEFT, Logo RIGHT) ---------------- -->
-          <div class="card-monitor grid grid-cols-1 md:grid-cols-12 overflow-hidden">
-            <!-- Left Side: Data Monitoring Area -->
-            <div class="md:col-span-8 lg:col-span-8 p-6 sm:p-8 bg-gradient-to-br from-white to-slate-50/80 flex flex-col justify-between order-2 md:order-1">
-              <div>
-                <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-5">
-                  <span class="text-xs font-bold text-slate-700 flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                    实时连通性与网络测速面板
-                  </span>
-                  <span class="text-xs text-slate-400">探针节点: 美国 01 | 30秒连通检测</span>
-                </div>
-
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6 text-center">
-                  <div class="p-3.5 bg-emerald-50 border border-emerald-100 rounded-2xl">
-                    <div class="text-xs text-emerald-600 font-medium">平均延迟</div>
-                    <div class="text-xl font-extrabold text-emerald-700 mt-1">35 <span class="text-xs">ms</span></div>
-                    <div class="text-[11px] text-emerald-600 mt-0.5">🟢 良好</div>
-                  </div>
-                  <div class="p-3.5 bg-blue-50 border border-blue-100 rounded-2xl">
-                    <div class="text-xs text-blue-600 font-medium">丢包率</div>
-                    <div class="text-xl font-extrabold text-blue-700 mt-1">0.0 <span class="text-xs">%</span></div>
-                    <div class="text-[11px] text-blue-600 mt-0.5">🟢 无丢包</div>
-                  </div>
-                  <div class="p-3.5 bg-indigo-50 border border-indigo-100 rounded-2xl">
-                    <div class="text-xs text-indigo-600 font-medium">峰值带宽</div>
-                    <div class="text-xl font-extrabold text-indigo-700 mt-1">750 <span class="text-xs">Mbps</span></div>
-                    <div class="text-[11px] text-indigo-600 mt-0.5">⚡ 性价比极高</div>
-                  </div>
-                  <div class="p-3.5 bg-purple-50 border border-purple-100 rounded-2xl">
-                    <div class="text-xs text-purple-600 font-medium">在线率</div>
-                    <div class="text-xl font-extrabold text-purple-700 mt-1">99.5 <span class="text-xs">%</span></div>
-                    <div class="text-[11px] text-purple-600 mt-0.5">🟢 正常运行</div>
-                  </div>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs bg-slate-50/80 p-3.5 rounded-xl border border-slate-100">
-                  <div class="flex items-center gap-2">
-                    <span class="text-slate-400 font-medium text-xs w-16 flex-shrink-0">支持协议:</span>
-                    <div class="flex flex-wrap gap-1">
-                      <span class="px-2.5 py-0.5 bg-white border border-slate-200 text-slate-700 rounded text-xs font-medium">BGP直连</span>
-                      <span class="px-2.5 py-0.5 bg-white border border-slate-200 text-slate-700 rounded text-xs font-medium">Shadowsocks</span>
-                    </div>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <span class="text-slate-400 font-medium text-xs w-16 flex-shrink-0">流媒体/AI:</span>
-                    <div class="flex flex-wrap gap-1">
-                      <span class="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded text-xs font-medium">🟢 网页浏览</span>
-                      <span class="px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded text-xs font-medium">🟢 YouTube 1080P</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="pt-4 border-t border-slate-100 mt-4 flex items-center justify-between text-xs">
-                <span class="text-slate-500 flex items-center gap-1.5">
-                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 状态: 节点连通正常 · 延迟数据由分布式探针每30秒更新
-                </span>
-                <a href="http://liangxinyun.club/" target="_blank" class="text-amber-600 hover:text-amber-700 font-semibold flex items-center gap-1">
-                  查看完整测速报告
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </a>
-              </div>
-            </div>
-
-            <!-- Right Side: Logo & Brand Area (RIGHT SIDE) -->
-            <div class="md:col-span-4 lg:col-span-4 bg-gradient-to-br from-amber-900 via-yellow-900 to-slate-900 text-white p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden order-1 md:order-2">
-              <div class="absolute -left-6 -top-6 w-32 h-32 bg-amber-500/20 rounded-full blur-xl pointer-events-none"></div>
-              <div>
-                <div class="flex items-center justify-between mb-4">
-                  <span class="px-2.5 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[11px] font-bold rounded-md">
-                    NO.04 极致低价
-                  </span>
-                  <span class="text-xs text-slate-400 font-medium">评分: <strong class="text-amber-400">4.6</strong> / 5.0</span>
-                </div>
-                <div class="flex items-center gap-3 mb-3">
-                  <div class="w-14 h-14 bg-gradient-to-tr from-amber-500 to-yellow-400 rounded-2xl flex items-center justify-center text-2xl font-extrabold shadow-lg">
-                    🪙
-                  </div>
-                  <div>
-                    <h3 class="text-xl font-bold text-white tracking-wide">一元机场</h3>
-                    <p class="text-xs text-amber-200">1元/月 极致门槛</p>
-                  </div>
-                </div>
-                <p class="text-xs text-slate-300 leading-relaxed mb-4">
-                  适合备用节点与入门轻度上网用户，超低价格，简单实用。
-                </p>
-              </div>
-
-              <div class="pt-3 border-t border-slate-700/60 flex items-center justify-between gap-2">
-                <span class="text-xs text-slate-300">套餐: <strong class="text-white text-sm">¥1.00 / 月起</strong></span>
-                <a href="http://liangxinyun.club/" target="_blank" class="px-5 py-2.5 bg-amber-600 hover:bg-amber-500 text-white text-xs font-semibold rounded-xl transition-colors shadow-md">
-                  直达官网 🚀
-                </a>
-              </div>
-            </div>
-          </div>
-
         </div>
 
       </section>
 
-      <!-- ================= RIGHT SIDEBAR: DOCKED TO RIGHT EDGE (~300px) ================= -->
+      <!-- RIGHT SIDEBAR -->
       <aside class="w-full lg:w-[300px] xl:w-[320px] shrink-0 space-y-6">
         
-        <!-- 1. 预留广告位 3 (Reserved Right Ad Space 3) -->
+        <!-- 1. 预留广告位 3 -->
         <div class="bg-gradient-to-br from-rose-500/10 via-pink-500/5 to-rose-500/10 border-2 border-dashed border-rose-300 rounded-2xl p-5 relative overflow-hidden ad-pattern">
           <div class="flex items-center justify-between mb-3">
             <span class="px-2.5 py-0.5 text-[10px] font-bold uppercase bg-rose-600 text-white rounded shadow-sm">广告 / AD</span>
@@ -631,7 +444,7 @@
           </div>
         </div>
 
-        <!-- 2. 常用客户端速查工具 (Quick Tools Widget) -->
+        <!-- 2. 常用客户端速查工具 -->
         <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
           <div class="flex items-center gap-2 mb-4 border-b border-slate-100 pb-3">
             <span class="text-lg">🛠️</span>
@@ -663,27 +476,7 @@
                 <span class="text-[11px] text-slate-400 group-hover:text-primary-600">下载 →</span>
               </a>
             </li>
-            <li>
-              <a href="http://liangxinyun.club/" target="_blank" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-primary-50 text-slate-700 hover:text-primary-700 rounded-xl transition-colors group">
-                <span class="font-medium flex items-center gap-2">
-                  <span class="w-2 h-2 rounded-full bg-amber-500"></span> Shadowrocket (iOS)
-                </span>
-                <span class="text-[11px] text-slate-400 group-hover:text-primary-600">下载 →</span>
-              </a>
-            </li>
           </ul>
-        </div>
-
-        <!-- 3. 预留广告位 4 (Reserved Right Ad Space 4) -->
-        <div class="bg-gradient-to-br from-cyan-500/10 via-teal-500/5 to-cyan-500/10 border-2 border-dashed border-cyan-300 rounded-2xl p-5 relative">
-          <div class="flex items-center justify-between mb-2">
-            <span class="px-2 py-0.5 text-[10px] font-bold bg-cyan-600 text-white rounded">广告预留</span>
-            <span class="text-[11px] text-cyan-700">底部推荐</span>
-          </div>
-          <div class="py-4 text-center space-y-2">
-            <h5 class="text-xs font-bold text-slate-800">预留个人推荐 / 品牌加盟位</h5>
-            <p class="text-[11px] text-slate-500">此区域专为合作伙伴广告展示预留</p>
-          </div>
         </div>
 
       </aside>
