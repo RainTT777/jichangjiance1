@@ -1,4 +1,5 @@
 ---
+<<<<<<< HEAD
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
@@ -220,4 +221,50 @@ import Footer from '@/components/Footer.astro';
   </main>
 
   <Footer />
+=======
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="关于我们 - 机场测评">
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold mb-8 text-slate-900">关于我们</h1>
+
+    <div class="prose prose-lg prose-slate max-w-none">
+      <p class="lead text-xl text-slate-700">
+        我们是一群资深网络工程师和技术博主，致力于为用户提供客观、专业、数据驱动的机场测评服务。
+      </p>
+
+      <h2>我们的使命</h2>
+      <p>
+        在信息不对称的代理服务市场，我们希望通过专业的性能审计和深度测评，
+        帮助用户做出明智的选择决策。我们坚持：
+      </p>
+
+      <ul>
+        <li><strong>客观中立</strong>：杜绝推销，所有结论基于真实测试数据</li>
+        <li><strong>数据驱动</strong>：包含速率、延迟、丢包率、路由追踪等核心指标</li>
+        <li><strong>专业审计</strong>：深度分析线路架构、IP纯净度、流媒体解锁能力</li>
+      </ul>
+
+      <h2>测评方法</h2>
+      <p>我们的每一篇评测都包含：</p>
+      <ol>
+        <li>晚高峰压力测试（20:00-23:00）</li>
+        <li>完整的路由追踪与拓扑分析</li>
+        <li>流媒体（Netflix/Disney+）与 AI 工具解锁测试</li>
+        <li>IP 纯净度与 ASN 归属审计</li>
+        <li>长期稳定性观察</li>
+      </ol>
+
+      <h2>联系我们</h2>
+      <p>
+        如果你有任何建议或想要我们测评特定的机场服务，欢迎通过以下方式联系：
+      </p>
+      <ul>
+        <li>Email: contact@example.com</li>
+        <li>Telegram: @example</li>
+      </ul>
+    </div>
+  </div>
+>>>>>>> e7d312c4149c0d49821ad728dcd033c438193bbc
 </BaseLayout>

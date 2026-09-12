@@ -1,4 +1,5 @@
 ---
+<<<<<<< HEAD
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
@@ -403,4 +404,105 @@ const airports = [
   </main>
 
   <Footer />
+=======
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+// 获取所有评测文章
+const reviews = await getCollection('reviews');
+const sortedReviews = reviews.sort((a, b) =>
+  new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+---
+
+<BaseLayout title="机场测评 - 专业的性能审计与测评平台">
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-blue-600 to-indigo-700 text-white py-20">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h1 class="text-5xl font-bold mb-6">机场深度测评</h1>
+      <p class="text-xl text-blue-100 mb-8">客观 · 数据驱动 · 专业审计</p>
+      <div class="flex gap-4 justify-center">
+        <a href="/reviews" class="btn bg-white text-blue-600 hover:bg-blue-50">
+          查看所有评测
+        </a>
+        <a href="/about" class="btn bg-blue-500 text-white hover:bg-blue-400">
+          了解更多
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 最新评测 -->
+  <section class="max-w-6xl mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold mb-8 text-slate-900">最新评测</h2>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {sortedReviews.map((review) => (
+        <a href={`/reviews/${review.slug}`}
+           class="block bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow overflow-hidden">
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2 text-slate-900 line-clamp-2">
+              {review.data.title}
+            </h3>
+            <p class="text-slate-600 text-sm mb-4 line-clamp-3">
+              {review.data.description}
+            </p>
+
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1">
+                {Array.from({ length: Math.floor(review.data.score) }).map(() => (
+                  <span class="text-yellow-400">⭐</span>
+                ))}
+                <span class="text-sm font-semibold text-slate-700 ml-1">
+                  {review.data.score.toFixed(1)}
+                </span>
+              </div>
+
+              <time class="text-xs text-slate-500">
+                {new Date(review.data.date).toLocaleDateString('zh-CN')}
+              </time>
+            </div>
+
+            {review.data.tags && review.data.tags.length > 0 && (
+              <div class="flex flex-wrap gap-1 mt-3">
+                {review.data.tags.slice(0, 3).map(tag => (
+                  <span class="badge bg-blue-50 text-blue-700 text-xs">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- 特色功能 -->
+  <section class="bg-slate-100 py-16">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-12 text-center text-slate-900">为什么选择我们</h2>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-xl shadow-sm">
+          <div class="text-4xl mb-4">📊</div>
+          <h3 class="text-xl font-bold mb-2 text-slate-900">数据驱动</h3>
+          <p class="text-slate-600">基于真实测试数据，包含速率、延迟、丢包率等核心指标</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-sm">
+          <div class="text-4xl mb-4">🎯</div>
+          <h3 class="text-xl font-bold mb-2 text-slate-900">客观中立</h3>
+          <p class="text-slate-600">杜绝推销，结论严格从测试数据推导，提供真实用户参考</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-sm">
+          <div class="text-4xl mb-4">🔧</div>
+          <h3 class="text-xl font-bold mb-2 text-slate-900">专业审计</h3>
+          <p class="text-slate-600">深度路由追踪、IP纯净度分析、流媒体解锁测试</p>
+        </div>
+      </div>
+    </div>
+  </section>
+>>>>>>> e7d312c4149c0d49821ad728dcd033c438193bbc
 </BaseLayout>

@@ -2,6 +2,7 @@
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
+<<<<<<< HEAD
     extend: {
       colors: {
         primary: {
@@ -51,6 +52,9 @@ export default {
         },
       },
     },
+=======
+    extend: {},
+>>>>>>> e7d312c4149c0d49821ad728dcd033c438193bbc
   },
   plugins: [],
 }

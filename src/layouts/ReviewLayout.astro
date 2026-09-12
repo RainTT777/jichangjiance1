@@ -1,0 +1,104 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  frontmatter: {
+    title: string;
+    description: string;
+    date: string;
+    score: number;
+    categories?: string[];
+    tags?: string[];
+  };
+}
+
+const { frontmatter } = Astro.props;
+const { title, description, date, score, categories = [], tags = [] } = frontmatter;
+
+// 格式化日期
+const formattedDate = new Date(date).toLocaleDateString('zh-CN', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+
+// 生成星级显示
+const fullStars = Math.floor(score);
+const hasHalfStar = score % 1 >= 0.5;
+const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="max-w-4xl mx-auto px-4 py-12">
+    <!-- 面包屑 -->
+    <nav class="text-sm text-slate-600 mb-6">
+      <a href="/" class="hover:text-blue-600">首页</a>
+      <span class="mx-2">/</span>
+      <a href="/reviews" class="hover:text-blue-600">评测</a>
+      <span class="mx-2">/</span>
+      <span class="text-slate-900">{title}</span>
+    </nav>
+
+    <!-- 文章头部 -->
+    <header class="mb-12">
+      <h1 class="text-4xl font-bold mb-4 text-slate-900">{title}</h1>
+
+      <div class="flex items-center gap-4 text-sm text-slate-600 mb-6">
+        <time datetime={date}>{formattedDate}</time>
+        {categories.length > 0 && (
+          <span class="flex gap-2">
+            {categories.map(cat => (
+              <span class="badge-green">{cat}</span>
+            ))}
+          </span>
+        )}
+      </div>
+
+      <!-- 评分 -->
+      <div class="flex items-center gap-3 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-100">
+        <span class="text-sm font-medium text-slate-700">综合评分:</span>
+        <div class="flex items-center gap-1">
+          {Array.from({ length: fullStars }).map(() => (
+            <span class="text-yellow-400 text-xl">⭐</span>
+          ))}
+          {hasHalfStar && <span class="text-yellow-400 text-xl">⭐</span>}
+          {Array.from({ length: emptyStars }).map(() => (
+            <span class="text-slate-300 text-xl">⭐</span>
+          ))}
+        </div>
+        <span class="text-lg font-bold text-slate-900">{score.toFixed(1)}/5.0</span>
+      </div>
+    </header>
+
+    <!-- 文章内容 -->
+    <div class="prose prose-slate prose-lg max-w-none
+                prose-headings:font-bold prose-headings:text-slate-900
+                prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:border-b prose-h2:border-slate-200 prose-h2:pb-3
+                prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
+                prose-p:text-slate-700 prose-p:leading-relaxed
+                prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline
+                prose-strong:text-slate-900 prose-strong:font-semibold
+                prose-code:text-pink-600 prose-code:bg-pink-50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
+                prose-pre:bg-slate-900 prose-pre:text-slate-100
+                prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:bg-blue-50 prose-blockquote:py-1
+                prose-table:w-full prose-th:bg-slate-100 prose-th:p-3 prose-td:p-3
+                prose-ul:list-disc prose-ol:list-decimal
+                prose-img:rounded-lg prose-img:shadow-lg">
+      <slot />
+    </div>
+
+    <!-- 标签 -->
+    {tags.length > 0 && (
+      <footer class="mt-12 pt-8 border-t border-slate-200">
+        <div class="flex flex-wrap gap-2">
+          <span class="text-sm font-medium text-slate-700">标签:</span>
+          {tags.map(tag => (
+            <a href={`/tags/${tag}`} class="badge bg-slate-200 text-slate-700 hover:bg-slate-300 transition-colors">
+              #{tag}
+            </a>
+          ))}
+        </div>
+      </footer>
+    )}
+  </article>
+</BaseLayout>
