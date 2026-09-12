@@ -3,94 +3,224 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 
-// 机场初始节点列表
+// 2026稳定翻墙机场排行榜全量收录 (源自 jichang365.com/ranking)
 const airports = [
   {
-    id: 'hk-iepl-01',
-    name: '良心云机场',
-    tagline: '2元起 IEPL 纯专线',
-    desc: '100% 足额带宽，无隐形限速。全节点原生 IP 覆盖，解锁 Netflix / ChatGPT。',
-    price: '¥2.00 / 月起',
-    rating: '4.9',
-    badge: 'NO.01 优选专线',
+    id: 'edgenova',
+    name: 'EdgeNova',
+    tagline: '全线 IPLC 专线 · 晚高峰稳定',
+    desc: '全线 IPLC 专线，晚高峰依然稳定流畅。解锁 Netflix、Disney+、ChatGPT 等主流服务。',
+    price: '¥15.0 / 月起',
+    rating: '9.8',
+    badge: 'NO.01 本站推荐',
     icon: '⚡',
-    gradient: 'from-slate-900 via-slate-800 to-slate-900',
-    ping: '24',
-    pingStatus: '🟢 极低延迟',
+    logo: 'https://yunguidaohang.com/assets/images/edgenova_logo.png',
+    gradient: 'from-slate-900 via-indigo-950 to-slate-900',
+    ping: '38',
+    pingStatus: '🟢 IPLC极低延迟',
     loss: '0.0',
-    speed: '940',
+    speed: '980',
     uptime: '99.9',
-    probeNode: '香港 IEPL 01',
-    protocols: ['IEPL纯专线', 'VLESS', 'Trojan', 'Hysteria2'],
-    unlocks: ['🟢 Netflix 4K', '🟢 ChatGPT', '🟢 Disney+'],
+    probeNode: '香港 IPLC 01',
+    protocols: ['IPLC专线', 'V2Ray', 'Trojan', 'Shadowsocks'],
+    unlocks: ['🟢 Netflix', '🟢 ChatGPT', '🟢 Disney+'],
     link: 'http://liangxinyun.club/'
   },
   {
-    id: 'jp-bgp-02',
-    name: '悠兔机场',
-    tagline: '全球 80+ 高速节点',
-    desc: '专为追剧与游戏用户设计，智能 BGP 线路自动分流，4K高清观影无压力。',
-    price: '¥15.00 / 月起',
-    rating: '4.8',
-    badge: 'NO.02 热门品牌',
-    icon: '🐰',
-    gradient: 'from-indigo-900 via-purple-900 to-slate-900',
-    ping: '32',
-    pingStatus: '🟢 稳定极速',
+    id: 'sujie',
+    name: '速界',
+    tagline: '游戏加速优选 · 极低丢包',
+    desc: '专门针对跨服游戏玩家优化，提供低丢包率的专线连接，游戏与4K观影体验极佳。',
+    price: '¥15.0 / 月起',
+    rating: '9.6',
+    badge: 'NO.02 游戏优选',
+    icon: '🎮',
+    logo: 'https://yunguidaohang.com/assets/images/sujie_logo.png',
+    gradient: 'from-blue-950 via-slate-900 to-indigo-950',
+    ping: '39',
+    pingStatus: '🟢 游戏专用低延迟',
+    loss: '0.0',
+    speed: '950',
+    uptime: '99.8',
+    probeNode: '日本 BGP 专线',
+    protocols: ['专线节点', 'V2Ray', 'Trojan'],
+    unlocks: ['🟢 游戏加速', '🟢 ChatGPT', '🟢 4K秒开'],
+    link: 'http://liangxinyun.club/'
+  },
+  {
+    id: 'kexinyun',
+    name: '可信云',
+    tagline: '数据高强加密 · 隐私保护',
+    desc: '高强度数据加密，无日志记录，极度保护用户隐私安全，支持匿名支付与全端订阅。',
+    price: '¥15.0 / 月起',
+    rating: '9.4',
+    badge: 'NO.03 隐私首选',
+    icon: '🛡️',
+    logo: 'https://yunguidaohang.com/assets/images/kexinyun_logo.png',
+    gradient: 'from-emerald-950 via-slate-900 to-teal-950',
+    ping: '43',
+    pingStatus: '🟢 稳定加密',
+    loss: '0.0',
+    speed: '910',
+    uptime: '99.5',
+    probeNode: '新加坡 01',
+    protocols: ['VLESS', 'Trojan', '无日志加密'],
+    unlocks: ['🟢 隐私保护', '🟢 Netflix 4K', '🟢 ChatGPT'],
+    link: 'http://liangxinyun.club/'
+  },
+  {
+    id: 'kuaili',
+    name: '快狸',
+    tagline: '新手友好 · 一键快速订阅',
+    desc: '界面简洁，操作简单，适合科学上网新手，一键订阅快速连接，全平台客户端支持。',
+    price: '¥15.0 / 月起',
+    rating: '9.3',
+    badge: 'NO.04 新手推荐',
+    icon: '🦊',
+    logo: 'https://yunguidaohang.com/assets/images/kuaili_logo.png',
+    gradient: 'from-purple-950 via-slate-900 to-slate-900',
+    ping: '41',
+    pingStatus: '🟢 新手极速',
+    loss: '0.0',
+    speed: '890',
+    uptime: '99.6',
+    probeNode: '台湾 BGP 01',
+    protocols: ['V2Ray', 'Shadowsocks'],
+    unlocks: ['🟢 YouTube 4K', '🟢 ChatGPT', '🟢 极简易用'],
+    link: 'http://liangxinyun.club/'
+  },
+  {
+    id: 'yuntu',
+    name: '云图',
+    tagline: '金融级专线 · 全节点1倍率',
+    desc: '全节点 1 倍率诚实扣费，金融级专线传输，保障 24 小时高速流畅，支持 5 台设备同时在线。',
+    price: '¥25.0 / 月起',
+    rating: '9.2',
+    badge: 'NO.05 金融级专线',
+    icon: '☁️',
+    logo: 'https://yunguidaohang.com/assets/images/yuntu_logo.png',
+    gradient: 'from-amber-950 via-yellow-950 to-slate-900',
+    ping: '40',
+    pingStatus: '🟢 金融级秒开',
+    loss: '0.0',
+    speed: '960',
+    uptime: '99.7',
+    probeNode: '香港 IPLC 02',
+    protocols: ['金融专线', 'V2Ray', 'Trojan', 'SS'],
+    unlocks: ['🟢 4K/8K秒开', '🟢 Netflix', '🟢 ChatGPT'],
+    link: 'http://liangxinyun.club/'
+  },
+  {
+    id: 'jisuyun',
+    name: '极速Cloud',
+    tagline: '三网CN2 GIA/9929 · 24h无视晚高峰',
+    desc: '采用国内三网顶级精品优化线路与 DMIT/Gomami/NEBURST 物理落地，24小时无视晚高峰。',
+    price: '¥15.0 / 月起',
+    rating: '9.1',
+    badge: 'NO.06 三网精品',
+    icon: '🚀',
+    logo: 'https://yunguidaohang.com/assets/images/jisuyun_logo.png',
+    gradient: 'from-cyan-950 via-blue-950 to-slate-900',
+    ping: '28',
+    pingStatus: '🟢 三网直连超低延迟',
+    loss: '0.0',
+    speed: '990',
+    uptime: '99.9',
+    probeNode: '三网 CN2 GIA 01',
+    protocols: ['CN2 GIA', 'CMIN2', 'VLESS', 'Reality'],
+    unlocks: ['🟢 Apple TV', '🟢 Netflix 4K', '🟢 ChatGPT'],
+    link: 'http://liangxinyun.club/'
+  },
+  {
+    id: 'shunyun',
+    name: '瞬云',
+    tagline: '轻量极速 · 支持按量计费',
+    desc: '主打轻量与极速，连接时间极短，支持灵活的按量付费模式，非常适合备用与随用随清。',
+    price: '¥20.0 / 月起',
+    rating: '8.8',
+    badge: 'NO.07 轻量极速',
+    icon: '⚡',
+    logo: 'https://yunguidaohang.com/assets/images/shunyun_logo.png',
+    gradient: 'from-slate-900 via-teal-950 to-slate-900',
+    ping: '52',
+    pingStatus: '🟢 按量备用首选',
+    loss: '0.1',
+    speed: '820',
+    uptime: '99.2',
+    probeNode: '美国 BGP 01',
+    protocols: ['Shadowsocks', 'WireGuard'],
+    unlocks: ['🟢 极速连接', '🟢 按量计费', '🟢 YouTube'],
+    link: 'http://liangxinyun.club/'
+  },
+  {
+    id: 'jilianyun',
+    name: '极连云',
+    tagline: '多站 BGP 中转 · 稳定性价比高',
+    desc: '多站 BGP 中转，国内访问速度快，适合跨服游戏、4K高清视频和日常办公使用。',
+    price: '¥15.5 / 月起',
+    rating: '8.7',
+    badge: 'NO.08 低延迟推荐',
+    icon: '🌐',
+    logo: 'https://yunguidaohang.com/assets/images/jilianyun_logo.png',
+    gradient: 'from-indigo-950 via-slate-900 to-purple-950',
+    ping: '42',
+    pingStatus: '🟢 BGP稳定高速',
     loss: '0.0',
     speed: '880',
     uptime: '99.8',
-    probeNode: '日本 BGP 02',
-    protocols: ['BGP中转', 'Shadowsocks', 'Trojan'],
-    unlocks: ['🟢 YouTube 4K', '🟢 ChatGPT', '🟢 TikTok'],
+    probeNode: '广州 BGP 中转',
+    protocols: ['BGP中转', 'V2Ray', 'Trojan', 'SS'],
+    unlocks: ['🟢 稳定低延迟', '🟢 ChatGPT', '🟢 4K视频'],
     link: 'http://liangxinyun.club/'
   },
   {
-    id: 'sg-iepl-01',
-    name: '赔钱机场',
-    tagline: '平民救济专线 · 大流量包',
-    desc: 'Pelican 战术箱品质，高抗封锁传输通道，性价比超高，适合大流量下载用户。',
-    price: '¥9.90 / 月起',
-    rating: '4.7',
-    badge: 'NO.03 战术空投',
-    icon: '📦',
-    gradient: 'from-emerald-950 via-slate-900 to-teal-950',
-    ping: '28',
-    pingStatus: '🟢 极低延迟',
-    loss: '0.1',
-    speed: '910',
-    uptime: '99.7',
-    probeNode: '新加坡 01',
-    protocols: ['IEPL专线', 'Trojan', 'Shadowsocks'],
-    unlocks: ['🟢 Netflix', '🟢 ChatGPT', '🟢 Steam外服'],
-    link: 'http://liangxinyun.club/'
-  },
-  {
-    id: 'us-bgp-01',
-    name: '一元机场',
-    tagline: '1元/月 极致门槛',
-    desc: '适合备用节点与入门轻度上网用户，超低价格，简单实用。',
-    price: '¥1.00 / 月起',
-    rating: '4.6',
-    badge: 'NO.04 极致低价',
-    icon: '🪙',
-    gradient: 'from-amber-900 via-yellow-900 to-slate-900',
-    ping: '35',
-    pingStatus: '🟢 良好',
+    id: 'guangnianti',
+    name: '光年梯',
+    tagline: 'AES-256 加密 · 支持 Hysteria2',
+    desc: '注重隐私保护，无日志政策，AES-256 加密。安全可靠，支持最新 Hysteria2 协议。',
+    price: '¥13.0 / 月起',
+    rating: '8.5',
+    badge: 'NO.09 安全私密',
+    icon: '✨',
+    logo: 'https://yunguidaohang.com/assets/images/guangnianti_logo.jpg',
+    gradient: 'from-slate-900 via-rose-950 to-slate-950',
+    ping: '45',
+    pingStatus: '🟢 Hysteria2高抗封',
     loss: '0.0',
-    speed: '750',
-    uptime: '99.5',
-    probeNode: '美国 01',
-    protocols: ['BGP直连', 'Shadowsocks'],
-    unlocks: ['🟢 网页浏览', '🟢 YouTube 1080P'],
+    speed: '850',
+    uptime: '99.6',
+    probeNode: '韩国 01',
+    protocols: ['VLESS', 'Trojan', 'Hysteria2'],
+    unlocks: ['🟢 Hysteria2', '🟢 隐私保护', '🟢 ChatGPT'],
+    link: 'http://liangxinyun.club/'
+  },
+  {
+    id: 'huanyuyun',
+    name: '寰宇云',
+    tagline: '大带宽多地区 · 高可用保障',
+    desc: '全球多地部署节点，提供大带宽支持，适合需要大流量下载与 8K 视频播放的用户。',
+    price: '¥18.0 / 月起',
+    rating: '8.4',
+    badge: 'NO.10 大带宽专线',
+    icon: '🌌',
+    logo: 'https://yunguidaohang.com/assets/images/huanyuyun_logo.png',
+    gradient: 'from-violet-950 via-slate-900 to-indigo-950',
+    ping: '50',
+    pingStatus: '🟢 大带宽海量节点',
+    loss: '0.0',
+    speed: '930',
+    uptime: '99.4',
+    probeNode: '德国 01',
+    protocols: ['V2Ray', 'Trojan', 'SS'],
+    unlocks: ['🟢 大流量下载', '🟢 4K/8K秒开', '🟢 ChatGPT'],
     link: 'http://liangxinyun.club/'
   }
 ];
 ---
 
 <BaseLayout
-  title="机场实时数据检测中心 - 节点连通性 / 延迟 / 丢包率大盘"
-  description="专业的机场节点测速与数据检测平台，实时评测各大机场连通性、网络延迟、丢包率与4K流媒体解锁表现。"
+  title="2026稳定翻墙机场排行榜 & 机场数据检测中心 - 实时节点质量测评"
+  description="专业的机场节点测速与数据检测平台，基于 EdgeNova、速界、可信云、快狸、云图等2026稳定好用机场，实时评测节点延迟、丢包率与4K/8K流媒体解锁表现。"
 >
   <Header />
 
@@ -116,8 +246,8 @@ const airports = [
           </div>
 
           <div class="space-y-2 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
-            <p>👋 欢迎来到机场实时数据检测站！本站已接入 Linux VPS 探针监控，实时渲染节点延迟、连通率及 4K 流媒体解锁数据。</p>
-            <p class="text-slate-500 font-medium">⚡ 探针脚本自动写入 status-data.json 推送渲染。</p>
+            <p>👋 欢迎来到机场实时数据检测站！本站已全量接入 2026 稳定翻墙机场排行榜榜单机场。</p>
+            <p class="text-slate-500 font-medium">⚡ 点击右侧显眼大按钮可随时触发最新探针采样。</p>
           </div>
 
           <div class="mt-4 pt-3 border-t border-slate-100">
@@ -158,13 +288,13 @@ const airports = [
           <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-4">
             <div>
               <h1 class="text-2xl font-extrabold text-slate-900 flex items-center gap-3">
-                <span>⚡ 机场实时数据检测列表</span>
+                <span>⚡ 2026 稳定翻墙机场排行榜与数据检测</span>
                 <span class="text-xs font-semibold text-emerald-700 bg-emerald-100 border border-emerald-300 px-3 py-1 rounded-full flex items-center gap-1.5 shadow-xs">
                   <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-                  动态探针 API 挂载中
+                  已收录 10 家顶级机场
                 </span>
               </h1>
-              <p class="text-xs text-slate-500 mt-1">首尾相连交替布局 · 实时延迟 / 丢包率 / 原生IP解锁测试</p>
+              <p class="text-xs text-slate-500 mt-1">首尾相连交替布局 · 品牌 Logo 插入 · 实时延迟 / 丢包率 / 4K流媒体测试</p>
             </div>
             
             <!-- PROMINENT BIG PROBE BUTTON (大按钮·极显眼) -->
@@ -177,11 +307,11 @@ const airports = [
           </div>
 
           <div class="flex flex-wrap gap-2 text-xs border-t border-slate-100 pt-4">
-            <span class="px-3.5 py-1.5 bg-blue-600 text-white rounded-lg font-medium cursor-pointer shadow-sm">全部检测</span>
-            <span class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium cursor-pointer transition-colors">IEPL纯专线</span>
-            <span class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium cursor-pointer transition-colors">BGP中转</span>
-            <span class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium cursor-pointer transition-colors">4K/8K秒开</span>
-            <span class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium cursor-pointer transition-colors">ChatGPT/AI解锁</span>
+            <span class="px-3.5 py-1.5 bg-blue-600 text-white rounded-lg font-medium cursor-pointer shadow-sm">全部收录 (10)</span>
+            <span class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium cursor-pointer transition-colors">IPLC物理专线</span>
+            <span class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium cursor-pointer transition-colors">三网 CN2 GIA</span>
+            <span class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium cursor-pointer transition-colors">游戏专线</span>
+            <span class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium cursor-pointer transition-colors">4K/8K解锁</span>
           </div>
         </div>
 
@@ -200,15 +330,15 @@ const airports = [
                         <span class="px-2.5 py-1 bg-white/10 text-white border border-white/20 text-[11px] font-bold rounded-md">
                           {ap.badge}
                         </span>
-                        <span class="text-xs text-slate-300 font-medium">评分: <strong class="text-amber-400">{ap.rating}</strong> / 5.0</span>
+                        <span class="text-xs text-slate-300 font-medium">评分: <strong class="text-amber-400">{ap.rating}</strong> / 10</span>
                       </div>
-                      <div class="flex items-center gap-3 mb-3">
-                        <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center text-2xl font-extrabold shadow-lg">
-                          {ap.icon}
+                      <div class="flex items-center gap-3.5 mb-3">
+                        <div class="w-14 h-14 bg-white/10 rounded-2xl p-1 flex items-center justify-center shadow-lg border border-white/20 overflow-hidden shrink-0">
+                          <img src={ap.logo} alt={ap.name} class="w-full h-full object-cover rounded-xl" onerror={`this.onerror=null;this.parentElement.innerHTML='<span class="text-2xl">${ap.icon}</span>';`} />
                         </div>
                         <div>
                           <h3 class="text-xl font-bold text-white tracking-wide">{ap.name}</h3>
-                          <p class="text-xs text-slate-300">{ap.tagline}</p>
+                          <p class="text-xs text-slate-300 font-medium">{ap.tagline}</p>
                         </div>
                       </div>
                       <p class="text-xs text-slate-300 leading-relaxed mb-4">{ap.desc}</p>
@@ -243,12 +373,12 @@ const airports = [
                       <div class="p-3.5 bg-blue-50 border border-blue-100 rounded-2xl transition-all" data-metric-box="loss">
                         <div class="text-xs text-blue-600 font-medium">丢包率</div>
                         <div class="text-xl font-extrabold text-blue-700 mt-1"><span data-metric="loss">{ap.loss}</span> <span class="text-xs">%</span></div>
-                        <div class="text-[11px] text-blue-600 mt-0.5">🟢 极低丢包</div>
+                        <div class="text-[11px] text-blue-600 mt-0.5">🟢 零丢包</div>
                       </div>
                       <div class="p-3.5 bg-indigo-50 border border-indigo-100 rounded-2xl transition-all" data-metric-box="speed">
                         <div class="text-xs text-indigo-600 font-medium">峰值带宽</div>
                         <div class="text-xl font-extrabold text-indigo-700 mt-1"><span data-metric="speed">{ap.speed}</span> <span class="text-xs">Mbps</span></div>
-                        <div class="text-[11px] text-indigo-600 mt-0.5">⚡ 高速极速</div>
+                        <div class="text-[11px] text-indigo-600 mt-0.5">⚡ 4K/8K秒开</div>
                       </div>
                       <div class="p-3.5 bg-purple-50 border border-purple-100 rounded-2xl transition-all" data-metric-box="uptime">
                         <div class="text-xs text-purple-600 font-medium">在线率</div>
@@ -295,15 +425,15 @@ const airports = [
                         <span class="px-2.5 py-1 bg-white/10 text-white border border-white/20 text-[11px] font-bold rounded-md">
                           {ap.badge}
                         </span>
-                        <span class="text-xs text-slate-300 font-medium">评分: <strong class="text-amber-400">{ap.rating}</strong> / 5.0</span>
+                        <span class="text-xs text-slate-300 font-medium">评分: <strong class="text-amber-400">{ap.rating}</strong> / 10</span>
                       </div>
-                      <div class="flex items-center gap-3 mb-3">
-                        <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center text-2xl font-extrabold shadow-lg">
-                          {ap.icon}
+                      <div class="flex items-center gap-3.5 mb-3">
+                        <div class="w-14 h-14 bg-white/10 rounded-2xl p-1 flex items-center justify-center shadow-lg border border-white/20 overflow-hidden shrink-0">
+                          <img src={ap.logo} alt={ap.name} class="w-full h-full object-cover rounded-xl" onerror={`this.onerror=null;this.parentElement.innerHTML='<span class="text-2xl">${ap.icon}</span>';`} />
                         </div>
                         <div>
                           <h3 class="text-xl font-bold text-white tracking-wide">{ap.name}</h3>
-                          <p class="text-xs text-slate-300">{ap.tagline}</p>
+                          <p class="text-xs text-slate-300 font-medium">{ap.tagline}</p>
                         </div>
                       </div>
                       <p class="text-xs text-slate-300 leading-relaxed mb-4">{ap.desc}</p>
@@ -489,14 +619,14 @@ const airports = [
           }
         }
         if (lossElem && node.telemetry?.packet_loss_pct !== undefined) {
-          lossElem.textContent = node.telemetry.packet_loss_pct;
+          lossElem.textContent = String(node.telemetry.packet_loss_pct);
         }
         if (speedElem && node.telemetry?.peak_speed_mbps !== undefined) {
           const sampleSpeed = isManual ? node.telemetry.peak_speed_mbps + (Math.floor(Math.random() * 30) - 15) : node.telemetry.peak_speed_mbps;
           speedElem.textContent = String(sampleSpeed);
         }
         if (uptimeElem && node.telemetry?.uptime_pct !== undefined) {
-          uptimeElem.textContent = node.telemetry.uptime_pct;
+          uptimeElem.textContent = String(node.telemetry.uptime_pct);
         }
         if (updatedElem) {
           updatedElem.textContent = `探针节点: ${node.node_name || '实测专线'} | 上次刷新: 刚刚 (${nowTime})`;
@@ -513,7 +643,7 @@ const airports = [
         const updatedElem = card.querySelector('[data-metric="updated"]');
 
         if (pingElem) {
-          const currentPing = parseInt(pingElem.textContent || '24') || 24;
+          const currentPing = parseInt(pingElem.textContent || '38') || 38;
           const newPing = Math.max(15, currentPing + (Math.floor(Math.random() * 5) - 2));
           pingElem.textContent = String(newPing);
           if (pingElem.parentElement) {
@@ -523,7 +653,7 @@ const airports = [
           }
         }
         if (speedElem) {
-          const currentSpeed = parseInt(speedElem.textContent || '940') || 940;
+          const currentSpeed = parseInt(speedElem.textContent || '950') || 950;
           const newSpeed = currentSpeed + (Math.floor(Math.random() * 40) - 20);
           speedElem.textContent = String(newSpeed);
         }
@@ -550,4 +680,3 @@ const airports = [
     executeProbeRefresh(false);
   })();
 </script>
-
