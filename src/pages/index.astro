@@ -377,10 +377,11 @@ const airports = [
       </div>
     </div>
     
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+    <!-- 三栏布局: 左侧边栏 (280px) + 中间检测大盘 (自适应拉宽 flex-1) + 右侧边栏 (280px) -->
+    <div class="flex flex-col lg:flex-row gap-6 items-start">
       
-      <!-- 左侧边栏 (Left Sidebar) -->
-      <aside class="lg:col-span-3 space-y-6">
+      <!-- 左侧边栏 (Left Sidebar - 280px) -->
+      <aside class="w-full lg:w-[260px] xl:w-[280px] shrink-0 space-y-6">
         
         <!-- 1. 站长 / 测评官 Profile -->
         <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs relative overflow-hidden">
@@ -438,6 +439,22 @@ const airports = [
               <span class="flex items-center gap-2">☁️ 云图 金融专线</span>
               <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">40ms</span>
             </a>
+            <a href="#jisuyun" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-colors text-slate-700 font-medium group">
+              <span class="flex items-center gap-2">🚀 极速 三网CN2 GIA</span>
+              <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">28ms</span>
+            </a>
+            <a href="#shunyun" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-colors text-slate-700 font-medium group">
+              <span class="flex items-center gap-2">⚡ 瞬云 按量付费</span>
+              <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">36ms</span>
+            </a>
+            <a href="#jilianyun" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-colors text-slate-700 font-medium group">
+              <span class="flex items-center gap-2">🌐 极连云 BGP中转</span>
+              <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">45ms</span>
+            </a>
+            <a href="#guangnianti" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-colors text-slate-700 font-medium group">
+              <span class="flex items-center gap-2">✨ 光年梯 大流量性价比</span>
+              <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">120ms</span>
+            </a>
           </div>
         </div>
 
@@ -475,25 +492,25 @@ const airports = [
 
       </aside>
 
-      <!-- 中间主区域 (Center Monitoring Board) -->
-      <section class="lg:col-span-6 min-w-0 space-y-6">
+      <!-- 中间主检测板块 (Flex-1 自适应拉宽超大宽幅) -->
+      <section class="flex-1 min-w-0 w-full space-y-6">
         
         <!-- 板块头部 -->
         <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs relative overflow-hidden">
           <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
             <div>
-              <h1 class="text-2xl font-extrabold text-slate-900 flex items-center gap-3">
+              <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 flex items-center gap-3">
                 <span>机场实时图形检测大盘</span>
                 <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full flex items-center gap-1.5 shadow-2xs">
                   <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-                  实时图形变动中
+                  9/9 品牌全量在线
                 </span>
               </h1>
-              <p class="text-xs text-slate-500 mt-1">Clean Observability Console · 波形折线图与数据毫秒级实时变动</p>
+              <p class="text-xs text-slate-500 mt-1">Clean Observability Console · 动态 SVG 折线图与数据毫秒级实时变动</p>
             </div>
             
             <!-- 刷新探针按钮 -->
-            <button id="manual-refresh-btn" class="px-5 py-3 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl shadow-md shadow-blue-600/20 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-2 shrink-0 border border-blue-400/30 cursor-pointer group">
+            <button id="manual-refresh-btn" class="px-6 py-3.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl shadow-md shadow-blue-600/20 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-2 shrink-0 border border-blue-400/30 cursor-pointer group">
               <svg id="refresh-icon" class="w-4 h-4 text-white group-hover:rotate-180 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
               </svg>
@@ -502,10 +519,11 @@ const airports = [
           </div>
 
           <div class="flex flex-wrap gap-2 text-xs border-t border-slate-100 pt-4">
-            <span class="px-3 py-1 bg-slate-900 text-white rounded-lg font-medium shadow-2xs">ALL_MONITORS (9)</span>
-            <span class="px-3 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition-colors">IPLC物理专线</span>
-            <span class="px-3 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition-colors">三网 CN2 GIA</span>
-            <span class="px-3 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition-colors">4K/8K解锁</span>
+            <span class="px-3.5 py-1.5 bg-slate-900 text-white rounded-lg font-medium shadow-2xs">ALL_MONITORS (9)</span>
+            <span class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition-colors">IPLC物理专线</span>
+            <span class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition-colors">三网 CN2 GIA</span>
+            <span class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition-colors">游戏加速</span>
+            <span class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition-colors">4K/8K解锁</span>
           </div>
         </div>
 
@@ -515,146 +533,158 @@ const airports = [
             return (
               <div id={ap.id} class="bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-md transition-all duration-300 grid grid-cols-1 md:grid-cols-12 overflow-hidden" data-node-id={ap.id}>
                 
-                <!-- 左侧深色品牌区 -->
-                <div class={`md:col-span-5 bg-gradient-to-br ${ap.gradient} text-white p-5 flex flex-col justify-between relative overflow-hidden group`}>
+                <!-- 左侧深色品牌区 (占 4/12 宽度) -->
+                <div class={`md:col-span-4 lg:col-span-4 xl:col-span-4 bg-gradient-to-br ${ap.gradient} text-white p-6 flex flex-col justify-between relative overflow-hidden group`}>
                   <div class="absolute -top-12 -left-12 w-36 h-36 bg-blue-500/10 rounded-full blur-2xl pointer-events-none"></div>
 
                   <div class="relative z-10">
                     <div class="flex items-center justify-between mb-3">
-                      <span class="px-2 py-0.5 bg-white/10 text-slate-200 border border-white/20 text-[10px] font-mono font-bold rounded-md backdrop-blur-md">
+                      <span class="px-2.5 py-1 bg-white/10 text-slate-200 border border-white/20 text-[10px] font-mono font-bold rounded-md backdrop-blur-md">
                         {ap.badge}
                       </span>
-                      <span class="text-[11px] text-slate-300 font-medium">RATING: <strong class="text-amber-400 font-bold text-xs ml-0.5">{ap.rating}</strong></span>
+                      <span class="text-xs text-slate-300 font-medium">RATING: <strong class="text-amber-400 font-bold text-sm ml-0.5">{ap.rating}</strong></span>
                     </div>
 
-                    <div class="flex items-center gap-3 mb-3">
-                      <div class="w-14 h-14 bg-slate-900/90 rounded-xl border border-white/15 shadow-md shrink-0 flex items-center justify-center p-1 overflow-hidden">
-                        <img src={ap.logo} alt={ap.name} class="w-full h-full object-cover rounded-lg" onerror={`this.onerror=null;this.parentElement.innerHTML='<span class="text-sm font-bold text-white">${ap.name}</span>';`} />
+                    <div class="flex items-center gap-3.5 mb-3.5">
+                      <div class="w-16 h-16 bg-slate-900/90 rounded-2xl border border-white/15 shadow-md shrink-0 flex items-center justify-center p-1 overflow-hidden">
+                        <img src={ap.logo} alt={ap.name} class="w-full h-full object-cover rounded-xl" onerror={`this.onerror=null;this.parentElement.innerHTML='<span class="text-sm font-bold text-white">${ap.name}</span>';`} />
                       </div>
                       <div>
-                        <h3 class="text-lg font-bold text-white tracking-wide">{ap.name}</h3>
-                        <p class="text-[11px] text-cyan-300 font-medium">{ap.tagline}</p>
+                        <h3 class="text-xl font-bold text-white tracking-wide">{ap.name}</h3>
+                        <p class="text-xs text-cyan-300 font-medium mt-0.5">{ap.tagline}</p>
                       </div>
                     </div>
 
-                    <p class="text-[11px] text-slate-300 leading-relaxed mb-3">{ap.desc}</p>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-4">{ap.desc}</p>
                   </div>
 
-                  <div class="pt-3 border-t border-white/15 flex items-center justify-between gap-2 relative z-10 mt-auto">
-                    <span class="text-[11px] text-slate-300 font-mono">PLAN: <strong class="text-white text-xs font-semibold ml-1">{ap.price}</strong></span>
-                    <a href={ap.link} target="_blank" rel="noopener" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-xl transition-colors shadow-sm flex items-center gap-1">
+                  <div class="pt-3.5 border-t border-white/15 flex items-center justify-between gap-2 relative z-10 mt-auto">
+                    <span class="text-xs text-slate-300 font-mono">PLAN: <strong class="text-white text-sm font-semibold ml-1">{ap.price}</strong></span>
+                    <a href={ap.link} target="_blank" rel="noopener" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-xl transition-colors shadow-sm flex items-center gap-1.5">
                       直达官网 🚀
                     </a>
                   </div>
                 </div>
 
-                <!-- 右侧 Monitoring Console 数据与图形检测面板 -->
-                <div class="md:col-span-7 p-5 bg-slate-50/50 flex flex-col justify-between">
+                <!-- 右侧 Monitoring Console 数据与图形检测面板 (占 8/12 宽度, 宽敞展现) -->
+                <div class="md:col-span-8 lg:col-span-8 xl:col-span-8 p-6 bg-slate-50/50 flex flex-col justify-between">
                   <div>
-                    <div class="flex items-center justify-between border-b border-slate-200 pb-2 mb-3">
-                      <span class="text-[11px] font-mono font-bold text-slate-800 flex items-center gap-1.5">
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-2.5 mb-4">
+                      <span class="text-xs font-mono font-bold text-slate-800 flex items-center gap-2">
                         <span class="relative flex h-2 w-2">
                           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                           <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                         </span>
                         LIVE_OBSERVABILITY_CONSOLE
                       </span>
-                      <span class="text-[10px] font-mono text-slate-500" data-metric="updated">探针: {ap.probeNode}</span>
+                      <span class="text-xs font-mono text-slate-500" data-metric="updated">探针: {ap.probeNode}</span>
                     </div>
 
-                    <!-- 动态图形检测 (Real-time SVG Line Wave Graph) -->
-                    <div class="mb-3.5 p-3 bg-white border border-slate-200 rounded-xl shadow-2xs">
-                      <div class="flex items-center justify-between mb-1.5">
-                        <div class="flex items-center gap-1.5">
-                          <span class="w-1.5 h-1.5 rounded-full bg-blue-600 animate-ping"></span>
-                          <span class="text-[10px] font-mono font-bold text-slate-700">REALTIME_GRAPH (图形检测)</span>
+                    <!-- 动态图形检测 (Real-time SVG Line Wave Graph - 宽幅自适应) -->
+                    <div class="mb-4 p-3.5 bg-white border border-slate-200 rounded-xl shadow-2xs">
+                      <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center gap-2">
+                          <span class="w-2 h-2 rounded-full bg-blue-600 animate-ping"></span>
+                          <span class="text-xs font-mono font-bold text-slate-700">REALTIME_GRAPH (实时图形检测折线图)</span>
                         </div>
-                        <div class="flex items-center gap-2 text-[9px] font-mono">
+                        <div class="flex items-center gap-3 text-[10px] font-mono">
                           <span class="text-slate-400">Jitter: <strong class="text-slate-700 font-semibold" data-graphic="jitter">0.8ms</strong></span>
-                          <span class="text-emerald-600 font-bold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">DYNAMIC LIVE</span>
+                          <span class="text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">DYNAMIC LIVE</span>
                         </div>
                       </div>
                       
-                      <!-- SVG Sparkline Area Chart -->
-                      <div class="relative h-14 w-full bg-slate-900 rounded-lg p-1.5 overflow-hidden flex items-end">
-                        <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:14px_10px] opacity-40"></div>
+                      <!-- SVG Sparkline Area Chart (Width 400 viewBox) -->
+                      <div class="relative h-16 w-full bg-slate-900 rounded-lg p-2 overflow-hidden flex items-end">
+                        <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:16px_12px] opacity-40"></div>
                         
-                        <svg class="w-full h-full overflow-visible relative z-10" viewBox="0 0 280 40" preserveAspectRatio="none" data-svg-chart={ap.id}>
+                        <svg class="w-full h-full overflow-visible relative z-10" viewBox="0 0 400 40" preserveAspectRatio="none" data-svg-chart={ap.id}>
                           <defs>
                             <linearGradient id={`grad-${ap.id}`} x1="0" y1="0" x2="0" y2="1">
                               <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.5"/>
                               <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.0"/>
                             </linearGradient>
                           </defs>
-                          <path class="chart-area" fill={`url(#grad-${ap.id})`} d="M 0,40 L 0,20 L 28,18 L 56,24 L 84,15 L 112,20 L 140,16 L 168,22 L 196,12 L 224,18 L 252,14 L 280,16 L 280,40 Z" />
-                          <path class="chart-line" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M 0,20 L 28,18 L 56,24 L 84,15 L 112,20 L 140,16 L 168,22 L 196,12 L 224,18 L 252,14 L 280,16" />
-                          <circle class="chart-dot" cx="280" cy="16" r="3.5" fill="#38bdf8" stroke="#ffffff" stroke-width="1.5" />
+                          <path class="chart-area" fill={`url(#grad-${ap.id})`} d="M 0,40 L 0,20 L 40,18 L 80,24 L 120,15 L 160,20 L 200,16 L 240,22 L 280,12 L 320,18 L 360,14 L 400,16 L 400,40 Z" />
+                          <path class="chart-line" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M 0,20 L 40,18 L 80,24 L 120,15 L 160,20 L 200,16 L 240,22 L 280,12 L 320,18 L 360,14 L 400,16" />
+                          <circle class="chart-dot" cx="400" cy="16" r="4" fill="#38bdf8" stroke="#ffffff" stroke-width="1.5" />
                         </svg>
 
-                        <div class="absolute bottom-1 right-2 z-20 text-[9px] font-mono text-cyan-300 bg-slate-900/80 px-1.5 py-0.5 rounded border border-cyan-500/30">
+                        <div class="absolute bottom-1 right-2 z-20 text-[10px] font-mono text-cyan-300 bg-slate-900/80 px-2 py-0.5 rounded border border-cyan-500/30">
                           <span data-graphic="current-ms">{ap.ping}ms</span> @ 2.5s
                         </div>
                       </div>
                     </div>
 
-                    <!-- Metric Tiles (Datadog 质感) -->
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3 text-center">
-                      <div class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="ping">
-                        <div class="text-[10px] text-slate-500 font-medium">LATENCY</div>
-                        <div class="text-base sm:text-lg font-mono font-extrabold text-slate-900 mt-0.5 flex items-center justify-center gap-0.5">
-                          <span data-metric="ping">{ap.ping}</span><span class="text-[10px] font-normal text-slate-400">ms</span>
+                    <!-- Metric Tiles (Datadog 质感 - 4 列等宽) -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4 text-center">
+                      <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="ping">
+                        <div class="text-[11px] text-slate-500 font-medium">LATENCY</div>
+                        <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1 flex items-center justify-center gap-0.5">
+                          <span data-metric="ping">{ap.ping}</span><span class="text-xs font-normal text-slate-400">ms</span>
                         </div>
-                        <div class="text-[9px] text-emerald-600 font-bold mt-0.5">{ap.pingStatus}</div>
+                        <div class="text-[10px] text-emerald-600 font-bold mt-0.5">{ap.pingStatus}</div>
                       </div>
 
-                      <div class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="loss">
-                        <div class="text-[10px] text-slate-500 font-medium">LOSS</div>
-                        <div class="text-base sm:text-lg font-mono font-extrabold text-slate-900 mt-0.5">
-                          <span data-metric="loss">{ap.loss}</span><span class="text-[10px] font-normal text-slate-400">%</span>
+                      <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="loss">
+                        <div class="text-[11px] text-slate-500 font-medium">LOSS</div>
+                        <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1">
+                          <span data-metric="loss">{ap.loss}</span><span class="text-xs font-normal text-slate-400">%</span>
                         </div>
-                        <div class="text-[9px] text-emerald-600 font-bold mt-0.5">ZERO_LOSS</div>
+                        <div class="text-[10px] text-emerald-600 font-bold mt-0.5">ZERO_LOSS</div>
                       </div>
 
-                      <div class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="speed">
-                        <div class="text-[10px] text-slate-500 font-medium">BANDWIDTH</div>
-                        <div class="text-base sm:text-lg font-mono font-extrabold text-slate-900 mt-0.5">
-                          <span data-metric="speed">{ap.speed}</span><span class="text-[10px] font-normal text-slate-400">M</span>
+                      <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="speed">
+                        <div class="text-[11px] text-slate-500 font-medium">BANDWIDTH</div>
+                        <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1">
+                          <span data-metric="speed">{ap.speed}</span><span class="text-xs font-normal text-slate-400">M</span>
                         </div>
-                        <div class="text-[9px] text-blue-600 font-bold mt-0.5">4K/8K秒开</div>
+                        <div class="text-[10px] text-blue-600 font-bold mt-0.5">4K/8K秒开</div>
                       </div>
 
-                      <div class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="uptime">
-                        <div class="text-[10px] text-slate-500 font-medium">UPTIME</div>
-                        <div class="text-base sm:text-lg font-mono font-extrabold text-slate-900 mt-0.5">
-                          <span data-metric="uptime">{ap.uptime}</span><span class="text-[10px] font-normal text-slate-400">%</span>
+                      <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="uptime">
+                        <div class="text-[11px] text-slate-500 font-medium">UPTIME</div>
+                        <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1">
+                          <span data-metric="uptime">{ap.uptime}</span><span class="text-xs font-normal text-slate-400">%</span>
                         </div>
-                        <div class="text-[9px] text-emerald-600 font-bold mt-0.5">24x7 在线</div>
+                        <div class="text-[10px] text-emerald-600 font-bold mt-0.5">24x7 在线</div>
                       </div>
                     </div>
 
                     <!-- 90 天 Uptime Blocks -->
-                    <div class="mb-3 pt-2 border-t border-slate-200 flex items-center justify-between text-xs font-mono">
-                      <div class="flex items-center gap-1.5 overflow-hidden">
-                        <span class="text-[10px] text-slate-500 font-medium shrink-0">90D SLO:</span>
+                    <div class="mb-3.5 pt-2.5 border-t border-slate-200 flex items-center justify-between text-xs font-mono">
+                      <div class="flex items-center gap-2 overflow-hidden">
+                        <span class="text-[11px] text-slate-500 font-medium shrink-0">90D SLO:</span>
                         <div class="flex items-center gap-1 shrink-0">
-                          {Array.from({ length: 14 }).map(() => (
-                            <span class="w-1.5 h-3 bg-emerald-500 rounded-xs" title="100% Uptime"></span>
+                          {Array.from({ length: 18 }).map(() => (
+                            <span class="w-2 h-3.5 bg-emerald-500 rounded-xs" title="100% Uptime"></span>
                           ))}
                         </div>
                       </div>
-                      <span class="text-[10px] text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded font-bold shrink-0">99.98%</span>
+                      <span class="text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded font-bold shrink-0">99.98% SLO</span>
                     </div>
 
-                    <!-- Technical Protocols -->
-                    <div class="flex flex-wrap gap-1 text-[10px] bg-white p-2 rounded-xl border border-slate-200">
-                      <span class="text-slate-400 font-mono font-semibold">PROTO:</span>
-                      {ap.protocols.map((proto) => (
-                        <span class="px-1.5 py-0.5 bg-slate-100 text-slate-700 rounded font-mono">{proto}</span>
-                      ))}
+                    <!-- Technical Protocols & Unlocks -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs bg-white p-2.5 rounded-xl border border-slate-200">
+                      <div class="flex items-center gap-1.5">
+                        <span class="text-slate-400 font-mono font-semibold text-[11px] shrink-0">PROTO:</span>
+                        <div class="flex flex-wrap gap-1">
+                          {ap.protocols.map((proto) => (
+                            <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded font-mono text-[11px]">{proto}</span>
+                          ))}
+                        </div>
+                      </div>
+                      <div class="flex items-center gap-1.5">
+                        <span class="text-slate-400 font-mono font-semibold text-[11px] shrink-0">UNLOCK:</span>
+                        <div class="flex flex-wrap gap-1">
+                          {ap.unlocks.map((unlock) => (
+                            <span class="px-2 py-0.5 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded font-medium text-[11px]">{unlock}</span>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
 
-                  <div class="pt-2 border-t border-slate-200 mt-2 flex items-center justify-between text-[10px] font-mono">
+                  <div class="pt-2.5 border-t border-slate-200 mt-2.5 flex items-center justify-between text-xs font-mono">
                     <span class="text-slate-400">STATUS: OK · INTERVAL: 2.5S</span>
                     <a href={ap.link} target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700 font-bold flex items-center gap-1 group transition-colors">
                       FULL_REPORT <span class="group-hover:translate-x-1 transition-transform">→</span>
@@ -669,8 +699,8 @@ const airports = [
 
       </section>
 
-      <!-- 右侧边栏 (Right Sidebar) -->
-      <aside class="lg:col-span-3 space-y-6">
+      <!-- 右侧边栏 (Right Sidebar - 280px) -->
+      <aside class="w-full lg:w-[260px] xl:w-[280px] shrink-0 space-y-6">
         
         <!-- 1. 侧栏广告展示位 AD -->
         <div class="bg-gradient-to-br from-amber-50 to-orange-50/50 border-2 border-dashed border-amber-300 rounded-2xl p-5 relative overflow-hidden">
@@ -776,7 +806,7 @@ const airports = [
         const points = historyData[id];
         if (!points || points.length === 0) return;
 
-        const width = 280;
+        const width = 400;
         const height = 40;
         const padding = 6;
 

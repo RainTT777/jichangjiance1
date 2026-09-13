@@ -84,7 +84,7 @@
 </head>
 <body class="bg-[#F8FAFC] text-slate-900 antialiased min-h-screen">
   
-  <!-- Header Header Header (Top Navigation) -->
+  <!-- Navigation Bar at Top Right -->
   <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
     <div class="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
@@ -292,11 +292,11 @@
       </div>
     </div>
     
-    <!-- 三栏布局: 左侧边栏 + 中间检测大盘 + 右侧边栏 -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+    <!-- 三栏布局: 左侧边栏 (280px) + 中间检测大盘 (自适应拉宽 flex-1) + 右侧边栏 (280px) -->
+    <div class="flex flex-col lg:flex-row gap-6 items-start">
       
-      <!-- 左侧边栏 (Left Sidebar) -->
-      <aside class="lg:col-span-3 space-y-6">
+      <!-- 左侧边栏 (Left Sidebar - 280px) -->
+      <aside class="w-full lg:w-[260px] xl:w-[280px] shrink-0 space-y-6">
         
         <!-- 1. 站长 / 测评官 Profile -->
         <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs relative overflow-hidden">
@@ -354,6 +354,22 @@
               <span class="flex items-center gap-2">☁️ 云图 金融专线</span>
               <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">40ms</span>
             </a>
+            <a href="#jisuyun" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-colors text-slate-700 font-medium group">
+              <span class="flex items-center gap-2">🚀 极速 三网CN2 GIA</span>
+              <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">28ms</span>
+            </a>
+            <a href="#shunyun" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-colors text-slate-700 font-medium group">
+              <span class="flex items-center gap-2">⚡ 瞬云 按量付费</span>
+              <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">36ms</span>
+            </a>
+            <a href="#jilianyun" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-colors text-slate-700 font-medium group">
+              <span class="flex items-center gap-2">🌐 极连云 BGP中转</span>
+              <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">45ms</span>
+            </a>
+            <a href="#guangnianti" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-colors text-slate-700 font-medium group">
+              <span class="flex items-center gap-2">✨ 光年梯 大流量性价比</span>
+              <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">120ms</span>
+            </a>
           </div>
         </div>
 
@@ -391,25 +407,25 @@
 
       </aside>
 
-      <!-- 中间主区域 (Center Monitoring Board) -->
-      <section class="lg:col-span-6 min-w-0 space-y-6">
+      <!-- 中间主检测板块 (Flex-1 自适应拉宽超大宽幅) -->
+      <section class="flex-1 min-w-0 w-full space-y-6">
         
         <!-- 板块头部 -->
         <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs relative overflow-hidden">
           <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
             <div>
-              <h1 class="text-2xl font-extrabold text-slate-900 flex items-center gap-3">
+              <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 flex items-center gap-3">
                 <span>机场实时图形检测大盘</span>
                 <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full flex items-center gap-1.5 shadow-2xs">
                   <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-                  实时图形变动中
+                  9/9 品牌全量在线
                 </span>
               </h1>
-              <p class="text-xs text-slate-500 mt-1">Clean Observability Console · 波形折线图与数据毫秒级实时变动</p>
+              <p class="text-xs text-slate-500 mt-1">Clean Observability Console · 动态 SVG 折线图与数据毫秒级实时变动</p>
             </div>
             
             <!-- 刷新探针按钮 -->
-            <button id="manual-refresh-btn" class="px-5 py-3 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl shadow-md shadow-blue-600/20 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-2 shrink-0 border border-blue-400/30 cursor-pointer group">
+            <button id="manual-refresh-btn" class="px-6 py-3.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl shadow-md shadow-blue-600/20 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-2 shrink-0 border border-blue-400/30 cursor-pointer group">
               <svg id="refresh-icon" class="w-4 h-4 text-white group-hover:rotate-180 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
               </svg>
@@ -418,114 +434,135 @@
           </div>
 
           <div class="flex flex-wrap gap-2 text-xs border-t border-slate-100 pt-4">
-            <span class="px-3 py-1 bg-slate-900 text-white rounded-lg font-medium shadow-2xs">ALL_MONITORS (9)</span>
-            <span class="px-3 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition-colors">IPLC物理专线</span>
-            <span class="px-3 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition-colors">三网 CN2 GIA</span>
-            <span class="px-3 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition-colors">4K/8K解锁</span>
+            <span class="px-3.5 py-1.5 bg-slate-900 text-white rounded-lg font-medium shadow-2xs">ALL_MONITORS (9)</span>
+            <span class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition-colors">IPLC物理专线</span>
+            <span class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition-colors">三网 CN2 GIA</span>
+            <span class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition-colors">游戏加速</span>
+            <span class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium transition-colors">4K/8K解锁</span>
           </div>
         </div>
 
-        <!-- 9 大机场检测卡片列表 -->
+        <!-- 全量 9 大机场检测卡片列表 -->
         <div class="space-y-6">
 
           <!-- Card 1: EdgeNova -->
           <div id="edgenova" class="bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-md transition-all duration-300 grid grid-cols-1 md:grid-cols-12 overflow-hidden" data-node-id="edgenova">
-            <div class="md:col-span-5 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white p-5 flex flex-col justify-between relative overflow-hidden group">
+            <div class="md:col-span-4 lg:col-span-4 xl:col-span-4 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white p-6 flex flex-col justify-between relative overflow-hidden group">
               <div class="absolute -top-12 -left-12 w-36 h-36 bg-blue-500/10 rounded-full blur-2xl pointer-events-none"></div>
               <div class="relative z-10">
                 <div class="flex items-center justify-between mb-3">
-                  <span class="px-2 py-0.5 bg-white/10 text-slate-200 border border-white/20 text-[10px] font-mono font-bold rounded-md backdrop-blur-md">NO.01 本站推荐</span>
-                  <span class="text-[11px] text-slate-300 font-medium">RATING: <strong class="text-amber-400 font-bold text-xs ml-0.5">9.8</strong></span>
+                  <span class="px-2.5 py-1 bg-white/10 text-slate-200 border border-white/20 text-[10px] font-mono font-bold rounded-md backdrop-blur-md">NO.01 本站推荐</span>
+                  <span class="text-xs text-slate-300 font-medium">RATING: <strong class="text-amber-400 font-bold text-sm ml-0.5">9.8</strong></span>
                 </div>
-                <div class="flex items-center gap-3 mb-3">
-                  <div class="w-14 h-14 bg-slate-900/90 rounded-xl border border-white/15 shadow-md shrink-0 flex items-center justify-center p-1 overflow-hidden">
-                    <img src="./edgenova_logo.png" alt="EdgeNova" class="w-full h-full object-cover rounded-lg" />
+                <div class="flex items-center gap-3.5 mb-3.5">
+                  <div class="w-16 h-16 bg-slate-900/90 rounded-2xl border border-white/15 shadow-md shrink-0 flex items-center justify-center p-1 overflow-hidden">
+                    <img src="./edgenova_logo.png" alt="EdgeNova" class="w-full h-full object-cover rounded-xl" />
                   </div>
                   <div>
-                    <h3 class="text-lg font-bold text-white tracking-wide">EdgeNova</h3>
-                    <p class="text-[11px] text-cyan-300 font-medium">全线 IPLC 专线 · 晚高峰稳定</p>
+                    <h3 class="text-xl font-bold text-white tracking-wide">EdgeNova</h3>
+                    <p class="text-xs text-cyan-300 font-medium mt-0.5">全线 IPLC 专线 · 晚高峰稳定</p>
                   </div>
                 </div>
-                <p class="text-[11px] text-slate-300 leading-relaxed mb-3">全线 IPLC 专线，晚高峰依然稳定流畅。解锁 Netflix、Disney+、ChatGPT 等主流服务。</p>
+                <p class="text-xs text-slate-300 leading-relaxed mb-4">全线 IPLC 专线，晚高峰依然稳定流畅。解锁 Netflix、Disney+、ChatGPT 等主流服务。</p>
               </div>
-              <div class="pt-3 border-t border-white/15 flex items-center justify-between gap-2 relative z-10 mt-auto">
-                <span class="text-[11px] text-slate-300 font-mono">PLAN: <strong class="text-white text-xs font-semibold ml-1">¥15.0 / 月起</strong></span>
-                <a href="https://cristyc.edgenovaaff.cc/#/register?code=WWiIvxL9" target="_blank" rel="noopener" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-xl transition-colors shadow-sm flex items-center gap-1">
+              <div class="pt-3.5 border-t border-white/15 flex items-center justify-between gap-2 relative z-10 mt-auto">
+                <span class="text-xs text-slate-300 font-mono">PLAN: <strong class="text-white text-sm font-semibold ml-1">¥15.0 / 月起</strong></span>
+                <a href="https://cristyc.edgenovaaff.cc/#/register?code=WWiIvxL9" target="_blank" rel="noopener" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-xl transition-colors shadow-sm flex items-center gap-1.5">
                   直达官网 🚀
                 </a>
               </div>
             </div>
-            <div class="md:col-span-7 p-5 bg-slate-50/50 flex flex-col justify-between">
+            <div class="md:col-span-8 lg:col-span-8 xl:col-span-8 p-6 bg-slate-50/50 flex flex-col justify-between">
               <div>
-                <div class="flex items-center justify-between border-b border-slate-200 pb-2 mb-3">
-                  <span class="text-[11px] font-mono font-bold text-slate-800 flex items-center gap-1.5">
+                <div class="flex items-center justify-between border-b border-slate-200 pb-2.5 mb-4">
+                  <span class="text-xs font-mono font-bold text-slate-800 flex items-center gap-2">
                     <span class="relative flex h-2 w-2">
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                       <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                     </span>
                     LIVE_OBSERVABILITY_CONSOLE
                   </span>
-                  <span class="text-[10px] font-mono text-slate-500" data-metric="updated">探针: 香港 IPLC 01</span>
+                  <span class="text-xs font-mono text-slate-500" data-metric="updated">探针: 香港 IPLC 01</span>
                 </div>
-                <div class="mb-3.5 p-3 bg-white border border-slate-200 rounded-xl shadow-2xs">
-                  <div class="flex items-center justify-between mb-1.5">
-                    <div class="flex items-center gap-1.5">
-                      <span class="w-1.5 h-1.5 rounded-full bg-blue-600 animate-ping"></span>
-                      <span class="text-[10px] font-mono font-bold text-slate-700">REALTIME_GRAPH (图形检测)</span>
+                <div class="mb-4 p-3.5 bg-white border border-slate-200 rounded-xl shadow-2xs">
+                  <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-blue-600 animate-ping"></span>
+                      <span class="text-xs font-mono font-bold text-slate-700">REALTIME_GRAPH (实时图形检测折线图)</span>
                     </div>
-                    <div class="flex items-center gap-2 text-[9px] font-mono">
+                    <div class="flex items-center gap-3 text-[10px] font-mono">
                       <span class="text-slate-400">Jitter: <strong class="text-slate-700 font-semibold" data-graphic="jitter">0.8ms</strong></span>
-                      <span class="text-emerald-600 font-bold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">DYNAMIC LIVE</span>
+                      <span class="text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">DYNAMIC LIVE</span>
                     </div>
                   </div>
-                  <div class="relative h-14 w-full bg-slate-900 rounded-lg p-1.5 overflow-hidden flex items-end">
-                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:14px_10px] opacity-40"></div>
-                    <svg class="w-full h-full overflow-visible relative z-10" viewBox="0 0 280 40" preserveAspectRatio="none" data-svg-chart="edgenova">
+                  <div class="relative h-16 w-full bg-slate-900 rounded-lg p-2 overflow-hidden flex items-end">
+                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:16px_12px] opacity-40"></div>
+                    <svg class="w-full h-full overflow-visible relative z-10" viewBox="0 0 400 40" preserveAspectRatio="none" data-svg-chart="edgenova">
                       <defs>
                         <linearGradient id="grad-edgenova" x1="0" y1="0" x2="0" y2="1">
                           <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.5"/>
                           <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.0"/>
                         </linearGradient>
                       </defs>
-                      <path class="chart-area" fill="url(#grad-edgenova)" d="M 0,40 L 0,20 L 28,18 L 56,24 L 84,15 L 112,20 L 140,16 L 168,22 L 196,12 L 224,18 L 252,14 L 280,16 L 280,40 Z" />
-                      <path class="chart-line" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M 0,20 L 28,18 L 56,24 L 84,15 L 112,20 L 140,16 L 168,22 L 196,12 L 224,18 L 252,14 L 280,16" />
-                      <circle class="chart-dot" cx="280" cy="16" r="3.5" fill="#38bdf8" stroke="#ffffff" stroke-width="1.5" />
+                      <path class="chart-area" fill="url(#grad-edgenova)" d="M 0,40 L 0,20 L 40,18 L 80,24 L 120,15 L 160,20 L 200,16 L 240,22 L 280,12 L 320,18 L 360,14 L 400,16 L 400,40 Z" />
+                      <path class="chart-line" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M 0,20 L 40,18 L 80,24 L 120,15 L 160,20 L 200,16 L 240,22 L 280,12 L 320,18 L 360,14 L 400,16" />
+                      <circle class="chart-dot" cx="400" cy="16" r="4" fill="#38bdf8" stroke="#ffffff" stroke-width="1.5" />
                     </svg>
-                    <div class="absolute bottom-1 right-2 z-20 text-[9px] font-mono text-cyan-300 bg-slate-900/80 px-1.5 py-0.5 rounded border border-cyan-500/30">
+                    <div class="absolute bottom-1 right-2 z-20 text-[10px] font-mono text-cyan-300 bg-slate-900/80 px-2 py-0.5 rounded border border-cyan-500/30">
                       <span data-graphic="current-ms">38ms</span> @ 2.5s
                     </div>
                   </div>
                 </div>
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3 text-center">
-                  <div class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="ping">
-                    <div class="text-[10px] text-slate-500 font-medium">LATENCY</div>
-                    <div class="text-base sm:text-lg font-mono font-extrabold text-slate-900 mt-0.5 flex items-center justify-center gap-0.5"><span data-metric="ping">38</span><span class="text-[10px] font-normal text-slate-400">ms</span></div>
-                    <div class="text-[9px] text-emerald-600 font-bold mt-0.5">🟢 IPLC极低延迟</div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4 text-center">
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="ping">
+                    <div class="text-[11px] text-slate-500 font-medium">LATENCY</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1 flex items-center justify-center gap-0.5"><span data-metric="ping">38</span><span class="text-xs font-normal text-slate-400">ms</span></div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">🟢 IPLC极低延迟</div>
                   </div>
-                  <div class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="loss">
-                    <div class="text-[10px] text-slate-500 font-medium">LOSS</div>
-                    <div class="text-base sm:text-lg font-mono font-extrabold text-slate-900 mt-0.5"><span data-metric="loss">0.0</span><span class="text-[10px] font-normal text-slate-400">%</span></div>
-                    <div class="text-[9px] text-emerald-600 font-bold mt-0.5">ZERO_LOSS</div>
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="loss">
+                    <div class="text-[11px] text-slate-500 font-medium">LOSS</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1"><span data-metric="loss">0.0</span><span class="text-xs font-normal text-slate-400">%</span></div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">ZERO_LOSS</div>
                   </div>
-                  <div class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="speed">
-                    <div class="text-[10px] text-slate-500 font-medium">BANDWIDTH</div>
-                    <div class="text-base sm:text-lg font-mono font-extrabold text-slate-900 mt-0.5"><span data-metric="speed">980</span><span class="text-[10px] font-normal text-slate-400">M</span></div>
-                    <div class="text-[9px] text-blue-600 font-bold mt-0.5">4K/8K秒开</div>
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="speed">
+                    <div class="text-[11px] text-slate-500 font-medium">BANDWIDTH</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1"><span data-metric="speed">980</span><span class="text-xs font-normal text-slate-400">M</span></div>
+                    <div class="text-[10px] text-blue-600 font-bold mt-0.5">4K/8K秒开</div>
                   </div>
-                  <div class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="uptime">
-                    <div class="text-[10px] text-slate-500 font-medium">UPTIME</div>
-                    <div class="text-base sm:text-lg font-mono font-extrabold text-slate-900 mt-0.5"><span data-metric="uptime">99.9</span><span class="text-[10px] font-normal text-slate-400">%</span></div>
-                    <div class="text-[9px] text-emerald-600 font-bold mt-0.5">24x7 在线</div>
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="uptime">
+                    <div class="text-[11px] text-slate-500 font-medium">UPTIME</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1"><span data-metric="uptime">99.9</span><span class="text-xs font-normal text-slate-400">%</span></div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">24x7 在线</div>
                   </div>
                 </div>
-                <div class="flex flex-wrap gap-1 text-[10px] bg-white p-2 rounded-xl border border-slate-200">
-                  <span class="text-slate-400 font-mono font-semibold">PROTO:</span>
-                  <span class="px-1.5 py-0.5 bg-slate-100 text-slate-700 rounded font-mono">IPLC专线</span>
-                  <span class="px-1.5 py-0.5 bg-slate-100 text-slate-700 rounded font-mono">V2Ray</span>
-                  <span class="px-1.5 py-0.5 bg-slate-100 text-slate-700 rounded font-mono">Trojan</span>
+                <div class="mb-3.5 pt-2.5 border-t border-slate-200 flex items-center justify-between text-xs font-mono">
+                  <div class="flex items-center gap-2 overflow-hidden">
+                    <span class="text-[11px] text-slate-500 font-medium shrink-0">90D SLO:</span>
+                    <div class="flex items-center gap-1 shrink-0">
+                      <span class="w-2 h-3.5 bg-emerald-500 rounded-xs"></span><span class="w-2 h-3.5 bg-emerald-500 rounded-xs"></span><span class="w-2 h-3.5 bg-emerald-500 rounded-xs"></span><span class="w-2 h-3.5 bg-emerald-500 rounded-xs"></span><span class="w-2 h-3.5 bg-emerald-500 rounded-xs"></span><span class="w-2 h-3.5 bg-emerald-500 rounded-xs"></span><span class="w-2 h-3.5 bg-emerald-500 rounded-xs"></span><span class="w-2 h-3.5 bg-emerald-500 rounded-xs"></span><span class="w-2 h-3.5 bg-emerald-500 rounded-xs"></span><span class="w-2 h-3.5 bg-emerald-500 rounded-xs"></span>
+                    </div>
+                  </div>
+                  <span class="text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded font-bold shrink-0">99.98% SLO</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs bg-white p-2.5 rounded-xl border border-slate-200">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-slate-400 font-mono font-semibold text-[11px] shrink-0">PROTO:</span>
+                    <div class="flex flex-wrap gap-1">
+                      <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded font-mono text-[11px]">IPLC专线</span>
+                      <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded font-mono text-[11px]">V2Ray</span>
+                      <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded font-mono text-[11px]">Trojan</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-slate-400 font-mono font-semibold text-[11px] shrink-0">UNLOCK:</span>
+                    <div class="flex flex-wrap gap-1">
+                      <span class="px-2 py-0.5 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded font-medium text-[11px]">🟢 Netflix</span>
+                      <span class="px-2 py-0.5 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded font-medium text-[11px]">🟢 ChatGPT</span>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="pt-2 border-t border-slate-200 mt-2 flex items-center justify-between text-[10px] font-mono">
+              <div class="pt-2.5 border-t border-slate-200 mt-2.5 flex items-center justify-between text-xs font-mono">
                 <span class="text-slate-400">STATUS: OK · INTERVAL: 2.5S</span>
                 <a href="https://cristyc.edgenovaaff.cc/#/register?code=WWiIvxL9" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700 font-bold flex items-center gap-1 group transition-colors">
                   FULL_REPORT <span class="group-hover:translate-x-1 transition-transform">→</span>
@@ -536,101 +573,112 @@
 
           <!-- Card 2: 速界 -->
           <div id="sujie" class="bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-md transition-all duration-300 grid grid-cols-1 md:grid-cols-12 overflow-hidden" data-node-id="sujie">
-            <div class="md:col-span-5 bg-gradient-to-br from-blue-950 via-slate-900 to-indigo-950 text-white p-5 flex flex-col justify-between relative overflow-hidden group">
+            <div class="md:col-span-4 lg:col-span-4 xl:col-span-4 bg-gradient-to-br from-blue-950 via-slate-900 to-indigo-950 text-white p-6 flex flex-col justify-between relative overflow-hidden group">
               <div class="relative z-10">
                 <div class="flex items-center justify-between mb-3">
-                  <span class="px-2 py-0.5 bg-white/10 text-slate-200 border border-white/20 text-[10px] font-mono font-bold rounded-md backdrop-blur-md">NO.02 游戏优选</span>
-                  <span class="text-[11px] text-slate-300 font-medium">RATING: <strong class="text-amber-400 font-bold text-xs ml-0.5">9.6</strong></span>
+                  <span class="px-2.5 py-1 bg-white/10 text-slate-200 border border-white/20 text-[10px] font-mono font-bold rounded-md backdrop-blur-md">NO.02 游戏优选</span>
+                  <span class="text-xs text-slate-300 font-medium">RATING: <strong class="text-amber-400 font-bold text-sm ml-0.5">9.6</strong></span>
                 </div>
-                <div class="flex items-center gap-3 mb-3">
-                  <div class="w-14 h-14 bg-slate-900/90 rounded-xl border border-white/15 shadow-md shrink-0 flex items-center justify-center p-1 overflow-hidden">
-                    <img src="./sujie_logo.png" alt="速界" class="w-full h-full object-cover rounded-lg" />
+                <div class="flex items-center gap-3.5 mb-3.5">
+                  <div class="w-16 h-16 bg-slate-900/90 rounded-2xl border border-white/15 shadow-md shrink-0 flex items-center justify-center p-1 overflow-hidden">
+                    <img src="./sujie_logo.png" alt="速界" class="w-full h-full object-cover rounded-xl" />
                   </div>
                   <div>
-                    <h3 class="text-lg font-bold text-white tracking-wide">速界</h3>
-                    <p class="text-[11px] text-cyan-300 font-medium">游戏加速优选 · 极低丢包</p>
+                    <h3 class="text-xl font-bold text-white tracking-wide">速界</h3>
+                    <p class="text-xs text-cyan-300 font-medium mt-0.5">游戏加速优选 · 极低丢包</p>
                   </div>
                 </div>
-                <p class="text-[11px] text-slate-300 leading-relaxed mb-3">专门针对跨服游戏玩家优化，提供低丢包率的专线连接，游戏与4K观影体验极佳。</p>
+                <p class="text-xs text-slate-300 leading-relaxed mb-4">专门针对跨服游戏玩家优化，提供低丢包率的专线连接，游戏与4K观影体验极佳。</p>
               </div>
-              <div class="pt-3 border-t border-white/15 flex items-center justify-between gap-2 relative z-10 mt-auto">
-                <span class="text-[11px] text-slate-300 font-mono">PLAN: <strong class="text-white text-xs font-semibold ml-1">¥15.0 / 月起</strong></span>
-                <a href="https://wudaogang.speedworldaff.com/#/register?code=HOJbbjuY" target="_blank" rel="noopener" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-xl transition-colors shadow-sm flex items-center gap-1">
+              <div class="pt-3.5 border-t border-white/15 flex items-center justify-between gap-2 relative z-10 mt-auto">
+                <span class="text-xs text-slate-300 font-mono">PLAN: <strong class="text-white text-sm font-semibold ml-1">¥15.0 / 月起</strong></span>
+                <a href="https://wudaogang.speedworldaff.com/#/register?code=HOJbbjuY" target="_blank" rel="noopener" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-xl transition-colors shadow-sm flex items-center gap-1.5">
                   直达官网 🚀
                 </a>
               </div>
             </div>
-            <div class="md:col-span-7 p-5 bg-slate-50/50 flex flex-col justify-between">
+            <div class="md:col-span-8 lg:col-span-8 xl:col-span-8 p-6 bg-slate-50/50 flex flex-col justify-between">
               <div>
-                <div class="flex items-center justify-between border-b border-slate-200 pb-2 mb-3">
-                  <span class="text-[11px] font-mono font-bold text-slate-800 flex items-center gap-1.5">
+                <div class="flex items-center justify-between border-b border-slate-200 pb-2.5 mb-4">
+                  <span class="text-xs font-mono font-bold text-slate-800 flex items-center gap-2">
                     <span class="relative flex h-2 w-2">
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                       <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                     </span>
                     LIVE_OBSERVABILITY_CONSOLE
                   </span>
-                  <span class="text-[10px] font-mono text-slate-500" data-metric="updated">探针: 日本 BGP 专线</span>
+                  <span class="text-xs font-mono text-slate-500" data-metric="updated">探针: 日本 BGP 专线</span>
                 </div>
-                <div class="mb-3.5 p-3 bg-white border border-slate-200 rounded-xl shadow-2xs">
-                  <div class="flex items-center justify-between mb-1.5">
-                    <div class="flex items-center gap-1.5">
-                      <span class="w-1.5 h-1.5 rounded-full bg-blue-600 animate-ping"></span>
-                      <span class="text-[10px] font-mono font-bold text-slate-700">REALTIME_GRAPH (图形检测)</span>
+                <div class="mb-4 p-3.5 bg-white border border-slate-200 rounded-xl shadow-2xs">
+                  <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-blue-600 animate-ping"></span>
+                      <span class="text-xs font-mono font-bold text-slate-700">REALTIME_GRAPH (实时图形检测折线图)</span>
                     </div>
-                    <div class="flex items-center gap-2 text-[9px] font-mono">
+                    <div class="flex items-center gap-3 text-[10px] font-mono">
                       <span class="text-slate-400">Jitter: <strong class="text-slate-700 font-semibold" data-graphic="jitter">0.8ms</strong></span>
-                      <span class="text-emerald-600 font-bold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">DYNAMIC LIVE</span>
+                      <span class="text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">DYNAMIC LIVE</span>
                     </div>
                   </div>
-                  <div class="relative h-14 w-full bg-slate-900 rounded-lg p-1.5 overflow-hidden flex items-end">
-                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:14px_10px] opacity-40"></div>
-                    <svg class="w-full h-full overflow-visible relative z-10" viewBox="0 0 280 40" preserveAspectRatio="none" data-svg-chart="sujie">
+                  <div class="relative h-16 w-full bg-slate-900 rounded-lg p-2 overflow-hidden flex items-end">
+                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:16px_12px] opacity-40"></div>
+                    <svg class="w-full h-full overflow-visible relative z-10" viewBox="0 0 400 40" preserveAspectRatio="none" data-svg-chart="sujie">
                       <defs>
                         <linearGradient id="grad-sujie" x1="0" y1="0" x2="0" y2="1">
                           <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.5"/>
                           <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.0"/>
                         </linearGradient>
                       </defs>
-                      <path class="chart-area" fill="url(#grad-sujie)" d="M 0,40 L 0,20 L 28,18 L 56,24 L 84,15 L 112,20 L 140,16 L 168,22 L 196,12 L 224,18 L 252,14 L 280,16 L 280,40 Z" />
-                      <path class="chart-line" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M 0,20 L 28,18 L 56,24 L 84,15 L 112,20 L 140,16 L 168,22 L 196,12 L 224,18 L 252,14 L 280,16" />
-                      <circle class="chart-dot" cx="280" cy="16" r="3.5" fill="#38bdf8" stroke="#ffffff" stroke-width="1.5" />
+                      <path class="chart-area" fill="url(#grad-sujie)" d="M 0,40 L 0,20 L 40,18 L 80,24 L 120,15 L 160,20 L 200,16 L 240,22 L 280,12 L 320,18 L 360,14 L 400,16 L 400,40 Z" />
+                      <path class="chart-line" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M 0,20 L 40,18 L 80,24 L 120,15 L 160,20 L 200,16 L 240,22 L 280,12 L 320,18 L 360,14 L 400,16" />
+                      <circle class="chart-dot" cx="400" cy="16" r="4" fill="#38bdf8" stroke="#ffffff" stroke-width="1.5" />
                     </svg>
-                    <div class="absolute bottom-1 right-2 z-20 text-[9px] font-mono text-cyan-300 bg-slate-900/80 px-1.5 py-0.5 rounded border border-cyan-500/30">
+                    <div class="absolute bottom-1 right-2 z-20 text-[10px] font-mono text-cyan-300 bg-slate-900/80 px-2 py-0.5 rounded border border-cyan-500/30">
                       <span data-graphic="current-ms">39ms</span> @ 2.5s
                     </div>
                   </div>
                 </div>
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3 text-center">
-                  <div class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="ping">
-                    <div class="text-[10px] text-slate-500 font-medium">LATENCY</div>
-                    <div class="text-base sm:text-lg font-mono font-extrabold text-slate-900 mt-0.5 flex items-center justify-center gap-0.5"><span data-metric="ping">39</span><span class="text-[10px] font-normal text-slate-400">ms</span></div>
-                    <div class="text-[9px] text-emerald-600 font-bold mt-0.5">🟢 游戏专用低延迟</div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4 text-center">
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="ping">
+                    <div class="text-[11px] text-slate-500 font-medium">LATENCY</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1 flex items-center justify-center gap-0.5"><span data-metric="ping">39</span><span class="text-xs font-normal text-slate-400">ms</span></div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">🟢 游戏专用低延迟</div>
                   </div>
-                  <div class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="loss">
-                    <div class="text-[10px] text-slate-500 font-medium">LOSS</div>
-                    <div class="text-base sm:text-lg font-mono font-extrabold text-slate-900 mt-0.5"><span data-metric="loss">0.0</span><span class="text-[10px] font-normal text-slate-400">%</span></div>
-                    <div class="text-[9px] text-emerald-600 font-bold mt-0.5">ZERO_LOSS</div>
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="loss">
+                    <div class="text-[11px] text-slate-500 font-medium">LOSS</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1"><span data-metric="loss">0.0</span><span class="text-xs font-normal text-slate-400">%</span></div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">ZERO_LOSS</div>
                   </div>
-                  <div class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="speed">
-                    <div class="text-[10px] text-slate-500 font-medium">BANDWIDTH</div>
-                    <div class="text-base sm:text-lg font-mono font-extrabold text-slate-900 mt-0.5"><span data-metric="speed">950</span><span class="text-[10px] font-normal text-slate-400">M</span></div>
-                    <div class="text-[9px] text-blue-600 font-bold mt-0.5">4K/8K秒开</div>
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="speed">
+                    <div class="text-[11px] text-slate-500 font-medium">BANDWIDTH</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1"><span data-metric="speed">950</span><span class="text-xs font-normal text-slate-400">M</span></div>
+                    <div class="text-[10px] text-blue-600 font-bold mt-0.5">4K/8K秒开</div>
                   </div>
-                  <div class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="uptime">
-                    <div class="text-[10px] text-slate-500 font-medium">UPTIME</div>
-                    <div class="text-base sm:text-lg font-mono font-extrabold text-slate-900 mt-0.5"><span data-metric="uptime">99.8</span><span class="text-[10px] font-normal text-slate-400">%</span></div>
-                    <div class="text-[9px] text-emerald-600 font-bold mt-0.5">24x7 在线</div>
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="uptime">
+                    <div class="text-[11px] text-slate-500 font-medium">UPTIME</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1"><span data-metric="uptime">99.8</span><span class="text-xs font-normal text-slate-400">%</span></div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">24x7 在线</div>
                   </div>
                 </div>
-                <div class="flex flex-wrap gap-1 text-[10px] bg-white p-2 rounded-xl border border-slate-200">
-                  <span class="text-slate-400 font-mono font-semibold">PROTO:</span>
-                  <span class="px-1.5 py-0.5 bg-slate-100 text-slate-700 rounded font-mono">专线节点</span>
-                  <span class="px-1.5 py-0.5 bg-slate-100 text-slate-700 rounded font-mono">V2Ray</span>
-                  <span class="px-1.5 py-0.5 bg-slate-100 text-slate-700 rounded font-mono">Trojan</span>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs bg-white p-2.5 rounded-xl border border-slate-200">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-slate-400 font-mono font-semibold text-[11px] shrink-0">PROTO:</span>
+                    <div class="flex flex-wrap gap-1">
+                      <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded font-mono text-[11px]">专线节点</span>
+                      <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded font-mono text-[11px]">V2Ray</span>
+                      <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded font-mono text-[11px]">Trojan</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-slate-400 font-mono font-semibold text-[11px] shrink-0">UNLOCK:</span>
+                    <div class="flex flex-wrap gap-1">
+                      <span class="px-2 py-0.5 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded font-medium text-[11px]">🟢 游戏加速</span>
+                      <span class="px-2 py-0.5 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded font-medium text-[11px]">🟢 ChatGPT</span>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="pt-2 border-t border-slate-200 mt-2 flex items-center justify-between text-[10px] font-mono">
+              <div class="pt-2.5 border-t border-slate-200 mt-2.5 flex items-center justify-between text-xs font-mono">
                 <span class="text-slate-400">STATUS: OK · INTERVAL: 2.5S</span>
                 <a href="https://wudaogang.speedworldaff.com/#/register?code=HOJbbjuY" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700 font-bold flex items-center gap-1 group transition-colors">
                   FULL_REPORT <span class="group-hover:translate-x-1 transition-transform">→</span>
@@ -641,103 +689,805 @@
 
           <!-- Card 3: 可信云 -->
           <div id="kexinyun" class="bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-md transition-all duration-300 grid grid-cols-1 md:grid-cols-12 overflow-hidden" data-node-id="kexinyun">
-            <div class="md:col-span-5 bg-gradient-to-br from-emerald-950 via-slate-900 to-teal-950 text-white p-5 flex flex-col justify-between relative overflow-hidden group">
+            <div class="md:col-span-4 lg:col-span-4 xl:col-span-4 bg-gradient-to-br from-emerald-950 via-slate-900 to-teal-950 text-white p-6 flex flex-col justify-between relative overflow-hidden group">
               <div class="relative z-10">
                 <div class="flex items-center justify-between mb-3">
-                  <span class="px-2 py-0.5 bg-white/10 text-slate-200 border border-white/20 text-[10px] font-mono font-bold rounded-md backdrop-blur-md">NO.03 隐私首选</span>
-                  <span class="text-[11px] text-slate-300 font-medium">RATING: <strong class="text-amber-400 font-bold text-xs ml-0.5">9.4</strong></span>
+                  <span class="px-2.5 py-1 bg-white/10 text-slate-200 border border-white/20 text-[10px] font-mono font-bold rounded-md backdrop-blur-md">NO.03 隐私首选</span>
+                  <span class="text-xs text-slate-300 font-medium">RATING: <strong class="text-amber-400 font-bold text-sm ml-0.5">9.4</strong></span>
                 </div>
-                <div class="flex items-center gap-3 mb-3">
-                  <div class="w-14 h-14 bg-slate-900/90 rounded-xl border border-white/15 shadow-md shrink-0 flex items-center justify-center p-1 overflow-hidden">
-                    <img src="./kexinyun_logo.png" alt="可信云" class="w-full h-full object-cover rounded-lg" />
+                <div class="flex items-center gap-3.5 mb-3.5">
+                  <div class="w-16 h-16 bg-slate-900/90 rounded-2xl border border-white/15 shadow-md shrink-0 flex items-center justify-center p-1 overflow-hidden">
+                    <img src="./kexinyun_logo.png" alt="可信云" class="w-full h-full object-cover rounded-xl" />
                   </div>
                   <div>
-                    <h3 class="text-lg font-bold text-white tracking-wide">可信云</h3>
-                    <p class="text-[11px] text-cyan-300 font-medium">数据高强加密 · 隐私保护</p>
+                    <h3 class="text-xl font-bold text-white tracking-wide">可信云</h3>
+                    <p class="text-xs text-cyan-300 font-medium mt-0.5">数据高强加密 · 隐私保护</p>
                   </div>
                 </div>
-                <p class="text-[11px] text-slate-300 leading-relaxed mb-3">高强度数据加密，无日志记录，极度保护用户隐私安全，支持匿名支付与全端订阅。</p>
+                <p class="text-xs text-slate-300 leading-relaxed mb-4">高强度数据加密，无日志记录，极度保护用户隐私安全，支持匿名支付与全端订阅。</p>
               </div>
-              <div class="pt-3 border-t border-white/15 flex items-center justify-between gap-2 relative z-10 mt-auto">
-                <span class="text-[11px] text-slate-300 font-mono">PLAN: <strong class="text-white text-xs font-semibold ml-1">¥15.0 / 月起</strong></span>
-                <a href="https://shadow_vps.kosingaff.com/#/register?code=UvY3PsfK" target="_blank" rel="noopener" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-xl transition-colors shadow-sm flex items-center gap-1">
+              <div class="pt-3.5 border-t border-white/15 flex items-center justify-between gap-2 relative z-10 mt-auto">
+                <span class="text-xs text-slate-300 font-mono">PLAN: <strong class="text-white text-sm font-semibold ml-1">¥15.0 / 月起</strong></span>
+                <a href="https://shadow_vps.kosingaff.com/#/register?code=UvY3PsfK" target="_blank" rel="noopener" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-xl transition-colors shadow-sm flex items-center gap-1.5">
                   直达官网 🚀
                 </a>
               </div>
             </div>
-            <div class="md:col-span-7 p-5 bg-slate-50/50 flex flex-col justify-between">
+            <div class="md:col-span-8 lg:col-span-8 xl:col-span-8 p-6 bg-slate-50/50 flex flex-col justify-between">
               <div>
-                <div class="flex items-center justify-between border-b border-slate-200 pb-2 mb-3">
-                  <span class="text-[11px] font-mono font-bold text-slate-800 flex items-center gap-1.5">
+                <div class="flex items-center justify-between border-b border-slate-200 pb-2.5 mb-4">
+                  <span class="text-xs font-mono font-bold text-slate-800 flex items-center gap-2">
                     <span class="relative flex h-2 w-2">
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                       <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                     </span>
                     LIVE_OBSERVABILITY_CONSOLE
                   </span>
-                  <span class="text-[10px] font-mono text-slate-500" data-metric="updated">探针: 新加坡 01</span>
+                  <span class="text-xs font-mono text-slate-500" data-metric="updated">探针: 新加坡 01</span>
                 </div>
-                <div class="mb-3.5 p-3 bg-white border border-slate-200 rounded-xl shadow-2xs">
-                  <div class="flex items-center justify-between mb-1.5">
-                    <div class="flex items-center gap-1.5">
-                      <span class="w-1.5 h-1.5 rounded-full bg-blue-600 animate-ping"></span>
-                      <span class="text-[10px] font-mono font-bold text-slate-700">REALTIME_GRAPH (图形检测)</span>
+                <div class="mb-4 p-3.5 bg-white border border-slate-200 rounded-xl shadow-2xs">
+                  <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-blue-600 animate-ping"></span>
+                      <span class="text-xs font-mono font-bold text-slate-700">REALTIME_GRAPH (实时图形检测折线图)</span>
                     </div>
-                    <div class="flex items-center gap-2 text-[9px] font-mono">
+                    <div class="flex items-center gap-3 text-[10px] font-mono">
                       <span class="text-slate-400">Jitter: <strong class="text-slate-700 font-semibold" data-graphic="jitter">0.8ms</strong></span>
-                      <span class="text-emerald-600 font-bold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">DYNAMIC LIVE</span>
+                      <span class="text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">DYNAMIC LIVE</span>
                     </div>
                   </div>
-                  <div class="relative h-14 w-full bg-slate-900 rounded-lg p-1.5 overflow-hidden flex items-end">
-                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:14px_10px] opacity-40"></div>
-                    <svg class="w-full h-full overflow-visible relative z-10" viewBox="0 0 280 40" preserveAspectRatio="none" data-svg-chart="kexinyun">
+                  <div class="relative h-16 w-full bg-slate-900 rounded-lg p-2 overflow-hidden flex items-end">
+                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:16px_12px] opacity-40"></div>
+                    <svg class="w-full h-full overflow-visible relative z-10" viewBox="0 0 400 40" preserveAspectRatio="none" data-svg-chart="kexinyun">
                       <defs>
                         <linearGradient id="grad-kexinyun" x1="0" y1="0" x2="0" y2="1">
                           <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.5"/>
                           <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.0"/>
                         </linearGradient>
                       </defs>
-                      <path class="chart-area" fill="url(#grad-kexinyun)" d="M 0,40 L 0,20 L 28,18 L 56,24 L 84,15 L 112,20 L 140,16 L 168,22 L 196,12 L 224,18 L 252,14 L 280,16 L 280,40 Z" />
-                      <path class="chart-line" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M 0,20 L 28,18 L 56,24 L 84,15 L 112,20 L 140,16 L 168,22 L 196,12 L 224,18 L 252,14 L 280,16" />
-                      <circle class="chart-dot" cx="280" cy="16" r="3.5" fill="#38bdf8" stroke="#ffffff" stroke-width="1.5" />
+                      <path class="chart-area" fill="url(#grad-kexinyun)" d="M 0,40 L 0,20 L 40,18 L 80,24 L 120,15 L 160,20 L 200,16 L 240,22 L 280,12 L 320,18 L 360,14 L 400,16 L 400,40 Z" />
+                      <path class="chart-line" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M 0,20 L 40,18 L 80,24 L 120,15 L 160,20 L 200,16 L 240,22 L 280,12 L 320,18 L 360,14 L 400,16" />
+                      <circle class="chart-dot" cx="400" cy="16" r="4" fill="#38bdf8" stroke="#ffffff" stroke-width="1.5" />
                     </svg>
-                    <div class="absolute bottom-1 right-2 z-20 text-[9px] font-mono text-cyan-300 bg-slate-900/80 px-1.5 py-0.5 rounded border border-cyan-500/30">
+                    <div class="absolute bottom-1 right-2 z-20 text-[10px] font-mono text-cyan-300 bg-slate-900/80 px-2 py-0.5 rounded border border-cyan-500/30">
                       <span data-graphic="current-ms">43ms</span> @ 2.5s
                     </div>
                   </div>
                 </div>
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3 text-center">
-                  <div class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="ping">
-                    <div class="text-[10px] text-slate-500 font-medium">LATENCY</div>
-                    <div class="text-base sm:text-lg font-mono font-extrabold text-slate-900 mt-0.5 flex items-center justify-center gap-0.5"><span data-metric="ping">43</span><span class="text-[10px] font-normal text-slate-400">ms</span></div>
-                    <div class="text-[9px] text-emerald-600 font-bold mt-0.5">🟢 稳定加密</div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4 text-center">
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="ping">
+                    <div class="text-[11px] text-slate-500 font-medium">LATENCY</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1 flex items-center justify-center gap-0.5"><span data-metric="ping">43</span><span class="text-xs font-normal text-slate-400">ms</span></div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">🟢 稳定加密</div>
                   </div>
-                  <div class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="loss">
-                    <div class="text-[10px] text-slate-500 font-medium">LOSS</div>
-                    <div class="text-base sm:text-lg font-mono font-extrabold text-slate-900 mt-0.5"><span data-metric="loss">0.0</span><span class="text-[10px] font-normal text-slate-400">%</span></div>
-                    <div class="text-[9px] text-emerald-600 font-bold mt-0.5">ZERO_LOSS</div>
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="loss">
+                    <div class="text-[11px] text-slate-500 font-medium">LOSS</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1"><span data-metric="loss">0.0</span><span class="text-xs font-normal text-slate-400">%</span></div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">ZERO_LOSS</div>
                   </div>
-                  <div class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="speed">
-                    <div class="text-[10px] text-slate-500 font-medium">BANDWIDTH</div>
-                    <div class="text-base sm:text-lg font-mono font-extrabold text-slate-900 mt-0.5"><span data-metric="speed">910</span><span class="text-[10px] font-normal text-slate-400">M</span></div>
-                    <div class="text-[9px] text-blue-600 font-bold mt-0.5">4K/8K秒开</div>
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="speed">
+                    <div class="text-[11px] text-slate-500 font-medium">BANDWIDTH</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1"><span data-metric="speed">910</span><span class="text-xs font-normal text-slate-400">M</span></div>
+                    <div class="text-[10px] text-blue-600 font-bold mt-0.5">4K/8K秒开</div>
                   </div>
-                  <div class="p-2.5 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="uptime">
-                    <div class="text-[10px] text-slate-500 font-medium">UPTIME</div>
-                    <div class="text-base sm:text-lg font-mono font-extrabold text-slate-900 mt-0.5"><span data-metric="uptime">99.5</span><span class="text-[10px] font-normal text-slate-400">%</span></div>
-                    <div class="text-[9px] text-emerald-600 font-bold mt-0.5">24x7 在线</div>
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="uptime">
+                    <div class="text-[11px] text-slate-500 font-medium">UPTIME</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1"><span data-metric="uptime">99.5</span><span class="text-xs font-normal text-slate-400">%</span></div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">24x7 在线</div>
                   </div>
                 </div>
-                <div class="flex flex-wrap gap-1 text-[10px] bg-white p-2 rounded-xl border border-slate-200">
-                  <span class="text-slate-400 font-mono font-semibold">PROTO:</span>
-                  <span class="px-1.5 py-0.5 bg-slate-100 text-slate-700 rounded font-mono">VLESS</span>
-                  <span class="px-1.5 py-0.5 bg-slate-100 text-slate-700 rounded font-mono">Trojan</span>
-                  <span class="px-1.5 py-0.5 bg-slate-100 text-slate-700 rounded font-mono">无日志加密</span>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs bg-white p-2.5 rounded-xl border border-slate-200">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-slate-400 font-mono font-semibold text-[11px] shrink-0">PROTO:</span>
+                    <div class="flex flex-wrap gap-1">
+                      <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded font-mono text-[11px]">VLESS</span>
+                      <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded font-mono text-[11px]">Trojan</span>
+                      <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded font-mono text-[11px]">无日志加密</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-slate-400 font-mono font-semibold text-[11px] shrink-0">UNLOCK:</span>
+                    <div class="flex flex-wrap gap-1">
+                      <span class="px-2 py-0.5 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded font-medium text-[11px]">🟢 隐私保护</span>
+                      <span class="px-2 py-0.5 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded font-medium text-[11px]">🟢 Netflix 4K</span>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="pt-2 border-t border-slate-200 mt-2 flex items-center justify-between text-[10px] font-mono">
+              <div class="pt-2.5 border-t border-slate-200 mt-2.5 flex items-center justify-between text-xs font-mono">
                 <span class="text-slate-400">STATUS: OK · INTERVAL: 2.5S</span>
                 <a href="https://shadow_vps.kosingaff.com/#/register?code=UvY3PsfK" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700 font-bold flex items-center gap-1 group transition-colors">
+                  FULL_REPORT <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: 快狸 -->
+          <div id="kuaili" class="bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-md transition-all duration-300 grid grid-cols-1 md:grid-cols-12 overflow-hidden" data-node-id="kuaili">
+            <div class="md:col-span-4 lg:col-span-4 xl:col-span-4 bg-gradient-to-br from-purple-950 via-slate-900 to-slate-900 text-white p-6 flex flex-col justify-between relative overflow-hidden group">
+              <div class="relative z-10">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="px-2.5 py-1 bg-white/10 text-slate-200 border border-white/20 text-[10px] font-mono font-bold rounded-md backdrop-blur-md">NO.04 新手推荐</span>
+                  <span class="text-xs text-slate-300 font-medium">RATING: <strong class="text-amber-400 font-bold text-sm ml-0.5">9.3</strong></span>
+                </div>
+                <div class="flex items-center gap-3.5 mb-3.5">
+                  <div class="w-16 h-16 bg-slate-900/90 rounded-2xl border border-white/15 shadow-md shrink-0 flex items-center justify-center p-1 overflow-hidden">
+                    <img src="./kuaili_logo.png" alt="快狸" class="w-full h-full object-cover rounded-xl" />
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold text-white tracking-wide">快狸</h3>
+                    <p class="text-xs text-cyan-300 font-medium mt-0.5">新手友好 · 一键快速订阅</p>
+                  </div>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed mb-4">界面简洁，操作简单，适合科学上网新手，一键订阅快速连接，全平台客户端支持。</p>
+              </div>
+              <div class="pt-3.5 border-t border-white/15 flex items-center justify-between gap-2 relative z-10 mt-auto">
+                <span class="text-xs text-slate-300 font-mono">PLAN: <strong class="text-white text-sm font-semibold ml-1">¥15.0 / 月起</strong></span>
+                <a href="https://yj2081.kuailiaff.com/#/register?code=531W9eSU" target="_blank" rel="noopener" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-xl transition-colors shadow-sm flex items-center gap-1.5">
+                  直达官网 🚀
+                </a>
+              </div>
+            </div>
+            <div class="md:col-span-8 lg:col-span-8 xl:col-span-8 p-6 bg-slate-50/50 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between border-b border-slate-200 pb-2.5 mb-4">
+                  <span class="text-xs font-mono font-bold text-slate-800 flex items-center gap-2">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    LIVE_OBSERVABILITY_CONSOLE
+                  </span>
+                  <span class="text-xs font-mono text-slate-500" data-metric="updated">探针: 台湾 BGP 01</span>
+                </div>
+                <div class="mb-4 p-3.5 bg-white border border-slate-200 rounded-xl shadow-2xs">
+                  <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-blue-600 animate-ping"></span>
+                      <span class="text-xs font-mono font-bold text-slate-700">REALTIME_GRAPH (实时图形检测折线图)</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-[10px] font-mono">
+                      <span class="text-slate-400">Jitter: <strong class="text-slate-700 font-semibold" data-graphic="jitter">0.8ms</strong></span>
+                      <span class="text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">DYNAMIC LIVE</span>
+                    </div>
+                  </div>
+                  <div class="relative h-16 w-full bg-slate-900 rounded-lg p-2 overflow-hidden flex items-end">
+                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:16px_12px] opacity-40"></div>
+                    <svg class="w-full h-full overflow-visible relative z-10" viewBox="0 0 400 40" preserveAspectRatio="none" data-svg-chart="kuaili">
+                      <defs>
+                        <linearGradient id="grad-kuaili" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.5"/>
+                          <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.0"/>
+                        </linearGradient>
+                      </defs>
+                      <path class="chart-area" fill="url(#grad-kuaili)" d="M 0,40 L 0,20 L 40,18 L 80,24 L 120,15 L 160,20 L 200,16 L 240,22 L 280,12 L 320,18 L 360,14 L 400,16 L 400,40 Z" />
+                      <path class="chart-line" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M 0,20 L 40,18 L 80,24 L 120,15 L 160,20 L 200,16 L 240,22 L 280,12 L 320,18 L 360,14 L 400,16" />
+                      <circle class="chart-dot" cx="400" cy="16" r="4" fill="#38bdf8" stroke="#ffffff" stroke-width="1.5" />
+                    </svg>
+                    <div class="absolute bottom-1 right-2 z-20 text-[10px] font-mono text-cyan-300 bg-slate-900/80 px-2 py-0.5 rounded border border-cyan-500/30">
+                      <span data-graphic="current-ms">41ms</span> @ 2.5s
+                    </div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4 text-center">
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="ping">
+                    <div class="text-[11px] text-slate-500 font-medium">LATENCY</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1 flex items-center justify-center gap-0.5"><span data-metric="ping">41</span><span class="text-xs font-normal text-slate-400">ms</span></div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">🟢 新手极速</div>
+                  </div>
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="loss">
+                    <div class="text-[11px] text-slate-500 font-medium">LOSS</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1"><span data-metric="loss">0.0</span><span class="text-xs font-normal text-slate-400">%</span></div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">ZERO_LOSS</div>
+                  </div>
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="speed">
+                    <div class="text-[11px] text-slate-500 font-medium">BANDWIDTH</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1"><span data-metric="speed">890</span><span class="text-xs font-normal text-slate-400">M</span></div>
+                    <div class="text-[10px] text-blue-600 font-bold mt-0.5">4K/8K秒开</div>
+                  </div>
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="uptime">
+                    <div class="text-[11px] text-slate-500 font-medium">UPTIME</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1"><span data-metric="uptime">99.6</span><span class="text-xs font-normal text-slate-400">%</span></div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">24x7 在线</div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs bg-white p-2.5 rounded-xl border border-slate-200">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-slate-400 font-mono font-semibold text-[11px] shrink-0">PROTO:</span>
+                    <div class="flex flex-wrap gap-1">
+                      <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded font-mono text-[11px]">V2Ray</span>
+                      <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded font-mono text-[11px]">Shadowsocks</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-slate-400 font-mono font-semibold text-[11px] shrink-0">UNLOCK:</span>
+                    <div class="flex flex-wrap gap-1">
+                      <span class="px-2 py-0.5 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded font-medium text-[11px]">🟢 YouTube 4K</span>
+                      <span class="px-2 py-0.5 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded font-medium text-[11px]">🟢 ChatGPT</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="pt-2.5 border-t border-slate-200 mt-2.5 flex items-center justify-between text-xs font-mono">
+                <span class="text-slate-400">STATUS: OK · INTERVAL: 2.5S</span>
+                <a href="https://yj2081.kuailiaff.com/#/register?code=531W9eSU" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700 font-bold flex items-center gap-1 group transition-colors">
+                  FULL_REPORT <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5: 云图 -->
+          <div id="yuntu" class="bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-md transition-all duration-300 grid grid-cols-1 md:grid-cols-12 overflow-hidden" data-node-id="yuntu">
+            <div class="md:col-span-4 lg:col-span-4 xl:col-span-4 bg-gradient-to-br from-amber-950 via-yellow-950 to-slate-900 text-white p-6 flex flex-col justify-between relative overflow-hidden group">
+              <div class="relative z-10">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="px-2.5 py-1 bg-white/10 text-slate-200 border border-white/20 text-[10px] font-mono font-bold rounded-md backdrop-blur-md">NO.05 金融级专线</span>
+                  <span class="text-xs text-slate-300 font-medium">RATING: <strong class="text-amber-400 font-bold text-sm ml-0.5">9.2</strong></span>
+                </div>
+                <div class="flex items-center gap-3.5 mb-3.5">
+                  <div class="w-16 h-16 bg-slate-900/90 rounded-2xl border border-white/15 shadow-md shrink-0 flex items-center justify-center p-1 overflow-hidden">
+                    <img src="./yuntu_logo.png" alt="云图" class="w-full h-full object-cover rounded-xl" />
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold text-white tracking-wide">云图</h3>
+                    <p class="text-xs text-cyan-300 font-medium mt-0.5">金融级专线 · 全节点1倍率</p>
+                  </div>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed mb-4">全节点 1 倍率诚实扣费，金融级专线传输，保障 24 小时高速流畅，支持 5 台设备同时在线。</p>
+              </div>
+              <div class="pt-3.5 border-t border-white/15 flex items-center justify-between gap-2 relative z-10 mt-auto">
+                <span class="text-xs text-slate-300 font-mono">PLAN: <strong class="text-white text-sm font-semibold ml-1">¥25.0 / 月起</strong></span>
+                <a href="https://vip.ytjcok.org/#/register?code=75w0GoY2" target="_blank" rel="noopener" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-xl transition-colors shadow-sm flex items-center gap-1.5">
+                  直达官网 🚀
+                </a>
+              </div>
+            </div>
+            <div class="md:col-span-8 lg:col-span-8 xl:col-span-8 p-6 bg-slate-50/50 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between border-b border-slate-200 pb-2.5 mb-4">
+                  <span class="text-xs font-mono font-bold text-slate-800 flex items-center gap-2">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    LIVE_OBSERVABILITY_CONSOLE
+                  </span>
+                  <span class="text-xs font-mono text-slate-500" data-metric="updated">探针: 香港 IPLC 02</span>
+                </div>
+                <div class="mb-4 p-3.5 bg-white border border-slate-200 rounded-xl shadow-2xs">
+                  <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-blue-600 animate-ping"></span>
+                      <span class="text-xs font-mono font-bold text-slate-700">REALTIME_GRAPH (实时图形检测折线图)</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-[10px] font-mono">
+                      <span class="text-slate-400">Jitter: <strong class="text-slate-700 font-semibold" data-graphic="jitter">0.8ms</strong></span>
+                      <span class="text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">DYNAMIC LIVE</span>
+                    </div>
+                  </div>
+                  <div class="relative h-16 w-full bg-slate-900 rounded-lg p-2 overflow-hidden flex items-end">
+                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:16px_12px] opacity-40"></div>
+                    <svg class="w-full h-full overflow-visible relative z-10" viewBox="0 0 400 40" preserveAspectRatio="none" data-svg-chart="yuntu">
+                      <defs>
+                        <linearGradient id="grad-yuntu" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.5"/>
+                          <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.0"/>
+                        </linearGradient>
+                      </defs>
+                      <path class="chart-area" fill="url(#grad-yuntu)" d="M 0,40 L 0,20 L 40,18 L 80,24 L 120,15 L 160,20 L 200,16 L 240,22 L 280,12 L 320,18 L 360,14 L 400,16 L 400,40 Z" />
+                      <path class="chart-line" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M 0,20 L 40,18 L 80,24 L 120,15 L 160,20 L 200,16 L 240,22 L 280,12 L 320,18 L 360,14 L 400,16" />
+                      <circle class="chart-dot" cx="400" cy="16" r="4" fill="#38bdf8" stroke="#ffffff" stroke-width="1.5" />
+                    </svg>
+                    <div class="absolute bottom-1 right-2 z-20 text-[10px] font-mono text-cyan-300 bg-slate-900/80 px-2 py-0.5 rounded border border-cyan-500/30">
+                      <span data-graphic="current-ms">40ms</span> @ 2.5s
+                    </div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4 text-center">
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="ping">
+                    <div class="text-[11px] text-slate-500 font-medium">LATENCY</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1 flex items-center justify-center gap-0.5"><span data-metric="ping">40</span><span class="text-xs font-normal text-slate-400">ms</span></div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">🟢 金融级秒开</div>
+                  </div>
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="loss">
+                    <div class="text-[11px] text-slate-500 font-medium">LOSS</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1"><span data-metric="loss">0.0</span><span class="text-xs font-normal text-slate-400">%</span></div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">ZERO_LOSS</div>
+                  </div>
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="speed">
+                    <div class="text-[11px] text-slate-500 font-medium">BANDWIDTH</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1"><span data-metric="speed">960</span><span class="text-xs font-normal text-slate-400">M</span></div>
+                    <div class="text-[10px] text-blue-600 font-bold mt-0.5">4K/8K秒开</div>
+                  </div>
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="uptime">
+                    <div class="text-[11px] text-slate-500 font-medium">UPTIME</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1"><span data-metric="uptime">99.7</span><span class="text-xs font-normal text-slate-400">%</span></div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">24x7 在线</div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs bg-white p-2.5 rounded-xl border border-slate-200">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-slate-400 font-mono font-semibold text-[11px] shrink-0">PROTO:</span>
+                    <div class="flex flex-wrap gap-1">
+                      <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded font-mono text-[11px]">金融专线</span>
+                      <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded font-mono text-[11px]">V2Ray</span>
+                      <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded font-mono text-[11px]">Trojan</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-slate-400 font-mono font-semibold text-[11px] shrink-0">UNLOCK:</span>
+                    <div class="flex flex-wrap gap-1">
+                      <span class="px-2 py-0.5 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded font-medium text-[11px]">🟢 4K/8K秒开</span>
+                      <span class="px-2 py-0.5 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded font-medium text-[11px]">🟢 Netflix</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="pt-2.5 border-t border-slate-200 mt-2.5 flex items-center justify-between text-xs font-mono">
+                <span class="text-slate-400">STATUS: OK · INTERVAL: 2.5S</span>
+                <a href="https://vip.ytjcok.org/#/register?code=75w0GoY2" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700 font-bold flex items-center gap-1 group transition-colors">
+                  FULL_REPORT <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6: 极速 -->
+          <div id="jisuyun" class="bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-md transition-all duration-300 grid grid-cols-1 md:grid-cols-12 overflow-hidden" data-node-id="jisuyun">
+            <div class="md:col-span-4 lg:col-span-4 xl:col-span-4 bg-gradient-to-br from-cyan-950 via-blue-950 to-slate-900 text-white p-6 flex flex-col justify-between relative overflow-hidden group">
+              <div class="relative z-10">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="px-2.5 py-1 bg-white/10 text-slate-200 border border-white/20 text-[10px] font-mono font-bold rounded-md backdrop-blur-md">NO.06 三网精品</span>
+                  <span class="text-xs text-slate-300 font-medium">RATING: <strong class="text-amber-400 font-bold text-sm ml-0.5">9.1</strong></span>
+                </div>
+                <div class="flex items-center gap-3.5 mb-3.5">
+                  <div class="w-16 h-16 bg-slate-900/90 rounded-2xl border border-white/15 shadow-md shrink-0 flex items-center justify-center p-1 overflow-hidden">
+                    <img src="./jisuyun_logo.png" alt="极速" class="w-full h-full object-cover rounded-xl" />
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold text-white tracking-wide">极速</h3>
+                    <p class="text-xs text-cyan-300 font-medium mt-0.5">三网CN2 GIA/9929 · 24h无视晚高峰</p>
+                  </div>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed mb-4">采用国内三网顶级精品优化线路与物理落地，24小时无视晚高峰。</p>
+              </div>
+              <div class="pt-3.5 border-t border-white/15 flex items-center justify-between gap-2 relative z-10 mt-auto">
+                <span class="text-xs text-slate-300 font-mono">PLAN: <strong class="text-white text-sm font-semibold ml-1">¥18.0 / 月起</strong></span>
+                <a href="http://liangxinyun.club/" target="_blank" rel="noopener" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-xl transition-colors shadow-sm flex items-center gap-1.5">
+                  直达官网 🚀
+                </a>
+              </div>
+            </div>
+            <div class="md:col-span-8 lg:col-span-8 xl:col-span-8 p-6 bg-slate-50/50 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between border-b border-slate-200 pb-2.5 mb-4">
+                  <span class="text-xs font-mono font-bold text-slate-800 flex items-center gap-2">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    LIVE_OBSERVABILITY_CONSOLE
+                  </span>
+                  <span class="text-xs font-mono text-slate-500" data-metric="updated">探针: 三网 CN2 GIA 01</span>
+                </div>
+                <div class="mb-4 p-3.5 bg-white border border-slate-200 rounded-xl shadow-2xs">
+                  <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-blue-600 animate-ping"></span>
+                      <span class="text-xs font-mono font-bold text-slate-700">REALTIME_GRAPH (实时图形检测折线图)</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-[10px] font-mono">
+                      <span class="text-slate-400">Jitter: <strong class="text-slate-700 font-semibold" data-graphic="jitter">0.8ms</strong></span>
+                      <span class="text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">DYNAMIC LIVE</span>
+                    </div>
+                  </div>
+                  <div class="relative h-16 w-full bg-slate-900 rounded-lg p-2 overflow-hidden flex items-end">
+                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:16px_12px] opacity-40"></div>
+                    <svg class="w-full h-full overflow-visible relative z-10" viewBox="0 0 400 40" preserveAspectRatio="none" data-svg-chart="jisuyun">
+                      <defs>
+                        <linearGradient id="grad-jisuyun" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.5"/>
+                          <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.0"/>
+                        </linearGradient>
+                      </defs>
+                      <path class="chart-area" fill="url(#grad-jisuyun)" d="M 0,40 L 0,20 L 40,18 L 80,24 L 120,15 L 160,20 L 200,16 L 240,22 L 280,12 L 320,18 L 360,14 L 400,16 L 400,40 Z" />
+                      <path class="chart-line" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M 0,20 L 40,18 L 80,24 L 120,15 L 160,20 L 200,16 L 240,22 L 280,12 L 320,18 L 360,14 L 400,16" />
+                      <circle class="chart-dot" cx="400" cy="16" r="4" fill="#38bdf8" stroke="#ffffff" stroke-width="1.5" />
+                    </svg>
+                    <div class="absolute bottom-1 right-2 z-20 text-[10px] font-mono text-cyan-300 bg-slate-900/80 px-2 py-0.5 rounded border border-cyan-500/30">
+                      <span data-graphic="current-ms">28ms</span> @ 2.5s
+                    </div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4 text-center">
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="ping">
+                    <div class="text-[11px] text-slate-500 font-medium">LATENCY</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1 flex items-center justify-center gap-0.5"><span data-metric="ping">28</span><span class="text-xs font-normal text-slate-400">ms</span></div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">🟢 三网直连超低延迟</div>
+                  </div>
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="loss">
+                    <div class="text-[11px] text-slate-500 font-medium">LOSS</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1"><span data-metric="loss">0.0</span><span class="text-xs font-normal text-slate-400">%</span></div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">ZERO_LOSS</div>
+                  </div>
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="speed">
+                    <div class="text-[11px] text-slate-500 font-medium">BANDWIDTH</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1"><span data-metric="speed">990</span><span class="text-xs font-normal text-slate-400">M</span></div>
+                    <div class="text-[10px] text-blue-600 font-bold mt-0.5">4K/8K秒开</div>
+                  </div>
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="uptime">
+                    <div class="text-[11px] text-slate-500 font-medium">UPTIME</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1"><span data-metric="uptime">99.9</span><span class="text-xs font-normal text-slate-400">%</span></div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">24x7 在线</div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs bg-white p-2.5 rounded-xl border border-slate-200">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-slate-400 font-mono font-semibold text-[11px] shrink-0">PROTO:</span>
+                    <div class="flex flex-wrap gap-1">
+                      <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded font-mono text-[11px]">CN2 GIA</span>
+                      <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded font-mono text-[11px]">VLESS</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-slate-400 font-mono font-semibold text-[11px] shrink-0">UNLOCK:</span>
+                    <div class="flex flex-wrap gap-1">
+                      <span class="px-2 py-0.5 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded font-medium text-[11px]">🟢 Apple TV</span>
+                      <span class="px-2 py-0.5 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded font-medium text-[11px]">🟢 Netflix 4K</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="pt-2.5 border-t border-slate-200 mt-2.5 flex items-center justify-between text-xs font-mono">
+                <span class="text-slate-400">STATUS: OK · INTERVAL: 2.5S</span>
+                <a href="http://liangxinyun.club/" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700 font-bold flex items-center gap-1 group transition-colors">
+                  FULL_REPORT <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 7: 瞬云 -->
+          <div id="shunyun" class="bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-md transition-all duration-300 grid grid-cols-1 md:grid-cols-12 overflow-hidden" data-node-id="shunyun">
+            <div class="md:col-span-4 lg:col-span-4 xl:col-span-4 bg-gradient-to-br from-slate-900 via-teal-950 to-slate-900 text-white p-6 flex flex-col justify-between relative overflow-hidden group">
+              <div class="relative z-10">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="px-2.5 py-1 bg-white/10 text-slate-200 border border-white/20 text-[10px] font-mono font-bold rounded-md backdrop-blur-md">NO.07 轻量极速</span>
+                  <span class="text-xs text-slate-300 font-medium">RATING: <strong class="text-amber-400 font-bold text-sm ml-0.5">9.0</strong></span>
+                </div>
+                <div class="flex items-center gap-3.5 mb-3.5">
+                  <div class="w-16 h-16 bg-slate-900/90 rounded-2xl border border-white/15 shadow-md shrink-0 flex items-center justify-center p-1 overflow-hidden">
+                    <img src="./shunyun_logo.png" alt="瞬云" class="w-full h-full object-cover rounded-xl" />
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold text-white tracking-wide">瞬云</h3>
+                    <p class="text-xs text-cyan-300 font-medium mt-0.5">轻量极速 · 支持按量计费</p>
+                  </div>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed mb-4">主打轻量与极速，连接时间极短，支持灵活的按量付费模式，非常适合备用与随用随清。</p>
+              </div>
+              <div class="pt-3.5 border-t border-white/15 flex items-center justify-between gap-2 relative z-10 mt-auto">
+                <span class="text-xs text-slate-300 font-mono">PLAN: <strong class="text-white text-sm font-semibold ml-1">¥12.0 / 月起</strong></span>
+                <a href="https://aaa.jichang.best/#/register?code=M4UujXjz" target="_blank" rel="noopener" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-xl transition-colors shadow-sm flex items-center gap-1.5">
+                  直达官网 🚀
+                </a>
+              </div>
+            </div>
+            <div class="md:col-span-8 lg:col-span-8 xl:col-span-8 p-6 bg-slate-50/50 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between border-b border-slate-200 pb-2.5 mb-4">
+                  <span class="text-xs font-mono font-bold text-slate-800 flex items-center gap-2">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    LIVE_OBSERVABILITY_CONSOLE
+                  </span>
+                  <span class="text-xs font-mono text-slate-500" data-metric="updated">探针: 广州 BGP 01</span>
+                </div>
+                <div class="mb-4 p-3.5 bg-white border border-slate-200 rounded-xl shadow-2xs">
+                  <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-blue-600 animate-ping"></span>
+                      <span class="text-xs font-mono font-bold text-slate-700">REALTIME_GRAPH (实时图形检测折线图)</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-[10px] font-mono">
+                      <span class="text-slate-400">Jitter: <strong class="text-slate-700 font-semibold" data-graphic="jitter">0.8ms</strong></span>
+                      <span class="text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">DYNAMIC LIVE</span>
+                    </div>
+                  </div>
+                  <div class="relative h-16 w-full bg-slate-900 rounded-lg p-2 overflow-hidden flex items-end">
+                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:16px_12px] opacity-40"></div>
+                    <svg class="w-full h-full overflow-visible relative z-10" viewBox="0 0 400 40" preserveAspectRatio="none" data-svg-chart="shunyun">
+                      <defs>
+                        <linearGradient id="grad-shunyun" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.5"/>
+                          <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.0"/>
+                        </linearGradient>
+                      </defs>
+                      <path class="chart-area" fill="url(#grad-shunyun)" d="M 0,40 L 0,20 L 40,18 L 80,24 L 120,15 L 160,20 L 200,16 L 240,22 L 280,12 L 320,18 L 360,14 L 400,16 L 400,40 Z" />
+                      <path class="chart-line" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M 0,20 L 40,18 L 80,24 L 120,15 L 160,20 L 200,16 L 240,22 L 280,12 L 320,18 L 360,14 L 400,16" />
+                      <circle class="chart-dot" cx="400" cy="16" r="4" fill="#38bdf8" stroke="#ffffff" stroke-width="1.5" />
+                    </svg>
+                    <div class="absolute bottom-1 right-2 z-20 text-[10px] font-mono text-cyan-300 bg-slate-900/80 px-2 py-0.5 rounded border border-cyan-500/30">
+                      <span data-graphic="current-ms">36ms</span> @ 2.5s
+                    </div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4 text-center">
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="ping">
+                    <div class="text-[11px] text-slate-500 font-medium">LATENCY</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1 flex items-center justify-center gap-0.5"><span data-metric="ping">36</span><span class="text-xs font-normal text-slate-400">ms</span></div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">🟢 按量备用首选</div>
+                  </div>
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="loss">
+                    <div class="text-[11px] text-slate-500 font-medium">LOSS</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1"><span data-metric="loss">0.0</span><span class="text-xs font-normal text-slate-400">%</span></div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">ZERO_LOSS</div>
+                  </div>
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="speed">
+                    <div class="text-[11px] text-slate-500 font-medium">BANDWIDTH</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1"><span data-metric="speed">940</span><span class="text-xs font-normal text-slate-400">M</span></div>
+                    <div class="text-[10px] text-blue-600 font-bold mt-0.5">4K/8K秒开</div>
+                  </div>
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="uptime">
+                    <div class="text-[11px] text-slate-500 font-medium">UPTIME</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1"><span data-metric="uptime">99.8</span><span class="text-xs font-normal text-slate-400">%</span></div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">24x7 在线</div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs bg-white p-2.5 rounded-xl border border-slate-200">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-slate-400 font-mono font-semibold text-[11px] shrink-0">PROTO:</span>
+                    <div class="flex flex-wrap gap-1">
+                      <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded font-mono text-[11px]">BGP中转</span>
+                      <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded font-mono text-[11px]">Trojan</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-slate-400 font-mono font-semibold text-[11px] shrink-0">UNLOCK:</span>
+                    <div class="flex flex-wrap gap-1">
+                      <span class="px-2 py-0.5 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded font-medium text-[11px]">🟢 Disney+</span>
+                      <span class="px-2 py-0.5 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded font-medium text-[11px]">🟢 ChatGPT</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="pt-2.5 border-t border-slate-200 mt-2.5 flex items-center justify-between text-xs font-mono">
+                <span class="text-slate-400">STATUS: OK · INTERVAL: 2.5S</span>
+                <a href="https://aaa.jichang.best/#/register?code=M4UujXjz" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700 font-bold flex items-center gap-1 group transition-colors">
+                  FULL_REPORT <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 8: 极连云 -->
+          <div id="jilianyun" class="bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-md transition-all duration-300 grid grid-cols-1 md:grid-cols-12 overflow-hidden" data-node-id="jilianyun">
+            <div class="md:col-span-4 lg:col-span-4 xl:col-span-4 bg-gradient-to-br from-indigo-950 via-slate-900 to-purple-950 text-white p-6 flex flex-col justify-between relative overflow-hidden group">
+              <div class="relative z-10">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="px-2.5 py-1 bg-white/10 text-slate-200 border border-white/20 text-[10px] font-mono font-bold rounded-md backdrop-blur-md">NO.08 低延迟推荐</span>
+                  <span class="text-xs text-slate-300 font-medium">RATING: <strong class="text-amber-400 font-bold text-sm ml-0.5">8.9</strong></span>
+                </div>
+                <div class="flex items-center gap-3.5 mb-3.5">
+                  <div class="w-16 h-16 bg-slate-900/90 rounded-2xl border border-white/15 shadow-md shrink-0 flex items-center justify-center p-1 overflow-hidden">
+                    <img src="./jilianyun_logo.png" alt="极连云" class="w-full h-full object-cover rounded-xl" />
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold text-white tracking-wide">极连云</h3>
+                    <p class="text-xs text-cyan-300 font-medium mt-0.5">多站 BGP 中转 · 稳定性价比高</p>
+                  </div>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed mb-4">多站 BGP 中转，国内访问速度快，适合跨服游戏、4K高清视频和日常办公使用。</p>
+              </div>
+              <div class="pt-3.5 border-t border-white/15 flex items-center justify-between gap-2 relative z-10 mt-auto">
+                <span class="text-xs text-slate-300 font-mono">PLAN: <strong class="text-white text-sm font-semibold ml-1">¥10.0 / 月起</strong></span>
+                <a href="https://a1917.jlyvipaff.com/#/?code=vT32Xl9X" target="_blank" rel="noopener" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-xl transition-colors shadow-sm flex items-center gap-1.5">
+                  直达官网 🚀
+                </a>
+              </div>
+            </div>
+            <div class="md:col-span-8 lg:col-span-8 xl:col-span-8 p-6 bg-slate-50/50 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between border-b border-slate-200 pb-2.5 mb-4">
+                  <span class="text-xs font-mono font-bold text-slate-800 flex items-center gap-2">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    LIVE_OBSERVABILITY_CONSOLE
+                  </span>
+                  <span class="text-xs font-mono text-slate-500" data-metric="updated">探针: 韩国 Cloud 01</span>
+                </div>
+                <div class="mb-4 p-3.5 bg-white border border-slate-200 rounded-xl shadow-2xs">
+                  <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-blue-600 animate-ping"></span>
+                      <span class="text-xs font-mono font-bold text-slate-700">REALTIME_GRAPH (实时图形检测折线图)</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-[10px] font-mono">
+                      <span class="text-slate-400">Jitter: <strong class="text-slate-700 font-semibold" data-graphic="jitter">0.8ms</strong></span>
+                      <span class="text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">DYNAMIC LIVE</span>
+                    </div>
+                  </div>
+                  <div class="relative h-16 w-full bg-slate-900 rounded-lg p-2 overflow-hidden flex items-end">
+                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:16px_12px] opacity-40"></div>
+                    <svg class="w-full h-full overflow-visible relative z-10" viewBox="0 0 400 40" preserveAspectRatio="none" data-svg-chart="jilianyun">
+                      <defs>
+                        <linearGradient id="grad-jilianyun" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.5"/>
+                          <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.0"/>
+                        </linearGradient>
+                      </defs>
+                      <path class="chart-area" fill="url(#grad-jilianyun)" d="M 0,40 L 0,20 L 40,18 L 80,24 L 120,15 L 160,20 L 200,16 L 240,22 L 280,12 L 320,18 L 360,14 L 400,16 L 400,40 Z" />
+                      <path class="chart-line" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M 0,20 L 40,18 L 80,24 L 120,15 L 160,20 L 200,16 L 240,22 L 280,12 L 320,18 L 360,14 L 400,16" />
+                      <circle class="chart-dot" cx="400" cy="16" r="4" fill="#38bdf8" stroke="#ffffff" stroke-width="1.5" />
+                    </svg>
+                    <div class="absolute bottom-1 right-2 z-20 text-[10px] font-mono text-cyan-300 bg-slate-900/80 px-2 py-0.5 rounded border border-cyan-500/30">
+                      <span data-graphic="current-ms">45ms</span> @ 2.5s
+                    </div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4 text-center">
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="ping">
+                    <div class="text-[11px] text-slate-500 font-medium">LATENCY</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1 flex items-center justify-center gap-0.5"><span data-metric="ping">45</span><span class="text-xs font-normal text-slate-400">ms</span></div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">🟢 BGP稳定高速</div>
+                  </div>
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="loss">
+                    <div class="text-[11px] text-slate-500 font-medium">LOSS</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1"><span data-metric="loss">0.0</span><span class="text-xs font-normal text-slate-400">%</span></div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">ZERO_LOSS</div>
+                  </div>
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="speed">
+                    <div class="text-[11px] text-slate-500 font-medium">BANDWIDTH</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1"><span data-metric="speed">870</span><span class="text-xs font-normal text-slate-400">M</span></div>
+                    <div class="text-[10px] text-blue-600 font-bold mt-0.5">4K/8K秒开</div>
+                  </div>
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="uptime">
+                    <div class="text-[11px] text-slate-500 font-medium">UPTIME</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1"><span data-metric="uptime">99.5</span><span class="text-xs font-normal text-slate-400">%</span></div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">24x7 在线</div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs bg-white p-2.5 rounded-xl border border-slate-200">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-slate-400 font-mono font-semibold text-[11px] shrink-0">PROTO:</span>
+                    <div class="flex flex-wrap gap-1">
+                      <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded font-mono text-[11px]">BGP中转</span>
+                      <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded font-mono text-[11px]">V2Ray</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-slate-400 font-mono font-semibold text-[11px] shrink-0">UNLOCK:</span>
+                    <div class="flex flex-wrap gap-1">
+                      <span class="px-2 py-0.5 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded font-medium text-[11px]">🟢 稳定低延迟</span>
+                      <span class="px-2 py-0.5 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded font-medium text-[11px]">🟢 ChatGPT</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="pt-2.5 border-t border-slate-200 mt-2.5 flex items-center justify-between text-xs font-mono">
+                <span class="text-slate-400">STATUS: OK · INTERVAL: 2.5S</span>
+                <a href="https://a1917.jlyvipaff.com/#/?code=vT32Xl9X" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700 font-bold flex items-center gap-1 group transition-colors">
+                  FULL_REPORT <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 9: 光年梯 -->
+          <div id="guangnianti" class="bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-md transition-all duration-300 grid grid-cols-1 md:grid-cols-12 overflow-hidden" data-node-id="guangnianti">
+            <div class="md:col-span-4 lg:col-span-4 xl:col-span-4 bg-gradient-to-br from-slate-900 via-rose-950 to-slate-950 text-white p-6 flex flex-col justify-between relative overflow-hidden group">
+              <div class="relative z-10">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="px-2.5 py-1 bg-white/10 text-slate-200 border border-white/20 text-[10px] font-mono font-bold rounded-md backdrop-blur-md">NO.09 大流量性价比</span>
+                  <span class="text-xs text-slate-300 font-medium">RATING: <strong class="text-amber-400 font-bold text-sm ml-0.5">8.8</strong></span>
+                </div>
+                <div class="flex items-center gap-3.5 mb-3.5">
+                  <div class="w-16 h-16 bg-slate-900/90 rounded-2xl border border-white/15 shadow-md shrink-0 flex items-center justify-center p-1 overflow-hidden">
+                    <img src="./guangnianti_logo.png" alt="光年梯" class="w-full h-full object-cover rounded-xl" />
+                  </div>
+                  <div>
+                    <h3 class="text-xl font-bold text-white tracking-wide">光年梯</h3>
+                    <p class="text-xs text-cyan-300 font-medium mt-0.5">AES-256 加密 · 大流量性价比</p>
+                  </div>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed mb-4">注重隐私保护，无日志政策，AES-256 加密。安全可靠，适合大文件下载与高码率视频。</p>
+              </div>
+              <div class="pt-3.5 border-t border-white/15 flex items-center justify-between gap-2 relative z-10 mt-auto">
+                <span class="text-xs text-slate-300 font-mono">PLAN: <strong class="text-white text-sm font-semibold ml-1">¥9.9 / 月起</strong></span>
+                <a href="https://gnt001.gntvipaff.cc/#/?code=yAzo4IqK" target="_blank" rel="noopener" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded-xl transition-colors shadow-sm flex items-center gap-1.5">
+                  直达官网 🚀
+                </a>
+              </div>
+            </div>
+            <div class="md:col-span-8 lg:col-span-8 xl:col-span-8 p-6 bg-slate-50/50 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between border-b border-slate-200 pb-2.5 mb-4">
+                  <span class="text-xs font-mono font-bold text-slate-800 flex items-center gap-2">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    LIVE_OBSERVABILITY_CONSOLE
+                  </span>
+                  <span class="text-xs font-mono text-slate-500" data-metric="updated">探针: 美西 01</span>
+                </div>
+                <div class="mb-4 p-3.5 bg-white border border-slate-200 rounded-xl shadow-2xs">
+                  <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-blue-600 animate-ping"></span>
+                      <span class="text-xs font-mono font-bold text-slate-700">REALTIME_GRAPH (实时图形检测折线图)</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-[10px] font-mono">
+                      <span class="text-slate-400">Jitter: <strong class="text-slate-700 font-semibold" data-graphic="jitter">0.8ms</strong></span>
+                      <span class="text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">DYNAMIC LIVE</span>
+                    </div>
+                  </div>
+                  <div class="relative h-16 w-full bg-slate-900 rounded-lg p-2 overflow-hidden flex items-end">
+                    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:16px_12px] opacity-40"></div>
+                    <svg class="w-full h-full overflow-visible relative z-10" viewBox="0 0 400 40" preserveAspectRatio="none" data-svg-chart="guangnianti">
+                      <defs>
+                        <linearGradient id="grad-guangnianti" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.5"/>
+                          <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.0"/>
+                        </linearGradient>
+                      </defs>
+                      <path class="chart-area" fill="url(#grad-guangnianti)" d="M 0,40 L 0,20 L 40,18 L 80,24 L 120,15 L 160,20 L 200,16 L 240,22 L 280,12 L 320,18 L 360,14 L 400,16 L 400,40 Z" />
+                      <path class="chart-line" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M 0,20 L 40,18 L 80,24 L 120,15 L 160,20 L 200,16 L 240,22 L 280,12 L 320,18 L 360,14 L 400,16" />
+                      <circle class="chart-dot" cx="400" cy="16" r="4" fill="#38bdf8" stroke="#ffffff" stroke-width="1.5" />
+                    </svg>
+                    <div class="absolute bottom-1 right-2 z-20 text-[10px] font-mono text-cyan-300 bg-slate-900/80 px-2 py-0.5 rounded border border-cyan-500/30">
+                      <span data-graphic="current-ms">120ms</span> @ 2.5s
+                    </div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4 text-center">
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="ping">
+                    <div class="text-[11px] text-slate-500 font-medium">LATENCY</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1 flex items-center justify-center gap-0.5"><span data-metric="ping">120</span><span class="text-xs font-normal text-slate-400">ms</span></div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">🟢 海量带宽秒开</div>
+                  </div>
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="loss">
+                    <div class="text-[11px] text-slate-500 font-medium">LOSS</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1"><span data-metric="loss">0.0</span><span class="text-xs font-normal text-slate-400">%</span></div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">ZERO_LOSS</div>
+                  </div>
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="speed">
+                    <div class="text-[11px] text-slate-500 font-medium">BANDWIDTH</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1"><span data-metric="speed">1020</span><span class="text-xs font-normal text-slate-400">M</span></div>
+                    <div class="text-[10px] text-blue-600 font-bold mt-0.5">4K/8K秒开</div>
+                  </div>
+                  <div class="p-3 bg-white border border-slate-200 rounded-xl shadow-2xs" data-metric-box="uptime">
+                    <div class="text-[11px] text-slate-500 font-medium">UPTIME</div>
+                    <div class="text-lg sm:text-xl font-mono font-extrabold text-slate-900 mt-1"><span data-metric="uptime">99.4</span><span class="text-xs font-normal text-slate-400">%</span></div>
+                    <div class="text-[10px] text-emerald-600 font-bold mt-0.5">24x7 在线</div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs bg-white p-2.5 rounded-xl border border-slate-200">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-slate-400 font-mono font-semibold text-[11px] shrink-0">PROTO:</span>
+                    <div class="flex flex-wrap gap-1">
+                      <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded font-mono text-[11px]">VLESS</span>
+                      <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded font-mono text-[11px]">Trojan</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-slate-400 font-mono font-semibold text-[11px] shrink-0">UNLOCK:</span>
+                    <div class="flex flex-wrap gap-1">
+                      <span class="px-2 py-0.5 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded font-medium text-[11px]">🟢 大流量下载</span>
+                      <span class="px-2 py-0.5 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded font-medium text-[11px]">🟢 8K视频</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="pt-2.5 border-t border-slate-200 mt-2.5 flex items-center justify-between text-xs font-mono">
+                <span class="text-slate-400">STATUS: OK · INTERVAL: 2.5S</span>
+                <a href="https://gnt001.gntvipaff.cc/#/?code=yAzo4IqK" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700 font-bold flex items-center gap-1 group transition-colors">
                   FULL_REPORT <span class="group-hover:translate-x-1 transition-transform">→</span>
                 </a>
               </div>
@@ -748,8 +1498,8 @@
 
       </section>
 
-      <!-- 右侧边栏 (Right Sidebar) -->
-      <aside class="lg:col-span-3 space-y-6">
+      <!-- 右侧边栏 (Right Sidebar - 280px) -->
+      <aside class="w-full lg:w-[260px] xl:w-[280px] shrink-0 space-y-6">
         
         <!-- 1. 侧栏广告展示位 AD -->
         <div class="bg-gradient-to-br from-amber-50 to-orange-50/50 border-2 border-dashed border-amber-300 rounded-2xl p-5 relative overflow-hidden">
@@ -856,7 +1606,7 @@
         const points = historyData[id];
         if (!points || points.length === 0) return;
 
-        const width = 280;
+        const width = 400;
         const height = 40;
         const padding = 6;
 
