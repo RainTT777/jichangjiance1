@@ -2,6 +2,8 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
+import LeftSidebar from '@/components/LeftSidebar.astro';
+import RightSidebar from '@/components/RightSidebar.astro';
 import ArticleCard from '@/components/ArticleCard.astro';
 import { brands } from '@/data/brands';
 import { articles } from '@/data/articles';
@@ -25,188 +27,192 @@ const relatedArticles = articles.slice(0, 3);
 >
   <Header />
 
-  <main class="py-12 lg:py-16">
-    <div class="container-custom max-w-5xl">
-      <!-- 面包屑 -->
-      <nav class="flex items-center gap-2 text-sm text-slate-600 mb-8">
-        <a href="/" class="hover:text-blue-600">首页</a>
-        <span>/</span>
-        <a href="/brands/" class="hover:text-blue-600">品牌库</a>
-        <span>/</span>
-        <span class="text-slate-900">{brand.name}</span>
-      </nav>
+  <main class="w-full max-w-[1920px] mx-auto px-3 sm:px-6 lg:px-8 py-6 min-h-screen bg-slate-50/50">
+    
+    <!-- 面包屑 -->
+    <nav class="flex items-center gap-2 text-sm text-slate-500 font-medium px-1 mb-6">
+      <a href="/" class="hover:text-blue-600 transition-colors">首页</a>
+      <span>/</span>
+      <a href="/brands/" class="hover:text-blue-600 transition-colors">品牌库</a>
+      <span>/</span>
+      <span class="text-blue-600 font-semibold">{brand.name}</span>
+    </nav>
 
-      <!-- 说明提示 -->
-      <div class="card p-4 mb-8 bg-amber-50 border-amber-200">
-        <div class="flex items-start gap-2 text-sm text-amber-900">
-          <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-          </svg>
-          <p>此页面为示例结构，所有内容均为占位数据，不包含真实推广信息。</p>
-        </div>
-      </div>
+    <!-- 响应式三栏布局: 左侧边栏 + 中间主区 + 右侧侧栏 (参考图2 模板) -->
+    <div class="flex flex-col lg:flex-row gap-6 items-start">
+      
+      <!-- 左侧边栏 (图2 模板) -->
+      <LeftSidebar />
 
-      <!-- 品牌头部 -->
-      <div class="card p-8 mb-8">
-        <div class="flex items-start justify-between mb-6">
-          <div class="flex-1">
-            <h1 class="text-4xl font-bold text-slate-900 mb-2">{brand.name}</h1>
-            <p class="text-lg text-slate-600">{brand.description}</p>
+      <!-- 主区 -->
+      <section class="flex-1 min-w-0 w-full space-y-6">
+        
+        <!-- 说明提示 -->
+        <div class="card p-4 bg-amber-50 border-amber-200">
+          <div class="flex items-start gap-2 text-sm text-amber-900">
+            <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <p>此页面为示例结构，所有内容均为占位数据，不包含真实推广信息。</p>
           </div>
-          <span class="px-4 py-2 text-sm font-medium text-slate-700 bg-slate-100 rounded-lg">
-            {brand.category}
-          </span>
         </div>
 
-        <!-- 特性标签 -->
-        <div class="flex flex-wrap gap-2 mb-6">
-          {(brand.pros || []).map(feature => (
-            <span class="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-blue-700 bg-blue-50 rounded-lg border border-blue-200">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              {feature}
+        <!-- 品牌头部 -->
+        <div class="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-xs">
+          <div class="flex items-start justify-between mb-6 flex-wrap gap-4">
+            <div class="flex-1 min-w-[200px]">
+              <h1 class="text-3xl sm:text-4xl font-black text-slate-900 mb-2">{brand.name}</h1>
+              <p class="text-base text-slate-600">{brand.description}</p>
+            </div>
+            <span class="px-4 py-2 text-xs font-bold text-slate-700 bg-slate-100 rounded-xl border border-slate-200">
+              {brand.category}
             </span>
-          ))}
-        </div>
+          </div>
 
-        <!-- 相关文章数量 -->
-        <div class="flex items-center gap-2 text-sm text-slate-600">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-          </svg>
-          <span>{brand.articleCount || 3} 篇相关文章</span>
-        </div>
-      </div>
-
-      <!-- 详细介绍 -->
-      <section class="card p-8 mb-8">
-        <h2 class="text-2xl font-bold text-slate-900 mb-6">详细介绍</h2>
-        <div class="prose prose-slate max-w-none">
-          <h3>品牌概述</h3>
-          <p>这是一个示例品牌介绍段落。在实际使用中，这里会包含该品牌的详细背景、发展历史、服务理念等信息。</p>
-
-          <h3>核心特性</h3>
-          <p>详细介绍该品牌的核心特性、技术优势、服务亮点等内容。</p>
-
-          <ul>
+          <!-- 特性标签 -->
+          <div class="flex flex-wrap gap-2 mb-6">
             {(brand.pros || []).map(feature => (
-              <li>{feature}：详细说明该特性的具体表现和使用体验。</li>
+              <span class="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-bold text-blue-700 bg-blue-50 rounded-lg border border-blue-200">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                {feature}
+              </span>
             ))}
-          </ul>
-
-          <h3>适用场景</h3>
-          <p>分析该品牌适合的使用场景，帮助用户判断是否符合自己的需求。</p>
-        </div>
-      </section>
-
-      <!-- 优缺点分析 -->
-      <section class="grid md:grid-cols-2 gap-6 mb-8">
-        <div class="card p-6">
-          <div class="flex items-center gap-2 mb-4">
-            <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-              <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold text-slate-900">优势</h3>
           </div>
-          <ul class="space-y-2 text-sm text-slate-600">
-            <li class="flex items-start gap-2">
-              <span class="text-green-600 mt-1">✓</span>
-              <span>示例优势点一：具体说明</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-green-600 mt-1">✓</span>
-              <span>示例优势点二：具体说明</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-green-600 mt-1">✓</span>
-              <span>示例优势点三：具体说明</span>
-            </li>
-          </ul>
-        </div>
 
-        <div class="card p-6">
-          <div class="flex items-center gap-2 mb-4">
-            <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center">
-              <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold text-slate-900">注意事项</h3>
+          <!-- 相关文章数量 -->
+          <div class="flex items-center gap-2 text-xs font-semibold text-slate-500 pt-4 border-t border-slate-100">
+            <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+            <span>{brand.articleCount || 3} 篇相关文章</span>
           </div>
-          <ul class="space-y-2 text-sm text-slate-600">
-            <li class="flex items-start gap-2">
-              <span class="text-amber-600 mt-1">!</span>
-              <span>示例注意点一：具体说明</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-amber-600 mt-1">!</span>
-              <span>示例注意点二：具体说明</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-amber-600 mt-1">!</span>
-              <span>示例注意点三：具体说明</span>
-            </li>
-          </ul>
         </div>
-      </section>
 
-      <!-- FAQ -->
-      <section class="mb-8">
-        <h2 class="text-2xl font-bold text-slate-900 mb-6">常见问题</h2>
-        <div class="space-y-4">
-          <details class="card group">
-            <summary class="px-6 py-4 cursor-pointer list-none flex items-center justify-between">
-              <span class="font-semibold text-slate-900">如何开始使用？</span>
-              <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </summary>
-            <div class="px-6 pb-4 text-slate-600 leading-relaxed">
-              这是一个示例问答。实际使用中，这里会包含详细的使用指导和配置步骤。
-            </div>
-          </details>
+        <!-- 详细介绍 -->
+        <section class="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-xs space-y-4">
+          <h2 class="text-xl font-black text-slate-900">详细介绍</h2>
+          <div class="prose prose-slate max-w-none text-xs sm:text-sm text-slate-600 leading-relaxed space-y-3">
+            <h3 class="font-bold text-slate-900 text-base">品牌概述</h3>
+            <p>这是一个示例品牌介绍段落。在实际使用中，这里会包含该品牌的详细背景、发展历史、服务理念等信息。</p>
 
-          <details class="card group">
-            <summary class="px-6 py-4 cursor-pointer list-none flex items-center justify-between">
-              <span class="font-semibold text-slate-900">支持哪些平台？</span>
-              <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </summary>
-            <div class="px-6 pb-4 text-slate-600 leading-relaxed">
-              这是一个示例问答。实际使用中，这里会详细列出支持的平台和系统版本。
-            </div>
-          </details>
+            <h3 class="font-bold text-slate-900 text-base">核心特性</h3>
+            <p>详细介绍该品牌的核心特性、技术优势、服务亮点等内容。</p>
 
-          <details class="card group">
-            <summary class="px-6 py-4 cursor-pointer list-none flex items-center justify-between">
-              <span class="font-semibold text-slate-900">有什么特殊要求？</span>
-              <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </summary>
-            <div class="px-6 pb-4 text-slate-600 leading-relaxed">
-              这是一个示例问答。实际使用中，这里会说明使用该品牌的特殊要求或注意事项。
-            </div>
-          </details>
-        </div>
-      </section>
+            <ul class="list-disc pl-5 space-y-1">
+              {(brand.pros || []).map(feature => (
+                <li><strong>{feature}</strong>：详细说明该特性的具体表现和使用体验。</li>
+              ))}
+            </ul>
 
-      <!-- 相关文章 -->
-      {relatedArticles.length > 0 && (
-        <section>
-          <h2 class="text-2xl font-bold text-slate-900 mb-6">相关文章</h2>
-          <div class="grid md:grid-cols-3 gap-6">
-            {relatedArticles.map(article => (
-              <ArticleCard article={article} showExcerpt={false} />
-            ))}
+            <h3 class="font-bold text-slate-900 text-base">适用场景</h3>
+            <p>分析该品牌适合的使用场景，帮助用户判断是否符合自己的需求。</p>
           </div>
         </section>
-      )}
+
+        <!-- 优缺点分析 -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-xs space-y-3">
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center">
+                <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-black text-slate-900">优势</h3>
+            </div>
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-600">
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-600 font-bold">✓</span>
+                <span>示例优势点一：具体说明</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-600 font-bold">✓</span>
+                <span>示例优势点二：具体说明</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-600 font-bold">✓</span>
+                <span>示例优势点三：具体说明</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-xs space-y-3">
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center">
+                <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-black text-slate-900">注意事项</h3>
+            </div>
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-600">
+              <li class="flex items-start gap-2">
+                <span class="text-amber-600 font-bold">!</span>
+                <span>示例注意点一：具体说明</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-amber-600 font-bold">!</span>
+                <span>示例注意点二：具体说明</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-amber-600 font-bold">!</span>
+                <span>示例注意点三：具体说明</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="space-y-4">
+          <h2 class="text-xl font-black text-slate-900">常见问题</h2>
+          <div class="space-y-3">
+            <details class="bg-white rounded-2xl border border-slate-200/80 p-4 shadow-xs group">
+              <summary class="cursor-pointer list-none flex items-center justify-between font-bold text-slate-900 text-sm">
+                <span>如何开始使用？</span>
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </summary>
+              <div class="mt-3 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                这是一个示例问答。实际使用中，这里会包含详细的使用指导和配置步骤。
+              </div>
+            </details>
+
+            <details class="bg-white rounded-2xl border border-slate-200/80 p-4 shadow-xs group">
+              <summary class="cursor-pointer list-none flex items-center justify-between font-bold text-slate-900 text-sm">
+                <span>支持哪些平台？</span>
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </summary>
+              <div class="mt-3 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                这是一个示例问答。实际使用中，这里会详细列出支持的平台和系统版本。
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- 相关文章 -->
+        {relatedArticles.length > 0 && (
+          <section class="space-y-4">
+            <h2 class="text-xl font-black text-slate-900">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {relatedArticles.map(article => (
+                <ArticleCard article={article} showExcerpt={false} />
+              ))}
+            </div>
+          </section>
+        )}
+
+      </section>
+
+      <!-- 右侧侧栏 (图2 模板) -->
+      <RightSidebar />
+
     </div>
+
   </main>
 
   <Footer />
