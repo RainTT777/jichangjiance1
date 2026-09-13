@@ -1,17 +1,22 @@
 ---
-const navItems = [
-  { label: '机场推荐', href: '/' },
-  { label: '机场评测', href: '/reviews/' },
-  { label: '客户端教程', href: '/blog/' },
-  { label: '客户端下载', href: '/downloads/' },
-  { label: 'AI工具推荐', href: '/topics/ai-tools/' },
-  { label: '流媒体工具', href: '/topics/streaming-unlock/' },
-  { label: '免费苹果ID', href: '/apple-id/' },
-  { label: '免费节点', href: '/free-nodes/' },
-  { label: '关于我们', href: '/about/' },
-];
-
 const currentPath = Astro.url.pathname;
+const cleanPath = currentPath.replace(/^\//, '').replace(/\/$/, '');
+const segments = cleanPath ? cleanPath.split('/') : [];
+const depth = segments.length;
+const prefix = depth === 0 ? './' : '../'.repeat(depth);
+const homeHref = depth === 0 ? './index.html' : prefix + 'index.html';
+
+const navItems = [
+  { label: '机场推荐', path: '', rawHref: '/' },
+  { label: '机场评测', path: 'reviews', rawHref: '/reviews/' },
+  { label: '客户端教程', path: 'blog', rawHref: '/blog/' },
+  { label: '客户端下载', path: 'downloads', rawHref: '/downloads/' },
+  { label: 'AI工具推荐', path: 'topics/ai-tools', rawHref: '/topics/ai-tools/' },
+  { label: '流媒体工具', path: 'topics/streaming-unlock', rawHref: '/topics/streaming-unlock/' },
+  { label: '免费苹果ID', path: 'apple-id', rawHref: '/apple-id/' },
+  { label: '免费节点', path: 'free-nodes', rawHref: '/free-nodes/' },
+  { label: '关于我们', path: 'about', rawHref: '/about/' },
+];
 ---
 
 <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
@@ -19,7 +24,7 @@ const currentPath = Astro.url.pathname;
     <div class="flex items-center justify-between h-16">
       
       <!-- Logo & Brand Title -->
-      <a href="/" class="flex items-center gap-3 group shrink-0">
+      <a href={homeHref} class="flex items-center gap-3 group shrink-0">
         <div class="w-9 h-9 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform">
           <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
@@ -37,10 +42,11 @@ const currentPath = Astro.url.pathname;
       <!-- Navigation Bar at Top Right (Internal Links, Image 2 Removed) -->
       <nav class="flex items-center gap-1 sm:gap-1.5 overflow-x-auto whitespace-nowrap scrollbar-none text-xs sm:text-sm font-semibold ml-4">
         {navItems.map((item) => {
-          const isActive = currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
+          const isActive = currentPath === item.rawHref || (item.rawHref !== '/' && currentPath.startsWith(item.rawHref));
+          const targetHref = item.path === '' ? homeHref : `${prefix}${item.path}/index.html`;
           return (
             <a
-              href={item.href}
+              href={targetHref}
               class={`px-3.5 py-2 rounded-xl transition-all flex items-center gap-1 ${
                 isActive
                   ? 'bg-blue-600 text-white font-bold shadow-sm'

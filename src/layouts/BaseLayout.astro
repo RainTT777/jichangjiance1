@@ -14,13 +14,25 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site);
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <!-- Tailwind CSS CDN Fallback & Config -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <!-- Tailwind CSS CDN Fallback & Config (Preserved in static HTML) -->
+    <script is:inline src="https://cdn.tailwindcss.com"></script>
+    <script is:inline>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
+              primary: {
+                50: '#eff6ff',
+                100: '#dbeafe',
+                500: '#3b82f6',
+                600: '#2563eb',
+                700: '#1d4ed8',
+                900: '#0f172a',
+              },
               brand: {
                 50: '#eff6ff',
                 100: '#dbeafe',
@@ -34,7 +46,7 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site);
         }
       }
     </script>
-    <style>
+    <style is:inline>
       svg { max-width: 100%; }
       img { max-width: 100%; }
     </style>

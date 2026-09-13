@@ -6,7 +6,7 @@ import Footer from '../../components/Footer.astro';
 const topAirports = [
   {
     name: "EdgeNova",
-    logo: "/edgenova_logo.png",
+    logo: "./edgenova_logo.png",
     tagline: "综合梯队首选 / 极速空载红利",
     architecture: "纯全线 IEPL 专线 + VLESS",
     price: "¥15/月 (折后约¥7.2/月)",
@@ -17,7 +17,7 @@ const topAirports = [
   },
   {
     name: "速界 (SpeedWorld)",
-    logo: "/sujie_logo.png",
+    logo: "./sujie_logo.png",
     tagline: "游戏加速优选 / 低丢包",
     architecture: "企业级 IEPL 专线 + 多协议",
     price: "¥15/月起，支持平民体验包",
@@ -28,7 +28,7 @@ const topAirports = [
   },
   {
     name: "可信云 (Kosing Cloud)",
-    logo: "/kexinyun_logo.png",
+    logo: "./kexinyun_logo.png",
     tagline: "隐私安全 / 不限设备数",
     architecture: "IEPL 物理专线 + 纯净 IP 池",
     price: "¥15/月 (年付¥96起)",
@@ -39,7 +39,7 @@ const topAirports = [
   },
   {
     name: "快狸 (Kuaili)",
-    logo: "/kuaili_logo.png",
+    logo: "./kuaili_logo.png",
     tagline: "大吞吐下载党 / 新手友好",
     architecture: "大带宽优化直连 + Vless",
     price: "极低平民价，全线 1.0x 计费",
@@ -50,7 +50,7 @@ const topAirports = [
   },
   {
     name: "云图机场 (Yuntu)",
-    logo: "/yuntu_logo.png",
+    logo: "./yuntu_logo.png",
     tagline: "商务外贸 / 金融级专线",
     architecture: "金融级物理专线 (不过 GFW)",
     price: "¥22/月起，全系标配 5 设备",
@@ -208,7 +208,7 @@ const topAirports = [
       <div id="edgenova" class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-xs relative overflow-hidden space-y-5">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
           <div class="flex items-center gap-4">
-            <img src="/edgenova_logo.png" alt="EdgeNova" class="w-14 h-14 rounded-2xl object-cover border border-slate-200 shadow-md shrink-0" />
+            <img src="./edgenova_logo.png" alt="EdgeNova" class="w-14 h-14 rounded-2xl object-cover border border-slate-200 shadow-md shrink-0" />
             <div>
               <div class="flex items-center gap-2">
                 <span class="px-2.5 py-0.5 bg-blue-600 text-white text-xs font-bold rounded-md font-mono">NO.01 综合首选</span>
@@ -276,7 +276,7 @@ const topAirports = [
       <div id="sujie" class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-xs relative overflow-hidden space-y-5">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
           <div class="flex items-center gap-4">
-            <img src="/sujie_logo.png" alt="速界" class="w-14 h-14 rounded-2xl object-cover border border-slate-200 shadow-md shrink-0" />
+            <img src="./sujie_logo.png" alt="速界" class="w-14 h-14 rounded-2xl object-cover border border-slate-200 shadow-md shrink-0" />
             <div>
               <div class="flex items-center gap-2">
                 <span class="px-2.5 py-0.5 bg-indigo-600 text-white text-xs font-bold rounded-md font-mono">游戏加速优选</span>
@@ -333,7 +333,7 @@ const topAirports = [
       <div id="kexinyun" class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-xs relative overflow-hidden space-y-5">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
           <div class="flex items-center gap-4">
-            <img src="/kexinyun_logo.png" alt="可信云" class="w-14 h-14 rounded-2xl object-cover border border-slate-200 shadow-md shrink-0" />
+            <img src="./kexinyun_logo.png" alt="可信云" class="w-14 h-14 rounded-2xl object-cover border border-slate-200 shadow-md shrink-0" />
             <div>
               <div class="flex items-center gap-2">
                 <span class="px-2.5 py-0.5 bg-emerald-600 text-white text-xs font-bold rounded-md font-mono">不限设备数</span>
@@ -381,7 +381,7 @@ const topAirports = [
       <div id="kuaili" class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-xs relative overflow-hidden space-y-5">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
           <div class="flex items-center gap-4">
-            <img src="/kuaili_logo.png" alt="快狸" class="w-14 h-14 rounded-2xl object-cover border border-slate-200 shadow-md shrink-0" />
+            <img src="./kuaili_logo.png" alt="快狸" class="w-14 h-14 rounded-2xl object-cover border border-slate-200 shadow-md shrink-0" />
             <div>
               <div class="flex items-center gap-2">
                 <span class="px-2.5 py-0.5 bg-amber-600 text-white text-xs font-bold rounded-md font-mono">吞吐怪兽</span>
@@ -429,7 +429,7 @@ const topAirports = [
       <div id="yuntu" class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-xs relative overflow-hidden space-y-5">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
           <div class="flex items-center gap-4">
-            <img src="/yuntu_logo.png" alt="云图" class="w-14 h-14 rounded-2xl object-cover border border-slate-200 shadow-md shrink-0" />
+            <img src="./yuntu_logo.png" alt="云图" class="w-14 h-14 rounded-2xl object-cover border border-slate-200 shadow-md shrink-0" />
             <div>
               <div class="flex items-center gap-2">
                 <span class="px-2.5 py-0.5 bg-blue-900 text-white text-xs font-bold rounded-md font-mono">金融级外贸 AI</span>
