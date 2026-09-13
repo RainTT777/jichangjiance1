@@ -340,39 +340,6 @@ const categories = [
           </div>
         </div>
 
-        <!-- 1. 置顶精选 Master 综合测评长文 -->
-        <div class="bg-white text-slate-800 rounded-3xl p-6 border border-slate-200/90 shadow-xs relative overflow-hidden">
-          <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
-            <span class="px-2.5 py-1 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-extrabold text-[11px] rounded-lg font-mono shadow-xs">
-              {masterArticle.badge}
-            </span>
-            <div class="flex items-center gap-3 text-xs text-slate-500 font-mono">
-              <span>📅 {masterArticle.date}</span>
-              <span>⏱️ {masterArticle.readTime}</span>
-              <span class="text-amber-600 font-bold">RATING: {masterArticle.score}</span>
-            </div>
-          </div>
-
-          <h2 class="text-lg sm:text-2xl font-extrabold text-slate-900 mb-2.5 hover:text-blue-600 transition-colors leading-snug">
-            <a href="#master-ranking-section">{masterArticle.title}</a>
-          </h2>
-
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
-            {masterArticle.summary}
-          </p>
-
-          <div class="flex items-center justify-between pt-3.5 border-t border-slate-100 flex-wrap gap-3">
-            <div class="flex items-center gap-2 text-xs text-slate-500 font-mono">
-              <span>作者: <strong class="text-slate-800">{masterArticle.author}</strong></span>
-              <span>· 包含 5 大梯队对比大表</span>
-            </div>
-
-            <a href="#master-ranking-section" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-xl transition-all shadow-xs flex items-center gap-1.5 border border-blue-400/30">
-              <span>阅读综合评测长文</span>
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-            </a>
-          </div>
-        </div>
 
         <!-- 2. 单体机场深度测评文章列表 (Review Articles Grid - 2列响应式) -->
         <div class="space-y-4">
