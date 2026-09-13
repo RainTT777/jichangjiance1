@@ -206,80 +206,93 @@ const airports = [
   <!-- 顶满两端 (Max width 1920px)，中间超宽 -->
   <main class="w-full max-w-[1920px] mx-auto px-3 sm:px-6 lg:px-8 py-6 min-h-screen">
     
-    <!-- 浅色极客/Datadog 实时监控台 Hero 3D 环绕走马灯首屏 -->
-    <div class="relative w-full bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950/90 border border-slate-700/50 rounded-3xl p-6 sm:p-10 lg:p-12 mb-8 shadow-xl overflow-hidden min-h-[460px] flex flex-col justify-center backdrop-blur-xl">
-      <!-- 极浅霓虹蓝微光光晕 -->
-      <div class="absolute -top-32 -left-32 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none"></div>
+    <!-- 科技感插画首屏 (Hero Sci-Fi Tech Illustration Banner & Scroll Transformation) -->
+    <div id="hero-illustration-banner" class="relative w-full bg-gradient-to-r from-[#0b1220] via-[#0f172a] to-[#131d35] border border-cyan-500/30 rounded-3xl p-6 sm:p-10 lg:p-12 mb-8 shadow-[0_0_50px_rgba(6,182,212,0.15)] overflow-hidden min-h-[480px] flex flex-col justify-center backdrop-blur-xl transition-all duration-700">
+      
+      <!-- 动态科技粒子与霓虹微光光晕 -->
+      <div id="hero-glow-1" class="absolute -top-32 -left-32 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none transition-all duration-700"></div>
+      <div id="hero-glow-2" class="absolute -bottom-32 -right-32 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl pointer-events-none transition-all duration-700"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:24px_24px] opacity-10 pointer-events-none"></div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-        <!-- 左侧文案与探针触发器 -->
-        <div class="lg:col-span-7 space-y-5">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1 bg-blue-950/60 border border-blue-500/30 rounded-full text-blue-400 text-xs font-mono font-semibold">
-            <span class="relative flex h-2 w-2">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-400"></span>
-            </span>
-            2026 全球机场连通性实时监测站
+        
+        <!-- 左侧文案与科技插画风格切换控制 -->
+        <div id="hero-left-text-box" class="lg:col-span-7 space-y-5 transition-transform duration-300">
+          
+          <div class="flex flex-wrap items-center gap-2">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 bg-cyan-950/70 border border-cyan-500/40 rounded-full text-cyan-300 text-xs font-mono font-semibold shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+              <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"></span>
+              </span>
+              2026 赛博全息机场插画大盘
+            </div>
+
+            <!-- 插画光影变幻手动切换器 -->
+            <div class="inline-flex items-center gap-1 p-0.5 bg-slate-900/80 border border-slate-700/80 rounded-full text-[11px] font-mono">
+              <button id="theme-btn-cyber" class="px-2.5 py-0.5 rounded-full bg-cyan-500 text-slate-950 font-bold transition-all shadow-xs">🌌 赛博黑客</button>
+              <button id="theme-btn-neon" class="px-2.5 py-0.5 rounded-full text-slate-300 hover:text-cyan-300 transition-all">⚡ 霓虹星核</button>
+              <button id="theme-btn-quantum" class="px-2.5 py-0.5 rounded-full text-slate-300 hover:text-cyan-300 transition-all">🌀 量子极光</button>
+            </div>
           </div>
 
           <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
-            实时节点测速 <br/>
-            <span class="bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-300 bg-clip-text text-transparent">与 90D SLO 观察大盘</span>
+            科技插画星轨 <br/>
+            <span class="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-300 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(56,189,248,0.3)]">9 大机场 Logo 360° 实时环绕</span>
           </h1>
 
           <p class="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
-            基于分布式探针全天候对站内 9 大顶级机场进行毫秒级延迟、丢包率及 4K/8K 流媒体解锁实测。数据透明客观，为您的科学上网体验保驾护航。
+            融合赛博朋克与全息量子艺术插画，全天候分布式探针测速，滑动页面可实时触发 3D 视差与星轨变幻演变。
           </p>
 
           <!-- 核心指标统计药丸 -->
           <div class="grid grid-cols-3 gap-3 pt-2 max-w-lg">
-            <div class="p-3.5 bg-slate-800/80 border border-slate-700/60 rounded-2xl backdrop-blur-md text-center">
-              <div class="text-[11px] text-slate-400 font-medium">已收录品牌</div>
-              <div class="text-xl font-extrabold font-mono text-white mt-1">9 大机场</div>
+            <div class="p-3.5 bg-slate-900/80 border border-cyan-500/30 rounded-2xl backdrop-blur-md text-center shadow-xs">
+              <div class="text-[11px] text-slate-400 font-medium">插画星轨收录</div>
+              <div class="text-xl font-extrabold font-mono text-cyan-300 mt-1">9 大机场</div>
             </div>
-            <div class="p-3.5 bg-slate-800/80 border border-slate-700/60 rounded-2xl backdrop-blur-md text-center">
+            <div class="p-3.5 bg-slate-900/80 border border-emerald-500/30 rounded-2xl backdrop-blur-md text-center shadow-xs">
               <div class="text-[11px] text-slate-400 font-medium">平均 SLO 在线率</div>
               <div class="text-xl font-extrabold font-mono text-emerald-400 mt-1">99.9%</div>
             </div>
-            <div class="p-3.5 bg-slate-800/80 border border-slate-700/60 rounded-2xl backdrop-blur-md text-center">
-              <div class="text-[11px] text-slate-400 font-medium">采样频率</div>
-              <div class="text-xl font-extrabold font-mono text-cyan-400 mt-1">30s 实时</div>
+            <div class="p-3.5 bg-slate-900/80 border border-blue-500/30 rounded-2xl backdrop-blur-md text-center shadow-xs">
+              <div class="text-[11px] text-slate-400 font-medium">滑动响应 HZ</div>
+              <div class="text-xl font-extrabold font-mono text-blue-400 mt-1">60FPS 实时</div>
             </div>
           </div>
 
           <!-- 按钮区域 -->
           <div class="pt-2 flex flex-wrap items-center gap-4">
-            <button id="hero-manual-refresh-btn" class="px-7 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-sm rounded-2xl shadow-lg shadow-blue-600/30 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-3 cursor-pointer border border-blue-400/30 group">
+            <button id="hero-manual-refresh-btn" class="px-7 py-3.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-extrabold text-sm rounded-2xl shadow-lg shadow-cyan-500/25 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-3 cursor-pointer border border-cyan-300/30 group">
               <svg class="w-5 h-5 text-white group-hover:rotate-180 transition-transform duration-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
               </svg>
-              <span class="tracking-wide">立即重新拉取探针数据</span>
+              <span class="tracking-wide">立即刷新量子探针</span>
             </button>
-            <a href="http://liangxinyun.club/" target="_blank" class="px-5 py-3.5 bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white font-semibold text-sm rounded-2xl border border-slate-700 transition-all flex items-center gap-2">
+            <a href="http://liangxinyun.club/" target="_blank" class="px-5 py-3.5 bg-slate-900/90 hover:bg-slate-800 text-slate-200 hover:text-white font-semibold text-sm rounded-2xl border border-slate-700/80 transition-all flex items-center gap-2">
               <span>官方 Telegram 频道</span>
-              <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+              <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
             </a>
           </div>
         </div>
 
-        <!-- 右侧 3D 圆形环绕走马灯 -->
+        <!-- 右侧 科技感插画核心 & 3D 机场 Logo 360° 环绕 -->
         <div class="lg:col-span-5 flex items-center justify-center relative py-6">
-          <div class="relative w-[340px] h-[340px] sm:w-[380px] sm:h-[380px] flex items-center justify-center">
+          <div id="hero-illust-container" class="relative w-[340px] h-[340px] sm:w-[380px] sm:h-[380px] flex items-center justify-center transition-transform duration-500">
 
-            <!-- 中心 3D 科技核心球 -->
-            <div class="relative z-20 w-32 h-32 sm:w-36 sm:h-36 rounded-full p-1 bg-gradient-to-tr from-blue-600/40 via-cyan-500/30 to-indigo-600/40 shadow-[0_0_60px_rgba(37,99,235,0.35)] backdrop-blur-md flex items-center justify-center group">
-              <div class="absolute inset-0 rounded-full border border-cyan-400/50 animate-ping opacity-30"></div>
-              <img src="./hero_tech_core.png" alt="Tech Core" class="w-full h-full object-cover rounded-full shadow-inner border border-white/30 group-hover:scale-105 transition-transform duration-500" />
+            <!-- 中心 科技感插画核心球 -->
+            <div class="relative z-20 w-32 h-32 sm:w-36 sm:h-36 rounded-full p-1 bg-gradient-to-tr from-cyan-500/50 via-blue-500/40 to-indigo-600/50 shadow-[0_0_60px_rgba(6,182,212,0.45)] backdrop-blur-md flex items-center justify-center group">
+              <div class="absolute inset-0 rounded-full border border-cyan-400/60 animate-ping opacity-40"></div>
+              <img src="./hero_tech_illust_core.png" id="hero-illust-core-img" alt="Sci-Fi Tech Illustration Core" class="w-full h-full object-cover rounded-full shadow-inner border border-white/40 group-hover:scale-105 transition-transform duration-700" />
             </div>
 
-            <!-- 轨道背景虚线圈 -->
-            <svg class="absolute inset-0 w-full h-full pointer-events-none z-0 stroke-cyan-500/30" viewBox="0 0 380 380">
+            <!-- 科技轨道背景光圈 -->
+            <svg class="absolute inset-0 w-full h-full pointer-events-none z-0 stroke-cyan-400/40" viewBox="0 0 380 380">
               <circle cx="190" cy="190" r="145" fill="none" stroke-width="1.5" stroke-dasharray="6 6" class="animate-[spin_60s_linear_infinite]"></circle>
-              <circle cx="190" cy="190" r="145" fill="none" stroke-width="1" stroke-opacity="0.15"></circle>
+              <circle cx="190" cy="190" r="145" fill="none" stroke-width="1" stroke-opacity="0.25"></circle>
             </svg>
 
-            <!-- 3D 旋转走马灯容器 (9大机场 Logo 360度环绕) -->
+            <!-- 3D 旋转走马灯容器 (9大机场 Logo 360度环绕插画核心) -->
             <style is:inline>
               @keyframes orbitSpin {
                 0% { transform: rotate(0deg); }
@@ -293,6 +306,7 @@ const airports = [
                 position: absolute;
                 inset: 0;
                 animation: orbitSpin 40s linear infinite;
+                transition: transform 0.2s ease-out;
               }
               .orbit-ring-spin:hover {
                 animation-play-state: paused;
@@ -319,9 +333,9 @@ const airports = [
               <!-- Item 1: EdgeNova (0 deg) -->
               <div class="orbit-item" style="position: absolute; top: 50%; left: 50%; width: 56px; height: 56px; margin-top: -28px; margin-left: -28px; transform: rotate(0deg) translate(145px); --angle: 0deg;">
                 <div class="orbit-item-counter">
-                  <a href="#edgenova" class="group/item relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-slate-800/90 border border-slate-700 rounded-2xl shadow-lg hover:border-blue-500 hover:scale-110 transition-all p-1">
+                  <a href="#edgenova" class="group/item relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-slate-900/90 border border-cyan-500/50 rounded-2xl shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:border-cyan-400 hover:scale-110 transition-all p-1">
                     <img src="./edgenova_logo.png" alt="EdgeNova" class="w-full h-full object-cover rounded-xl" />
-                    <span class="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity bg-slate-900 text-blue-400 text-[10px] px-2 py-0.5 rounded-md border border-slate-700 whitespace-nowrap z-30 font-semibold pointer-events-none">EdgeNova</span>
+                    <span class="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity bg-slate-900 text-cyan-300 text-[10px] px-2 py-0.5 rounded-md border border-cyan-500/40 whitespace-nowrap z-30 font-semibold pointer-events-none">EdgeNova</span>
                   </a>
                 </div>
               </div>
@@ -329,9 +343,9 @@ const airports = [
               <!-- Item 2: 速界 (40 deg) -->
               <div class="orbit-item" style="position: absolute; top: 50%; left: 50%; width: 56px; height: 56px; margin-top: -28px; margin-left: -28px; transform: rotate(40deg) translate(145px); --angle: 40deg;">
                 <div class="orbit-item-counter">
-                  <a href="#sujie" class="group/item relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-slate-800/90 border border-slate-700 rounded-2xl shadow-lg hover:border-blue-500 hover:scale-110 transition-all p-1">
+                  <a href="#sujie" class="group/item relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-slate-900/90 border border-cyan-500/50 rounded-2xl shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:border-cyan-400 hover:scale-110 transition-all p-1">
                     <img src="./sujie_logo.png" alt="速界" class="w-full h-full object-cover rounded-xl" />
-                    <span class="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity bg-slate-900 text-blue-400 text-[10px] px-2 py-0.5 rounded-md border border-slate-700 whitespace-nowrap z-30 font-semibold pointer-events-none">速界</span>
+                    <span class="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity bg-slate-900 text-cyan-300 text-[10px] px-2 py-0.5 rounded-md border border-cyan-500/40 whitespace-nowrap z-30 font-semibold pointer-events-none">速界</span>
                   </a>
                 </div>
               </div>
@@ -339,9 +353,9 @@ const airports = [
               <!-- Item 3: 可信云 (80 deg) -->
               <div class="orbit-item" style="position: absolute; top: 50%; left: 50%; width: 56px; height: 56px; margin-top: -28px; margin-left: -28px; transform: rotate(80deg) translate(145px); --angle: 80deg;">
                 <div class="orbit-item-counter">
-                  <a href="#kexinyun" class="group/item relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-slate-800/90 border border-slate-700 rounded-2xl shadow-lg hover:border-blue-500 hover:scale-110 transition-all p-1">
+                  <a href="#kexinyun" class="group/item relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-slate-900/90 border border-cyan-500/50 rounded-2xl shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:border-cyan-400 hover:scale-110 transition-all p-1">
                     <img src="./kexinyun_logo.png" alt="可信云" class="w-full h-full object-cover rounded-xl" />
-                    <span class="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity bg-slate-900 text-blue-400 text-[10px] px-2 py-0.5 rounded-md border border-slate-700 whitespace-nowrap z-30 font-semibold pointer-events-none">可信云</span>
+                    <span class="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity bg-slate-900 text-cyan-300 text-[10px] px-2 py-0.5 rounded-md border border-cyan-500/40 whitespace-nowrap z-30 font-semibold pointer-events-none">可信云</span>
                   </a>
                 </div>
               </div>
@@ -349,9 +363,9 @@ const airports = [
               <!-- Item 4: 快狸 (120 deg) -->
               <div class="orbit-item" style="position: absolute; top: 50%; left: 50%; width: 56px; height: 56px; margin-top: -28px; margin-left: -28px; transform: rotate(120deg) translate(145px); --angle: 120deg;">
                 <div class="orbit-item-counter">
-                  <a href="#kuaili" class="group/item relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-slate-800/90 border border-slate-700 rounded-2xl shadow-lg hover:border-blue-500 hover:scale-110 transition-all p-1">
+                  <a href="#kuaili" class="group/item relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-slate-900/90 border border-cyan-500/50 rounded-2xl shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:border-cyan-400 hover:scale-110 transition-all p-1">
                     <img src="./kuaili_logo.png" alt="快狸" class="w-full h-full object-cover rounded-xl" />
-                    <span class="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity bg-slate-900 text-blue-400 text-[10px] px-2 py-0.5 rounded-md border border-slate-700 whitespace-nowrap z-30 font-semibold pointer-events-none">快狸</span>
+                    <span class="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity bg-slate-900 text-cyan-300 text-[10px] px-2 py-0.5 rounded-md border border-cyan-500/40 whitespace-nowrap z-30 font-semibold pointer-events-none">快狸</span>
                   </a>
                 </div>
               </div>
@@ -359,9 +373,9 @@ const airports = [
               <!-- Item 5: 云图 (160 deg) -->
               <div class="orbit-item" style="position: absolute; top: 50%; left: 50%; width: 56px; height: 56px; margin-top: -28px; margin-left: -28px; transform: rotate(160deg) translate(145px); --angle: 160deg;">
                 <div class="orbit-item-counter">
-                  <a href="#yuntu" class="group/item relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-slate-800/90 border border-slate-700 rounded-2xl shadow-lg hover:border-blue-500 hover:scale-110 transition-all p-1">
+                  <a href="#yuntu" class="group/item relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-slate-900/90 border border-cyan-500/50 rounded-2xl shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:border-cyan-400 hover:scale-110 transition-all p-1">
                     <img src="./yuntu_logo.png" alt="云图" class="w-full h-full object-cover rounded-xl" />
-                    <span class="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity bg-slate-900 text-blue-400 text-[10px] px-2 py-0.5 rounded-md border border-slate-700 whitespace-nowrap z-30 font-semibold pointer-events-none">云图</span>
+                    <span class="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity bg-slate-900 text-cyan-300 text-[10px] px-2 py-0.5 rounded-md border border-cyan-500/40 whitespace-nowrap z-30 font-semibold pointer-events-none">云图</span>
                   </a>
                 </div>
               </div>
@@ -369,9 +383,9 @@ const airports = [
               <!-- Item 6: 极速 (200 deg) -->
               <div class="orbit-item" style="position: absolute; top: 50%; left: 50%; width: 56px; height: 56px; margin-top: -28px; margin-left: -28px; transform: rotate(200deg) translate(145px); --angle: 200deg;">
                 <div class="orbit-item-counter">
-                  <a href="#jisuyun" class="group/item relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-slate-800/90 border border-slate-700 rounded-2xl shadow-lg hover:border-blue-500 hover:scale-110 transition-all p-1">
+                  <a href="#jisuyun" class="group/item relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-slate-900/90 border border-cyan-500/50 rounded-2xl shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:border-cyan-400 hover:scale-110 transition-all p-1">
                     <img src="./jisuyun_logo.png" alt="极速" class="w-full h-full object-cover rounded-xl" />
-                    <span class="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity bg-slate-900 text-blue-400 text-[10px] px-2 py-0.5 rounded-md border border-slate-700 whitespace-nowrap z-30 font-semibold pointer-events-none">极速</span>
+                    <span class="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity bg-slate-900 text-cyan-300 text-[10px] px-2 py-0.5 rounded-md border border-cyan-500/40 whitespace-nowrap z-30 font-semibold pointer-events-none">极速</span>
                   </a>
                 </div>
               </div>
@@ -379,9 +393,9 @@ const airports = [
               <!-- Item 7: 瞬云 (240 deg) -->
               <div class="orbit-item" style="position: absolute; top: 50%; left: 50%; width: 56px; height: 56px; margin-top: -28px; margin-left: -28px; transform: rotate(240deg) translate(145px); --angle: 240deg;">
                 <div class="orbit-item-counter">
-                  <a href="#shunyun" class="group/item relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-slate-800/90 border border-slate-700 rounded-2xl shadow-lg hover:border-blue-500 hover:scale-110 transition-all p-1">
+                  <a href="#shunyun" class="group/item relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-slate-900/90 border border-cyan-500/50 rounded-2xl shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:border-cyan-400 hover:scale-110 transition-all p-1">
                     <img src="./shunyun_logo.png" alt="瞬云" class="w-full h-full object-cover rounded-xl" />
-                    <span class="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity bg-slate-900 text-blue-400 text-[10px] px-2 py-0.5 rounded-md border border-slate-700 whitespace-nowrap z-30 font-semibold pointer-events-none">瞬云</span>
+                    <span class="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity bg-slate-900 text-cyan-300 text-[10px] px-2 py-0.5 rounded-md border border-cyan-500/40 whitespace-nowrap z-30 font-semibold pointer-events-none">瞬云</span>
                   </a>
                 </div>
               </div>
@@ -389,9 +403,9 @@ const airports = [
               <!-- Item 8: 极连云 (280 deg) -->
               <div class="orbit-item" style="position: absolute; top: 50%; left: 50%; width: 56px; height: 56px; margin-top: -28px; margin-left: -28px; transform: rotate(280deg) translate(145px); --angle: 280deg;">
                 <div class="orbit-item-counter">
-                  <a href="#jilianyun" class="group/item relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-slate-800/90 border border-slate-700 rounded-2xl shadow-lg hover:border-blue-500 hover:scale-110 transition-all p-1">
+                  <a href="#jilianyun" class="group/item relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-slate-900/90 border border-cyan-500/50 rounded-2xl shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:border-cyan-400 hover:scale-110 transition-all p-1">
                     <img src="./jilianyun_logo.png" alt="极连云" class="w-full h-full object-cover rounded-xl" />
-                    <span class="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity bg-slate-900 text-blue-400 text-[10px] px-2 py-0.5 rounded-md border border-slate-700 whitespace-nowrap z-30 font-semibold pointer-events-none">极连云</span>
+                    <span class="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity bg-slate-900 text-cyan-300 text-[10px] px-2 py-0.5 rounded-md border border-cyan-500/40 whitespace-nowrap z-30 font-semibold pointer-events-none">极连云</span>
                   </a>
                 </div>
               </div>
@@ -399,9 +413,9 @@ const airports = [
               <!-- Item 9: 光年梯 (320 deg) -->
               <div class="orbit-item" style="position: absolute; top: 50%; left: 50%; width: 56px; height: 56px; margin-top: -28px; margin-left: -28px; transform: rotate(320deg) translate(145px); --angle: 320deg;">
                 <div class="orbit-item-counter">
-                  <a href="#guangnianti" class="group/item relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-slate-800/90 border border-slate-700 rounded-2xl shadow-lg hover:border-blue-500 hover:scale-110 transition-all p-1">
+                  <a href="#guangnianti" class="group/item relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-slate-900/90 border border-cyan-500/50 rounded-2xl shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:border-cyan-400 hover:scale-110 transition-all p-1">
                     <img src="./guangnianti_logo.png" alt="光年梯" class="w-full h-full object-cover rounded-xl" />
-                    <span class="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity bg-slate-900 text-blue-400 text-[10px] px-2 py-0.5 rounded-md border border-slate-700 whitespace-nowrap z-30 font-semibold pointer-events-none">光年梯</span>
+                    <span class="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity bg-slate-900 text-cyan-300 text-[10px] px-2 py-0.5 rounded-md border border-cyan-500/40 whitespace-nowrap z-30 font-semibold pointer-events-none">光年梯</span>
                   </a>
                 </div>
               </div>
@@ -411,6 +425,82 @@ const airports = [
         </div>
       </div>
     </div>
+
+    <!-- 滚动/滑动实时变幻与画风切换脚本 (Scroll Dynamic Transformation Script) -->
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', () => {
+        const heroBanner = document.getElementById('hero-illustration-banner');
+        const glow1 = document.getElementById('hero-glow-1');
+        const glow2 = document.getElementById('hero-glow-2');
+        const illustCore = document.getElementById('hero-illust-core-img');
+        const illustContainer = document.getElementById('hero-illust-container');
+        const leftTextBox = document.getElementById('hero-left-text-box');
+
+        const btnCyber = document.getElementById('theme-btn-cyber');
+        const btnNeon = document.getElementById('theme-btn-neon');
+        const btnQuantum = document.getElementById('theme-btn-quantum');
+
+        // Mode styles state
+        const modes = {
+          cyber: {
+            bg: 'from-[#0b1220] via-[#0f172a] to-[#131d35]',
+            glow1: 'bg-cyan-500/20',
+            glow2: 'bg-blue-600/20',
+            border: 'border-cyan-500/30'
+          },
+          neon: {
+            bg: 'from-[#1a0b2e] via-[#110f29] to-[#0d1b3a]',
+            glow1: 'bg-purple-500/30',
+            glow2: 'bg-pink-500/25',
+            border: 'border-purple-500/40'
+          },
+          quantum: {
+            bg: 'from-[#061c1d] via-[#08232c] to-[#0f1a30]',
+            glow1: 'bg-emerald-400/25',
+            glow2: 'bg-cyan-400/25',
+            border: 'border-emerald-500/40'
+          }
+        };
+
+        function setMode(modeKey) {
+          const m = modes[modeKey];
+          if (!m || !heroBanner) return;
+          heroBanner.className = `relative w-full bg-gradient-to-r ${m.bg} border ${m.border} rounded-3xl p-6 sm:p-10 lg:p-12 mb-8 shadow-[0_0_50px_rgba(6,182,212,0.15)] overflow-hidden min-h-[480px] flex flex-col justify-center backdrop-blur-xl transition-all duration-700`;
+          if (glow1) glow1.className = `absolute -top-32 -left-32 w-96 h-96 ${m.glow1} rounded-full blur-3xl pointer-events-none transition-all duration-700`;
+          if (glow2) glow2.className = `absolute -bottom-32 -right-32 w-96 h-96 ${m.glow2} rounded-full blur-3xl pointer-events-none transition-all duration-700`;
+          
+          [btnCyber, btnNeon, btnQuantum].forEach(b => {
+            if (b) {
+              b.className = 'px-2.5 py-0.5 rounded-full text-slate-300 hover:text-cyan-300 transition-all';
+            }
+          });
+          const activeBtn = modeKey === 'cyber' ? btnCyber : modeKey === 'neon' ? btnNeon : btnQuantum;
+          if (activeBtn) activeBtn.className = 'px-2.5 py-0.5 rounded-full bg-cyan-500 text-slate-950 font-bold transition-all shadow-xs';
+        }
+
+        if (btnCyber) btnCyber.addEventListener('click', () => setMode('cyber'));
+        if (btnNeon) btnNeon.addEventListener('click', () => setMode('neon'));
+        if (btnQuantum) btnQuantum.addEventListener('click', () => setMode('quantum'));
+
+        // 页面滑动/滚动实时视差与色温演变
+        let lastScrollY = window.scrollY;
+        window.addEventListener('scroll', () => {
+          const scrolled = window.scrollY;
+          if (scrolled < 700) {
+            const factor = scrolled / 700;
+            if (illustCore) {
+              illustCore.style.transform = `scale(${1 + factor * 0.15}) rotate(${scrolled * 0.12}deg)`;
+            }
+            if (illustContainer) {
+              illustContainer.style.transform = `translateY(${factor * 20}px) scale(${1 - factor * 0.05})`;
+            }
+            if (leftTextBox) {
+              leftTextBox.style.transform = `translateY(${factor * 12}px)`;
+            }
+          }
+        }, { passive: true });
+      });
+    </script>
     
     <!-- 三栏布局: 左侧边栏 (280px) + 中间检测大盘 (自适应拉宽 flex-1) + 右侧边栏 (280px) -->
     <div class="flex flex-col lg:flex-row gap-6 items-start">
