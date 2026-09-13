@@ -27,7 +27,7 @@ tags: ["EdgeNova", "IEPL专线", "VLESS协议", "流媒体解锁", "优惠码"]
 | **流媒体解锁** | S+ 级（Netflix 全区非自制剧、Disney+、YouTube Premium、TikTok 全绿解锁） |
 | **AI 生产力兼容** | 原生纯净 IP 池，稳定直通 ChatGPT (GPT-4o)、Claude 3.5、Google Gemini |
 | **起步资费与优惠** | 月付 ¥15 起；使用 8 折优惠码 **xk808** 购买年付套餐折合 ¥6.5/月（实付仅需 ¥78.4/年） |
-| **官网直达** | [点击进入 EdgeNova 官网直达通道](https://cristyc.edgenovaaff.cc/#/register?code=WWiIvxL9) |
+| **官网直达** | <a href="https://cristyc.edgenovaaff.cc/#/register?code=WWiIvxL9" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-black text-xs sm:text-sm rounded-xl shadow-xs transition-all no-underline"><span>直达 EdgeNova 官网</span><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a> |
 
 ---
 
@@ -109,15 +109,54 @@ EdgeNova 对主流开源工具及新手环境均提供了良好的兼容：
 
 EdgeNova 凭借 **IEPL 物理专线**、**VLESS 协议架构**、**全节点 1.0x 真实计费** 以及 **年付折后仅需 78.4 元（折合 6.5 元/月）** 的定价，在百元内价位段展现出了极高的综合竞争力。无论是作为日常主力翻墙梯子，还是作为防断连的高速备用专线，都非常值得在当前的空载红利期上车体验。
 
-[前往 EdgeNova 官网立即注册并开启高速专线体验 (结账输入优惠码 xk808 享 8 折)](https://cristyc.edgenovaaff.cc/#/register?code=WWiIvxL9)
+<div class="my-8 text-center">
+  <a href="https://cristyc.edgenovaaff.cc/#/register?code=WWiIvxL9" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black text-sm sm:text-base rounded-2xl shadow-md hover:shadow-lg transition-all border border-blue-400/30 no-underline group cursor-pointer">
+    <span>前往 EdgeNova 官网立即注册并开启高速专线 (输入优惠码 xk808 享 8 折)</span>
+    <svg class="w-5 h-5 text-white group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+  </a>
+</div>
 
-### 常见问题解答
+### 常见问题解答 (FAQ)
 
-**Q1：8 折优惠码 xk808 只能买年付吗？**  
-A：全场通用。无论选购的是 ¥98 基础年付套餐，还是大流量的高级月付/季付套餐，在结算页面输入 **xk808** 均可直接享受立减 20% 的 8 折优惠。
+<div class="space-y-4 my-6">
 
-**Q2：不限制设备连接数，多设备同时用会降速吗？**  
-A：官方没有针对设备并发数量做物理限制，也不会对多设备同时在线进行恶意限速。实际速度取决于本地宽带能力以及所选节点的空闲带宽，只要套餐内的月度总流量没有耗尽即可正常使用。
+  <details class="group bg-white rounded-2xl border border-slate-200/90 shadow-2xs overflow-hidden transition-all cursor-pointer">
+    <summary class="flex items-center justify-between p-5 font-extrabold text-slate-900 text-sm sm:text-base select-none hover:bg-blue-50/50 transition-colors">
+      <span class="flex items-center gap-2.5">
+        <span class="px-2.5 py-1 bg-blue-50 text-blue-700 rounded-md font-mono text-xs font-black border border-blue-200">Q1</span>
+        8 折优惠码 xk808 只能买年付吗？
+      </span>
+      <span class="text-slate-400 group-open:rotate-180 transition-transform duration-200 shrink-0 font-bold ml-2">▼</span>
+    </summary>
+    <div class="px-5 pb-5 pt-2 text-slate-600 text-sm sm:text-base leading-relaxed border-t border-slate-100 bg-slate-50/30">
+      <p>全场通用。无论选购的是 ¥98 基础年付套餐，还是大流量的高级月付/季付套餐，在结算页面输入 <strong>xk808</strong> 均可直接享受立减 20% 的 8 折优惠。</p>
+    </div>
+  </details>
 
-**Q3：为什么导入订阅后测速显示全部超时？**  
-A：首先检查本地客户端内核是否已升级至支持 VLESS 协议的最新版本；其次检查本地电脑/手机系统时间是否准确。专线 TLS 握手对时间同步要求严格，系统时间误差超过 60 秒会导致连接握手失败，校准网络时间后重新更新订阅即可解决。
+  <details class="group bg-white rounded-2xl border border-slate-200/90 shadow-2xs overflow-hidden transition-all cursor-pointer">
+    <summary class="flex items-center justify-between p-5 font-extrabold text-slate-900 text-sm sm:text-base select-none hover:bg-blue-50/50 transition-colors">
+      <span class="flex items-center gap-2.5">
+        <span class="px-2.5 py-1 bg-blue-50 text-blue-700 rounded-md font-mono text-xs font-black border border-blue-200">Q2</span>
+        不限制设备连接数，多设备同时用会降速吗？
+      </span>
+      <span class="text-slate-400 group-open:rotate-180 transition-transform duration-200 shrink-0 font-bold ml-2">▼</span>
+    </summary>
+    <div class="px-5 pb-5 pt-2 text-slate-600 text-sm sm:text-base leading-relaxed border-t border-slate-100 bg-slate-50/30">
+      <p>官方没有针对设备并发数量做物理限制，也不会对多设备同时在线进行恶意限速。实际速度取决于本地宽带能力以及所选节点的空闲带宽，只要套餐内的月度总流量没有耗尽即可正常使用。</p>
+    </div>
+  </details>
+
+  <details class="group bg-white rounded-2xl border border-slate-200/90 shadow-2xs overflow-hidden transition-all cursor-pointer">
+    <summary class="flex items-center justify-between p-5 font-extrabold text-slate-900 text-sm sm:text-base select-none hover:bg-blue-50/50 transition-colors">
+      <span class="flex items-center gap-2.5">
+        <span class="px-2.5 py-1 bg-blue-50 text-blue-700 rounded-md font-mono text-xs font-black border border-blue-200">Q3</span>
+        为什么导入订阅后测速显示全部超时？
+      </span>
+      <span class="text-slate-400 group-open:rotate-180 transition-transform duration-200 shrink-0 font-bold ml-2">▼</span>
+    </summary>
+    <div class="px-5 pb-5 pt-2 text-slate-600 text-sm sm:text-base leading-relaxed border-t border-slate-100 bg-slate-50/30">
+      <p>首先检查本地客户端内核是否已升级至支持 VLESS 协议的最新版本；其次检查本地电脑/手机系统时间是否准确。专线 TLS 握手对时间同步要求严格，系统时间误差超过 60 秒会导致连接握手失败，校准网络时间后重新更新订阅即可解决。</p>
+    </div>
+  </details>
+
+</div>
