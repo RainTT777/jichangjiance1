@@ -315,6 +315,78 @@ const categories = [
           </div>
         </div>
 
+        <!-- 替换区域：机场智能 PK 实时对比分析工具 -->
+        <div class="bg-white rounded-3xl border border-blue-200/90 p-6 sm:p-8 shadow-xs space-y-6">
+          
+          <div class="flex items-center justify-between border-b border-slate-100 pb-4 flex-wrap gap-2">
+            <div>
+              <h2 class="text-xl sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+                <span>⚡ 2026 机场智能 PK 对比分析工具</span>
+              </h2>
+              <p class="text-xs sm:text-sm text-slate-500 mt-1 font-medium">选择任意 2 个机场，基于实时探针实测数据（延迟/丢包/解锁/架构/资费）进行智能优劣比对与选购判决</p>
+            </div>
+            <span class="px-3 py-1 bg-blue-50 text-blue-700 border border-blue-200 text-xs font-mono font-bold rounded-full">
+              LIVE PROBE DATA
+            </span>
+          </div>
+
+          <!-- 2 个机场选择与输入表单 -->
+          <div class="grid grid-cols-1 md:grid-cols-11 gap-4 items-center bg-gradient-to-r from-blue-50/60 via-slate-50 to-indigo-50/60 p-5 rounded-2xl border border-slate-200/80">
+            
+            <!-- 机场 A 选择框 -->
+            <div class="md:col-span-5 space-y-2">
+              <label for="pk-select-a" class="block text-xs font-bold text-slate-700 uppercase font-mono">
+                🅰️ 选择 / 填入第一个机场 (Airport A)
+              </label>
+              <div class="relative">
+                <select id="pk-select-a" class="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-sm font-bold text-slate-800 shadow-2xs focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all cursor-pointer">
+                  {reviewArticles.map((art, i) => (
+                    <option value={art.id} selected={i === 0}>
+                      {art.title.split(' ')[0]} ({art.badge}) - 评分 {art.rating}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <!-- 中间 VS 标识 -->
+            <div class="md:col-span-1 flex items-center justify-center py-2 md:py-0">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-600 text-white font-black text-xs font-mono flex items-center justify-center shadow-md animate-pulse shrink-0">
+                VS
+              </div>
+            </div>
+
+            <!-- 机场 B 选择框 -->
+            <div class="md:col-span-5 space-y-2">
+              <label for="pk-select-b" class="block text-xs font-bold text-slate-700 uppercase font-mono">
+                🅱️ 选择 / 填入第二个机场 (Airport B)
+              </label>
+              <div class="relative">
+                <select id="pk-select-b" class="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-sm font-bold text-slate-800 shadow-2xs focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all cursor-pointer">
+                  {reviewArticles.map((art, i) => (
+                    <option value={art.id} selected={i === 1}>
+                      {art.title.split(' ')[0]} ({art.badge}) - 评分 {art.rating}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 开始对比按钮 -->
+          <div class="text-center">
+            <button id="run-pk-btn" class="px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black text-sm rounded-xl shadow-md hover:shadow-lg transition-all border border-blue-400/30 cursor-pointer flex items-center justify-center gap-2 mx-auto">
+              <svg class="w-5 h-5 text-white animate-spin hidden" id="pk-loading-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+              <span>⚡ 启动实时探针对比与优劣分析</span>
+            </button>
+          </div>
+
+          <!-- 对比结果容器 (动态生成) -->
+          <div id="pk-result-container"></div>
+
+        </div>
+
         <!-- 评测文章分类 Filter Tabs -->
         <div class="bg-white rounded-2xl border border-slate-200/80 p-4 shadow-xs">
           <div class="flex items-center justify-between flex-wrap gap-3">
@@ -664,43 +736,339 @@ const categories = [
 
   </main>
 
-  <!-- 文章分类 Filter 互动脚本 -->
+  <!-- 文章分类 Filter & 机场 PK 互动脚本 -->
   <script is:inline>
     document.addEventListener('DOMContentLoaded', () => {
+      // 1. 文章分类 Filter 脚本
       const tabContainer = document.getElementById('review-filter-tabs');
       const articleGrid = document.getElementById('review-articles-grid');
       const countLabel = document.getElementById('visible-article-count');
 
-      if (!tabContainer || !articleGrid) return;
+      if (tabContainer && articleGrid) {
+        const buttons = tabContainer.querySelectorAll('button');
+        const articles = articleGrid.querySelectorAll('.article-card-item');
 
-      const buttons = tabContainer.querySelectorAll('button');
-      const articles = articleGrid.querySelectorAll('.article-card-item');
+        buttons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const selectedCat = btn.getAttribute('data-category');
 
-      buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const selectedCat = btn.getAttribute('data-category');
+            buttons.forEach(b => {
+              b.className = 'px-4 py-2.5 rounded-xl transition-all border bg-slate-50 text-slate-700 hover:bg-blue-50 hover:text-blue-600 border-slate-200/70';
+            });
+            btn.className = 'px-4 py-2.5 rounded-xl transition-all border bg-blue-600 text-white font-bold border-blue-600 shadow-xs';
 
-          // Highlight button
-          buttons.forEach(b => {
-            b.className = 'px-3.5 py-2 rounded-xl transition-all border bg-slate-50 text-slate-700 hover:bg-blue-50 hover:text-blue-600 border-slate-200/70';
+            let visibleCount = 0;
+            articles.forEach(art => {
+              const artCat = art.getAttribute('data-category');
+              if (selectedCat === '全部评测文章' || artCat === selectedCat) {
+                art.style.display = 'flex';
+                visibleCount++;
+              } else {
+                art.style.display = 'none';
+              }
+            });
+
+            if (countLabel) countLabel.textContent = visibleCount;
           });
-          btn.className = 'px-3.5 py-2 rounded-xl transition-all border bg-blue-600 text-white font-bold border-blue-600 shadow-xs';
-
-          // Filter articles
-          let visibleCount = 0;
-          articles.forEach(art => {
-            const artCat = art.getAttribute('data-category');
-            if (selectedCat === '全部评测文章' || artCat === selectedCat) {
-              art.style.display = 'flex';
-              visibleCount++;
-            } else {
-              art.style.display = 'none';
-            }
-          });
-
-          if (countLabel) countLabel.textContent = visibleCount;
         });
-      });
+      }
+
+      // 2. 机场 PK 智能对比系统脚本
+      const pkSelectA = document.getElementById('pk-select-a');
+      const pkSelectB = document.getElementById('pk-select-b');
+      const runPkBtn = document.getElementById('run-pk-btn');
+      const pkLoadingIcon = document.getElementById('pk-loading-icon');
+      const pkResultContainer = document.getElementById('pk-result-container');
+
+      const airportsData = {
+        edgenova: {
+          id: "edgenova",
+          name: "EdgeNova",
+          logo: "./edgenova_logo.png",
+          rating: 9.8,
+          badge: "NO.01 综合首选",
+          architecture: "纯血 IEPL 物理专线 + VLESS 协议",
+          ping: "38.4 ms",
+          loss: "0.00%",
+          speed: "980 Mbps",
+          unlock: "Netflix 4K / ChatGPT 4o / Disney+",
+          price: "¥15/月 (折后约¥7.2/月)",
+          highlights: ["物理内网专线抗干扰", "无感秒开 4K/8K 视频", "原生纯净 IP 解锁 AI"],
+          verdict: "EdgeNova 凭借纯血物理内网专线与高达 9.8 评分居全站第一，晚高峰延迟丢包表现极致稳定，推荐作为主力科学上网的首选。",
+          link: "https://cristyc.edgenovaaff.cc/#/register?code=WWiIvxL9",
+          reviewLink: "/reviews/edgenova-2026/index.html"
+        },
+        sujie: {
+          id: "sujie",
+          name: "速界 SpeedWorld",
+          logo: "./sujie_logo.png",
+          rating: 9.6,
+          badge: "电竞游戏优选",
+          architecture: "企业级 IEPL 专线 + 多协议",
+          ping: "39.2 ms",
+          loss: "0.00%",
+          speed: "950 Mbps",
+          unlock: "外服游戏低抖动 / Discord 语音 / 4K",
+          price: "¥15/月起 (平民体验包)",
+          highlights: ["极低 Jitter 抖动", "真实 1.0 倍率不限设备", "游戏专线低丢包"],
+          verdict: "专为外服游戏玩家和 Steam/Discord 用户打造，Low-jitter 表现极佳，适合游戏发烧友与对延迟抖动敏感的用户。",
+          link: "https://aaa.jichang.best/#/register?code=M4UujXjz",
+          reviewLink: "/blog/how-to-choose-airport/index.html"
+        },
+        kexinyun: {
+          id: "kexinyun",
+          name: "可信云 Kosing",
+          logo: "./kexinyun_logo.png",
+          rating: 9.5,
+          badge: "不限并发设备",
+          architecture: "IEPL 物理专线 + 纯净 IP 池",
+          ping: "43.1 ms",
+          loss: "0.00%",
+          speed: "910 Mbps",
+          unlock: "隐私加密 / 全设备共享 / ChatGPT",
+          price: "¥15/月 (年付¥96起)",
+          highlights: ["全过程无日志记录", "不限设备同时连接", "年付折合仅 8 元/月"],
+          verdict: "主打无日志与不限连接设备数量，年付性价比极高，适合家庭多设备共享与高隐私要求用户。",
+          link: "http://liangxinyun.club/",
+          reviewLink: "/blog/connection-troubleshooting/index.html"
+        },
+        kuaili: {
+          id: "kuaili",
+          name: "快狸 Kuaili",
+          logo: "./kuaili_logo.png",
+          rating: 9.4,
+          badge: "海量吞吐怪兽",
+          architecture: "大带宽 UDP 优化 + VLESS",
+          ping: "41.5 ms",
+          loss: "0.01%",
+          speed: "300 MB/s",
+          unlock: "大文件下载 / YouTube 4K / ChatGPT",
+          price: "极低平民价 (1.0x计费)",
+          highlights: ["300MB/s 极限峰值带宽", "不设隐形高倍率", "新手一键配置"],
+          verdict: "拥有极限吞吐能力（实测高达 300MB/s），且无隐形高倍率扣费，极适合大文件高速下载与重度流媒体发烧友。",
+          link: "http://liangxinyun.club/",
+          reviewLink: "/blog/line-type-comparison/index.html"
+        },
+        yuntu: {
+          id: "yuntu",
+          name: "云图 Yuntu",
+          logo: "./yuntu_logo.png",
+          rating: 9.3,
+          badge: "金融级外贸AI",
+          architecture: "金融级物理专线 (不过 GFW)",
+          ping: "37.8 ms",
+          loss: "0.00%",
+          speed: "880 Mbps",
+          unlock: "ChatGPT 4o / Claude 3.5 / 外贸风控",
+          price: "¥22/月起 (标配5设备)",
+          highlights: ["真物理专线不过 GFW", "商业白名单纯净 IP", "外贸/AI 生产力首选"],
+          verdict: "拥有针对 AI (ChatGPT / Claude) 和外贸风控白名单的独享纯净 IP，是跨境电商与 AI 生产力的最佳利器。",
+          link: "https://gnt001.gntvipaff.cc/#/?code=yAzo4IqK",
+          reviewLink: "/blog/chatgpt-access-guide/index.html"
+        },
+        jisuyun: {
+          id: "jisuyun",
+          name: "极速机场",
+          logo: "./jisuyun_logo.png",
+          rating: 9.1,
+          badge: "三网精品直连",
+          architecture: "三网 CN2 GIA / 9929 / CMIN2",
+          ping: "28.5 ms",
+          loss: "0.00%",
+          speed: "990 Mbps",
+          unlock: "Apple TV / Netflix 4K / ChatGPT",
+          price: "¥18/月起",
+          highlights: ["28ms 国内极低延迟", "三网 CN2 GIA 9929", "24小时无视晚高峰"],
+          verdict: "采用三网顶级精品直连线路，国内响应延迟低至 28ms，非常适合重视国内首包握手延迟的用户。",
+          link: "http://liangxinyun.club/",
+          reviewLink: "/blog/what-is-airport-service/index.html"
+        },
+        shunyun: {
+          id: "shunyun",
+          name: "瞬云 Shunyun",
+          logo: "./shunyun_logo.png",
+          rating: 9.0,
+          badge: "按量备用首选",
+          architecture: "BGP 中转 + Trojan",
+          ping: "45.2 ms",
+          loss: "0.02%",
+          speed: "800 Mbps",
+          unlock: "Disney+ / ChatGPT / 4K秒开",
+          price: "¥12/月起 (按量)",
+          highlights: ["灵活按量计费模式", "轻量极速握手连接", "备用永不失联"],
+          verdict: "支持灵活按量扣费，随用随清不浪费，是主线机场之外最为推荐的平价备用路线。",
+          link: "https://aaa.jichang.best/#/register?code=M4UujXjz",
+          reviewLink: "/blog/android-clients-comparison/index.html"
+        },
+        jilianyun: {
+          id: "jilianyun",
+          name: "极连云 Jilianyun",
+          logo: "./jilianyun_logo.png",
+          rating: 8.9,
+          badge: "低延迟性价比",
+          architecture: "多站 BGP 中转 + V2Ray",
+          ping: "48.0 ms",
+          loss: "0.03%",
+          speed: "750 Mbps",
+          unlock: "稳定低延迟 / 4K视频 / ChatGPT",
+          price: "¥10/月起",
+          highlights: ["多站 BGP 智能中转", "月付 10 元极低门槛", "适合日常办公与观影"],
+          verdict: "入门门槛低至 10 元/月，中转网络平稳，适合预算有限但追求高性价比的日常科学上网用户。",
+          link: "https://a1917.jlyvipaff.com/#/?code=vT32Xl9X",
+          reviewLink: "/blog/clash-windows-setup/index.html"
+        },
+        guangnianti: {
+          id: "guangnianti",
+          name: "光年梯 Guangnianti",
+          logo: "./guangnianti_logo.png",
+          rating: 8.8,
+          badge: "大流量性价比",
+          architecture: "VLESS + Trojan + AES-256",
+          ping: "52.1 ms",
+          loss: "0.04%",
+          speed: "1020 Mbps",
+          unlock: "8K 视频 / 大流量 / ChatGPT",
+          price: "¥9.9/月起",
+          highlights: ["9.9 元起大流量套餐", "AES-256 高强加密", "1020M 海量带宽秒开"],
+          verdict: "9.9 元起即包含超大基础流量，带宽跑满 1000M+，非常适合需要大量下载与看视频的用户。",
+          link: "https://gnt001.gntvipaff.cc/#/?code=yAzo4IqK",
+          reviewLink: "/blog/ios-shadowrocket-guide/index.html"
+        }
+      };
+
+      function renderPKResult() {
+        if (!pkSelectA || !pkSelectB || !pkResultContainer) return;
+        
+        const idA = pkSelectA.value;
+        const idB = pkSelectB.value;
+
+        if (idA === idB) {
+          pkResultContainer.innerHTML = `
+            <div class="p-5 bg-amber-50 border border-amber-200 rounded-2xl text-amber-900 text-sm text-center font-bold">
+              ⚠️ 请选择两个不同的机场进行对比！
+            </div>
+          `;
+          return;
+        }
+
+        const a = airportsData[idA];
+        const b = airportsData[idB];
+
+        const winner = a.rating >= b.rating ? a : b;
+        const loser = a.rating >= b.rating ? b : a;
+        const scoreDiff = (Math.abs(a.rating - b.rating)).toFixed(1);
+
+        pkResultContainer.innerHTML = `
+          <div class="space-y-5 animate-fadeIn pt-2 border-t border-slate-100">
+            
+            <!-- 对比结果标题 & AI 胜出判决 -->
+            <div class="bg-gradient-to-r from-blue-50 via-indigo-50 to-emerald-50 border border-blue-200/80 rounded-2xl p-5 shadow-2xs">
+              <div class="flex items-center gap-3 mb-2 flex-wrap">
+                <span class="px-3 py-1 bg-blue-600 text-white font-mono font-black text-xs rounded-lg shadow-2xs">
+                  🏆 PK 结果判定
+                </span>
+                <span class="text-sm sm:text-base font-extrabold text-slate-900">
+                  【${winner.name}】 以 +${scoreDiff} 分的实测综合优势胜出！
+                </span>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                💡 <strong>智能选购建议：</strong>${winner.verdict} 若您侧重 ${loser.badge.replace(/^[A-Z0-9.\s]+/, '')} 需求，【${loser.name}】 亦是非常优秀的选择。
+              </p>
+            </div>
+
+            <!-- 参数对比明细表 -->
+            <div class="overflow-x-auto rounded-2xl border border-slate-200/80 shadow-2xs">
+              <table class="w-full text-left text-xs sm:text-sm border-collapse min-w-[640px]">
+                <thead>
+                  <tr class="bg-slate-100 text-slate-900 font-mono text-xs border-b border-slate-200">
+                    <th class="py-3.5 px-4 font-bold border-b border-slate-200 w-1/4">实测指标项目</th>
+                    <th class="py-3.5 px-4 font-extrabold border-b border-slate-200 text-blue-700 w-3/8">
+                      <div class="flex items-center gap-2">
+                        <img src="${a.logo}" class="w-6 h-6 rounded-md object-cover border border-slate-200" />
+                        <span>${a.name} ${a.rating >= b.rating ? '🏆' : ''}</span>
+                      </div>
+                    </th>
+                    <th class="py-3.5 px-4 font-extrabold border-b border-slate-200 text-indigo-700 w-3/8">
+                      <div class="flex items-center gap-2">
+                        <img src="${b.logo}" class="w-6 h-6 rounded-md object-cover border border-slate-200" />
+                        <span>${b.name} ${b.rating >= a.rating ? '🏆' : ''}</span>
+                      </div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 font-medium text-slate-800">
+                  <tr class="hover:bg-slate-50">
+                    <td class="py-3.5 px-4 font-mono font-bold text-slate-500">综合实测评分</td>
+                    <td class="py-3.5 px-4 font-mono font-black text-sm text-blue-600">${a.rating} / 10</td>
+                    <td class="py-3.5 px-4 font-mono font-black text-sm text-indigo-600">${b.rating} / 10</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="py-3.5 px-4 font-mono font-bold text-slate-500">定位与标签</td>
+                    <td class="py-3.5 px-4"><span class="px-2.5 py-1 bg-blue-50 text-blue-700 rounded text-xs font-bold border border-blue-200">${a.badge}</span></td>
+                    <td class="py-3.5 px-4"><span class="px-2.5 py-1 bg-indigo-50 text-indigo-700 rounded text-xs font-bold border border-indigo-200">${b.badge}</span></td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="py-3.5 px-4 font-mono font-bold text-slate-500">核心线路架构</td>
+                    <td class="py-3.5 px-4 font-mono text-xs sm:text-sm">${a.architecture}</td>
+                    <td class="py-3.5 px-4 font-mono text-xs sm:text-sm">${b.architecture}</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="py-3.5 px-4 font-mono font-bold text-slate-500">晚高峰平均延迟</td>
+                    <td class="py-3.5 px-4 font-mono font-bold text-emerald-600">${a.ping} (丢包 ${a.loss})</td>
+                    <td class="py-3.5 px-4 font-mono font-bold text-emerald-600">${b.ping} (丢包 ${b.loss})</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="py-3.5 px-4 font-mono font-bold text-slate-500">流媒体 & AI 解锁</td>
+                    <td class="py-3.5 px-4 text-xs sm:text-sm">${a.unlock}</td>
+                    <td class="py-3.5 px-4 text-xs sm:text-sm">${b.unlock}</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="py-3.5 px-4 font-mono font-bold text-slate-500">起步资费</td>
+                    <td class="py-3.5 px-4 font-mono font-bold">${a.price}</td>
+                    <td class="py-3.5 px-4 font-mono font-bold">${b.price}</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="py-3.5 px-4 font-mono font-bold text-slate-500">直达入口</td>
+                    <td class="py-3.5 px-4">
+                      <div class="flex items-center gap-1.5 flex-wrap">
+                        <a href="${a.reviewLink}" class="px-2.5 py-1 bg-slate-100 hover:bg-blue-50 text-slate-800 text-xs font-bold rounded-lg border border-slate-200">📖 阅读评测</a>
+                        <a href="${a.link}" target="_blank" rel="noopener" class="px-2.5 py-1 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg shadow-2xs">🚀 直达 ${a.name}</a>
+                      </div>
+                    </td>
+                    <td class="py-3.5 px-4">
+                      <div class="flex items-center gap-1.5 flex-wrap">
+                        <a href="${b.reviewLink}" class="px-2.5 py-1 bg-slate-100 hover:bg-indigo-50 text-slate-800 text-xs font-bold rounded-lg border border-slate-200">📖 阅读评测</a>
+                        <a href="${b.link}" target="_blank" rel="noopener" class="px-2.5 py-1 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-lg shadow-2xs">🚀 直达 ${b.name}</a>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        `;
+      }
+
+      if (runPkBtn) {
+        runPkBtn.addEventListener('click', () => {
+          if (pkLoadingIcon) pkLoadingIcon.classList.remove('hidden');
+          runPkBtn.disabled = true;
+
+          setTimeout(() => {
+            if (pkLoadingIcon) pkLoadingIcon.classList.add('hidden');
+            runPkBtn.disabled = false;
+            renderPKResult();
+          }, 350);
+        });
+
+        // 默认初始化渲染一次
+        renderPKResult();
+      }
+
+      if (pkSelectA) pkSelectA.addEventListener('change', renderPKResult);
+      if (pkSelectB) pkSelectB.addEventListener('change', renderPKResult);
+
     });
   </script>
 
