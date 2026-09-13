@@ -31,9 +31,9 @@ const tagArticles = getArticlesByTag(tag);
     <div class="container-custom">
       <!-- 面包屑 -->
       <nav class="flex items-center gap-2 text-sm text-slate-600 mb-8">
-        <a href="/" class="hover:text-primary-600">首页</a>
+        <a href="/" class="hover:text-blue-600">首页</a>
         <span>/</span>
-        <a href="/blog/" class="hover:text-primary-600">博客</a>
+        <a href="/blog/" class="hover:text-blue-600">博客</a>
         <span>/</span>
         <span class="text-slate-900">#{tag}</span>
       </nav>
@@ -41,7 +41,7 @@ const tagArticles = getArticlesByTag(tag);
       <!-- 标签标题 -->
       <div class="mb-12">
         <div class="flex items-center gap-3 mb-4">
-          <span class="text-4xl">#</span>
+          <span class="text-4xl text-blue-600 font-bold">#</span>
           <h1 class="text-4xl lg:text-5xl font-bold text-slate-900">{tag}</h1>
         </div>
         <p class="text-lg text-slate-600">共 {tagArticles.length} 篇文章包含此标签</p>
@@ -61,7 +61,7 @@ const tagArticles = getArticlesByTag(tag);
           {allTags.filter(t => t !== tag).slice(0, 15).map(t => (
             <a
               href={`/tag/${t}/`}
-              class="px-4 py-2 text-sm font-medium text-slate-700 bg-slate-100 hover:bg-primary-100 hover:text-primary-700 rounded-lg transition-colors"
+              class="px-4 py-2 text-sm font-medium text-slate-700 bg-slate-100 hover:bg-blue-100 hover:text-blue-700 rounded-lg transition-colors"
             >
               #{t}
             </a>

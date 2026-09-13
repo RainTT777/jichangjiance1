@@ -29,9 +29,9 @@ const relatedArticles = articles.slice(0, 3);
     <div class="container-custom max-w-5xl">
       <!-- 面包屑 -->
       <nav class="flex items-center gap-2 text-sm text-slate-600 mb-8">
-        <a href="/" class="hover:text-primary-600">首页</a>
+        <a href="/" class="hover:text-blue-600">首页</a>
         <span>/</span>
-        <a href="/brands/" class="hover:text-primary-600">品牌库</a>
+        <a href="/brands/" class="hover:text-blue-600">品牌库</a>
         <span>/</span>
         <span class="text-slate-900">{brand.name}</span>
       </nav>
@@ -61,7 +61,7 @@ const relatedArticles = articles.slice(0, 3);
         <!-- 特性标签 -->
         <div class="flex flex-wrap gap-2 mb-6">
           {(brand.pros || []).map(feature => (
-            <span class="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-primary-700 bg-primary-50 rounded-lg border border-primary-200">
+            <span class="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-blue-700 bg-blue-50 rounded-lg border border-blue-200">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>

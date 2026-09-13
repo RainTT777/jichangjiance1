@@ -9,51 +9,40 @@ interface Props {
 const { article, showExcerpt = true } = Astro.props;
 ---
 
-<article class="card group">
-  <a href={`/blog/${article.slug}/`} class="block">
+<article class="bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all p-6 group flex flex-col justify-between">
+  <a href={`/blog/${article.slug}/`} class="block space-y-3 no-underline">
     <!-- 分类标签 -->
-    <div class="px-6 pt-6 pb-4">
-      <span class="inline-block px-3 py-1 text-xs font-medium text-primary-700 bg-primary-50 rounded-full">
+    <div class="flex items-center justify-between">
+      <span class="px-2.5 py-1 text-xs font-mono font-bold text-blue-700 bg-blue-50 border border-blue-200 rounded-md">
         {article.category}
       </span>
+      <time datetime={article.publishDate} class="text-xs font-mono text-slate-400">
+        {new Date(article.publishDate).toLocaleDateString('zh-CN', {
+          year: 'numeric',
+          month: 'numeric',
+          day: 'numeric'
+        })}
+      </time>
     </div>
 
     <!-- 标题 -->
-    <div class="px-6 pb-4">
-      <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary-600 transition-colors mb-2 line-clamp-2">
-        {article.title}
-      </h3>
-      {showExcerpt && (
-        <p class="text-sm text-slate-600 line-clamp-2 leading-relaxed">
-          {article.description}
-        </p>
-      )}
-    </div>
+    <h3 class="text-base sm:text-lg font-extrabold text-slate-900 group-hover:text-blue-600 transition-colors leading-snug line-clamp-2">
+      {article.title}
+    </h3>
+    
+    {showExcerpt && (
+      <p class="text-xs sm:text-sm text-slate-600 line-clamp-2 leading-relaxed font-medium">
+        {article.description}
+      </p>
+    )}
 
     <!-- 底部信息 -->
-    <div class="px-6 pb-6">
-      <div class="flex items-center gap-4 text-xs text-slate-500">
-        <span>{article.author}</span>
-        <span>·</span>
-        <time datetime={article.publishDate}>
-          {new Date(article.publishDate).toLocaleDateString('zh-CN', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-          })}
-        </time>
-      </div>
-
-      <!-- 标签 -->
-      {article.tags.length > 0 && (
-        <div class="flex flex-wrap gap-2 mt-3">
-          {article.tags.slice(0, 3).map(tag => (
-            <span class="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">
-              {tag}
-            </span>
-          ))}
-        </div>
-      )}
+    <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-semibold">
+      <span>作者: {article.author}</span>
+      <span class="text-blue-600 font-bold group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
+        阅读全文
+        <svg class="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+      </span>
     </div>
   </a>
 </article>
