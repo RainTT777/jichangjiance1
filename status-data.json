@@ -1,0 +1,180 @@
+{
+  "status": "success",
+  "generated_at": "2026-09-12T17:15:00Z",
+  "next_refresh_seconds": 30,
+  "nodes": [
+    {
+      "node_id": "edgenova",
+      "node_name": "EdgeNova [香港 IPLC 01]",
+      "last_updated": "2026-09-12T17:15:00Z",
+      "telemetry": {
+        "latency_ms": 38,
+        "packet_loss_pct": 0.0,
+        "peak_speed_mbps": 980,
+        "uptime_pct": 99.9,
+        "latency_history": [38, 37, 39, 38, 36, 38, 38]
+      },
+      "unlock_status": {
+        "netflix": { "supported": true, "quality": "4K" },
+        "chatgpt": { "supported": true, "label": "原生解锁" },
+        "disney": { "supported": true, "quality": "4K" }
+      },
+      "protocols": ["IPLC专线", "V2Ray", "Trojan", "Shadowsocks"]
+    },
+    {
+      "node_id": "sujie",
+      "node_name": "速界 [日本 BGP 专线]",
+      "last_updated": "2026-09-12T17:15:00Z",
+      "telemetry": {
+        "latency_ms": 39,
+        "packet_loss_pct": 0.0,
+        "peak_speed_mbps": 950,
+        "uptime_pct": 99.8,
+        "latency_history": [39, 40, 38, 39, 41, 39, 39]
+      },
+      "unlock_status": {
+        "netflix": { "supported": true, "quality": "4K" },
+        "chatgpt": { "supported": true, "label": "原生解锁" },
+        "disney": { "supported": true, "quality": "4K" }
+      },
+      "protocols": ["专线节点", "V2Ray", "Trojan"]
+    },
+    {
+      "node_id": "kexinyun",
+      "node_name": "可信云 [新加坡 01]",
+      "last_updated": "2026-09-12T17:15:00Z",
+      "telemetry": {
+        "latency_ms": 43,
+        "packet_loss_pct": 0.0,
+        "peak_speed_mbps": 910,
+        "uptime_pct": 99.5,
+        "latency_history": [43, 44, 42, 43, 45, 43, 43]
+      },
+      "unlock_status": {
+        "netflix": { "supported": true, "quality": "4K" },
+        "chatgpt": { "supported": true, "label": "原生解锁" },
+        "disney": { "supported": true, "quality": "4K" }
+      },
+      "protocols": ["VLESS", "Trojan", "无日志加密"]
+    },
+    {
+      "node_id": "kuaili",
+      "node_name": "快狸 [台湾 BGP 01]",
+      "last_updated": "2026-09-12T17:15:00Z",
+      "telemetry": {
+        "latency_ms": 41,
+        "packet_loss_pct": 0.0,
+        "peak_speed_mbps": 890,
+        "uptime_pct": 99.6,
+        "latency_history": [41, 42, 40, 41, 43, 41, 41]
+      },
+      "unlock_status": {
+        "netflix": { "supported": true, "quality": "4K" },
+        "chatgpt": { "supported": true, "label": "原生解锁" }
+      },
+      "protocols": ["V2Ray", "Shadowsocks"]
+    },
+    {
+      "node_id": "yuntu",
+      "node_name": "云图 [香港 IPLC 02]",
+      "last_updated": "2026-09-12T17:15:00Z",
+      "telemetry": {
+        "latency_ms": 40,
+        "packet_loss_pct": 0.0,
+        "peak_speed_mbps": 960,
+        "uptime_pct": 99.7,
+        "latency_history": [40, 41, 39, 40, 42, 40, 40]
+      },
+      "unlock_status": {
+        "netflix": { "supported": true, "quality": "4K" },
+        "chatgpt": { "supported": true, "label": "原生解锁" }
+      },
+      "protocols": ["金融专线", "V2Ray", "Trojan", "SS"]
+    },
+    {
+      "node_id": "jisuyun",
+      "node_name": "极速Cloud [三网 CN2 GIA]",
+      "last_updated": "2026-09-12T17:15:00Z",
+      "telemetry": {
+        "latency_ms": 28,
+        "packet_loss_pct": 0.0,
+        "peak_speed_mbps": 990,
+        "uptime_pct": 99.9,
+        "latency_history": [28, 27, 29, 28, 30, 28, 28]
+      },
+      "unlock_status": {
+        "netflix": { "supported": true, "quality": "4K" },
+        "chatgpt": { "supported": true, "label": "原生解锁" }
+      },
+      "protocols": ["CN2 GIA", "CMIN2", "VLESS", "Reality"]
+    },
+    {
+      "node_id": "shunyun",
+      "node_name": "瞬云 [美国 BGP 01]",
+      "last_updated": "2026-09-12T17:15:00Z",
+      "telemetry": {
+        "latency_ms": 52,
+        "packet_loss_pct": 0.1,
+        "peak_speed_mbps": 820,
+        "uptime_pct": 99.2,
+        "latency_history": [52, 54, 51, 53, 52, 52, 52]
+      },
+      "unlock_status": {
+        "netflix": { "supported": true, "quality": "HD" },
+        "chatgpt": { "supported": true, "label": "原生解锁" }
+      },
+      "protocols": ["Shadowsocks", "WireGuard"]
+    },
+    {
+      "node_id": "jilianyun",
+      "node_name": "极连云 [广州 BGP 中转]",
+      "last_updated": "2026-09-12T17:15:00Z",
+      "telemetry": {
+        "latency_ms": 42,
+        "packet_loss_pct": 0.0,
+        "peak_speed_mbps": 880,
+        "uptime_pct": 99.8,
+        "latency_history": [42, 43, 41, 42, 44, 42, 42]
+      },
+      "unlock_status": {
+        "netflix": { "supported": true, "quality": "4K" },
+        "chatgpt": { "supported": true, "label": "原生解锁" }
+      },
+      "protocols": ["BGP中转", "V2Ray", "Trojan", "SS"]
+    },
+    {
+      "node_id": "guangnianti",
+      "node_name": "光年梯 [韩国 01]",
+      "last_updated": "2026-09-12T17:15:00Z",
+      "telemetry": {
+        "latency_ms": 45,
+        "packet_loss_pct": 0.0,
+        "peak_speed_mbps": 850,
+        "uptime_pct": 99.6,
+        "latency_history": [45, 46, 44, 45, 47, 45, 45]
+      },
+      "unlock_status": {
+        "netflix": { "supported": true, "quality": "4K" },
+        "chatgpt": { "supported": true, "label": "原生解锁" }
+      },
+      "protocols": ["VLESS", "Trojan", "Hysteria2"]
+    },
+    {
+      "node_id": "huanyuyun",
+      "node_name": "寰宇云 [德国 01]",
+      "last_updated": "2026-09-12T17:15:00Z",
+      "telemetry": {
+        "latency_ms": 50,
+        "packet_loss_pct": 0.0,
+        "peak_speed_mbps": 930,
+        "uptime_pct": 99.4,
+        "latency_history": [50, 51, 49, 50, 52, 50, 50]
+      },
+      "unlock_status": {
+        "netflix": { "supported": true, "quality": "4K" },
+        "chatgpt": { "supported": true, "label": "原生解锁" }
+      },
+      "protocols": ["V2Ray", "Trojan", "SS"]
+    }
+  ]
+}

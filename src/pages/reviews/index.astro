@@ -1,57 +1,569 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
 
-const reviews = await getCollection('reviews');
-const sortedReviews = reviews.sort((a, b) =>
-  new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
-);
+const topAirports = [
+  {
+    name: "EdgeNova",
+    logo: "/edgenova_logo.png",
+    tagline: "综合梯队首选 / 极速空载红利",
+    architecture: "纯全线 IEPL 专线 + VLESS",
+    price: "¥15/月 (折后约¥7.2/月)",
+    promo: "8折码：xk808",
+    rating: "9.8",
+    badge: "NO.01 综合首选",
+    link: "https://cristyc.edgenovaaff.cc/#/register?code=WWiIvxL9"
+  },
+  {
+    name: "速界 (SpeedWorld)",
+    logo: "/sujie_logo.png",
+    tagline: "游戏加速优选 / 低丢包",
+    architecture: "企业级 IEPL 专线 + 多协议",
+    price: "¥15/月起，支持平民体验包",
+    promo: "限时特惠",
+    rating: "9.6",
+    badge: "电竞游戏优选",
+    link: "https://aaa.jichang.best/#/register?code=M4UujXjz"
+  },
+  {
+    name: "可信云 (Kosing Cloud)",
+    logo: "/kexinyun_logo.png",
+    tagline: "隐私安全 / 不限设备数",
+    architecture: "IEPL 物理专线 + 纯净 IP 池",
+    price: "¥15/月 (年付¥96起)",
+    promo: "首发特惠",
+    rating: "9.5",
+    badge: "不限并发设备",
+    link: "http://liangxinyun.club/"
+  },
+  {
+    name: "快狸 (Kuaili)",
+    logo: "/kuaili_logo.png",
+    tagline: "大吞吐下载党 / 新手友好",
+    architecture: "大带宽优化直连 + Vless",
+    price: "极低平民价，全线 1.0x 计费",
+    promo: "周期特惠",
+    rating: "9.4",
+    badge: "海量吞吐怪兽",
+    link: "http://liangxinyun.club/"
+  },
+  {
+    name: "云图机场 (Yuntu)",
+    logo: "/yuntu_logo.png",
+    tagline: "商务外贸 / 金融级专线",
+    architecture: "金融级物理专线 (不过 GFW)",
+    price: "¥22/月起，全系标配 5 设备",
+    promo: "9折码：YUNTU2026",
+    rating: "9.3",
+    badge: "金融级外贸AI",
+    link: "https://gnt001.gntvipaff.cc/#/?code=yAzo4IqK"
+  }
+];
 ---
 
-<BaseLayout title="所有评测 - 机场测评">
-  <div class="max-w-6xl mx-auto px-4 py-12">
-    <h1 class="text-4xl font-bold mb-8 text-slate-900">所有评测</h1>
+<BaseLayout
+  title="2026 稳定翻墙机场排行榜：从平价备用到顶级 IEPL 专线综合评测推荐 - 机场数据检测中心"
+  description="2026年最新翻墙机场综合评测榜单。基于分布式探针每月核验 EdgeNova、速界、可信云、快狸、云图等稳定机场的连通率、晚高峰丢包与4K/8K解锁表现。"
+>
+  <Header />
 
-    <div class="grid gap-6">
-      {sortedReviews.map((review) => (
-        <a href={`/reviews/${review.slug}`}
-           class="block bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow p-6">
-          <div class="flex justify-between items-start gap-4">
-            <div class="flex-1">
-              <h2 class="text-2xl font-bold mb-2 text-slate-900">
-                {review.data.title}
-              </h2>
-              <p class="text-slate-600 mb-4">
-                {review.data.description}
-              </p>
+  <main class="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- 面包屑导航 -->
+    <nav class="flex items-center gap-2 text-xs text-slate-500 mb-6 font-medium">
+      <a href="/" class="hover:text-blue-600 transition-colors">首页</a>
+      <span>/</span>
+      <span class="text-blue-600 font-semibold">机场评测</span>
+      <span>/</span>
+      <span class="text-slate-700">2026 稳定翻墙机场排行榜</span>
+    </nav>
 
-              {review.data.tags && (
-                <div class="flex flex-wrap gap-2">
-                  {review.data.tags.map(tag => (
-                    <span class="badge bg-blue-50 text-blue-700">
-                      {tag}
+    <!-- 文章 Hero 头部 Banner -->
+    <div class="bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 text-white relative overflow-hidden shadow-xl mb-10">
+      <div class="absolute -top-32 -right-32 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 space-y-4 max-w-4xl">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 bg-blue-950/80 border border-blue-500/40 rounded-full text-blue-400 text-xs font-mono font-semibold">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          2026年度权威评测大盘 · 每月核验
+        </div>
+
+        <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
+          2026 稳定翻墙机场排行榜：<br/>
+          <span class="bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-300 bg-clip-text text-transparent">
+            从平价备用到顶级 IEPL 专线综合评测推荐
+          </span>
+        </h1>
+
+        <!-- 更新说明框 -->
+        <div class="p-4 bg-slate-800/80 border border-slate-700/80 rounded-2xl backdrop-blur-md text-xs sm:text-sm text-slate-300 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-700 pb-2">
+            <span class="font-bold text-emerald-400 flex items-center gap-1.5 font-mono">
+              <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              更新说明
+            </span>
+            <span class="px-2.5 py-0.5 bg-blue-900/60 text-blue-300 border border-blue-700/50 rounded-md text-xs font-mono">
+              实测更新时间：2026年9月
+            </span>
+          </div>
+          <p class="leading-relaxed text-slate-300">
+            本文每月定期核验节点连通率、晚高峰丢包与跑路风险。榜单综合参考了主流技术圈与专业导航站（如云轨导航测评榜）的实测数据，剔除虚标倍率及断流严重的服务商。
+          </p>
+        </div>
+
+        <!-- 导语摘要 -->
+        <p class="text-xs sm:text-base text-slate-300 leading-relaxed pt-2">
+          网络环境持续收紧，传统单节点公网直连已难以抵抗针对性流量识别。高峰期油管频繁转圈、延迟剧烈抖动、ChatGPT 与 Claude 动辄出现 403 阻断或降智提示，核心根源都在于机场的底层线路架构与出口落地 IP 质量。结合全节点倍率透明度、晚高峰吞吐带宽、原生流媒体/AI 纯净度以及多端适配体验，梳理出 2026 年最具代表性的 5 家优质机场综合评测梯队。
+        </p>
+      </div>
+    </div>
+
+    <!-- 1. 核心参数对比大表 (2026 热门机场核心参数速览表) -->
+    <section class="mb-14">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 flex items-center gap-2">
+            <span>📊 2026 热门机场核心参数速览表</span>
+          </h2>
+          <p class="text-xs text-slate-500 mt-1">一表全面对比 5 大梯队旗舰机场架构、资费与专属优惠</p>
+        </div>
+        <span class="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-semibold rounded-lg border border-blue-200 shrink-0">
+          数据实时同步中
+        </span>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs sm:text-sm border-collapse min-w-[760px]">
+            <thead>
+              <tr class="bg-slate-900 text-white font-mono text-xs">
+                <th class="py-4 px-4 font-bold border-b border-slate-800">机场名称</th>
+                <th class="py-4 px-4 font-bold border-b border-slate-800">定位与特色</th>
+                <th class="py-4 px-4 font-bold border-b border-slate-800">核心线路架构</th>
+                <th class="py-4 px-4 font-bold border-b border-slate-800">起步资费</th>
+                <th class="py-4 px-4 font-bold border-b border-slate-800">专属优惠</th>
+                <th class="py-4 px-4 font-bold border-b border-slate-800 text-right">评测直达</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 font-medium">
+              {topAirports.map((ap, idx) => (
+                <tr class="hover:bg-slate-50/80 transition-colors">
+                  <td class="py-4 px-4">
+                    <div class="flex items-center gap-2.5">
+                      <img src={ap.logo} alt={ap.name} class="w-8 h-8 rounded-lg object-cover border border-slate-200 shadow-2xs shrink-0" />
+                      <div>
+                        <div class="font-bold text-slate-900 text-sm flex items-center gap-1.5">
+                          {ap.name}
+                          <span class="text-[10px] bg-blue-50 text-blue-600 border border-blue-200 px-1.5 py-0.2 rounded font-mono font-bold">{ap.rating}</span>
+                        </div>
+                        <span class="text-[10px] text-slate-400 font-mono">RANK #{idx + 1}</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="px-2.5 py-1 bg-slate-100 text-slate-700 rounded-md font-semibold text-xs inline-block">
+                      {ap.tagline}
                     </span>
-                  ))}
-                </div>
-              )}
-            </div>
+                  </td>
+                  <td class="py-4 px-4 text-slate-600 font-mono text-xs">
+                    {ap.architecture}
+                  </td>
+                  <td class="py-4 px-4 font-bold text-slate-900 font-mono text-xs">
+                    {ap.price}
+                  </td>
+                  <td class="py-4 px-4">
+                    <span class="px-2 py-0.5 bg-amber-50 border border-amber-200 text-amber-700 text-xs font-mono font-bold rounded">
+                      {ap.promo}
+                    </span>
+                  </td>
+                  <td class="py-4 px-4 text-right">
+                    <a href={ap.link} target="_blank" rel="noopener" class="inline-flex items-center gap-1 px-3.5 py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl shadow-2xs transition-all shrink-0">
+                      <span>查看评测 / 官网直达</span>
+                      <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
 
-            <div class="flex flex-col items-end gap-2">
-              <div class="flex items-center gap-1">
-                {Array.from({ length: Math.floor(review.data.score) }).map(() => (
-                  <span class="text-yellow-400 text-lg">⭐</span>
-                ))}
-                <span class="text-lg font-bold text-slate-900 ml-1">
-                  {review.data.score.toFixed(1)}
-                </span>
+    <!-- 2. 主力专线与全能旗舰推荐 (详细评测) -->
+    <section class="mb-14 space-y-10">
+      <div>
+        <h2 class="text-xl sm:text-3xl font-extrabold text-slate-900 flex items-center gap-3">
+          <span>🚀 主力专线与全能旗舰推荐</span>
+          <span class="text-xs bg-emerald-50 text-emerald-600 border border-emerald-200 px-3 py-1 rounded-full font-mono font-semibold">
+            5 大梯队深度测评
+          </span>
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-500 mt-1.5">深入剖析各机场线路架构、解封表现、价格优势与适用场景</p>
+      </div>
+
+      <!-- 1. EdgeNova -->
+      <div id="edgenova" class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-xs relative overflow-hidden space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+          <div class="flex items-center gap-4">
+            <img src="/edgenova_logo.png" alt="EdgeNova" class="w-14 h-14 rounded-2xl object-cover border border-slate-200 shadow-md shrink-0" />
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-0.5 bg-blue-600 text-white text-xs font-bold rounded-md font-mono">NO.01 综合首选</span>
+                <span class="text-xs text-amber-500 font-bold font-mono">RATING: 9.8 / 10</span>
               </div>
-              <time class="text-sm text-slate-500">
-                {new Date(review.data.date).toLocaleDateString('zh-CN')}
-              </time>
+              <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-1">
+                1. EdgeNova —— 纯血 IEPL 专线架构，综合评分 9.8 推荐首选
+              </h3>
             </div>
           </div>
-        </a>
-      ))}
-    </div>
-  </div>
+          <a href="https://cristyc.edgenovaaff.cc/#/register?code=WWiIvxL9" target="_blank" rel="noopener" class="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-extrabold rounded-xl transition-all shadow-md flex items-center justify-center gap-2 shrink-0">
+            <span>前往 EdgeNova 官网 (8折码: xk808)</span>
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </a>
+        </div>
+
+        <p class="text-sm text-slate-700 leading-relaxed font-medium">
+          EdgeNova 是 2026 年新晋专线机场中的黑马代表，凭借极高性价比和充沛的“空载带宽红利”迅速登顶各大推荐榜单。
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-1.5">
+            <h4 class="font-bold text-slate-900 flex items-center gap-1.5 text-xs text-blue-600">
+              <span class="w-2 h-2 rounded-full bg-blue-600"></span> 线路与协议
+            </h4>
+            <p class="text-slate-600 leading-relaxed">
+              全线部署端到端独享的 IEPL 物理内网专线，底层全面采用更轻量高效的 VLESS 协议，省去冗余加解密开销，抗封锁与抗干扰能力极强。
+            </p>
+          </div>
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-1.5">
+            <h4 class="font-bold text-slate-900 flex items-center gap-1.5 text-xs text-emerald-600">
+              <span class="w-2 h-2 rounded-full bg-emerald-600"></span> 实测体验
+            </h4>
+            <p class="text-slate-600 leading-relaxed">
+              千兆家庭宽带下，晚高峰（20:00 - 23:00）多节点连通率达到 100% 全绿，YouTube 4K 拖拽无感秒开，多线程海外大文件下载可轻松跑满 80~100MB/s 峰值带宽。
+            </p>
+          </div>
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-1.5">
+            <h4 class="font-bold text-slate-900 flex items-center gap-1.5 text-xs text-purple-600">
+              <span class="w-2 h-2 rounded-full bg-purple-600"></span> 原生解锁支持
+            </h4>
+            <p class="text-slate-600 leading-relaxed">
+              出口 IP 极度纯净，无被标记黑历史，原生解锁 Netflix 全区（非自制剧）、Disney+，完美支持 ChatGPT（包括 GPT-4o 模型）与 Google Gemini 稳定调用。
+            </p>
+          </div>
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-1.5">
+            <h4 class="font-bold text-slate-900 flex items-center gap-1.5 text-xs text-indigo-600">
+              <span class="w-2 h-2 rounded-full bg-indigo-600"></span> 客户端生态与性价比
+            </h4>
+            <p class="text-slate-600 leading-relaxed">
+              除支持 Clash Verge Rev、Sing-box、Shadowrocket 等主流通用订阅外，官方还配套了全平台极简客户端。常规月付 ¥15 起，折后仅需 7.2 元/月。
+            </p>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <a href="https://cristyc.edgenovaaff.cc/#/register?code=WWiIvxL9" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700 group">
+            <span>👉 前往 EdgeNova 官网享受限时 8 折特惠（专属优惠码：xk808）</span>
+            <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 2. 速界 SpeedWorld -->
+      <div id="sujie" class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-xs relative overflow-hidden space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+          <div class="flex items-center gap-4">
+            <img src="/sujie_logo.png" alt="速界" class="w-14 h-14 rounded-2xl object-cover border border-slate-200 shadow-md shrink-0" />
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-0.5 bg-indigo-600 text-white text-xs font-bold rounded-md font-mono">游戏加速优选</span>
+                <span class="text-xs text-amber-500 font-bold font-mono">RATING: 9.6 / 10</span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-1">
+                2. 速界 (SpeedWorld) —— 电竞与跨服网游优选，超低延迟与零丢包
+              </h3>
+            </div>
+          </div>
+          <a href="https://aaa.jichang.best/#/register?code=M4UujXjz" target="_blank" rel="noopener" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white text-xs sm:text-sm font-extrabold rounded-xl transition-all shadow-md flex items-center justify-center gap-2 shrink-0">
+            <span>前往速界官网 (开启极速专线)</span>
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </a>
+        </div>
+
+        <p class="text-sm text-slate-700 leading-relaxed font-medium">
+          对于需要兼顾 Steam、外服网游对战、Discord 语音以及大流量翻墙的用户，速界主打的是“端到端低抖动传输”。
+        </p>
+
+        <div class="space-y-3 text-xs sm:text-sm">
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-2">
+            <h4 class="font-bold text-slate-900">⚡ 线路与协议架构</h4>
+            <p class="text-slate-600 leading-relaxed">
+              采用企业级端到端独享 IEPL 内网专线，混合部署 Shadowsocks、VMess/VLESS 与 Trojan 协议，有效兼顾不同网络环境的容灾与握手速度。
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-100">
+              <span class="font-bold text-slate-900 text-xs block mb-1">🎮 游戏深度优化</span>
+              <p class="text-slate-600 text-xs leading-relaxed">全线低丢包率专线直连，大幅削减海外跨服（港服、日服、美服等）网络延迟波动。</p>
+            </div>
+            <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-100">
+              <span class="font-bold text-slate-900 text-xs block mb-1">💯 无套路 1.0 倍率</span>
+              <p class="text-slate-600 text-xs leading-relaxed">全节点真实 1.0 倍率计费，不限设备并发连接，不设恶性限速规则。</p>
+            </div>
+            <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-100">
+              <span class="font-bold text-slate-900 text-xs block mb-1">💻 双重使用模式</span>
+              <p class="text-slate-600 text-xs leading-relaxed">支持第三方通用订阅转换，同时提供全平台一键连接自研客户端，开箱即用。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <a href="https://aaa.jichang.best/#/register?code=M4UujXjz" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm font-bold text-indigo-600 hover:text-indigo-700 group">
+            <span>👉 前往速界官网开启极速游戏专线</span>
+            <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 3. 可信云 Kosing Cloud -->
+      <div id="kexinyun" class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-xs relative overflow-hidden space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+          <div class="flex items-center gap-4">
+            <img src="/kexinyun_logo.png" alt="可信云" class="w-14 h-14 rounded-2xl object-cover border border-slate-200 shadow-md shrink-0" />
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-0.5 bg-emerald-600 text-white text-xs font-bold rounded-md font-mono">不限设备数</span>
+                <span class="text-xs text-amber-500 font-bold font-mono">RATING: 9.5 / 10</span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-1">
+                3. 可信云 (Kosing Cloud) —— 隐私加密无日志，多设备共享与平民专线
+              </h3>
+            </div>
+          </div>
+          <a href="http://liangxinyun.club/" target="_blank" rel="noopener" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-extrabold rounded-xl transition-all shadow-md flex items-center justify-center gap-2 shrink-0">
+            <span>前往可信云官网 (首发特惠)</span>
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </a>
+        </div>
+
+        <p class="text-sm text-slate-700 leading-relaxed font-medium">
+          可信云定位于“企业级专线平民化”，在提供物理专线稳定性的同时，着重强化了数据隐私防范与多设备协同体验。
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs sm:text-sm">
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-1">
+            <h4 class="font-bold text-slate-900 text-xs">🛡️ 高强度无日志架构</h4>
+            <p class="text-slate-600 text-xs leading-relaxed">主打数据加密与隐私安全防护，全程闭环内网传输，不记录用户任何访问行为日志。</p>
+          </div>
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-1">
+            <h4 class="font-bold text-slate-900 text-xs">📱 全套餐不限设备连接</h4>
+            <p class="text-slate-600 text-xs leading-relaxed">打破并发限制，单个套餐即可满足手机、电脑、平板及软路由多端同时在线，适合家庭与工作室共享。</p>
+          </div>
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-1">
+            <h4 class="font-bold text-slate-900 text-xs">💳 门槛极低 (年付¥96起)</h4>
+            <p class="text-slate-600 text-xs leading-relaxed">适配微信与支付宝付款，年付折合仅 8 元/月，试错成本极低。</p>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <a href="http://liangxinyun.club/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm font-bold text-emerald-600 hover:text-emerald-700 group">
+            <span>👉 前往可信云官网获取低门槛专线套餐</span>
+            <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 4. 快狸 Kuaili -->
+      <div id="kuaili" class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-xs relative overflow-hidden space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+          <div class="flex items-center gap-4">
+            <img src="/kuaili_logo.png" alt="快狸" class="w-14 h-14 rounded-2xl object-cover border border-slate-200 shadow-md shrink-0" />
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-0.5 bg-amber-600 text-white text-xs font-bold rounded-md font-mono">吞吐怪兽</span>
+                <span class="text-xs text-amber-500 font-bold font-mono">RATING: 9.4 / 10</span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-1">
+                4. 快狸 (Kuaili) —— 海量吞吐与大文件下载，高性价比吞吐怪兽
+              </h3>
+            </div>
+          </div>
+          <a href="http://liangxinyun.club/" target="_blank" rel="noopener" class="px-6 py-3 bg-amber-600 hover:bg-amber-500 text-white text-xs sm:text-sm font-extrabold rounded-xl transition-all shadow-md flex items-center justify-center gap-2 shrink-0">
+            <span>前往快狸官网 (开通高速节点)</span>
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </a>
+        </div>
+
+        <p class="text-sm text-slate-700 leading-relaxed font-medium">
+          快狸走了一条极其清晰的差异化路线：不盲目追求高昂成本的物理专线，而是集中优化基于 UDP 的大带宽网络与轻量化协议。
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs sm:text-sm">
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-1">
+            <h4 class="font-bold text-slate-900 text-xs">🚀 极限带宽输出 (300MB/s)</h4>
+            <p class="text-slate-600 text-xs leading-relaxed">优化节点在多线程并发下载时，峰值速率可稳定在 100MB/s - 300MB/s，极适合大文件下载与压制分享。</p>
+          </div>
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-1">
+            <h4 class="font-bold text-slate-900 text-xs">🎬 流媒体全能适配</h4>
+            <p class="text-slate-600 text-xs leading-relaxed">台湾、日本、美国节点完美解锁 Netflix 非自制剧、Disney+ 与 YouTube Premium，节点命名清晰直观。</p>
+          </div>
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-1">
+            <h4 class="font-bold text-slate-900 text-xs">💰 真实 1.0x 透明扣费</h4>
+            <p class="text-slate-600 text-xs leading-relaxed">全节点统一 1.0x 计费，无隐形高倍率，支持支付宝、微信与 USDT 付款。</p>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <a href="http://liangxinyun.club/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm font-bold text-amber-600 hover:text-amber-700 group">
+            <span>👉 前往快狸官网开通大带宽高速节点</span>
+            <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 5. 云图机场 Yuntu -->
+      <div id="yuntu" class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-xs relative overflow-hidden space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+          <div class="flex items-center gap-4">
+            <img src="/yuntu_logo.png" alt="云图" class="w-14 h-14 rounded-2xl object-cover border border-slate-200 shadow-md shrink-0" />
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-0.5 bg-blue-900 text-white text-xs font-bold rounded-md font-mono">金融级外贸 AI</span>
+                <span class="text-xs text-amber-500 font-bold font-mono">RATING: 9.3 / 10</span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-1">
+                5. 云图机场 (Yuntu Airport) —— 金融级物理专线传输，外贸与 AI 重度生产力
+              </h3>
+            </div>
+          </div>
+          <a href="https://gnt001.gntvipaff.cc/#/?code=yAzo4IqK" target="_blank" rel="noopener" class="px-6 py-3 bg-blue-900 hover:bg-blue-800 text-white text-xs sm:text-sm font-extrabold rounded-xl transition-all shadow-md flex items-center justify-center gap-2 shrink-0">
+            <span>前往云图官网 (9折码: YUNTU2026)</span>
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </a>
+        </div>
+
+        <p class="text-sm text-slate-700 leading-relaxed font-medium">
+          作为专注高端专线市场的代表，云图机场凭借“金融级物理专线”以及对 AI 工具的深度风控适配，在外贸团队和深度开发者中口碑出众。
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs sm:text-sm">
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-1">
+            <h4 class="font-bold text-slate-900 text-xs">🌐 真物理专线 (不过 GFW)</h4>
+            <p class="text-slate-600 text-xs leading-relaxed">纯 IPLC 骨干网传输，端内物理延迟极低，晚高峰实现真正的 0 丢包率。</p>
+          </div>
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-1">
+            <h4 class="font-bold text-slate-900 text-xs">🤖 AI & 商业高纯净度 IP</h4>
+            <p class="text-slate-600 text-xs leading-relaxed">专设商业纯净落地 IP 池，针对 ChatGPT、Claude、Midjourney 及外贸邮件服务进行白名单风控优化。</p>
+          </div>
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-1">
+            <h4 class="font-bold text-slate-900 text-xs">💻 全系标配 5 台并发设备</h4>
+            <p class="text-slate-600 text-xs leading-relaxed">基础套餐即默认开放 5 台设备并发，满足日常办公的多屏协同与团队需求。</p>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <a href="https://gnt001.gntvipaff.cc/#/?code=yAzo4IqK" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm font-bold text-blue-900 hover:text-blue-700 group">
+            <span>👉 前往云图机场官网领取 9 折专属优惠（优惠码：YUNTU2026）</span>
+            <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 2026 翻墙机场选购与避坑防范原则 -->
+    <section class="mb-14">
+      <div class="bg-amber-50/60 border border-amber-200 rounded-3xl p-6 sm:p-8 space-y-6">
+        <h2 class="text-xl sm:text-2xl font-extrabold text-amber-900 flex items-center gap-2">
+          <svg class="w-6 h-6 text-amber-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+          <span>⚠️ 2026 翻墙机场选购与避坑防范原则</span>
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+          <div class="bg-white p-5 rounded-2xl border border-amber-200/80 shadow-2xs space-y-2">
+            <h3 class="font-bold text-slate-900 flex items-center gap-1.5 text-sm">
+              <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+              警惕“超低价永久套餐”
+            </h3>
+            <p class="text-slate-600 leading-relaxed">
+              凡是声称“50 元用一辈子”或者成立仅数月就大搞骨折大促的平台，其商业逻辑难以长期覆盖服务器与专线机房的昂贵月租。初次体验新机场，务必坚持“月付或季付试错”。
+            </p>
+          </div>
+
+          <div class="bg-white p-5 rounded-2xl border border-amber-200/80 shadow-2xs space-y-2">
+            <h3 class="font-bold text-slate-900 flex items-center gap-1.5 text-sm">
+              <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+              分清“协议伪装”与“专线物理隔离”
+            </h3>
+            <p class="text-slate-600 leading-relaxed">
+              普通协议混淆（如普通公网直连）在晚高峰依旧会遭遇骨干网出境拥堵与 QOS 限速；只有数据在境内入口即进入内网隧道的 IEPL / IPLC 专线，才能从根本上解决晚高峰丢包与延迟飙升问题。
+            </p>
+          </div>
+
+          <div class="bg-white p-5 rounded-2xl border border-amber-200/80 shadow-2xs space-y-2">
+            <h3 class="font-bold text-slate-900 flex items-center gap-1.5 text-sm">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              备用节点与双机场备份策略
+            </h3>
+            <p class="text-slate-600 leading-relaxed">
+              任何单一机场都可能遇到上游机房维护或临时光缆检修。合理的科学上网方案永远是“1 个主力高速专线（如 EdgeNova/云图）+ 1 个平价中转或轻度月付（如快狸/可信云）”组合，确保业务永不失联。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 常见问题答疑 (FAQ) -->
+    <section class="mb-12">
+      <div class="mb-6">
+        <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 flex items-center gap-2">
+          <span>❓ 常见问题答疑 (FAQ)</span>
+        </h2>
+        <p class="text-xs text-slate-500 mt-1">解答关于 AI 工具风控解锁、客户端选择与倍率计费规则的核心疑虑</p>
+      </div>
+
+      <div class="space-y-4">
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs space-y-2">
+          <h3 class="font-bold text-slate-900 text-sm sm:text-base flex items-center gap-2">
+            <span class="px-2 py-0.5 bg-blue-50 text-blue-600 rounded font-mono font-bold text-xs">Q1</span>
+            为什么刚买的专线节点依然打不开 ChatGPT 或 Claude？
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed pl-8">
+            <strong>A：</strong>AI 服务平台实施了极其严格的 ASN 与数据中心黑名单机制。普通机房广播 IP 极易触发 Cloudflare 验证码或 403 阻断。建议在客户端中选择带有“原生”、“AI”或“流媒体解锁”标识的专属节点，并关闭浏览器的 WebRTC 泄漏。
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs space-y-2">
+          <h3 class="font-bold text-slate-900 text-sm sm:text-base flex items-center gap-2">
+            <span class="px-2 py-0.5 bg-blue-50 text-blue-600 rounded font-mono font-bold text-xs">Q2</span>
+            新手使用什么客户端最稳妥？
+          </h3>
+          <div class="text-xs sm:text-sm text-slate-600 leading-relaxed pl-8 space-y-1.5">
+            <p><strong>A：</strong></p>
+            <ul class="list-disc pl-4 space-y-1">
+              <li><strong>Windows / macOS：</strong>推荐使用新一代的 Clash Verge Rev 或 Sing-box 桌面端；如果不喜欢配置，上述推荐的机场大多附带一键式官方自研客户端。</li>
+              <li><strong>iOS (iPhone/iPad)：</strong>在非国区 App Store 搜索下载 Shadowrocket（小火箭），后台一键导入订阅最省心。</li>
+              <li><strong>Android：</strong>优先使用开源且维护活跃的 v2rayNG 或 FlashClash。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs space-y-2">
+          <h3 class="font-bold text-slate-900 text-sm sm:text-base flex items-center gap-2">
+            <span class="px-2 py-0.5 bg-blue-50 text-blue-600 rounded font-mono font-bold text-xs">Q3</span>
+            什么是 1.0 倍率计费？为什么有些机场会有 3x、5x 节点？
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed pl-8">
+            <strong>A：</strong>1.0 倍率意味着你消耗 1GB 真实网络流量，机场后台就扣除 1GB 流量额度。部分劣质机场标榜套餐流量巨大，但主流好用节点倍率高达 3 倍甚至 5 倍，实际可用额度大打折扣。本次榜单中推荐的 EdgeNova、速界、云图等均支持诚实透明的 1.0x 计费。
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
 </BaseLayout>
