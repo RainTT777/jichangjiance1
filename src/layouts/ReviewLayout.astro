@@ -59,11 +59,11 @@ const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
         <span class="text-sm font-medium text-slate-700">综合评分:</span>
         <div class="flex items-center gap-1">
           {Array.from({ length: fullStars }).map(() => (
-            <span class="text-yellow-400 text-xl">⭐</span>
+            <span class="text-amber-500 font-bold text-lg">★</span>
           ))}
-          {hasHalfStar && <span class="text-yellow-400 text-xl">⭐</span>}
+          {hasHalfStar && <span class="text-amber-500 font-bold text-lg">★</span>}
           {Array.from({ length: emptyStars }).map(() => (
-            <span class="text-slate-300 text-xl">⭐</span>
+            <span class="text-slate-300 font-bold text-lg">☆</span>
           ))}
         </div>
         <span class="text-lg font-bold text-slate-900">{score.toFixed(1)}/5.0</span>
