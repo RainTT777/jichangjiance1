@@ -33,86 +33,308 @@ const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 <BaseLayout title={title} description={description}>
   <Header />
 
-  <main class="w-full max-w-[1920px] mx-auto px-3 sm:px-6 lg:px-8 py-8 min-h-screen bg-slate-50/50">
-    <div class="max-w-4xl mx-auto space-y-6">
+  <main class="w-full max-w-[1920px] mx-auto px-3 sm:px-6 lg:px-8 py-6 min-h-screen bg-slate-50/50">
+    
+    <!-- 面包屑导航 -->
+    <nav class="flex items-center gap-2 text-sm text-slate-500 font-medium px-1 mb-6">
+      <a href="/" class="hover:text-blue-600 transition-colors">首页</a>
+      <span>/</span>
+      <a href="/reviews/" class="hover:text-blue-600 transition-colors">机场评测文章</a>
+      <span>/</span>
+      <span class="text-blue-600 font-semibold truncate max-w-xs sm:max-w-md">{title}</span>
+    </nav>
+
+    <!-- 三栏响应式布局: 左侧文章目录 (Sticky) + 中间文章卡片 (Flex-1) + 右侧站内同款侧栏 (Sticky) -->
+    <div class="flex flex-col lg:flex-row gap-6 items-start">
       
-      <!-- 面包屑导航 -->
-      <nav class="flex items-center gap-2 text-sm text-slate-500 font-medium px-1">
-        <a href="/" class="hover:text-blue-600 transition-colors">首页</a>
-        <span>/</span>
-        <a href="/reviews/" class="hover:text-blue-600 transition-colors">机场评测文章</a>
-        <span>/</span>
-        <span class="text-blue-600 font-semibold truncate max-w-xs sm:max-w-md">{title}</span>
-      </nav>
-
-      <!-- 文章卡片主体 -->
-      <article class="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-6 sm:p-10 lg:p-12 overflow-hidden">
+      <!-- 左侧边栏 (Left Sidebar - 文章目录 TOC, Sticky top-20) -->
+      <aside class="w-full lg:w-[260px] xl:w-[280px] shrink-0 space-y-6 sticky top-20">
         
-        <!-- 文章头部 -->
-        <header class="mb-10 pb-8 border-b border-slate-100">
+        <!-- 1. 文章目录 Card (自动抓取 H2/H3 标题并提供滚动同步) -->
+        <div class="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-xs">
+          <h3 class="font-extrabold text-slate-900 text-base mb-3 flex items-center justify-between border-b border-slate-100 pb-2.5">
+            <span class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path>
+              </svg>
+              文章目录
+            </span>
+            <span class="text-xs text-blue-600 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded font-mono font-bold">TOC</span>
+          </h3>
           
-          <div class="flex items-center gap-2 mb-4 flex-wrap">
-            {categories.map(cat => (
-              <span class="px-3 py-1 bg-blue-50 text-blue-700 border border-blue-200 text-xs font-mono font-bold rounded-lg">
-                {cat}
-              </span>
-            ))}
-            <span class="text-xs font-mono text-slate-400 font-medium">发布时间: {formattedDate}</span>
-          </div>
-
-          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 leading-tight tracking-tight mb-6">
-            {title}
-          </h1>
-
-          <!-- 评分卡片 -->
-          <div class="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50/80 via-slate-50 to-indigo-50/80 rounded-2xl border border-blue-100/80 flex-wrap gap-3">
-            <div class="flex items-center gap-3">
-              <span class="text-xs font-mono font-bold text-slate-500 uppercase">AUDIT SCORE</span>
-              <div class="flex items-center gap-1">
-                {Array.from({ length: fullStars }).map(() => (
-                  <span class="text-amber-500 font-bold text-lg">★</span>
-                ))}
-                {hasHalfStar && <span class="text-amber-500 font-bold text-lg">★</span>}
-                {Array.from({ length: emptyStars }).map(() => (
-                  <span class="text-slate-300 font-bold text-lg">☆</span>
-                ))}
-              </div>
-              <span class="text-lg font-mono font-black text-blue-600">{score.toFixed(1)} / 5.0</span>
-            </div>
-
-            <div class="flex items-center gap-2">
-              <a href="https://cristyc.edgenovaaff.cc/#/register?code=WWiIvxL9" target="_blank" rel="noopener" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm rounded-xl shadow-2xs transition-all flex items-center gap-1.5">
-                <span>直达 EdgeNova 官网</span>
-                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-              </a>
-            </div>
-          </div>
-
-        </header>
-
-        <!-- 文章内容容器 (应用全局美化样式) -->
-        <div class="review-article-content">
-          <slot />
+          <nav id="article-toc-nav" class="space-y-1 text-xs max-h-[calc(100vh-240px)] overflow-y-auto pr-1 scrollbar-thin">
+            <!-- 由客户端脚本根据 Markdown H2 / H3 标题自动填充 -->
+          </nav>
         </div>
 
-        <!-- 标签 Footer -->
-        {tags.length > 0 && (
-          <footer class="mt-12 pt-6 border-t border-slate-100">
-            <div class="flex flex-wrap items-center gap-2">
-              <span class="text-xs font-mono font-bold text-slate-400 uppercase mr-1">TAGS:</span>
-              {tags.map(tag => (
-                <span class="px-3 py-1 bg-slate-100 text-slate-700 text-xs rounded-lg font-semibold border border-slate-200/80">
-                  #{tag}
+        <!-- 2. 站长测评官 Profile 挂件 -->
+        <div class="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-xs relative overflow-hidden">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 bg-gradient-to-tr from-blue-600 to-indigo-600 text-white rounded-xl flex items-center justify-center text-lg font-bold shadow-xs">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+            </div>
+            <div>
+              <h4 class="font-extrabold text-slate-900 text-sm">站长 / 测评官</h4>
+              <span class="inline-block px-2 py-0.5 bg-blue-50 text-blue-700 text-[11px] rounded font-bold border border-blue-200">5年探针实测</span>
+            </div>
+          </div>
+          <p class="text-xs text-slate-500 leading-relaxed mb-3">基于分布式探针全天候对专线连通率与晚高峰吞吐进行实测复核。</p>
+          <a href="http://liangxinyun.club/" target="_blank" class="w-full py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs text-center font-bold rounded-xl transition-colors flex items-center justify-center gap-1.5 shadow-2xs" style="color: #ffffff !important; text-decoration: none !important;">
+            <svg class="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.67-.52.36-1 .54-1.43.53-.47-.01-1.37-.27-2.04-.49-.82-.27-1.47-.42-1.42-.88.03-.24.37-.49 1.02-.75 3.99-1.74 6.66-2.89 8.01-3.46 3.82-1.61 4.61-1.89 5.13-1.9.11 0 .37.03.54.17.14.12.18.28.2.45-.01.07.01.21 0 .26z"/></svg>
+            <span style="color: #ffffff !important;">Telegram 频道</span>
+          </a>
+        </div>
+
+      </aside>
+
+      <!-- 中间文章卡片主体 (Flex-1 自适应) -->
+      <section class="flex-1 min-w-0 w-full space-y-6">
+        <article class="bg-white rounded-3xl border border-slate-200/90 shadow-xs p-6 sm:p-10 lg:p-12 overflow-hidden">
+          
+          <!-- 文章头部 -->
+          <header class="mb-10 pb-8 border-b border-slate-100">
+            
+            <div class="flex items-center gap-2 mb-4 flex-wrap">
+              {categories.map(cat => (
+                <span class="px-3 py-1 bg-blue-50 text-blue-700 border border-blue-200 text-xs font-mono font-bold rounded-lg">
+                  {cat}
                 </span>
               ))}
+              <span class="text-xs font-mono text-slate-400 font-medium">发布时间: {formattedDate}</span>
             </div>
-          </footer>
-        )}
 
-      </article>
+            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 leading-tight tracking-tight mb-6">
+              {title}
+            </h1>
+
+            <!-- 评分卡片 -->
+            <div class="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50/80 via-slate-50 to-indigo-50/80 rounded-2xl border border-blue-100/80 flex-wrap gap-3">
+              <div class="flex items-center gap-3">
+                <span class="text-xs font-mono font-bold text-slate-500 uppercase">AUDIT SCORE</span>
+                <div class="flex items-center gap-1">
+                  {Array.from({ length: fullStars }).map(() => (
+                    <span class="text-amber-500 font-bold text-lg">★</span>
+                  ))}
+                  {hasHalfStar && <span class="text-amber-500 font-bold text-lg">★</span>}
+                  {Array.from({ length: emptyStars }).map(() => (
+                    <span class="text-slate-300 font-bold text-lg">☆</span>
+                  ))}
+                </div>
+                <span class="text-lg font-mono font-black text-blue-600">{score.toFixed(1)} / 5.0</span>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <a href="https://cristyc.edgenovaaff.cc/#/register?code=WWiIvxL9" target="_blank" rel="noopener" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm rounded-xl shadow-2xs transition-all flex items-center gap-1.5" style="color: #ffffff !important; text-decoration: none !important;">
+                  <span style="color: #ffffff !important;">直达 EdgeNova 官网</span>
+                  <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+              </div>
+            </div>
+
+          </header>
+
+          <!-- 文章内容容器 (应用全局美化样式) -->
+          <div class="review-article-content" id="main-article-content">
+            <slot />
+          </div>
+
+          <!-- 标签 Footer -->
+          {tags.length > 0 && (
+            <footer class="mt-12 pt-6 border-t border-slate-100">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="text-xs font-mono font-bold text-slate-400 uppercase mr-1">TAGS:</span>
+                {tags.map(tag => (
+                  <span class="px-3 py-1 bg-slate-100 text-slate-700 text-xs rounded-lg font-semibold border border-slate-200/80">
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+            </footer>
+          )}
+
+        </article>
+      </section>
+
+      <!-- 右侧边栏 (Right Sidebar - 站内一致同款挂件, Sticky top-20) -->
+      <aside class="w-full lg:w-[260px] xl:w-[280px] shrink-0 space-y-6 sticky top-20">
+        
+        <!-- 1. 2026 热门机场速览 (和站内一致) -->
+        <div class="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-xs">
+          <h4 class="font-extrabold text-slate-900 text-base mb-3 flex items-center justify-between border-b border-slate-100 pb-2">
+            <span class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+              热门机场速览
+            </span>
+            <span class="text-xs text-blue-600 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded font-mono font-bold">HOT</span>
+          </h4>
+          <div class="space-y-2 text-sm">
+            <a href="https://cristyc.edgenovaaff.cc/#/register?code=WWiIvxL9" target="_blank" class="flex items-center justify-between p-2.5 bg-blue-50/70 hover:bg-blue-100/80 rounded-xl transition-all border border-blue-200/80 text-blue-900 font-bold group">
+              <span class="flex items-center gap-2 truncate">
+                <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+                <span class="truncate">EdgeNova 专线</span>
+              </span>
+              <span class="text-xs bg-blue-600 text-white px-2 py-0.5 rounded font-mono font-bold">9.8</span>
+            </a>
+            <a href="https://aaa.jichang.best/#/register?code=M4UujXjz" target="_blank" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-all border border-slate-100 text-slate-800 font-semibold group">
+              <span class="flex items-center gap-2 truncate">
+                <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+                <span class="truncate">速界 SpeedWorld</span>
+              </span>
+              <span class="text-xs text-slate-500 font-mono font-bold">9.6</span>
+            </a>
+            <a href="http://liangxinyun.club/" target="_blank" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-all border border-slate-100 text-slate-800 font-semibold group">
+              <span class="flex items-center gap-2 truncate">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                <span class="truncate">可信云 Kosing</span>
+              </span>
+              <span class="text-xs text-slate-500 font-mono font-bold">9.5</span>
+            </a>
+            <a href="https://gnt001.gntvipaff.cc/#/?code=yAzo4IqK" target="_blank" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-all border border-slate-100 text-slate-800 font-semibold group">
+              <span class="flex items-center gap-2 truncate">
+                <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
+                <span class="truncate">云图机场 Yuntu</span>
+              </span>
+              <span class="text-xs text-slate-500 font-mono font-bold">9.3</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. 常用客户端高速下载 (和站内一致) -->
+        <div class="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-xs">
+          <h4 class="font-extrabold text-slate-900 text-base mb-3 flex items-center gap-2 border-b border-slate-100 pb-2">
+            <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+            常用客户端下载
+          </h4>
+          <div class="space-y-2 text-xs font-semibold">
+            <a href="/downloads/" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-600 hover:text-white rounded-xl transition-colors text-slate-800 border border-slate-100 group">
+              <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-500 group-hover:bg-white"></span>Clash Verge Rev</span>
+              <span class="text-[11px] opacity-80">下载 →</span>
+            </a>
+            <a href="/downloads/" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-600 hover:text-white rounded-xl transition-colors text-slate-800 border border-slate-100 group">
+              <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-500 group-hover:bg-white"></span>Sing-box 全平台</span>
+              <span class="text-[11px] opacity-80">下载 →</span>
+            </a>
+            <a href="/apple-id/" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-600 hover:text-white rounded-xl transition-colors text-slate-800 border border-slate-100 group">
+              <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-slate-900 group-hover:bg-white"></span>iOS 小火箭 / Apple ID</span>
+              <span class="text-[11px] opacity-80">获取 →</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 3. 探针健康状态概览 (和站内一致) -->
+        <div class="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-xs text-slate-800">
+          <div class="flex items-center justify-between mb-3 border-b border-slate-100 pb-2">
+            <span class="text-xs font-mono font-extrabold text-slate-800 flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+              PROBE_ONLINE
+            </span>
+            <span class="text-[11px] text-emerald-700 font-mono bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200 font-bold">100% 正常</span>
+          </div>
+
+          <div class="space-y-2.5 font-mono text-xs">
+            <div class="flex items-center justify-between">
+              <span class="text-slate-500 font-semibold">专线连通率:</span>
+              <span class="text-emerald-600 font-black text-sm">99.98%</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-slate-500 font-semibold">平均延迟:</span>
+              <span class="text-blue-600 font-black text-sm">24.5 ms</span>
+            </div>
+          </div>
+        </div>
+
+      </aside>
 
     </div>
   </main>
+
+  <Footer />
+
+  <!-- 动态生成 TOC 目录及滚动同步 (Scrollspy) 脚本 -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const articleContent = document.getElementById('main-article-content');
+      const tocNav = document.getElementById('article-toc-nav');
+      if (!articleContent || !tocNav) return;
+
+      const headings = Array.from(articleContent.querySelectorAll('h2, h3'));
+      if (headings.length === 0) {
+        tocNav.innerHTML = '<p class="text-xs text-slate-400 py-2">暂无目录</p>';
+        return;
+      }
+
+      const tocItems = [];
+
+      headings.forEach((heading, index) => {
+        if (!heading.id) {
+          heading.id = `toc-head-${index}`;
+        }
+        heading.classList.add('scroll-mt-24');
+
+        const isH2 = heading.tagName.toLowerCase() === 'h2';
+        const cleanText = heading.textContent.replace(/^#+\s*/, '').trim();
+
+        const itemA = document.createElement('a');
+        itemA.href = `#${heading.id}`;
+        itemA.textContent = cleanText;
+        itemA.className = `block transition-all duration-200 border-l-2 py-1.5 pr-2 truncate ${
+          isH2
+            ? 'pl-3 font-extrabold text-slate-800 border-transparent hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50/60 rounded-r-lg'
+            : 'pl-6 font-medium text-slate-500 border-transparent hover:border-blue-400 hover:text-blue-600 hover:bg-blue-50/40 rounded-r-lg'
+        }`;
+
+        itemA.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = document.getElementById(heading.id);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.pushState(null, null, `#${heading.id}`);
+          }
+        });
+
+        tocNav.appendChild(itemA);
+        tocItems.push({ heading, element: itemA, isH2 });
+      });
+
+      // 高频滚动同步 (Scrollspy) 逻辑
+      let activeItem = null;
+
+      const updateScrollspy = () => {
+        const scrollPosition = window.scrollY + 130;
+        let currentHeading = null;
+
+        for (let i = 0; i < headings.length; i++) {
+          if (scrollPosition >= headings[i].offsetTop) {
+            currentHeading = headings[i];
+          }
+        }
+
+        // 如果在最顶部，默认选中第一个
+        if (!currentHeading && headings.length > 0) {
+          currentHeading = headings[0];
+        }
+
+        if (currentHeading) {
+          const matched = tocItems.find(item => item.heading.id === currentHeading.id);
+          if (matched && matched.element !== activeItem) {
+            if (activeItem) {
+              activeItem.classList.remove('border-blue-600', 'bg-blue-50', 'text-blue-600', 'font-black', 'shadow-2xs');
+              activeItem.classList.add('border-transparent');
+            }
+            activeItem = matched.element;
+            activeItem.classList.remove('border-transparent', 'text-slate-800', 'text-slate-500');
+            activeItem.classList.add('border-blue-600', 'bg-blue-50', 'text-blue-600', 'font-black');
+
+            // 保持选中的目录在 TOC 容器可视范围内
+            activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        }
+      };
+
+      window.addEventListener('scroll', updateScrollspy, { passive: true });
+      updateScrollspy(); // 页面加载后立即激活一次
+    });
+  </script>
 
   <Footer />
 
