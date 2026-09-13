@@ -18,6 +18,7 @@ const masterArticle = {
 const reviewArticles = [
   {
     id: "edgenova",
+    name: "EdgeNova",
     title: "百元内专线天花板？EdgeNova 机场深度实测：流媒体全解锁、不限设备与开箱配置教学",
     category: "IEPL专线评测",
     rating: "9.8",
@@ -31,10 +32,11 @@ const reviewArticles = [
     summary: "EdgeNova 是 2026 年新晋专线机场中的黑马代表，凭借极高性价比和充沛的“空载带宽红利”迅速登顶各大推荐榜单。全线部署端到端独享 IEPL 物理专线与 VLESS 协议，千兆宽带晚高峰跑满 100MB/s。",
     highlights: ["物理内网专线抗干扰", "无感秒开 4K/8K 视频", "原生纯净 IP 解锁 AI"],
     link: "https://cristyc.edgenovaaff.cc/#/register?code=WWiIvxL9",
-    reviewLink: "/reviews/edgenova-2026/index.html"
+    reviewLink: "./edgenova-2026/index.html"
   },
   {
     id: "sujie",
+    name: "速界",
     title: "速界 SpeedWorld 机场评测：电竞级 IEPL 专线 low-jitter 零丢包游戏体验",
     category: "游戏加速评测",
     rating: "9.6",
@@ -48,10 +50,11 @@ const reviewArticles = [
     summary: "专门针对 Steam、外服网游对战及 Discord 语音设计的低延迟电竞专线。全节点 1.0 倍率扣费，支持平民体验包与通用 Clash / Sing-box 订阅。",
     highlights: ["极低 Jitter 抖动", "真实 1.0 倍率不限设备", "游戏专线低丢包"],
     link: "https://aaa.jichang.best/#/register?code=M4UujXjz",
-    reviewLink: "/blog/how-to-choose-airport/index.html"
+    reviewLink: "../blog/how-to-choose-airport/index.html"
   },
   {
     id: "kexinyun",
+    name: "可信云",
     title: "可信云 Kosing Cloud 深度评测：高强度加密无日志与全套餐不限设备并发",
     category: "高性价比/按量",
     rating: "9.5",
@@ -65,10 +68,11 @@ const reviewArticles = [
     summary: "主打高强度加密与隐私安全防护，物理专线内网闭环传输，全套餐不限制连接设备数。年付仅需 96 元起，适合家庭与多设备共享。",
     highlights: ["全过程无日志记录", "不限设备同时连接", "年付折合仅 8 元/月"],
     link: "http://liangxinyun.club/",
-    reviewLink: "/blog/connection-troubleshooting/index.html"
+    reviewLink: "../blog/connection-troubleshooting/index.html"
   },
   {
     id: "kuaili",
+    name: "快狸",
     title: "快狸 Kuaili 机场评测：海量吞吐怪兽，300MB/s 极限带宽与 1.0x 诚实扣费",
     category: "大流量/高吞吐",
     rating: "9.4",
@@ -82,10 +86,11 @@ const reviewArticles = [
     summary: "专注大带宽 UDP 优化与流媒体解锁，多线程并发下载测试可轻松达到 100MB/s - 300MB/s，全节点统一 1.0 倍率计费，绝无隐形加倍扣费。",
     highlights: ["300MB/s 极限峰值带宽", "不设隐形高倍率", "新手一键配置"],
     link: "http://liangxinyun.club/",
-    reviewLink: "/blog/line-type-comparison/index.html"
+    reviewLink: "../blog/line-type-comparison/index.html"
   },
   {
     id: "yuntu",
+    name: "云图机场",
     title: "云图机场 Yuntu 深度评测：金融级物理专线与 ChatGPT / Claude 商业纯净 IP",
     category: "外贸&AI解锁",
     rating: "9.3",
@@ -99,10 +104,11 @@ const reviewArticles = [
     summary: "金融级物理专线不过 GFW 过滤，独享商业原生 IP 池，针对 ChatGPT、Claude 及外贸邮件服务进行白名单风控优化，基础套餐默认 5 设备并发。",
     highlights: ["真物理专线不过 GFW", "商业白名单纯净 IP", "外贸/AI 生产力首选"],
     link: "https://gnt001.gntvipaff.cc/#/?code=yAzo4IqK",
-    reviewLink: "/blog/chatgpt-access-guide/index.html"
+    reviewLink: "../blog/chatgpt-access-guide/index.html"
   },
   {
     id: "jisuyun",
+    name: "极速机场",
     title: "极速机场 2026 实测：三网 CN2 GIA/9929 顶级物理直连 24h 无视晚高峰",
     category: "IEPL专线评测",
     rating: "9.1",
@@ -116,10 +122,11 @@ const reviewArticles = [
     summary: "采用国内三网顶级精品优化线路与物理落地，提供 28ms 超低延迟与 990M 带宽，支持 Apple TV、Netflix 4K 与 ChatGPT。",
     highlights: ["28ms 国内极低延迟", "三网 CN2 GIA 9929", "24小时无视晚高峰"],
     link: "http://liangxinyun.club/",
-    reviewLink: "/blog/what-is-airport-service/index.html"
+    reviewLink: "../blog/what-is-airport-service/index.html"
   },
   {
     id: "shunyun",
+    name: "瞬云",
     title: "瞬云 Shunyun 评测：轻量极速与灵活按量计费备用机场推荐",
     category: "高性价比/按量",
     rating: "9.0",
@@ -133,10 +140,11 @@ const reviewArticles = [
     summary: "主打轻量与极速连接，支持灵活的按量付费模式，非常适合作为主线之外的备用机场，随用随扣不浪费。",
     highlights: ["灵活按量计费模式", "轻量极速握手连接", "备用永不失联"],
     link: "https://aaa.jichang.best/#/register?code=M4UujXjz",
-    reviewLink: "/blog/android-clients-comparison/index.html"
+    reviewLink: "../blog/android-clients-comparison/index.html"
   },
   {
     id: "jilianyun",
+    name: "极连云",
     title: "极连云 Jilianyun 深度评测：多站 BGP 中转高性价比稳定机场推荐",
     category: "高性价比/按量",
     rating: "8.9",
@@ -150,10 +158,11 @@ const reviewArticles = [
     summary: "多站 BGP 中转架构，访问国内响应迅速，适合跨服游戏、4K 高清视频和日常办公使用，低延迟性价比高。",
     highlights: ["多站 BGP 智能中转", "月付 10 元极低门槛", "适合日常办公与观影"],
     link: "https://a1917.jlyvipaff.com/#/?code=vT32Xl9X",
-    reviewLink: "/blog/clash-windows-setup/index.html"
+    reviewLink: "../blog/clash-windows-setup/index.html"
   },
   {
     id: "guangnianti",
+    name: "光年梯",
     title: "光年梯 Guangnianti 评测：AES-256 高强加密与大流量性价比机场推荐",
     category: "大流量/高吞吐",
     rating: "8.8",
@@ -167,7 +176,7 @@ const reviewArticles = [
     summary: "注重隐私保护与无日志政策，AES-256 加密传输。起步价仅 9.9 元/月，提供 1020M 大带宽，适合大文件下载与 8K 视频。",
     highlights: ["9.9 元起大流量套餐", "AES-256 高强加密", "1020M 海量带宽秒开"],
     link: "https://gnt001.gntvipaff.cc/#/?code=yAzo4IqK",
-    reviewLink: "/blog/ios-shadowrocket-guide/index.html"
+    reviewLink: "../blog/ios-shadowrocket-guide/index.html"
   }
 ];
 
@@ -243,7 +252,7 @@ const categories = [
               <a href={ap.link} target="_blank" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-all border border-slate-100 text-slate-800 font-semibold group">
                 <span class="flex items-center gap-2 truncate">
                   <img src={ap.logo} alt={ap.title} class="w-5 h-5 rounded-md object-cover border border-slate-200 shrink-0" />
-                  <span class="truncate">{ap.title.split(' ')[0]}</span>
+                  <span class="truncate">{ap.name}</span>
                 </span>
                 <span class="text-xs text-slate-500 font-mono group-hover:text-blue-600 font-bold shrink-0">{ap.rating}</span>
               </a>
@@ -342,7 +351,7 @@ const categories = [
                 <select id="pk-select-a" class="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-sm font-bold text-slate-800 shadow-2xs focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all cursor-pointer">
                   {reviewArticles.map((art, i) => (
                     <option value={art.id} selected={i === 0}>
-                      {art.title.split(' ')[0]}
+                      {art.name}
                     </option>
                   ))}
                 </select>
@@ -365,7 +374,7 @@ const categories = [
                 <select id="pk-select-b" class="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-sm font-bold text-slate-800 shadow-2xs focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all cursor-pointer">
                   {reviewArticles.map((art, i) => (
                     <option value={art.id} selected={i === 1}>
-                      {art.title.split(' ')[0]}
+                      {art.name}
                     </option>
                   ))}
                 </select>
@@ -533,7 +542,7 @@ const categories = [
                           <img src={ap.logo} alt={ap.title} class="w-8 h-8 rounded-lg object-cover border border-slate-200 shadow-2xs shrink-0" />
                           <div>
                             <div class="font-extrabold text-slate-900 text-sm sm:text-base flex items-center gap-1.5">
-                              {ap.title.split(' ')[0]}
+                              {ap.name}
                               <span class="text-xs bg-blue-50 text-blue-700 border border-blue-200 px-1.5 py-0.5 rounded font-mono font-bold">{ap.rating}</span>
                             </div>
                           </div>
@@ -821,7 +830,7 @@ const categories = [
           highlights: ["物理内网专线抗干扰", "无感秒开 4K/8K 视频", "原生纯净 IP 解锁 AI"],
           verdict: "EdgeNova 凭借纯血物理内网专线与高达 9.8 评分居全站第一，晚高峰延迟丢包表现极致稳定，推荐作为主力科学上网的首选。",
           link: "https://cristyc.edgenovaaff.cc/#/register?code=WWiIvxL9",
-          reviewLink: "/reviews/edgenova-2026/index.html"
+          reviewLink: "./edgenova-2026/index.html"
         },
         sujie: {
           id: "sujie",
@@ -838,7 +847,7 @@ const categories = [
           highlights: ["极低 Jitter 抖动", "真实 1.0 倍率不限设备", "游戏专线低丢包"],
           verdict: "专为外服游戏玩家和 Steam/Discord 用户打造，Low-jitter 表现极佳，适合游戏发烧友与对延迟抖动敏感的用户。",
           link: "https://aaa.jichang.best/#/register?code=M4UujXjz",
-          reviewLink: "/blog/how-to-choose-airport/index.html"
+          reviewLink: "../blog/how-to-choose-airport/index.html"
         },
         kexinyun: {
           id: "kexinyun",
@@ -855,7 +864,7 @@ const categories = [
           highlights: ["全过程无日志记录", "不限设备同时连接", "年付折合仅 8 元/月"],
           verdict: "主打无日志与不限连接设备数量，年付性价比极高，适合家庭多设备共享与高隐私要求用户。",
           link: "http://liangxinyun.club/",
-          reviewLink: "/blog/connection-troubleshooting/index.html"
+          reviewLink: "../blog/connection-troubleshooting/index.html"
         },
         kuaili: {
           id: "kuaili",
@@ -872,7 +881,7 @@ const categories = [
           highlights: ["300MB/s 极限峰值带宽", "不设隐形高倍率", "新手一键配置"],
           verdict: "拥有极限吞吐能力（实测高达 300MB/s），且无隐形高倍率扣费，极适合大文件高速下载与重度流媒体发烧友。",
           link: "http://liangxinyun.club/",
-          reviewLink: "/blog/line-type-comparison/index.html"
+          reviewLink: "../blog/line-type-comparison/index.html"
         },
         yuntu: {
           id: "yuntu",
@@ -889,7 +898,7 @@ const categories = [
           highlights: ["真物理专线不过 GFW", "商业白名单纯净 IP", "外贸/AI 生产力首选"],
           verdict: "拥有针对 AI (ChatGPT / Claude) 和外贸风控白名单的独享纯净 IP，是跨境电商与 AI 生产力的最佳利器。",
           link: "https://gnt001.gntvipaff.cc/#/?code=yAzo4IqK",
-          reviewLink: "/blog/chatgpt-access-guide/index.html"
+          reviewLink: "../blog/chatgpt-access-guide/index.html"
         },
         jisuyun: {
           id: "jisuyun",
@@ -906,7 +915,7 @@ const categories = [
           highlights: ["28ms 国内极低延迟", "三网 CN2 GIA 9929", "24小时无视晚高峰"],
           verdict: "采用三网顶级精品直连线路，国内响应延迟低至 28ms，非常适合重视国内首包握手延迟的用户。",
           link: "http://liangxinyun.club/",
-          reviewLink: "/blog/what-is-airport-service/index.html"
+          reviewLink: "../blog/what-is-airport-service/index.html"
         },
         shunyun: {
           id: "shunyun",
@@ -923,7 +932,7 @@ const categories = [
           highlights: ["灵活按量计费模式", "轻量极速握手连接", "备用永不失联"],
           verdict: "支持灵活按量扣费，随用随清不浪费，是主线机场之外最为推荐的平价备用路线。",
           link: "https://aaa.jichang.best/#/register?code=M4UujXjz",
-          reviewLink: "/blog/android-clients-comparison/index.html"
+          reviewLink: "../blog/android-clients-comparison/index.html"
         },
         jilianyun: {
           id: "jilianyun",
@@ -940,7 +949,7 @@ const categories = [
           highlights: ["多站 BGP 智能中转", "月付 10 元极低门槛", "适合日常办公与观影"],
           verdict: "入门门槛低至 10 元/月，中转网络平稳，适合预算有限但追求高性价比的日常科学上网用户。",
           link: "https://a1917.jlyvipaff.com/#/?code=vT32Xl9X",
-          reviewLink: "/blog/clash-windows-setup/index.html"
+          reviewLink: "../blog/clash-windows-setup/index.html"
         },
         guangnianti: {
           id: "guangnianti",
@@ -957,7 +966,7 @@ const categories = [
           highlights: ["9.9 元起大流量套餐", "AES-256 高强加密", "1020M 海量带宽秒开"],
           verdict: "9.9 元起即包含超大基础流量，带宽跑满 1000M+，非常适合需要大量下载与看视频的用户。",
           link: "https://gnt001.gntvipaff.cc/#/?code=yAzo4IqK",
-          reviewLink: "/blog/ios-shadowrocket-guide/index.html"
+          reviewLink: "../blog/ios-shadowrocket-guide/index.html"
         }
       };
 
