@@ -295,8 +295,8 @@
     <!-- 三栏布局: 左侧边栏 (280px) + 中间检测大盘 (自适应拉宽 flex-1) + 右侧边栏 (280px) -->
     <div class="flex flex-col lg:flex-row gap-6 items-start">
       
-      <!-- 左侧边栏 (Left Sidebar - 280px) -->
-      <aside class="w-full lg:w-[260px] xl:w-[280px] shrink-0 space-y-6">
+      <!-- 左侧边栏 (Left Sidebar - 280px, Sticky 跟随滑动) -->
+      <aside class="w-full lg:w-[260px] xl:w-[280px] shrink-0 space-y-6 sticky top-20">
         
         <!-- 1. 站长 / 测评官 Profile -->
         <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs relative overflow-hidden">
@@ -335,39 +335,66 @@
           </h4>
           <div class="space-y-1.5 text-xs">
             <a href="#edgenova" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-colors text-slate-700 font-medium group">
-              <span class="flex items-center gap-2">⚡ EdgeNova IPLC</span>
+              <span class="flex items-center gap-2 font-semibold">
+                <img src="./edgenova_logo.png" alt="EdgeNova" class="w-5 h-5 rounded-md object-cover border border-slate-200/80 shrink-0" />
+                EdgeNova
+              </span>
               <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">38ms</span>
             </a>
             <a href="#sujie" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-colors text-slate-700 font-medium group">
-              <span class="flex items-center gap-2">🎮 速界 游戏专线</span>
+              <span class="flex items-center gap-2 font-semibold">
+                <img src="./sujie_logo.png" alt="速界" class="w-5 h-5 rounded-md object-cover border border-slate-200/80 shrink-0" />
+                速界
+              </span>
               <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">39ms</span>
             </a>
             <a href="#kexinyun" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-colors text-slate-700 font-medium group">
-              <span class="flex items-center gap-2">🛡️ 可信云 隐私保护</span>
+              <span class="flex items-center gap-2 font-semibold">
+                <img src="./kexinyun_logo.png" alt="可信云" class="w-5 h-5 rounded-md object-cover border border-slate-200/80 shrink-0" />
+                可信云
+              </span>
               <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">43ms</span>
             </a>
             <a href="#kuaili" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-colors text-slate-700 font-medium group">
-              <span class="flex items-center gap-2">🦊 快狸 新手首选</span>
+              <span class="flex items-center gap-2 font-semibold">
+                <img src="./kuaili_logo.png" alt="快狸" class="w-5 h-5 rounded-md object-cover border border-slate-200/80 shrink-0" />
+                快狸
+              </span>
               <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">41ms</span>
             </a>
             <a href="#yuntu" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-colors text-slate-700 font-medium group">
-              <span class="flex items-center gap-2">☁️ 云图 金融专线</span>
+              <span class="flex items-center gap-2 font-semibold">
+                <img src="./yuntu_logo.png" alt="云图" class="w-5 h-5 rounded-md object-cover border border-slate-200/80 shrink-0" />
+                云图
+              </span>
               <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">40ms</span>
             </a>
             <a href="#jisuyun" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-colors text-slate-700 font-medium group">
-              <span class="flex items-center gap-2">🚀 极速 三网CN2 GIA</span>
+              <span class="flex items-center gap-2 font-semibold">
+                <img src="./jisuyun_logo.png" alt="极速" class="w-5 h-5 rounded-md object-cover border border-slate-200/80 shrink-0" />
+                极速
+              </span>
               <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">28ms</span>
             </a>
             <a href="#shunyun" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-colors text-slate-700 font-medium group">
-              <span class="flex items-center gap-2">⚡ 瞬云 按量付费</span>
+              <span class="flex items-center gap-2 font-semibold">
+                <img src="./shunyun_logo.png" alt="瞬云" class="w-5 h-5 rounded-md object-cover border border-slate-200/80 shrink-0" />
+                瞬云
+              </span>
               <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">36ms</span>
             </a>
             <a href="#jilianyun" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-colors text-slate-700 font-medium group">
-              <span class="flex items-center gap-2">🌐 极连云 BGP中转</span>
+              <span class="flex items-center gap-2 font-semibold">
+                <img src="./jilianyun_logo.png" alt="极连云" class="w-5 h-5 rounded-md object-cover border border-slate-200/80 shrink-0" />
+                极连云
+              </span>
               <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">45ms</span>
             </a>
             <a href="#guangnianti" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-colors text-slate-700 font-medium group">
-              <span class="flex items-center gap-2">✨ 光年梯 大流量性价比</span>
+              <span class="flex items-center gap-2 font-semibold">
+                <img src="./guangnianti_logo.png" alt="光年梯" class="w-5 h-5 rounded-md object-cover border border-slate-200/80 shrink-0" />
+                光年梯
+              </span>
               <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">120ms</span>
             </a>
           </div>
@@ -1498,8 +1525,8 @@
 
       </section>
 
-      <!-- 右侧边栏 (Right Sidebar - 280px) -->
-      <aside class="w-full lg:w-[260px] xl:w-[280px] shrink-0 space-y-6">
+      <!-- 右侧边栏 (Right Sidebar - 280px, Sticky 跟随滑动) -->
+      <aside class="w-full lg:w-[260px] xl:w-[280px] shrink-0 space-y-6 sticky top-20">
         
         <!-- 1. 侧栏广告展示位 AD -->
         <div class="bg-gradient-to-br from-amber-50 to-orange-50/50 border-2 border-dashed border-amber-300 rounded-2xl p-5 relative overflow-hidden">
