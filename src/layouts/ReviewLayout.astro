@@ -256,7 +256,7 @@ const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
     }
 
     /* Links styling */
-    .review-article-content a {
+    .review-article-content a:not(.no-underline):not([class*="bg-"]) {
       color: #2563eb;
       font-weight: 700;
       text-decoration: underline;
@@ -264,15 +264,19 @@ const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
       transition: color 0.2s ease;
     }
 
-    .review-article-content a:hover {
+    .review-article-content a:not(.no-underline):not([class*="bg-"]):hover {
       color: #1d4ed8;
     }
 
+    .review-article-content a.no-underline,
     .review-article-content a.text-white,
+    .review-article-content a[class*="bg-"] {
+      color: #ffffff !important;
+      text-decoration: none !important;
+    }
+
+    .review-article-content a.no-underline *,
     .review-article-content a.text-white *,
-    .review-article-content a[class*="text-white"],
-    .review-article-content a[class*="text-white"] *,
-    .review-article-content a[class*="bg-"],
     .review-article-content a[class*="bg-"] * {
       color: #ffffff !important;
       text-decoration: none !important;
