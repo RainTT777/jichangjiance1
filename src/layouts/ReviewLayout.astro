@@ -1,5 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 
 interface Props {
   frontmatter: {
@@ -29,76 +31,277 @@ const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 ---
 
 <BaseLayout title={title} description={description}>
-  <article class="max-w-4xl mx-auto px-4 py-12">
-    <!-- 面包屑 -->
-    <nav class="text-sm text-slate-600 mb-6">
-      <a href="/" class="hover:text-blue-600">首页</a>
-      <span class="mx-2">/</span>
-      <a href="/reviews" class="hover:text-blue-600">评测</a>
-      <span class="mx-2">/</span>
-      <span class="text-slate-900">{title}</span>
-    </nav>
+  <Header />
 
-    <!-- 文章头部 -->
-    <header class="mb-12">
-      <h1 class="text-4xl font-bold mb-4 text-slate-900">{title}</h1>
+  <main class="w-full max-w-[1920px] mx-auto px-3 sm:px-6 lg:px-8 py-8 min-h-screen bg-slate-50/50">
+    <div class="max-w-4xl mx-auto space-y-6">
+      
+      <!-- 面包屑导航 -->
+      <nav class="flex items-center gap-2 text-sm text-slate-500 font-medium px-1">
+        <a href="/" class="hover:text-blue-600 transition-colors">首页</a>
+        <span>/</span>
+        <a href="/reviews/" class="hover:text-blue-600 transition-colors">机场评测文章</a>
+        <span>/</span>
+        <span class="text-blue-600 font-semibold truncate max-w-xs sm:max-w-md">{title}</span>
+      </nav>
 
-      <div class="flex items-center gap-4 text-sm text-slate-600 mb-6">
-        <time datetime={date}>{formattedDate}</time>
-        {categories.length > 0 && (
-          <span class="flex gap-2">
+      <!-- 文章卡片主体 -->
+      <article class="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-6 sm:p-10 lg:p-12 overflow-hidden">
+        
+        <!-- 文章头部 -->
+        <header class="mb-10 pb-8 border-b border-slate-100">
+          
+          <div class="flex items-center gap-2 mb-4 flex-wrap">
             {categories.map(cat => (
-              <span class="badge-green">{cat}</span>
+              <span class="px-3 py-1 bg-blue-50 text-blue-700 border border-blue-200 text-xs font-mono font-bold rounded-lg">
+                {cat}
+              </span>
             ))}
-          </span>
+            <span class="text-xs font-mono text-slate-400 font-medium">发布时间: {formattedDate}</span>
+          </div>
+
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 leading-tight tracking-tight mb-6">
+            {title}
+          </h1>
+
+          <!-- 评分卡片 -->
+          <div class="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50/80 via-slate-50 to-indigo-50/80 rounded-2xl border border-blue-100/80 flex-wrap gap-3">
+            <div class="flex items-center gap-3">
+              <span class="text-xs font-mono font-bold text-slate-500 uppercase">AUDIT SCORE</span>
+              <div class="flex items-center gap-1">
+                {Array.from({ length: fullStars }).map(() => (
+                  <span class="text-amber-500 font-bold text-lg">★</span>
+                ))}
+                {hasHalfStar && <span class="text-amber-500 font-bold text-lg">★</span>}
+                {Array.from({ length: emptyStars }).map(() => (
+                  <span class="text-slate-300 font-bold text-lg">☆</span>
+                ))}
+              </div>
+              <span class="text-lg font-mono font-black text-blue-600">{score.toFixed(1)} / 5.0</span>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <a href="https://cristyc.edgenovaaff.cc/#/register?code=WWiIvxL9" target="_blank" rel="noopener" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm rounded-xl shadow-2xs transition-all flex items-center gap-1.5">
+                <span>直达 EdgeNova 官网</span>
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+              </a>
+            </div>
+          </div>
+
+        </header>
+
+        <!-- 文章内容容器 (应用全局美化样式) -->
+        <div class="review-article-content">
+          <slot />
+        </div>
+
+        <!-- 标签 Footer -->
+        {tags.length > 0 && (
+          <footer class="mt-12 pt-6 border-t border-slate-100">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-xs font-mono font-bold text-slate-400 uppercase mr-1">TAGS:</span>
+              {tags.map(tag => (
+                <span class="px-3 py-1 bg-slate-100 text-slate-700 text-xs rounded-lg font-semibold border border-slate-200/80">
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          </footer>
         )}
-      </div>
 
-      <!-- 评分 -->
-      <div class="flex items-center gap-3 p-4 bg-gradient-to-r from-blue-50/80 to-indigo-50/80 rounded-xl border border-blue-100/70 shadow-2xs">
-        <span class="text-sm font-medium text-slate-700">综合评分:</span>
-        <div class="flex items-center gap-1">
-          {Array.from({ length: fullStars }).map(() => (
-            <span class="text-amber-500 font-bold text-lg">★</span>
-          ))}
-          {hasHalfStar && <span class="text-amber-500 font-bold text-lg">★</span>}
-          {Array.from({ length: emptyStars }).map(() => (
-            <span class="text-slate-300 font-bold text-lg">☆</span>
-          ))}
-        </div>
-        <span class="text-lg font-bold text-slate-900">{score.toFixed(1)}/5.0</span>
-      </div>
-    </header>
+      </article>
 
-    <!-- 文章内容 -->
-    <div class="prose prose-slate prose-lg max-w-none
-                prose-headings:font-bold prose-headings:text-slate-900
-                prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:border-b prose-h2:border-slate-200 prose-h2:pb-3
-                prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
-                prose-p:text-slate-700 prose-p:leading-relaxed
-                prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline
-                prose-strong:text-slate-900 prose-strong:font-semibold
-                prose-code:text-pink-600 prose-code:bg-pink-50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
-                prose-pre:bg-slate-900 prose-pre:text-slate-100
-                prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:bg-blue-50 prose-blockquote:py-1
-                prose-table:w-full prose-th:bg-slate-100 prose-th:p-3 prose-td:p-3
-                prose-ul:list-disc prose-ol:list-decimal
-                prose-img:rounded-lg prose-img:shadow-lg">
-      <slot />
     </div>
+  </main>
 
-    <!-- 标签 -->
-    {tags.length > 0 && (
-      <footer class="mt-12 pt-8 border-t border-slate-200">
-        <div class="flex flex-wrap gap-2">
-          <span class="text-sm font-medium text-slate-700">标签:</span>
-          {tags.map(tag => (
-            <a href={`/tags/${tag}`} class="badge bg-slate-200 text-slate-700 hover:bg-slate-300 transition-colors">
-              #{tag}
-            </a>
-          ))}
-        </div>
-      </footer>
-    )}
-  </article>
+  <Footer />
+
+  <style is:global>
+    .review-article-content {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: #334155;
+    }
+
+    .review-article-content h2 {
+      font-size: 1.65rem;
+      font-weight: 900;
+      color: #0f172a;
+      margin-top: 2.75rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 2px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .review-article-content h2::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 1.3em;
+      background: linear-gradient(to bottom, #2563eb, #4f46e5);
+      border-radius: 9999px;
+      margin-right: 0.35rem;
+      flex-shrink: 0;
+    }
+
+    .review-article-content h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-top: 2rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .review-article-content h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #334155;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .review-article-content p {
+      margin-bottom: 1.35rem;
+      color: #334155;
+    }
+
+    .review-article-content strong {
+      color: #0f172a;
+      font-weight: 800;
+    }
+
+    /* Blockquote callout styling */
+    .review-article-content blockquote {
+      background: linear-gradient(to right, #eff6ff, #f8fafc);
+      border-left: 4px solid #2563eb;
+      border-radius: 0.85rem;
+      padding: 1.25rem 1.5rem;
+      margin: 1.75rem 0;
+      color: #1e293b;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      border-top: 1px solid #e0e7ff;
+      border-right: 1px solid #e0e7ff;
+      border-bottom: 1px solid #e0e7ff;
+    }
+
+    .review-article-content blockquote p {
+      margin-bottom: 0;
+      font-weight: 600;
+      color: #1e3a8a;
+    }
+
+    /* Table styling */
+    .review-article-content table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 2rem 0;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    }
+
+    .review-article-content th {
+      background-color: #f1f5f9;
+      color: #0f172a;
+      font-weight: 800;
+      text-align: left;
+      padding: 1rem 1.25rem;
+      border-bottom: 2px solid #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    .review-article-content td {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid #e2e8f0;
+      color: #334155;
+      font-size: 0.95rem;
+      background-color: #ffffff;
+      line-height: 1.7;
+    }
+
+    .review-article-content tr:last-child td {
+      border-bottom: none;
+    }
+
+    .review-article-content tr:hover td {
+      background-color: #f8fafc;
+    }
+
+    /* Lists styling */
+    .review-article-content ul {
+      list-style-type: disc;
+      padding-left: 1.75rem;
+      margin: 1rem 0 1.5rem 0;
+    }
+
+    .review-article-content ol {
+      list-style-type: decimal;
+      padding-left: 1.75rem;
+      margin: 1rem 0 1.5rem 0;
+    }
+
+    .review-article-content li {
+      margin-bottom: 0.65rem;
+      color: #334155;
+    }
+
+    .review-article-content li strong {
+      color: #0f172a;
+    }
+
+    /* Links styling */
+    .review-article-content a {
+      color: #2563eb;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s ease;
+    }
+
+    .review-article-content a:hover {
+      color: #1d4ed8;
+    }
+
+    /* Horizontal Rule */
+    .review-article-content hr {
+      border: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #cbd5e1, transparent);
+      margin: 2.5rem 0;
+    }
+
+    /* Code inline and blocks */
+    .review-article-content code {
+      background-color: #f1f5f9;
+      color: #2563eb;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.875em;
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.375rem;
+      border: 1px solid #e2e8f0;
+    }
+
+    .review-article-content pre {
+      background-color: #0f172a;
+      color: #f8fafc;
+      padding: 1.25rem;
+      border-radius: 1rem;
+      overflow-x-auto: auto;
+      margin: 1.5rem 0;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .review-article-content pre code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      border: none;
+    }
+  </style>
 </BaseLayout>
