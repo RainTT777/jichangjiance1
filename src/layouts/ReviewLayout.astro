@@ -34,7 +34,7 @@ const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 <BaseLayout title={title} description={description}>
   <Header />
 
-  <main class="w-full max-w-[1920px] mx-auto px-3 sm:px-6 lg:px-8 py-6 min-h-screen bg-slate-50/50">
+  <main class="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-6 min-h-screen bg-slate-50/50">
     
     <!-- 面包屑导航 -->
     <nav class="flex items-center gap-2 text-sm text-slate-500 font-medium px-1 mb-6">
@@ -45,33 +45,33 @@ const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
       <span class="text-blue-600 font-semibold truncate max-w-xs sm:max-w-md">{title}</span>
     </nav>
 
-    <!-- 三栏响应式布局: 左侧文章目录 (Sticky) + 中间文章卡片 (Flex-1) + 右侧侧栏 (图2 模板) -->
-    <div class="flex flex-col lg:flex-row gap-6 items-start">
+    <!-- 三栏响应式布局: 左侧文章目录 (Sticky, 加宽拉长) + 中间文章卡片 (最佳阅读宽度 max-w-[920px]) + 右侧侧栏 -->
+    <div class="flex flex-col lg:flex-row gap-6 items-start justify-center">
       
-      <!-- 左侧边栏 (专职文章目录 TOC, Sticky top-20, 加宽拉长) -->
-      <aside class="w-full lg:w-[260px] xl:w-[280px] shrink-0 sticky top-20">
+      <!-- 左侧边栏 (专职文章目录 TOC, Sticky top-20, 300px~320px 宽，拉长展示) -->
+      <aside class="w-full lg:w-[280px] xl:w-[320px] shrink-0 sticky top-20">
         
-        <!-- 文章目录 Card (自动抓取 H2/H3 标题，可全屏拉长滚动) -->
+        <!-- 文章目录 Card -->
         <div class="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-xs">
-          <h3 class="font-extrabold text-slate-900 text-base mb-3 flex items-center justify-between border-b border-slate-100 pb-2.5">
+          <h3 class="font-extrabold text-slate-900 text-base mb-3.5 flex items-center justify-between border-b border-slate-100 pb-3">
             <span class="flex items-center gap-2">
-              <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-4.5 h-4.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path>
               </svg>
               文章目录
             </span>
-            <span class="text-xs text-blue-600 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded font-mono font-bold">TOC</span>
+            <span class="text-xs text-blue-600 bg-blue-50 border border-blue-200/80 px-2.5 py-0.5 rounded-full font-mono font-bold">TOC</span>
           </h3>
           
-          <nav id="article-toc-nav" class="space-y-1.5 text-xs max-h-[calc(100vh-140px)] overflow-y-auto pr-1 scrollbar-thin">
+          <nav id="article-toc-nav" class="space-y-1 text-xs sm:text-sm max-h-[calc(100vh-140px)] overflow-y-auto pr-1 scrollbar-thin">
             <!-- 由客户端脚本根据 Markdown H2 / H3 标题自动填充 -->
           </nav>
         </div>
 
       </aside>
 
-      <!-- 中间文章卡片主体 (Flex-1 自适应拉宽) -->
-      <section class="flex-1 min-w-0 w-full space-y-6">
+      <!-- 中间文章卡片主体 (限制 max-w-[920px] 舒适阅读宽度，防止过宽失真) -->
+      <section class="flex-1 min-w-0 w-full max-w-[920px] space-y-6">
         <article class="bg-white rounded-3xl border border-slate-200/90 shadow-xs p-6 sm:p-10 lg:p-12 overflow-hidden">
           
           <!-- 文章头部 -->
@@ -108,7 +108,7 @@ const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
               <div class="flex items-center gap-2">
                 <a href="https://cristyc.edgenovaaff.cc/#/register?code=WWiIvxL9" target="_blank" rel="noopener" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm rounded-xl shadow-2xs transition-all flex items-center gap-1.5" style="color: #ffffff !important; text-decoration: none !important;">
-                  <span style="color: #ffffff !important;">直达 EdgeNova 官网</span>
+                  <span style="color: #ffffff !important;">直达 官网注册</span>
                   <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                 </a>
               </div>
@@ -142,20 +142,6 @@ const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
       <RightSidebar />
 
     </div>
-  </main><div class="flex items-center justify-between">
-              <span class="text-slate-500 font-semibold">专线连通率:</span>
-              <span class="text-emerald-600 font-black text-sm">99.98%</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <span class="text-slate-500 font-semibold">平均延迟:</span>
-              <span class="text-blue-600 font-black text-sm">24.5 ms</span>
-            </div>
-          </div>
-        </div>
-
-      </aside>
-
-    </div>
   </main>
 
   <Footer />
@@ -187,10 +173,10 @@ const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
         const itemA = document.createElement('a');
         itemA.href = `#${heading.id}`;
         itemA.textContent = cleanText;
-        itemA.className = `block transition-all duration-200 border-l-2 py-1.5 pr-2 leading-snug break-words ${
+        itemA.className = `block transition-all duration-200 border-l-2 py-2 pr-2.5 leading-snug break-words ${
           isH2
-            ? 'pl-3 font-extrabold text-slate-800 border-transparent hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50/60 rounded-r-lg'
-            : 'pl-6 font-medium text-slate-500 border-transparent hover:border-blue-400 hover:text-blue-600 hover:bg-blue-50/40 rounded-r-lg'
+            ? 'pl-3.5 text-xs sm:text-sm font-extrabold text-slate-800 border-transparent hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50/70 rounded-r-xl'
+            : 'pl-6 text-xs font-semibold text-slate-500 border-transparent hover:border-blue-400 hover:text-blue-600 hover:bg-blue-50/50 rounded-r-lg'
         }`;
 
         itemA.addEventListener('click', (e) => {
