@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Disallow internal redirect paths
+Disallow: /go/
+
+# Sitemap Location
+Sitemap: https://jichangjiance.net/sitemap.xml
