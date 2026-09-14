@@ -1,0 +1,174 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import LeftSidebar from '@/components/LeftSidebar.astro';
+import RightSidebar from '@/components/RightSidebar.astro';
+import ArticleCard from '@/components/ArticleCard.astro';
+import { articles } from '@/data/articles';
+
+// 知识库分类板块
+const knowledgeCategories = [
+  {
+    title: '基础概念与原理',
+    desc: '了解科学上网基本原理、机场运作方式与网络架构差异。',
+    tag: 'FUNDAMENTALS',
+    articles: articles.filter(a => a.tags.includes('基础概念') || a.tags.includes('新手入门') || a.tags.includes('线路类型'))
+  },
+  {
+    title: '客户端配置与使用',
+    desc: '全平台（Windows / Mac / iOS / Android）主流客户端图文配置手册。',
+    tag: 'CLIENT_CONFIG',
+    articles: articles.filter(a => a.tags.includes('客户端配置') || a.tags.includes('Clash') || a.tags.includes('Shadowrocket') || a.tags.includes('Android'))
+  },
+  {
+    title: '线路架构与网络选型',
+    desc: 'IPLC 物理专线、BGP 多线中转与公网直连差异对比与实测参数。',
+    tag: 'LINE_ARCHITECTURE',
+    articles: articles.filter(a => a.tags.includes('线路类型') || a.tags.includes('选择指南') || a.tags.includes('对比分析'))
+  },
+  {
+    title: '安全防护与故障排查',
+    desc: 'DNS 泄漏防护、隐私防封与常见网络连接超时断流问题快速修复。',
+    tag: 'SECURITY_TROUBLESHOOTING',
+    articles: articles.filter(a => a.tags.includes('故障排查') || a.tags.includes('规则配置') || a.tags.includes('使用技巧'))
+  }
+];
+
+// 知识库常见 FAQ
+const faqs = [
+  {
+    q: '什么是 IPLC 物理专线？为什么晚高峰更稳定？',
+    a: 'IPLC（International Private Leased Circuit）是企业级跨境点对点内网专线，不经过公网 GFW 审查节点。由于流量直接走物理海底光缆，不受骨干网晚高峰拥堵和封锁影响，具有极低延迟与 0 丢包特性。'
+  },
+  {
+    q: '什么是 1.0x 真实扣费倍率？',
+    a: '部分不诚信机场会设置 2x 甚至 5x 的高倍率节点，消耗 1GB 流量实际扣除 5GB 额度。而诚实服务商全节点均为 1.0x 倍率，用多少扣多少，透明无隐形消耗。'
+  },
+  {
+    q: '为什么访问 ChatGPT 或 Netflix 会提示 403 / 机器人验证？',
+    a: '这是由于节点落地 IP 被多人共用或被判定为机房 DataCenter IP。选择原生 Residential 家宽 IP 节点或纯净 IPLC 专线节点可完美解决 AI 风控与流媒体锁区问题。'
+  },
+  {
+    q: 'Clash、Sing-box 与 Shadowrocket 有何区别？',
+    a: 'Clash 和 Sing-box 是跨平台规则分流引擎，支持复杂的 TUN 模式和智能规则链；Shadowrocket（小火箭）则是 iOS 平台最方便易用的通用代理客户端。'
+  }
+];
+---
+
+<BaseLayout
+  title="科学上网知识库 - 2026 稳定翻墙原理、线路架构与客户端配置全解"
+  description="机场数据检测中心科学上网知识库：零基础概念解析、IPLC 专线架构、VLESS/Hysteria2 协议详解、全平台客户端配置与安全防封指南。"
+>
+  <Header />
+
+  <main class="w-full max-w-[1920px] mx-auto px-3 sm:px-6 lg:px-8 py-6 min-h-screen bg-slate-50/50">
+    
+    <!-- 面包屑 -->
+    <nav class="flex items-center gap-2 text-sm text-slate-500 font-medium px-1 mb-6">
+      <a href="/" class="hover:text-blue-600 transition-colors">首页</a>
+      <span>/</span>
+      <span class="text-blue-600 font-semibold">科学上网知识库</span>
+    </nav>
+
+    <!-- 响应式三栏布局: 左侧边栏 + 中间主区 + 右侧侧栏 (参考图2 模板) -->
+    <div class="flex flex-col lg:flex-row gap-6 items-start">
+      
+      <!-- 左侧边栏 (图2 模板) -->
+      <LeftSidebar />
+
+      <!-- 主区 (知识库主体) -->
+      <section class="flex-1 min-w-0 w-full space-y-6">
+        
+        <!-- Header Banner -->
+        <div class="relative w-full bg-gradient-to-br from-blue-900 via-indigo-950 to-slate-900 border border-cyan-500/30 rounded-3xl p-6 sm:p-10 text-white shadow-lg overflow-hidden">
+          <div class="absolute -top-24 -right-24 w-80 h-80 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="relative z-10 space-y-3">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-cyan-500/20 border border-cyan-400/40 rounded-full text-cyan-300 text-xs font-mono font-bold">
+              <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+              KNOWLEDGE_BASE v2026
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+              科学上网全景知识库
+            </h1>
+            <p class="text-sm sm:text-base text-slate-300 font-medium max-w-2xl leading-relaxed">
+              汇集 2026 年最新翻墙原理解析、IPLC 物理专线架构、VLESS / Hysteria 2 协议演进、全平台客户端图文教程及安全防封知识。
+            </p>
+
+            <div class="pt-2 flex flex-wrap gap-2 text-xs font-mono">
+              <span class="px-3 py-1 bg-slate-800/80 border border-slate-700 text-cyan-300 rounded-lg"># 原理与协议</span>
+              <span class="px-3 py-1 bg-slate-800/80 border border-slate-700 text-cyan-300 rounded-lg"># 专线架构</span>
+              <span class="px-3 py-1 bg-slate-800/80 border border-slate-700 text-cyan-300 rounded-lg"># 客户端配置</span>
+              <span class="px-3 py-1 bg-slate-800/80 border border-slate-700 text-cyan-300 rounded-lg"># 安全隐私</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 大核心知识分类板块 -->
+        <div class="space-y-6">
+          {knowledgeCategories.map((cat, idx) => (
+            <div class="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-xs space-y-4">
+              <div class="flex items-center justify-between border-b border-slate-100 pb-3 flex-wrap gap-2">
+                <div>
+                  <h2 class="text-xl font-black text-slate-900 flex items-center gap-2">
+                    <span class="w-2 h-6 bg-blue-600 rounded-full inline-block"></span>
+                    <span>{cat.title}</span>
+                  </h2>
+                  <p class="text-xs text-slate-500 mt-1">{cat.desc}</p>
+                </div>
+                <span class="px-2.5 py-1 bg-blue-50 text-blue-700 font-mono font-bold text-xs rounded-md border border-blue-200">
+                  {cat.tag}
+                </span>
+              </div>
+
+              <!-- 对应精选文章网格 -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {cat.articles.slice(0, 4).map(article => (
+                  <ArticleCard article={article} />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- 知识库核心 FAQ -->
+        <div class="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-xs space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <h2 class="text-xl font-black text-slate-900 flex items-center gap-2">
+              <span class="w-2 h-6 bg-indigo-600 rounded-full inline-block"></span>
+              <span>科学上网知识库 FAQ 问答</span>
+            </h2>
+            <span class="text-xs text-indigo-600 bg-indigo-50 border border-indigo-200 px-2 py-0.5 rounded font-mono font-bold">KNOWLEDGE_FAQ</span>
+          </div>
+
+          <div class="space-y-3">
+            {faqs.map((faq, i) => (
+              <details class="bg-slate-50/80 rounded-2xl border border-slate-200/70 p-4 shadow-2xs group" open={i === 0}>
+                <summary class="cursor-pointer list-none flex items-center justify-between font-bold text-slate-900 text-sm sm:text-base">
+                  <span class="flex items-center gap-2">
+                    <span class="text-blue-600 font-mono">Q{i + 1}.</span>
+                    <span>{faq.q}</span>
+                  </span>
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </summary>
+                <div class="mt-3 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-200/60 pt-3 pl-6">
+                  {faq.a}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 右侧侧栏 (图2 模板) -->
+      <RightSidebar />
+
+    </div>
+
+  </main>
+
+  <Footer />
+</BaseLayout>
