@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node -e \"const fs = require('fs'); fs.copyFileSync('dist/sitemap.xml', 'sitemap.xml'); fs.copyFileSync('dist/sitemap.xml', 'public/sitemap.xml'); fs.copyFileSync('dist/_redirects', '_redirects'); fs.copyFileSync('dist/_redirects', 'public/_redirects'); fs.copyFileSync('dist/_headers', '_headers'); fs.copyFileSync('dist/_headers', 'public/_headers'); fs.copyFileSync('dist/404.html', '404.html'); fs.copyFileSync('dist/404.html', 'public/404.html');\"",
     "preview": "astro preview",
     "astro": "astro"
   },
