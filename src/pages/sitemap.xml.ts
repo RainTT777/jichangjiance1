@@ -1,194 +1,102 @@
+import { getCollection } from 'astro:content';
+import { articles } from '../data/articles';
+import { topics } from '../data/topics';
+import { brands } from '../data/brands';
+
 export async function GET() {
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+  const reviews = await getCollection('reviews');
+  const today = '2026-09-15';
+
+  // 静态核心页面
+  const staticPages = [
+    { url: 'https://jichangjiance.net/', priority: '1.0', changefreq: 'daily' },
+    { url: 'https://jichangjiance.net/reviews/', priority: '0.9', changefreq: 'daily' },
+    { url: 'https://jichangjiance.net/downloads/', priority: '0.9', changefreq: 'weekly' },
+    { url: 'https://jichangjiance.net/knowledge/', priority: '0.9', changefreq: 'weekly' },
+    { url: 'https://jichangjiance.net/blog/', priority: '0.8', changefreq: 'daily' },
+    { url: 'https://jichangjiance.net/topics/', priority: '0.8', changefreq: 'weekly' },
+    { url: 'https://jichangjiance.net/brands/', priority: '0.8', changefreq: 'weekly' },
+    { url: 'https://jichangjiance.net/apple-id/', priority: '0.7', changefreq: 'weekly' },
+    { url: 'https://jichangjiance.net/free-nodes/', priority: '0.7', changefreq: 'daily' },
+    { url: 'https://jichangjiance.net/compare/', priority: '0.6', changefreq: 'weekly' },
+    { url: 'https://jichangjiance.net/about/', priority: '0.5', changefreq: 'monthly' },
+  ];
+
+  // 测评单页
+  const reviewPages = reviews.map((r) => ({
+    url: `https://jichangjiance.net/reviews/${r.slug}/`,
+    priority: '0.8',
+    changefreq: 'weekly',
+    lastmod: r.data.date || today,
+  }));
+
+  // 博客文章
+  const blogPages = articles.map((a) => ({
+    url: `https://jichangjiance.net/blog/${a.slug}/`,
+    priority: '0.7',
+    changefreq: 'monthly',
+    lastmod: a.updateDate || a.publishDate || today,
+  }));
+
+  // 专题分类页
+  const topicPages = topics.map((t) => ({
+    url: `https://jichangjiance.net/topics/${t.slug}/`,
+    priority: '0.7',
+    changefreq: 'weekly',
+    lastmod: today,
+  }));
+
+  // 品牌列表页
+  const brandPages = brands.map((b) => ({
+    url: `https://jichangjiance.net/brands/${b.slug}/`,
+    priority: '0.7',
+    changefreq: 'weekly',
+    lastmod: today,
+  }));
+
+  // 分类聚合页
+  const categories = Array.from(new Set(articles.map((a) => a.category)));
+  const categoryPages = categories.map((cat) => ({
+    url: `https://jichangjiance.net/category/${encodeURIComponent(cat)}/`,
+    priority: '0.6',
+    changefreq: 'weekly',
+    lastmod: today,
+  }));
+
+  // 标签聚合页
+  const tags = Array.from(new Set(articles.flatMap((a) => a.tags || [])));
+  const tagPages = tags.map((t) => ({
+    url: `https://jichangjiance.net/tag/${encodeURIComponent(t)}/`,
+    priority: '0.5',
+    changefreq: 'weekly',
+    lastmod: today,
+  }));
+
+  const allUrls = [
+    ...staticPages.map((p) => ({ ...p, lastmod: today })),
+    ...reviewPages,
+    ...blogPages,
+    ...topicPages,
+    ...brandPages,
+    ...categoryPages,
+    ...tagPages,
+  ];
+
+  const xmlContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- 首页 -->
-  <url>
-    <loc>https://jichangjiance.net/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <!-- 核心导航与功能页面 -->
-  <url>
-    <loc>https://jichangjiance.net/reviews/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://jichangjiance.net/downloads/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://jichangjiance.net/knowledge/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://jichangjiance.net/blog/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://jichangjiance.net/topics/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://jichangjiance.net/apple-id/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://jichangjiance.net/free-nodes/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://jichangjiance.net/compare/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://jichangjiance.net/about/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <!-- 机场深度测评单页 -->
-  <url>
-    <loc>https://jichangjiance.net/reviews/edgenova-2026/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://jichangjiance.net/reviews/sujie-2026/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- 教程与文章 -->
-  <url>
-    <loc>https://jichangjiance.net/blog/what-is-airport-service/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://jichangjiance.net/blog/how-to-choose-airport/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://jichangjiance.net/blog/clash-windows-setup/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://jichangjiance.net/blog/ios-shadowrocket-guide/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://jichangjiance.net/blog/netflix-unlock-guide/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://jichangjiance.net/blog/chatgpt-access-guide/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://jichangjiance.net/blog/line-type-comparison/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://jichangjiance.net/blog/connection-troubleshooting/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://jichangjiance.net/blog/android-clients-comparison/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://jichangjiance.net/blog/advanced-rules-config/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- 专题分类聚合页 -->
-  <url>
-    <loc>https://jichangjiance.net/topics/ai-tools/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://jichangjiance.net/topics/streaming-unlock/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://jichangjiance.net/topics/beginner-guide/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://jichangjiance.net/topics/client-guides/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://jichangjiance.net/topics/advanced-tips/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://jichangjiance.net/topics/security-privacy/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- 品牌汇总页 -->
-  <url>
-    <loc>https://jichangjiance.net/brands/</loc>
-    <lastmod>2026-09-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
+${allUrls
+  .map(
+    (item) => `  <url>
+    <loc>${item.url}</loc>
+    <lastmod>${item.lastmod}</lastmod>
+    <changefreq>${item.changefreq}</changefreq>
+    <priority>${item.priority}</priority>
+  </url>`
+  )
+  .join('\n')}
 </urlset>`;
 
-  return new Response(sitemap, {
+  return new Response(xmlContent, {
     headers: {
       'Content-Type': 'application/xml; charset=utf-8',
       'Cache-Control': 'public, max-age=0, must-revalidate',

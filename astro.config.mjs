@@ -7,3 +7,5 @@ export default defineConfig({
   site: 'https://jichangjiance.net',
   output: 'static',
 });
+
+
