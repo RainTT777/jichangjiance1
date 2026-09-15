@@ -4,5 +4,7 @@ Allow: /
 # Disallow internal redirect paths
 Disallow: /go/
 
-# Sitemap Location
+# Sitemap Locations
 Sitemap: https://jichangjiance.net/sitemap.xml
+Sitemap: https://jichangjiance.net/sitemap_index.xml
+Sitemap: https://jichangjiance.net/sitemap-index.xml
