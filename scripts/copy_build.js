@@ -17,30 +17,20 @@ function copyRecursiveSync(src, dest) {
   }
 }
 
-console.log('Syncing dist output to root, public, and Desktop/博客...');
+console.log('Syncing dist output strictly within 机场博客 project...');
 if (fs.existsSync('dist')) {
-  // 1. Copy dist contents to root directory
+  // 1. Copy dist contents to root directory of 机场博客
   fs.readdirSync('dist').forEach((item) => {
     const srcPath = path.join('dist', item);
     const destPath = path.join('.', item);
     copyRecursiveSync(srcPath, destPath);
     
-    // 2. Copy to public directory
+    // 2. Copy to public directory of 机场博客
     const publicDestPath = path.join('public', item);
     copyRecursiveSync(srcPath, publicDestPath);
   });
 
-  // 3. Also sync to Desktop/博客 if present
-  const desktopBlog = 'C:/Users/Administrator/Desktop/博客';
-  if (fs.existsSync(desktopBlog)) {
-    fs.readdirSync('dist').forEach((item) => {
-      const srcPath = path.join('dist', item);
-      const destPath = path.join(desktopBlog, item);
-      copyRecursiveSync(srcPath, destPath);
-    });
-  }
-
-  // 4. Ensure all logo PNG files exist in subdirectories for robust image loading
+  // 3. Ensure all logo PNG files exist in subdirectories within 机场博客 for robust image loading
   const logoFiles = [
     'edgenova_logo.png', 'sujie_logo.png', 'kexinyun_logo.png',
     'kuaili_logo.png', 'yuntu_logo.png', 'jisuyun_logo.png',
@@ -56,17 +46,6 @@ if (fs.existsSync('dist')) {
     'brands', 'public/brands', 'dist/brands',
     'go', 'public/go', 'dist/go'
   ];
-
-  if (fs.existsSync(desktopBlog)) {
-    subDirs.push(
-      'C:/Users/Administrator/Desktop/博客/reviews',
-      'C:/Users/Administrator/Desktop/博客/topics',
-      'C:/Users/Administrator/Desktop/博客/tag',
-      'C:/Users/Administrator/Desktop/博客/category',
-      'C:/Users/Administrator/Desktop/博客/brands',
-      'C:/Users/Administrator/Desktop/博客/go'
-    );
-  }
 
   logoFiles.forEach(file => {
     const srcFile = path.join('public', file);
