@@ -20,7 +20,7 @@ const airports = [
     rating: '9.8',
     badge: 'NO.01 本站推荐',
     icon: '01',
-    logo: prefix + 'edgenova_logo.png',
+    logo: '/edgenova_logo.png',
     gradient: 'from-slate-900 via-indigo-950 to-slate-900',
     ping: '38',
     pingStatus: 'IPLC极低延迟',
@@ -41,7 +41,7 @@ const airports = [
     rating: '9.6',
     badge: 'NO.02 游戏优选',
     icon: '02',
-    logo: prefix + 'sujie_logo.png',
+    logo: '/sujie_logo.png',
     gradient: 'from-blue-950 via-slate-900 to-indigo-950',
     ping: '39',
     pingStatus: '游戏专用低延迟',
@@ -62,7 +62,7 @@ const airports = [
     rating: '9.4',
     badge: 'NO.03 隐私首选',
     icon: '03',
-    logo: prefix + 'kexinyun_logo.png',
+    logo: '/kexinyun_logo.png',
     gradient: 'from-emerald-950 via-slate-900 to-teal-950',
     ping: '43',
     pingStatus: '稳定加密',
@@ -83,7 +83,7 @@ const airports = [
     rating: '9.3',
     badge: 'NO.04 新手推荐',
     icon: '04',
-    logo: prefix + 'kuaili_logo.png',
+    logo: '/kuaili_logo.png',
     gradient: 'from-purple-950 via-slate-900 to-slate-900',
     ping: '41',
     pingStatus: '新手极速',
@@ -104,7 +104,7 @@ const airports = [
     rating: '9.2',
     badge: 'NO.05 金融级专线',
     icon: '05',
-    logo: prefix + 'yuntu_logo.png',
+    logo: '/yuntu_logo.png',
     gradient: 'from-amber-950 via-yellow-950 to-slate-900',
     ping: '40',
     pingStatus: '金融级秒开',
@@ -125,7 +125,7 @@ const airports = [
     rating: '9.1',
     badge: 'NO.06 三网精品',
     icon: '06',
-    logo: prefix + 'jisuyun_logo.png',
+    logo: '/jisuyun_logo.png',
     gradient: 'from-cyan-950 via-blue-950 to-slate-900',
     ping: '28',
     pingStatus: '三网直连超低延迟',
@@ -146,7 +146,7 @@ const airports = [
     rating: '9.0',
     badge: 'NO.07 轻量极速',
     icon: '07',
-    logo: prefix + 'shunyun_logo.png',
+    logo: '/shunyun_logo.png',
     gradient: 'from-slate-900 via-teal-950 to-slate-900',
     ping: '36',
     pingStatus: '按量备用首选',
@@ -167,7 +167,7 @@ const airports = [
     rating: '8.9',
     badge: 'NO.08 低延迟推荐',
     icon: '08',
-    logo: prefix + 'jilianyun_logo.png',
+    logo: '/jilianyun_logo.png',
     gradient: 'from-indigo-950 via-slate-900 to-purple-950',
     ping: '45',
     pingStatus: 'BGP稳定高速',
@@ -188,7 +188,7 @@ const airports = [
     rating: '8.8',
     badge: 'NO.09 大流量性价比',
     icon: '09',
-    logo: prefix + 'guangnianti_logo.png',
+    logo: '/guangnianti_logo.png',
     gradient: 'from-slate-900 via-rose-950 to-slate-950',
     ping: '120',
     pingStatus: '海量带宽秒开',
@@ -340,7 +340,7 @@ const airports = [
               <div class="orbit-item" style="position: absolute; top: 50%; left: 50%; width: 56px; height: 56px; margin-top: -28px; margin-left: -28px; transform: rotate(0deg) translate(145px); --angle: 0deg;">
                 <div class="orbit-item-counter">
                   <a href="#edgenova" class="group/item relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-slate-900/90 border border-cyan-500/50 rounded-2xl shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:border-cyan-400 hover:scale-110 transition-all p-1">
-                    <img src={prefix + 'edgenova_logo.png'} alt="EdgeNova" class="w-full h-full object-cover rounded-xl" />
+                    <img src="/edgenova_logo.png" alt="EdgeNova" class="w-full h-full object-cover rounded-xl" onerror="this.onerror=null; var f=this.src.split('/').pop(); this.src='./'+f;" />
                     <span class="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity bg-slate-900 text-cyan-300 text-[10px] px-2 py-0.5 rounded-md border border-cyan-500/40 whitespace-nowrap z-30 font-semibold pointer-events-none">EdgeNova</span>
                   </a>
                 </div>
@@ -350,7 +350,7 @@ const airports = [
               <div class="orbit-item" style="position: absolute; top: 50%; left: 50%; width: 56px; height: 56px; margin-top: -28px; margin-left: -28px; transform: rotate(40deg) translate(145px); --angle: 40deg;">
                 <div class="orbit-item-counter">
                   <a href="#sujie" class="group/item relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-slate-900/90 border border-cyan-500/50 rounded-2xl shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:border-cyan-400 hover:scale-110 transition-all p-1">
-                    <img src={prefix + 'sujie_logo.png'} alt="速界" class="w-full h-full object-cover rounded-xl" />
+                    <img src="/sujie_logo.png" alt="速界" class="w-full h-full object-cover rounded-xl" onerror="this.onerror=null; var f=this.src.split('/').pop(); this.src='./'+f;" />
                     <span class="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity bg-slate-900 text-cyan-300 text-[10px] px-2 py-0.5 rounded-md border border-cyan-500/40 whitespace-nowrap z-30 font-semibold pointer-events-none">速界</span>
                   </a>
                 </div>
@@ -360,7 +360,7 @@ const airports = [
               <div class="orbit-item" style="position: absolute; top: 50%; left: 50%; width: 56px; height: 56px; margin-top: -28px; margin-left: -28px; transform: rotate(80deg) translate(145px); --angle: 80deg;">
                 <div class="orbit-item-counter">
                   <a href="#kexinyun" class="group/item relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-slate-900/90 border border-cyan-500/50 rounded-2xl shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:border-cyan-400 hover:scale-110 transition-all p-1">
-                    <img src={prefix + 'kexinyun_logo.png'} alt="可信云" class="w-full h-full object-cover rounded-xl" />
+                    <img src="/kexinyun_logo.png" alt="可信云" class="w-full h-full object-cover rounded-xl" onerror="this.onerror=null; var f=this.src.split('/').pop(); this.src='./'+f;" />
                     <span class="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity bg-slate-900 text-cyan-300 text-[10px] px-2 py-0.5 rounded-md border border-cyan-500/40 whitespace-nowrap z-30 font-semibold pointer-events-none">可信云</span>
                   </a>
                 </div>
@@ -370,7 +370,7 @@ const airports = [
               <div class="orbit-item" style="position: absolute; top: 50%; left: 50%; width: 56px; height: 56px; margin-top: -28px; margin-left: -28px; transform: rotate(120deg) translate(145px); --angle: 120deg;">
                 <div class="orbit-item-counter">
                   <a href="#kuaili" class="group/item relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-slate-900/90 border border-cyan-500/50 rounded-2xl shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:border-cyan-400 hover:scale-110 transition-all p-1">
-                    <img src={prefix + 'kuaili_logo.png'} alt="快狸" class="w-full h-full object-cover rounded-xl" />
+                    <img src="/kuaili_logo.png" alt="快狸" class="w-full h-full object-cover rounded-xl" onerror="this.onerror=null; var f=this.src.split('/').pop(); this.src='./'+f;" />
                     <span class="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity bg-slate-900 text-cyan-300 text-[10px] px-2 py-0.5 rounded-md border border-cyan-500/40 whitespace-nowrap z-30 font-semibold pointer-events-none">快狸</span>
                   </a>
                 </div>
@@ -380,7 +380,7 @@ const airports = [
               <div class="orbit-item" style="position: absolute; top: 50%; left: 50%; width: 56px; height: 56px; margin-top: -28px; margin-left: -28px; transform: rotate(160deg) translate(145px); --angle: 160deg;">
                 <div class="orbit-item-counter">
                   <a href="#yuntu" class="group/item relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-slate-900/90 border border-cyan-500/50 rounded-2xl shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:border-cyan-400 hover:scale-110 transition-all p-1">
-                    <img src={prefix + 'yuntu_logo.png'} alt="云图" class="w-full h-full object-cover rounded-xl" />
+                    <img src="/yuntu_logo.png" alt="云图" class="w-full h-full object-cover rounded-xl" onerror="this.onerror=null; var f=this.src.split('/').pop(); this.src='./'+f;" />
                     <span class="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity bg-slate-900 text-cyan-300 text-[10px] px-2 py-0.5 rounded-md border border-cyan-500/40 whitespace-nowrap z-30 font-semibold pointer-events-none">云图</span>
                   </a>
                 </div>
@@ -390,7 +390,7 @@ const airports = [
               <div class="orbit-item" style="position: absolute; top: 50%; left: 50%; width: 56px; height: 56px; margin-top: -28px; margin-left: -28px; transform: rotate(200deg) translate(145px); --angle: 200deg;">
                 <div class="orbit-item-counter">
                   <a href="#jisuyun" class="group/item relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-slate-900/90 border border-cyan-500/50 rounded-2xl shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:border-cyan-400 hover:scale-110 transition-all p-1">
-                    <img src={prefix + 'jisuyun_logo.png'} alt="极速" class="w-full h-full object-cover rounded-xl" />
+                    <img src="/jisuyun_logo.png" alt="极速" class="w-full h-full object-cover rounded-xl" onerror="this.onerror=null; var f=this.src.split('/').pop(); this.src='./'+f;" />
                     <span class="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity bg-slate-900 text-cyan-300 text-[10px] px-2 py-0.5 rounded-md border border-cyan-500/40 whitespace-nowrap z-30 font-semibold pointer-events-none">极速</span>
                   </a>
                 </div>
@@ -400,7 +400,7 @@ const airports = [
               <div class="orbit-item" style="position: absolute; top: 50%; left: 50%; width: 56px; height: 56px; margin-top: -28px; margin-left: -28px; transform: rotate(240deg) translate(145px); --angle: 240deg;">
                 <div class="orbit-item-counter">
                   <a href="#shunyun" class="group/item relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-slate-900/90 border border-cyan-500/50 rounded-2xl shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:border-cyan-400 hover:scale-110 transition-all p-1">
-                    <img src={prefix + 'shunyun_logo.png'} alt="瞬云" class="w-full h-full object-cover rounded-xl" />
+                    <img src="/shunyun_logo.png" alt="瞬云" class="w-full h-full object-cover rounded-xl" onerror="this.onerror=null; var f=this.src.split('/').pop(); this.src='./'+f;" />
                     <span class="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity bg-slate-900 text-cyan-300 text-[10px] px-2 py-0.5 rounded-md border border-cyan-500/40 whitespace-nowrap z-30 font-semibold pointer-events-none">瞬云</span>
                   </a>
                 </div>
@@ -410,7 +410,7 @@ const airports = [
               <div class="orbit-item" style="position: absolute; top: 50%; left: 50%; width: 56px; height: 56px; margin-top: -28px; margin-left: -28px; transform: rotate(280deg) translate(145px); --angle: 280deg;">
                 <div class="orbit-item-counter">
                   <a href="#jilianyun" class="group/item relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-slate-900/90 border border-cyan-500/50 rounded-2xl shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:border-cyan-400 hover:scale-110 transition-all p-1">
-                    <img src={prefix + 'jilianyun_logo.png'} alt="极连云" class="w-full h-full object-cover rounded-xl" />
+                    <img src="/jilianyun_logo.png" alt="极连云" class="w-full h-full object-cover rounded-xl" onerror="this.onerror=null; var f=this.src.split('/').pop(); this.src='./'+f;" />
                     <span class="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity bg-slate-900 text-cyan-300 text-[10px] px-2 py-0.5 rounded-md border border-cyan-500/40 whitespace-nowrap z-30 font-semibold pointer-events-none">极连云</span>
                   </a>
                 </div>
@@ -420,7 +420,7 @@ const airports = [
               <div class="orbit-item" style="position: absolute; top: 50%; left: 50%; width: 56px; height: 56px; margin-top: -28px; margin-left: -28px; transform: rotate(320deg) translate(145px); --angle: 320deg;">
                 <div class="orbit-item-counter">
                   <a href="#guangnianti" class="group/item relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-slate-900/90 border border-cyan-500/50 rounded-2xl shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:border-cyan-400 hover:scale-110 transition-all p-1">
-                    <img src={prefix + 'guangnianti_logo.png'} alt="光年梯" class="w-full h-full object-cover rounded-xl" />
+                    <img src="/guangnianti_logo.png" alt="光年梯" class="w-full h-full object-cover rounded-xl" onerror="this.onerror=null; var f=this.src.split('/').pop(); this.src='./'+f;" />
                     <span class="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/item:opacity-100 transition-opacity bg-slate-900 text-cyan-300 text-[10px] px-2 py-0.5 rounded-md border border-cyan-500/40 whitespace-nowrap z-30 font-semibold pointer-events-none">光年梯</span>
                   </a>
                 </div>
