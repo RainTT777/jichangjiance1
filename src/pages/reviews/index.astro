@@ -257,7 +257,7 @@ const categories = [
             {reviewArticles.map(ap => (
               <a href={ap.link} target="_blank" class="flex items-center justify-between p-2.5 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-all border border-slate-100 text-slate-800 font-semibold group">
                 <span class="flex items-center gap-2 truncate">
-                  <img src={ap.logo} alt={ap.name} class="w-5 h-5 rounded-md object-cover border border-slate-200 shrink-0" onerror={`this.onerror=null; var f=this.src.split('/').pop(); this.src='./'+f;`} />
+                  <img src={ap.logo} alt={ap.name} class="w-5 h-5 rounded-md object-cover border border-slate-200 shrink-0" onerror="if(!this.dataset.retry){this.dataset.retry='1';var f=this.src.split('/').pop();this.src='./'+f;}else if(this.dataset.retry==='1'){this.dataset.retry='2';var f=this.src.split('/').pop();this.src='../'+f;}else if(this.dataset.retry==='2'){this.dataset.retry='3';var f=this.src.split('/').pop();this.src='/'+f;}" />
                   <span class="truncate">{ap.name}</span>
                 </span>
                 <span class="text-xs text-slate-500 font-mono group-hover:text-blue-600 font-bold shrink-0">{ap.rating}</span>
@@ -458,7 +458,7 @@ const categories = [
 
                   <!-- 品牌 Logo & 标题 -->
                   <div class="flex items-start gap-3.5 mb-3.5">
-                    <img src={art.logo} alt={art.name} class="w-12 h-12 rounded-xl object-cover border border-slate-200 shadow-2xs shrink-0 group-hover:scale-105 transition-transform" onerror={`this.onerror=null; var f=this.src.split('/').pop(); this.src='./'+f;`} />
+                    <img src={art.logo} alt={art.name} class="w-12 h-12 rounded-xl object-cover border border-slate-200 shadow-2xs shrink-0 group-hover:scale-105 transition-transform" onerror="if(!this.dataset.retry){this.dataset.retry='1';var f=this.src.split('/').pop();this.src='./'+f;}else if(this.dataset.retry==='1'){this.dataset.retry='2';var f=this.src.split('/').pop();this.src='../'+f;}else if(this.dataset.retry==='2'){this.dataset.retry='3';var f=this.src.split('/').pop();this.src='/'+f;}" />
                     <div>
                       <span class="text-xs text-emerald-700 font-mono font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 inline-block mb-1">
                         {art.badge}
@@ -545,7 +545,7 @@ const categories = [
                     <tr class="hover:bg-slate-50 transition-colors">
                       <td class="py-3.5 px-4">
                         <div class="flex items-center gap-2.5">
-                          <img src={ap.logo} alt={ap.name} class="w-8 h-8 rounded-lg object-cover border border-slate-200 shadow-2xs shrink-0" onerror={`this.onerror=null; var f=this.src.split('/').pop(); this.src='./'+f;`} />
+                          <img src={ap.logo} alt={ap.name} class="w-8 h-8 rounded-lg object-cover border border-slate-200 shadow-2xs shrink-0" onerror="if(!this.dataset.retry){this.dataset.retry='1';var f=this.src.split('/').pop();this.src='./'+f;}else if(this.dataset.retry==='1'){this.dataset.retry='2';var f=this.src.split('/').pop();this.src='../'+f;}else if(this.dataset.retry==='2'){this.dataset.retry='3';var f=this.src.split('/').pop();this.src='/'+f;}" />
                           <div>
                             <div class="font-extrabold text-slate-900 text-sm sm:text-base flex items-center gap-1.5">
                               {ap.name}
@@ -1029,13 +1029,13 @@ const categories = [
                     <th class="py-3.5 px-4 font-bold border-b border-slate-200 w-1/4">实测指标项目</th>
                     <th class="py-3.5 px-4 font-extrabold border-b border-slate-200 text-blue-700 w-3/8">
                       <div class="flex items-center gap-2">
-                        <img src="${a.logo}" class="w-6 h-6 rounded-md object-cover border border-slate-200" />
+                        <img src="${a.logo}" class="w-6 h-6 rounded-md object-cover border border-slate-200" onerror="if(!this.dataset.retry){this.dataset.retry='1';var f=this.src.split('/').pop();this.src='./'+f;}else if(this.dataset.retry==='1'){this.dataset.retry='2';var f=this.src.split('/').pop();this.src='../'+f;}else if(this.dataset.retry==='2'){this.dataset.retry='3';var f=this.src.split('/').pop();this.src='/'+f;}" />
                         <span>${a.name} ${a.rating >= b.rating ? '(胜出)' : ''}</span>
                       </div>
                     </th>
                     <th class="py-3.5 px-4 font-extrabold border-b border-slate-200 text-indigo-700 w-3/8">
                       <div class="flex items-center gap-2">
-                        <img src="${b.logo}" class="w-6 h-6 rounded-md object-cover border border-slate-200" />
+                        <img src="${b.logo}" class="w-6 h-6 rounded-md object-cover border border-slate-200" onerror="if(!this.dataset.retry){this.dataset.retry='1';var f=this.src.split('/').pop();this.src='./'+f;}else if(this.dataset.retry==='1'){this.dataset.retry='2';var f=this.src.split('/').pop();this.src='../'+f;}else if(this.dataset.retry==='2'){this.dataset.retry='3';var f=this.src.split('/').pop();this.src='/'+f;}" />
                         <span>${b.name} ${b.rating >= a.rating ? '(胜出)' : ''}</span>
                       </div>
                     </th>
