@@ -1,4 +1,2 @@
-/sitemap.xml        /sitemap.xml        200!
-/sitemap_index.xml  /sitemap_index.xml  200!
-/sitemap-index.xml  /sitemap-index.xml  200!
-/robots.txt         /robots.txt         200!
+# Cloudflare Pages / Netlify redirects file
+# Static files (sitemap.xml, sitemap_index.xml, sitemap-index.xml, robots.txt) are served directly.

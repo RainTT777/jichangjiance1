@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && node -e \"const fs = require('fs'); ['sitemap.xml', 'sitemap_index.xml', 'sitemap-index.xml', '_redirects', '_headers', 'robots.txt', '404.html'].forEach(f => { if(fs.existsSync('dist/' + f)) { fs.copyFileSync('dist/' + f, f); fs.copyFileSync('dist/' + f, 'public/' + f); } });\"",
+    "build": "astro build && node scripts/copy_build.js",
     "preview": "astro preview",
     "astro": "astro"
   },

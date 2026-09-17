@@ -1,5 +1,11 @@
 ---
 // LeftSidebar.astro - Standard Left Sidebar for site-wide pages matching Image 2 template
+const currentPath = Astro.url.pathname;
+const cleanPath = currentPath.replace(/^\//, '').replace(/\/$/, '');
+const segments = cleanPath ? cleanPath.split('/') : [];
+const depth = segments.length;
+const prefix = depth === 0 ? './' : '../'.repeat(depth);
+const homeHref = depth === 0 ? './index.html' : prefix + 'index.html';
 ---
 
 <aside class="w-full lg:w-[260px] xl:w-[280px] shrink-0 space-y-6 sticky top-20">
@@ -40,65 +46,65 @@
       <span class="text-[10px] text-blue-600 bg-blue-50/80 border border-blue-100 px-1.5 py-0.5 rounded font-mono font-bold">9 Brands</span>
     </h4>
     <div class="space-y-1.5 text-xs">
-      <a href="/#edgenova" class="flex items-center justify-between p-2.5 bg-slate-50/80 hover:bg-blue-50/80 hover:text-blue-600 rounded-xl transition-all border border-slate-100/60 text-slate-700 font-medium group">
+      <a href={`${homeHref}#edgenova`} class="flex items-center justify-between p-2.5 bg-slate-50/80 hover:bg-blue-50/80 hover:text-blue-600 rounded-xl transition-all border border-slate-100/60 text-slate-700 font-medium group">
         <span class="flex items-center gap-2 font-semibold">
-          <img src="/edgenova_logo.png" alt="EdgeNova" class="w-5 h-5 rounded-md object-cover border border-slate-200/80 shrink-0" />
+          <img src={prefix + 'edgenova_logo.png'} alt="EdgeNova" class="w-5 h-5 rounded-md object-cover border border-slate-200/80 shrink-0" />
           EdgeNova
         </span>
         <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">38ms</span>
       </a>
-      <a href="/#sujie" class="flex items-center justify-between p-2.5 bg-slate-50/80 hover:bg-blue-50/80 hover:text-blue-600 rounded-xl transition-all border border-slate-100/60 text-slate-700 font-medium group">
+      <a href={`${homeHref}#sujie`} class="flex items-center justify-between p-2.5 bg-slate-50/80 hover:bg-blue-50/80 hover:text-blue-600 rounded-xl transition-all border border-slate-100/60 text-slate-700 font-medium group">
         <span class="flex items-center gap-2 font-semibold">
-          <img src="/sujie_logo.png" alt="速界" class="w-5 h-5 rounded-md object-cover border border-slate-200/80 shrink-0" />
+          <img src={prefix + 'sujie_logo.png'} alt="速界" class="w-5 h-5 rounded-md object-cover border border-slate-200/80 shrink-0" />
           速界
         </span>
         <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">39ms</span>
       </a>
-      <a href="/#kexinyun" class="flex items-center justify-between p-2.5 bg-slate-50/80 hover:bg-blue-50/80 hover:text-blue-600 rounded-xl transition-all border border-slate-100/60 text-slate-700 font-medium group">
+      <a href={`${homeHref}#kexinyun`} class="flex items-center justify-between p-2.5 bg-slate-50/80 hover:bg-blue-50/80 hover:text-blue-600 rounded-xl transition-all border border-slate-100/60 text-slate-700 font-medium group">
         <span class="flex items-center gap-2 font-semibold">
-          <img src="/kexinyun_logo.png" alt="可信云" class="w-5 h-5 rounded-md object-cover border border-slate-200/80 shrink-0" />
+          <img src={prefix + 'kexinyun_logo.png'} alt="可信云" class="w-5 h-5 rounded-md object-cover border border-slate-200/80 shrink-0" />
           可信云
         </span>
         <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">43ms</span>
       </a>
-      <a href="/#kuaili" class="flex items-center justify-between p-2.5 bg-slate-50/80 hover:bg-blue-50/80 hover:text-blue-600 rounded-xl transition-all border border-slate-100/60 text-slate-700 font-medium group">
+      <a href={`${homeHref}#kuaili`} class="flex items-center justify-between p-2.5 bg-slate-50/80 hover:bg-blue-50/80 hover:text-blue-600 rounded-xl transition-all border border-slate-100/60 text-slate-700 font-medium group">
         <span class="flex items-center gap-2 font-semibold">
-          <img src="/kuaili_logo.png" alt="快狸" class="w-5 h-5 rounded-md object-cover border border-slate-200/80 shrink-0" />
+          <img src={prefix + 'kuaili_logo.png'} alt="快狸" class="w-5 h-5 rounded-md object-cover border border-slate-200/80 shrink-0" />
           快狸
         </span>
         <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">41ms</span>
       </a>
-      <a href="/#yuntu" class="flex items-center justify-between p-2.5 bg-slate-50/80 hover:bg-blue-50/80 hover:text-blue-600 rounded-xl transition-all border border-slate-100/60 text-slate-700 font-medium group">
+      <a href={`${homeHref}#yuntu`} class="flex items-center justify-between p-2.5 bg-slate-50/80 hover:bg-blue-50/80 hover:text-blue-600 rounded-xl transition-all border border-slate-100/60 text-slate-700 font-medium group">
         <span class="flex items-center gap-2 font-semibold">
-          <img src="/yuntu_logo.png" alt="云图" class="w-5 h-5 rounded-md object-cover border border-slate-200/80 shrink-0" />
+          <img src={prefix + 'yuntu_logo.png'} alt="云图" class="w-5 h-5 rounded-md object-cover border border-slate-200/80 shrink-0" />
           云图
         </span>
         <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">40ms</span>
       </a>
-      <a href="/#jisuyun" class="flex items-center justify-between p-2.5 bg-slate-50/80 hover:bg-blue-50/80 hover:text-blue-600 rounded-xl transition-all border border-slate-100/60 text-slate-700 font-medium group">
+      <a href={`${homeHref}#jisuyun`} class="flex items-center justify-between p-2.5 bg-slate-50/80 hover:bg-blue-50/80 hover:text-blue-600 rounded-xl transition-all border border-slate-100/60 text-slate-700 font-medium group">
         <span class="flex items-center gap-2 font-semibold">
-          <img src="/jisuyun_logo.png" alt="极速" class="w-5 h-5 rounded-md object-cover border border-slate-200/80 shrink-0" />
+          <img src={prefix + 'jisuyun_logo.png'} alt="极速" class="w-5 h-5 rounded-md object-cover border border-slate-200/80 shrink-0" />
           极速
         </span>
         <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">28ms</span>
       </a>
-      <a href="/#shunyun" class="flex items-center justify-between p-2.5 bg-slate-50/80 hover:bg-blue-50/80 hover:text-blue-600 rounded-xl transition-all border border-slate-100/60 text-slate-700 font-medium group">
+      <a href={`${homeHref}#shunyun`} class="flex items-center justify-between p-2.5 bg-slate-50/80 hover:bg-blue-50/80 hover:text-blue-600 rounded-xl transition-all border border-slate-100/60 text-slate-700 font-medium group">
         <span class="flex items-center gap-2 font-semibold">
-          <img src="/shunyun_logo.png" alt="瞬云" class="w-5 h-5 rounded-md object-cover border border-slate-200/80 shrink-0" />
+          <img src={prefix + 'shunyun_logo.png'} alt="瞬云" class="w-5 h-5 rounded-md object-cover border border-slate-200/80 shrink-0" />
           瞬云
         </span>
         <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">36ms</span>
       </a>
-      <a href="/#jilianyun" class="flex items-center justify-between p-2.5 bg-slate-50/80 hover:bg-blue-50/80 hover:text-blue-600 rounded-xl transition-all border border-slate-100/60 text-slate-700 font-medium group">
+      <a href={`${homeHref}#jilianyun`} class="flex items-center justify-between p-2.5 bg-slate-50/80 hover:bg-blue-50/80 hover:text-blue-600 rounded-xl transition-all border border-slate-100/60 text-slate-700 font-medium group">
         <span class="flex items-center gap-2 font-semibold">
-          <img src="/jilianyun_logo.png" alt="极连云" class="w-5 h-5 rounded-md object-cover border border-slate-200/80 shrink-0" />
+          <img src={prefix + 'jilianyun_logo.png'} alt="极连云" class="w-5 h-5 rounded-md object-cover border border-slate-200/80 shrink-0" />
           极连云
         </span>
         <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">45ms</span>
       </a>
-      <a href="/#guangnianti" class="flex items-center justify-between p-2.5 bg-slate-50/80 hover:bg-blue-50/80 hover:text-blue-600 rounded-xl transition-all border border-slate-100/60 text-slate-700 font-medium group">
+      <a href={`${homeHref}#guangnianti`} class="flex items-center justify-between p-2.5 bg-slate-50/80 hover:bg-blue-50/80 hover:text-blue-600 rounded-xl transition-all border border-slate-100/60 text-slate-700 font-medium group">
         <span class="flex items-center gap-2 font-semibold">
-          <img src="/guangnianti_logo.png" alt="光年梯" class="w-5 h-5 rounded-md object-cover border border-slate-200/80 shrink-0" />
+          <img src={prefix + 'guangnianti_logo.png'} alt="光年梯" class="w-5 h-5 rounded-md object-cover border border-slate-200/80 shrink-0" />
           光年梯
         </span>
         <span class="text-[10px] text-slate-400 font-mono group-hover:text-blue-600">120ms</span>

@@ -1,5 +1,5 @@
-import { GET as getSitemap } from './sitemap.xml';
+import { createSitemapResponse } from '../utils/sitemap';
 
 export async function GET() {
-  return getSitemap();
+  return createSitemapResponse();
 }
