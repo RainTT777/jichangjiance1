@@ -74,9 +74,12 @@ import RightSidebar from '@/components/RightSidebar.astro';
           </p>
 
           <div class="p-5 bg-gradient-to-r from-blue-50 to-indigo-50/60 rounded-2xl border border-blue-200/80 flex items-center justify-between gap-4 flex-wrap">
-            <div>
-              <div class="font-black text-slate-900 text-base">EdgeNova IEPL 专线 (推荐首选)</div>
-              <p class="text-xs text-slate-600">纯血 IEPL 专线，全节点 1.0x 计费，年付使用 8 折优惠码 xk808 折后仅 ¥78.4/年。</p>
+            <div class="flex items-center gap-3">
+              <img src="../edgenova_logo.png" alt="EdgeNova" class="w-10 h-10 rounded-xl object-cover border border-slate-200 shadow-2xs shrink-0" onerror="if(!this.dataset.retry){this.dataset.retry='1';var f=this.src.split('/').pop();this.src='./'+f;}else if(this.dataset.retry==='1'){this.dataset.retry='2';var f=this.src.split('/').pop();this.src='../'+f;}else if(this.dataset.retry==='2'){this.dataset.retry='3';var f=this.src.split('/').pop();this.src='../../'+f;}else if(this.dataset.retry==='3'){this.dataset.retry='4';var f=this.src.split('/').pop();this.src='/'+f;}" />
+              <div>
+                <div class="font-black text-slate-900 text-base">EdgeNova IEPL 专线 (推荐首选)</div>
+                <p class="text-xs text-slate-600">纯血 IEPL 专线，全节点 1.0x 计费，年付使用 8 折优惠码 xk808 折后仅 ¥78.4/年。</p>
+              </div>
             </div>
             <a href="/reviews/edgenova-2026/" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm rounded-xl shadow-2xs transition-all inline-flex items-center gap-1.5 cursor-pointer no-underline" style="color: #ffffff !important;">
               <span style="color: #ffffff !important;">阅读 EdgeNova 实测评测</span>

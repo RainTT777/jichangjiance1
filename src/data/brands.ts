@@ -3,82 +3,123 @@ export interface Brand {
   slug: string;
   name: string;
   description: string;
-  logo?: string;
+  logo: string;
+  category?: string;
   featured?: boolean;
   pros: string[];
   cons: string[];
   rating?: number;
+  articleCount?: number;
 }
 
 export const brands: Brand[] = [
   {
-    slug: 'example-service-a',
-    name: '示例服务 A',
-    description: '高速稳定的网络加速服务，适合日常使用和流媒体观看。',
+    slug: 'edgenova',
+    name: 'EdgeNova',
+    description: '全线 IPLC 专线，晚高峰依然稳定流畅。解锁 Netflix、Disney+、ChatGPT 等主流服务。',
+    logo: 'edgenova_logo.png',
+    category: 'IEPL专线评测',
     featured: true,
-    pros: [
-      '速度快，延迟低',
-      '节点分布广泛',
-      '支持流媒体解锁',
-      '价格实惠',
-    ],
-    cons: [
-      '客服响应较慢',
-      '高峰期偶有拥堵',
-    ],
-    rating: 4.5,
+    pros: ['物理内网专线抗干扰', '无感秒开 4K/8K 视频', '原生纯净 IP 解锁 AI'],
+    cons: ['热门节点偶有满载', '起步套餐无按量付'],
+    rating: 9.8,
+    articleCount: 5,
   },
   {
-    slug: 'example-service-b',
-    name: '示例服务 B',
-    description: '专业级网络服务，提供IEPL专线和BGP中继线路。',
+    slug: 'sujie',
+    name: '速界',
+    description: '专门针对跨服游戏玩家优化，提供低丢包率的专线连接，游戏与4K观影体验极佳。',
+    logo: 'sujie_logo.png',
+    category: '游戏加速评测',
     featured: true,
-    pros: [
-      'IEPL专线稳定',
-      '晚高峰表现优秀',
-      '支持ChatGPT原生IP',
-      '技术支持专业',
-    ],
-    cons: [
-      '价格较高',
-      '需要实名认证',
-    ],
-    rating: 4.8,
+    pros: ['极低 Jitter 抖动', '真实 1.0 倍率不限设备', '游戏专线低丢包'],
+    cons: ['免费体验节点较少'],
+    rating: 9.6,
+    articleCount: 4,
   },
   {
-    slug: 'example-service-c',
-    name: '示例服务 C',
-    description: '性价比之选，适合预算有限的用户。',
+    slug: 'kexinyun',
+    name: '可信云',
+    description: '高强度数据加密，无日志记录，极度保护用户隐私安全，支持匿名支付与全端订阅。',
+    logo: 'kexinyun_logo.png',
+    category: '高性价比/按量',
     featured: true,
-    pros: [
-      '价格便宜',
-      '流量充足',
-      '入门门槛低',
-      '支持按需购买',
-    ],
-    cons: [
-      '速度一般',
-      '节点较少',
-      '稳定性欠佳',
-    ],
-    rating: 3.8,
+    pros: ['全过程无日志记录', '不限设备同时连接', '年付折合仅 8 元/月'],
+    cons: ['客服响应时间稍长'],
+    rating: 9.5,
+    articleCount: 3,
   },
   {
-    slug: 'example-service-d',
-    name: '示例服务 D',
-    description: '游戏加速专用，低延迟优化线路。',
+    slug: 'kuaili',
+    name: '快狸',
+    description: '专注大带宽 UDP 优化与流媒体解锁，多线程并发下载测试可轻松达到 100MB/s - 300MB/s。',
+    logo: 'kuaili_logo.png',
+    category: '大流量/高吞吐',
+    featured: true,
+    pros: ['300MB/s 极限峰值带宽', '不设隐形高倍率', '新手一键配置'],
+    cons: ['节点维护更新较频繁'],
+    rating: 9.4,
+    articleCount: 3,
+  },
+  {
+    slug: 'yuntu',
+    name: '云图机场',
+    description: '金融级物理专线不过 GFW 过滤，独享商业原生 IP 池，针对 ChatGPT、Claude 进行风控优化。',
+    logo: 'yuntu_logo.png',
+    category: '外贸&AI解锁',
+    featured: true,
+    pros: ['真物理专线不过 GFW', '商业白名单纯净 IP', '外贸/AI 生产力首选'],
+    cons: ['资费相对偏高'],
+    rating: 9.3,
+    articleCount: 4,
+  },
+  {
+    slug: 'jisuyun',
+    name: '极速机场',
+    description: '采用国内三网顶级精品优化线路与物理落地，提供 28ms 超低延迟与 990M 带宽。',
+    logo: 'jisuyun_logo.png',
+    category: 'IEPL专线评测',
+    featured: true,
+    pros: ['28ms 国内极低延迟', '三网 CN2 GIA 9929', '24小时无视晚高峰'],
+    cons: ['限制在线连接数'],
+    rating: 9.1,
+    articleCount: 3,
+  },
+  {
+    slug: 'shunyun',
+    name: '瞬云',
+    description: '主打轻量与极速连接，支持灵活的按量付费模式，非常适合作为主线之外的备用机场。',
+    logo: 'shunyun_logo.png',
+    category: '高性价比/按量',
     featured: false,
-    pros: [
-      '游戏优化线路',
-      '延迟极低',
-      'UDP支持完善',
-      '适合游戏玩家',
-    ],
-    cons: [
-      '流量限制较严',
-      '价格偏高',
-    ],
-    rating: 4.2,
+    pros: ['灵活按量计费模式', '轻量极速握手连接', '备用永不失联'],
+    cons: ['基础包流量较小'],
+    rating: 9.0,
+    articleCount: 3,
+  },
+  {
+    slug: 'jilianyun',
+    name: '极连云',
+    description: '多站 BGP 中转架构，访问国内响应迅速，适合跨服游戏、4K 高清视频和日常办公使用。',
+    logo: 'jilianyun_logo.png',
+    category: '高性价比/按量',
+    featured: false,
+    pros: ['多站 BGP 智能中转', '月付 10 元极低门槛', '适合日常办公与观影'],
+    cons: ['晚高峰偶有波动'],
+    rating: 8.9,
+    articleCount: 2,
+  },
+  {
+    slug: 'guangnianti',
+    name: '光年梯',
+    description: '注重隐私保护与无日志政策，AES-256 加密传输。起步价仅 9.9 元/月，提供 1020M 大带宽。',
+    logo: 'guangnianti_logo.png',
+    category: '大流量/高吞吐',
+    featured: false,
+    pros: ['9.9 元起大流量套餐', 'AES-256 高强加密', '1020M 海量带宽秒开'],
+    cons: ['海外节点延迟略高'],
+    rating: 8.8,
+    articleCount: 2,
   },
 ];
 
@@ -91,3 +132,4 @@ export function getFeaturedBrands(): Brand[] {
 export function getBrandBySlug(slug: string): Brand | undefined {
   return brands.find(brand => brand.slug === slug);
 }
+

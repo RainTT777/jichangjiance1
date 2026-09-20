@@ -60,9 +60,14 @@ const relatedArticles = articles.slice(0, 3);
         <!-- 品牌头部 -->
         <div class="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-xs">
           <div class="flex items-start justify-between mb-6 flex-wrap gap-4">
-            <div class="flex-1 min-w-[200px]">
-              <h1 class="text-3xl sm:text-4xl font-black text-slate-900 mb-2">{brand.name}</h1>
-              <p class="text-base text-slate-600">{brand.description}</p>
+            <div class="flex items-center gap-3.5 flex-1 min-w-[200px]">
+              {brand.logo && (
+                <img src={`../../${brand.logo}`} alt={brand.name} class="w-12 h-12 rounded-xl object-cover border border-slate-200 shadow-2xs shrink-0" onerror="if(!this.dataset.retry){this.dataset.retry='1';var f=this.src.split('/').pop();this.src='./'+f;}else if(this.dataset.retry==='1'){this.dataset.retry='2';var f=this.src.split('/').pop();this.src='../'+f;}else if(this.dataset.retry==='2'){this.dataset.retry='3';var f=this.src.split('/').pop();this.src='../../'+f;}else if(this.dataset.retry==='3'){this.dataset.retry='4';var f=this.src.split('/').pop();this.src='/'+f;}" />
+              )}
+              <div>
+                <h1 class="text-3xl sm:text-4xl font-black text-slate-900 mb-1">{brand.name}</h1>
+                <p class="text-base text-slate-600">{brand.description}</p>
+              </div>
             </div>
             <span class="px-4 py-2 text-xs font-bold text-slate-700 bg-slate-100 rounded-xl border border-slate-200">
               {brand.category}

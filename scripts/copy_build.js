@@ -33,9 +33,10 @@ if (fs.existsSync('dist')) {
   // 3. Ensure all logo PNG files exist in subdirectories within 机场博客 for robust image loading
   const logoFiles = [
     'edgenova_logo.png', 'sujie_logo.png', 'kexinyun_logo.png',
-    'kuaili_logo.png', 'yuntu_logo.png', 'jisuyun_logo.png',
+    'kuaili_logo.png', 'yuntu_logo.png', 'jisuyun_logo.png', 'jisu_logo.png',
     'shunyun_logo.png', 'jilianyun_logo.png', 'guangnianti_logo.png',
-    'hero_tech_illust_core.png'
+    'hero_tech_illust_core.png', 'hero_illust_core.png', 'ghibli_forest_core.png',
+    'hero_forest_core.png', 'hero_tech_core.png'
   ];
 
   const subDirs = [
@@ -44,12 +45,19 @@ if (fs.existsSync('dist')) {
     'tag', 'public/tag', 'dist/tag',
     'category', 'public/category', 'dist/category',
     'brands', 'public/brands', 'dist/brands',
-    'go', 'public/go', 'dist/go'
+    'go', 'public/go', 'dist/go',
+    'blog', 'public/blog', 'dist/blog',
+    'downloads', 'public/downloads', 'dist/downloads',
+    'knowledge', 'public/knowledge', 'dist/knowledge',
+    'apple-id', 'public/apple-id', 'dist/apple-id',
+    'free-nodes', 'public/free-nodes', 'dist/free-nodes',
+    'about', 'public/about', 'dist/about',
+    'compare', 'public/compare', 'dist/compare'
   ];
 
   logoFiles.forEach(file => {
-    const srcFile = path.join('public', file);
-    if (fs.existsSync(srcFile)) {
+    const srcFile = fs.existsSync(path.join('public', file)) ? path.join('public', file) : fs.existsSync(file) ? file : null;
+    if (srcFile && fs.existsSync(srcFile)) {
       subDirs.forEach(sub => {
         if (!fs.existsSync(sub)) {
           fs.mkdirSync(sub, { recursive: true });
@@ -71,12 +79,12 @@ if (fs.existsSync('dist')) {
     });
 
     logoFiles.forEach(file => {
-      const srcFile = path.join('public', file);
-      if (fs.existsSync(srcFile)) {
+      const srcFile = fs.existsSync(path.join('public', file)) ? path.join('public', file) : fs.existsSync(file) ? file : null;
+      if (srcFile && fs.existsSync(srcFile)) {
         // Also copy directly into Desktop/博客 root
         fs.copyFileSync(srcFile, path.join(desktopBlogPath, file));
         
-        ['reviews', 'topics', 'tag', 'category', 'brands', 'go'].forEach(sub => {
+        ['reviews', 'topics', 'tag', 'category', 'brands', 'go', 'blog', 'downloads', 'knowledge', 'apple-id', 'free-nodes', 'about', 'compare'].forEach(sub => {
           const subDir = path.join(desktopBlogPath, sub);
           if (!fs.existsSync(subDir)) {
             fs.mkdirSync(subDir, { recursive: true });
