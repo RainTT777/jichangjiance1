@@ -14,7 +14,7 @@ const { brand } = Astro.props;
     <div class="flex items-center justify-between mb-3">
       <div class="flex items-center gap-2.5">
         {brand.logo && (
-          <img src={brand.logo} alt={brand.name} class="w-7 h-7 rounded-md object-cover border border-slate-200 shrink-0" onerror="if(!this.dataset.retry){this.dataset.retry='1';var f=this.src.split('/').pop();this.src='./'+f;}else if(this.dataset.retry==='1'){this.dataset.retry='2';var f=this.src.split('/').pop();this.src='../'+f;}else if(this.dataset.retry==='2'){this.dataset.retry='3';var f=this.src.split('/').pop();this.src='../../'+f;}else if(this.dataset.retry==='3'){this.dataset.retry='4';var f=this.src.split('/').pop();this.src='/'+f;}" />
+          <img src={brand.logo} alt={brand.name} class="w-7 h-7 rounded-md object-cover border border-slate-200 shrink-0" onerror="if(!this.dataset.retry){this.dataset.retry='1';var f=this.src.split('/').pop();this.src='/'+f;}else if(this.dataset.retry==='1'){this.dataset.retry='2';var f=this.src.split('/').pop();this.src='./'+f;}else if(this.dataset.retry==='2'){this.dataset.retry='3';var f=this.src.split('/').pop();this.src='../'+f;}else if(this.dataset.retry==='3'){this.dataset.retry='4';var f=this.src.split('/').pop();this.src='../../'+f;}else{this.onerror=null;}" />
         )}
         <h3 class="text-base sm:text-lg font-black text-slate-900 group-hover:text-blue-600 transition-colors">
           {brand.name}
