@@ -1,16 +1,13 @@
-import { getCollection } from 'astro:content';
 import { articles } from '../data/articles';
 import { topics } from '../data/topics';
 import { brands } from '../data/brands';
 
 export async function createSitemapResponse() {
-  const reviews = await getCollection('reviews');
   const today = new Date().toISOString().split('T')[0];
 
   // 静态核心页面
   const staticPages = [
     { url: 'https://jichangjiance.net/', priority: '1.0', changefreq: 'daily' },
-    { url: 'https://jichangjiance.net/reviews/', priority: '0.9', changefreq: 'daily' },
     { url: 'https://jichangjiance.net/downloads/', priority: '0.9', changefreq: 'weekly' },
     { url: 'https://jichangjiance.net/knowledge/', priority: '0.9', changefreq: 'weekly' },
     { url: 'https://jichangjiance.net/blog/', priority: '0.8', changefreq: 'daily' },
@@ -21,14 +18,6 @@ export async function createSitemapResponse() {
     { url: 'https://jichangjiance.net/compare/', priority: '0.6', changefreq: 'weekly' },
     { url: 'https://jichangjiance.net/about/', priority: '0.5', changefreq: 'monthly' },
   ];
-
-  // 测评单页
-  const reviewPages = reviews.map((r) => ({
-    url: `https://jichangjiance.net/reviews/${r.slug}/`,
-    priority: '0.8',
-    changefreq: 'weekly',
-    lastmod: r.data.date || today,
-  }));
 
   // 博客文章
   const blogPages = articles.map((a) => ({
@@ -74,7 +63,6 @@ export async function createSitemapResponse() {
 
   const allUrls = [
     ...staticPages.map((p) => ({ ...p, lastmod: today })),
-    ...reviewPages,
     ...blogPages,
     ...topicPages,
     ...brandPages,
