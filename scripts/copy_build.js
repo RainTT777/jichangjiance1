@@ -18,6 +18,9 @@ function copyRecursiveSync(src, dest) {
 }
 
 console.log('Syncing dist output strictly within 机场博客 project...');
+if (fs.existsSync('reviews')) {
+  fs.rmSync('reviews', { recursive: true, force: true });
+}
 if (fs.existsSync('dist')) {
   // 1. Copy dist contents to root directory of 机场博客
   fs.readdirSync('dist').forEach((item) => {
@@ -56,6 +59,10 @@ if (fs.existsSync('dist')) {
   const desktopBlogPath = 'C:\\Users\\Administrator\\Desktop\\博客';
   if (fs.existsSync(desktopBlogPath)) {
     console.log('Syncing dist output to Desktop/博客...');
+    const desktopReviews = path.join(desktopBlogPath, 'reviews');
+    if (fs.existsSync(desktopReviews)) {
+      fs.rmSync(desktopReviews, { recursive: true, force: true });
+    }
     fs.readdirSync('dist').forEach((item) => {
       const srcPath = path.join('dist', item);
       const destPath = path.join(desktopBlogPath, item);
