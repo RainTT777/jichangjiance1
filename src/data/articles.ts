@@ -15,7 +15,7 @@ export const categories = [
   '新手教程',
   '使用教程',
   '客户端教程',
-  '评测对比',
+  '对比指南',
   '问题解答',
   '进阶技巧',
 ];
@@ -87,7 +87,7 @@ export const articles: Article[] = [
     slug: 'line-type-comparison',
     title: '线路类型对比：IEPL、CN2、BGP详解',
     description: '深入分析不同线路类型的特点、优缺点和适用场景。',
-    category: '评测对比',
+    category: '对比指南',
     tags: ['线路类型', '对比分析', '技术解析'],
     author: '技术团队',
     publishDate: '2024-02-20',
