@@ -55,36 +55,5 @@ if (fs.existsSync('dist')) {
     }
   });
 
-  // 4. Sync dist contents and logos to C:\Users\Administrator\Desktop\博客 if present
-  const desktopBlogPath = 'C:\\Users\\Administrator\\Desktop\\博客';
-  if (fs.existsSync(desktopBlogPath)) {
-    console.log('Syncing dist output to Desktop/博客...');
-    const desktopReviews = path.join(desktopBlogPath, 'reviews');
-    if (fs.existsSync(desktopReviews)) {
-      fs.rmSync(desktopReviews, { recursive: true, force: true });
-    }
-    fs.readdirSync('dist').forEach((item) => {
-      const srcPath = path.join('dist', item);
-      const destPath = path.join(desktopBlogPath, item);
-      copyRecursiveSync(srcPath, destPath);
-    });
-
-    logoFiles.forEach(file => {
-      const srcFile = fs.existsSync(path.join('public', file)) ? path.join('public', file) : fs.existsSync(file) ? file : null;
-      if (srcFile && fs.existsSync(srcFile)) {
-        // Also copy directly into Desktop/博客 root
-        fs.copyFileSync(srcFile, path.join(desktopBlogPath, file));
-        
-        ['topics', 'tag', 'category', 'brands', 'go', 'blog', 'downloads', 'knowledge', 'apple-id', 'free-nodes', 'about', 'compare'].forEach(sub => {
-          const subDir = path.join(desktopBlogPath, sub);
-          if (!fs.existsSync(subDir)) {
-            fs.mkdirSync(subDir, { recursive: true });
-          }
-          fs.copyFileSync(srcFile, path.join(subDir, file));
-        });
-      }
-    });
-  }
-
   console.log('Build sync completed successfully.');
 }
