@@ -65,7 +65,7 @@ const compareData = [
                   <th class="py-3 px-4 font-extrabold">计费与倍率</th>
                   <th class="py-3 px-4 font-extrabold">综合评分</th>
                   <th class="py-3 px-4 font-extrabold">起步资费</th>
-                  <th class="py-3 px-4 font-extrabold text-right">评测直达</th>
+                  <th class="py-3 px-4 font-extrabold text-right">官网直达</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-slate-100 font-semibold text-slate-800">
@@ -83,8 +83,8 @@ const compareData = [
                     <td class="py-3.5 px-4 font-mono font-black text-blue-600">{item.score} / 10</td>
                     <td class="py-3.5 px-4 font-mono">{item.price}</td>
                     <td class="py-3.5 px-4 text-right">
-                      <a href={item.link} class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl shadow-2xs transition-all inline-flex items-center gap-1 cursor-pointer no-underline" style="color: #ffffff !important;">
-                        <span style="color: #ffffff !important;">阅读评测</span>
+                      <a href={item.link} target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl shadow-2xs transition-all inline-flex items-center gap-1 cursor-pointer no-underline" style="color: #ffffff !important;">
+                        <span style="color: #ffffff !important;">直达官网</span>
                         <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                       </a>
                     </td>
