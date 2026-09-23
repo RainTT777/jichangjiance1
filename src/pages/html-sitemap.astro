@@ -7,7 +7,9 @@ import RightSidebar from '@/components/RightSidebar.astro';
 import { articles } from '@/data/articles';
 import { topics } from '@/data/topics';
 import { brands } from '@/data/brands';
+import { getCollection } from 'astro:content';
 
+const reviews = await getCollection('reviews');
 const categories = Array.from(new Set(articles.map((a) => a.category)));
 const tags = Array.from(new Set(articles.flatMap((a) => a.tags || [])));
 ---
@@ -50,6 +52,7 @@ const tags = Array.from(new Set(articles.flatMap((a) => a.tags || [])));
               </h2>
               <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 text-xs">
                 <a href="/" class="p-3 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl border border-slate-200/60 font-semibold transition-all">首页</a>
+                <a href="/reviews/" class="p-3 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl border border-slate-200/60 font-semibold transition-all">机场评测</a>
                 <a href="/downloads/" class="p-3 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl border border-slate-200/60 font-semibold transition-all">客户端教程与下载</a>
                 <a href="/knowledge/" class="p-3 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl border border-slate-200/60 font-semibold transition-all">科学上网知识库</a>
                 <a href="/blog/" class="p-3 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl border border-slate-200/60 font-semibold transition-all">博客文章</a>
@@ -59,6 +62,22 @@ const tags = Array.from(new Set(articles.flatMap((a) => a.tags || [])));
                 <a href="/free-nodes/" class="p-3 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl border border-slate-200/60 font-semibold transition-all">免费节点</a>
                 <a href="/compare/" class="p-3 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl border border-slate-200/60 font-semibold transition-all">机场对比</a>
                 <a href="/about/" class="p-3 bg-slate-50 hover:bg-blue-50 hover:text-blue-600 rounded-xl border border-slate-200/60 font-semibold transition-all">关于我们</a>
+              </div>
+            </div>
+
+            <!-- 深度测评 -->
+            <div>
+              <h2 class="text-base font-bold text-slate-900 mb-3 flex items-center gap-2">
+                <span class="w-2 h-4 bg-emerald-600 rounded-full"></span>
+                <span>机场深度测评单页</span>
+              </h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                {reviews.map((r) => (
+                  <a href={`/reviews/${r.slug}/`} class="p-3 bg-slate-50 hover:bg-emerald-50 hover:text-emerald-700 rounded-xl border border-slate-200/60 font-semibold transition-all flex items-center justify-between">
+                    <span>{r.data.title}</span>
+                    <span class="text-[10px] text-slate-400 font-mono">{r.data.date}</span>
+                  </a>
+                ))}
               </div>
             </div>
 

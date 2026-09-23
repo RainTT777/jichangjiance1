@@ -18,18 +18,19 @@ function copyRecursiveSync(src, dest) {
 }
 
 console.log('Syncing dist output strictly within 机场博客 project...');
-if (fs.existsSync('reviews')) {
-  fs.rmSync('reviews', { recursive: true, force: true });
-}
 if (fs.existsSync('dist')) {
   // 1. Copy dist contents to root directory of 机场博客
   fs.readdirSync('dist').forEach((item) => {
     const srcPath = path.join('dist', item);
     const destPath = path.join('.', item);
     copyRecursiveSync(srcPath, destPath);
+    
+    // 2. Copy to public directory of 机场博客
+    const publicDestPath = path.join('public', item);
+    copyRecursiveSync(srcPath, publicDestPath);
   });
 
-  // 2. Ensure all logo PNG files exist in subdirectories within 机场博客 for robust image loading
+  // 3. Ensure all logo PNG files exist in subdirectories within 机场博客 for robust image loading
   const logoFiles = [
     'edgenova_logo.png', 'sujie_logo.png', 'kexinyun_logo.png',
     'kuaili_logo.png', 'yuntu_logo.png', 'jisuyun_logo.png', 'jisu_logo.png',
@@ -39,7 +40,7 @@ if (fs.existsSync('dist')) {
   ];
 
   const subDirs = [
-    'topics', 'tag', 'category', 'brands', 'go', 'blog', 'downloads', 'knowledge', 'apple-id', 'free-nodes', 'about', 'compare'
+    'reviews', 'topics', 'tag', 'category', 'brands', 'go', 'blog', 'downloads', 'knowledge', 'apple-id', 'free-nodes', 'about', 'compare'
   ];
 
   logoFiles.forEach(file => {
