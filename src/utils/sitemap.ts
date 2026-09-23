@@ -19,6 +19,7 @@ export async function createSitemapResponse() {
     { url: 'https://jichangjiance.net/apple-id/', priority: '0.7', changefreq: 'weekly' },
     { url: 'https://jichangjiance.net/free-nodes/', priority: '0.7', changefreq: 'daily' },
     { url: 'https://jichangjiance.net/compare/', priority: '0.6', changefreq: 'weekly' },
+    { url: 'https://jichangjiance.net/html-sitemap/', priority: '0.5', changefreq: 'weekly' },
     { url: 'https://jichangjiance.net/about/', priority: '0.5', changefreq: 'monthly' },
   ];
 
