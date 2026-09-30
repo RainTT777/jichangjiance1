@@ -10,7 +10,7 @@ export const redirects: Record<string, RedirectLink> = {
   edgenova: {
     id: 'edgenova',
     name: 'EdgeNova 官网',
-    url: 'https://cristyc.edgenovaaff.cc/#/register?code=WWiIvxL9',
+    url: 'https://vip.edgenovaaff.com/#/?code=2OqZX1IP',
     description: '全线 IPLC 专线 · 晚高峰稳定',
   },
   sujie: {

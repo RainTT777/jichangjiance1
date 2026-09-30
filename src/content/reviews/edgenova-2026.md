@@ -27,7 +27,7 @@ tags: ["EdgeNova", "IEPL专线", "VLESS协议", "流媒体解锁", "优惠码"]
 | **流媒体解锁** | S+ 级（Netflix 全区非自制剧、Disney+、YouTube Premium、TikTok 全绿解锁） |
 | **AI 生产力兼容** | 原生纯净 IP 池，稳定直通 ChatGPT (GPT-4o)、Claude 3.5、Google Gemini |
 | **起步资费与优惠** | 月付 ¥15 起；使用 8 折优惠码 **xk808** 购买年付套餐折合 ¥6.5/月（实付仅需 ¥78.4/年） |
-| **官网直达** | <a href="https://cristyc.edgenovaaff.cc/#/register?code=WWiIvxL9" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-black text-xs sm:text-sm rounded-xl shadow-xs transition-all no-underline" style="color: #ffffff !important; text-decoration: none !important;"><span style="color: #ffffff !important;">直达 EdgeNova 官网</span><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a> |
+| **官网直达** | <a href="https://vip.edgenovaaff.com/#/?code=2OqZX1IP" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-black text-xs sm:text-sm rounded-xl shadow-xs transition-all no-underline" style="color: #ffffff !important; text-decoration: none !important;"><span style="color: #ffffff !important;">直达 EdgeNova 官网</span><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a> |
 
 ---
 
@@ -110,7 +110,7 @@ EdgeNova 对主流开源工具及新手环境均提供了良好的兼容：
 EdgeNova 凭借 **IEPL 物理专线**、**VLESS 协议架构**、**全节点 1.0x 真实计费** 以及 **年付折后仅需 78.4 元（折合 6.5 元/月）** 的定价，在百元内价位段展现出了极高的综合竞争力。无论是作为日常主力翻墙梯子，还是作为防断连的高速备用专线，都非常值得在当前的空载红利期上车体验。
 
 <div class="my-8 text-center">
-  <a href="https://cristyc.edgenovaaff.cc/#/register?code=WWiIvxL9" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black text-sm sm:text-base rounded-2xl shadow-md hover:shadow-lg transition-all border border-blue-400/30 no-underline group cursor-pointer" style="color: #ffffff !important; text-decoration: none !important;">
+  <a href="https://vip.edgenovaaff.com/#/?code=2OqZX1IP" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black text-sm sm:text-base rounded-2xl shadow-md hover:shadow-lg transition-all border border-blue-400/30 no-underline group cursor-pointer" style="color: #ffffff !important; text-decoration: none !important;">
     <span style="color: #ffffff !important; text-decoration: none !important;">前往 EdgeNova 官网立即注册并开启高速专线 (输入优惠码 xk808 享 8 折)</span>
     <svg class="w-5 h-5 text-white group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
   </a>
