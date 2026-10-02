@@ -7,8 +7,8 @@ import RightSidebar from '@/components/RightSidebar.astro';
 ---
 
 <BaseLayout
-  title="美区 Apple ID 共享与注册全指南 - 2026 iOS Shadowrocket 下载指引"
-  description="详细讲解美区 Apple ID 获取方式、在 App Store 正确登录下载小火箭 (Shadowrocket) 的安全规避指引与自注册教程。"
+  title="免费美区 Apple ID 共享账号：App Store 使用与风险说明 (2026) - 机场检测中心"
+  description="提供 2026 最新免费美区/港区 Apple ID 共享账号使用边界、App Store 安全登录流程、锁机风险避坑及自建外区 Apple ID 注册教程。"
 >
   <Header />
 
@@ -18,37 +18,79 @@ import RightSidebar from '@/components/RightSidebar.astro';
     <nav class="flex items-center gap-2 text-sm text-slate-500 font-medium px-1 mb-6">
       <a href="/" class="hover:text-blue-600 transition-colors">首页</a>
       <span>/</span>
-      <span class="text-blue-600 font-semibold">美区 Apple ID 共享与指南</span>
+      <span class="text-blue-600 font-semibold">免费美区 Apple ID 共享账号与安全说明</span>
     </nav>
 
-    <!-- 响应式布局: 左侧边栏 + 中间主区 + 右侧侧栏 (参考图2 模板) -->
+    <!-- 响应式布局: 左侧边栏 + 中间主区 + 右侧侧栏 -->
     <div class="flex flex-col lg:flex-row gap-6 items-start">
       
-      <!-- 左侧边栏 (图2 模板) -->
+      <!-- 左侧边栏 -->
       <LeftSidebar />
 
       <!-- 主内容区 -->
       <section class="flex-1 min-w-0 w-full space-y-6">
         
         <!-- Header Banner -->
-        <div class="relative w-full bg-gradient-to-br from-blue-50/90 via-indigo-50/60 to-slate-50 border border-blue-200/80 rounded-3xl p-6 sm:p-8 text-slate-800 shadow-xs">
-          <h1 class="text-2xl sm:text-4xl font-black text-slate-900 mb-2">美区 Apple ID 使用与注册指南</h1>
-          <p class="text-sm sm:text-base text-slate-600 font-medium">下载 Shadowrocket（小火箭）、Quantumult X 等 iOS 梯子客户端的必看说明</p>
+        <div class="relative w-full bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-950 border border-blue-500/30 rounded-3xl p-6 sm:p-8 text-white shadow-lg">
+          <span class="px-3 py-1 bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 text-xs font-mono font-bold rounded-full inline-block mb-3">2026 APPLE ID GUIDE</span>
+          <h1 class="text-2xl sm:text-4xl font-black tracking-tight mb-2">免费美区 Apple ID 共享账号：App Store 使用与风险说明</h1>
+          <p class="text-sm sm:text-base text-slate-300 font-medium leading-relaxed">
+            下载 Shadowrocket（小火箭）、Clash Mi、Quantumult X 等 iOS 科学上网客户端的必备指南与安全边界披露。
+          </p>
         </div>
 
-        <!-- 严重警告 -->
-        <div class="bg-red-50/90 border-2 border-red-200 rounded-2xl p-6 text-red-900 space-y-3 shadow-2xs">
+        <!-- 核心风险与使用边界披露 (参考 ermao.net/blog/freeappleid/) -->
+        <div class="bg-red-50/90 border-2 border-red-200 rounded-2xl p-6 text-red-900 space-y-4 shadow-xs">
           <div class="flex items-center gap-2 text-lg font-black text-red-700">
             <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
             </svg>
-            <span>安全防锁警告 (使用共享账号必须遵守)</span>
+            <span>核心风险与使用边界披露 (使用共享账号必须遵守)</span>
           </div>
-          <ul class="text-xs sm:text-sm font-bold space-y-1.5 pl-2">
-            <li>❌ <strong>严禁在手机【设置】或【iCloud】中登录共享账号</strong> (会导致个人手机被锁定)</li>
-            <li>❌ <strong>仅限在 App Store 商店内部切换登录</strong>，下载完成后立即退出</li>
-            <li>❌ <strong>绝对不要开启双重认证或绑定个人手机号</strong></li>
-          </ul>
+
+          <ol class="list-decimal pl-5 text-xs sm:text-sm font-bold space-y-2 text-red-900">
+            <li>
+              <strong class="text-red-700">设备锁机致命风险：</strong>
+              <mark class="bg-red-200 text-red-950 px-1.5 py-0.5 rounded font-black">严禁从【设置】或【iCloud】中登录共享账号！</mark>
+              必须且仅限在 <strong>App Store</strong> 个人头像处登录。错误从系统设置登录可能导致您的 iOS 设备被他人远程恶意锁死变砖。
+            </li>
+            <li>
+              <strong class="text-red-700">数据隐私与财产风险：</strong>
+              免费共享的 Apple ID 由多人公开共用，请<strong>绝对不要</strong>用于存储照片、联系人或开启 iCloud 备份，切勿绑定任何支付方式或进行充值。
+            </li>
+            <li>
+              <strong class="text-red-700">账号锁定属风控常态：</strong>
+              频繁跨地区/跨设备登录极易触发苹果官方安全机制。提示“Apple ID 已锁定”或“需要双重认证”属于正常的消耗常态，遇到此问题请直接更换其他可用账号。
+            </li>
+          </ol>
+        </div>
+
+        <!-- 适用场景与受众人群分析 -->
+        <div class="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-xs space-y-4">
+          <h2 class="text-xl font-black text-slate-900 flex items-center gap-2">
+            <span class="w-2 h-6 bg-blue-600 rounded-full inline-block"></span>
+            <span>适用场景与受众人群分析</span>
+          </h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+            <div class="p-4 bg-emerald-50/70 rounded-2xl border border-emerald-200/80 space-y-2">
+              <div class="font-extrabold text-emerald-900 text-base flex items-center gap-1.5">
+                <span>✅ 适用人群</span>
+              </div>
+              <p class="text-slate-700 leading-relaxed">
+                仅需单次或偶尔下载境外特有应用（如 <strong>Shadowrocket、Clash Mi、TikTok、ChatGPT</strong>），不打算在 App 内买汇或长期付费订阅的用户。“即下即走”，零成本试用。
+              </p>
+            </div>
+
+            <div class="p-4 bg-amber-50/70 rounded-2xl border border-amber-200/80 space-y-2">
+              <div class="font-extrabold text-amber-900 text-base flex items-center gap-1.5">
+                <span>⚠️ 不适宜人群</span>
+              </div>
+              <p class="text-slate-700 leading-relaxed">
+                重度依赖海外 iOS 软件生态、需要频繁更新应用或有内购需求的使用者。由于共享账号随时面临锁定，强烈建议此类用户按照下文教程自建专属外区 ID。
+              </p>
+            </div>
+          </div>
         </div>
 
         <!-- 正确使用步骤 -->
@@ -71,13 +113,13 @@ import RightSidebar from '@/components/RightSidebar.astro';
             </div>
             <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-1">
               <div class="text-xs font-mono font-bold text-blue-600">STEP 03</div>
-              <h3 class="font-bold text-slate-900 text-sm">仅在 App Store 登录美区 ID</h3>
-              <p class="text-xs text-slate-600">输入美区账号密码，如弹 iCloud 合并提示，选择“不合并”。</p>
+              <h3 class="font-bold text-slate-900 text-sm">仅在 App Store 登录共享美区 ID</h3>
+              <p class="text-xs text-slate-600">输入美区账号密码，如弹 iCloud 合并提示，务必选择“不合并”。</p>
             </div>
             <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-1">
               <div class="text-xs font-mono font-bold text-blue-600">STEP 04</div>
               <h3 class="font-bold text-slate-900 text-sm">搜索 Shadowrocket 并下载</h3>
-              <p class="text-xs text-slate-600">搜索 Shadowrocket 并点击下载，等待图标下载安装完成。</p>
+              <p class="text-xs text-slate-600">搜索 Shadowrocket 并点击下载，等待图标下载安装完成，安装后立即退出账号。</p>
             </div>
           </div>
 
@@ -89,30 +131,41 @@ import RightSidebar from '@/components/RightSidebar.astro';
           </div>
         </div>
 
-        <!-- 自建美区 ID 指引 -->
+        <!-- 进阶神器推荐: Asspp 多账号管理 -->
+        <div class="bg-gradient-to-r from-indigo-50 to-blue-50 border border-indigo-200/80 rounded-2xl p-6 shadow-xs space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">🛠️</span>
+            <h3 class="font-black text-indigo-950 text-base">进阶神器推荐：Asspp — Apple ID 多账号管理工具</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+            如果您需要频繁在美区、日区、港区之间切换下载应用，推荐了解 <strong>Asspp 工具</strong>。打破繁琐的 App Store 频繁切号与手机验证壁垒，一键切换全球 Apple ID 账号，还支持下载 App 历史版本与提取 IPA 安装包。
+          </p>
+        </div>
+
+        <!-- 自建美区 ID 注册教程 -->
         <div class="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-xs space-y-4">
           <h2 class="text-xl font-black text-slate-900 flex items-center gap-2">
             <span class="w-2 h-6 bg-indigo-600 rounded-full inline-block"></span>
             <span>强烈建议：注册一个属于自己的美区 ID</span>
           </h2>
           <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            共享账号容易因为多人异地登录被苹果安全锁定。自建美区 ID 仅需 5 分钟，无需信用卡（付款方式选 None 即可），终身稳定属于自己。
+            自建美区 ID 仅需 5 分钟，无需海外信用卡（付款方式选择 None 即可），终身稳定属于自己，彻底避免切号繁琐与应用无法更新问题。
           </p>
 
-          <div class="bg-blue-50/70 p-4 rounded-xl border border-blue-200/80 text-xs sm:text-sm text-slate-800 space-y-2">
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-800 space-y-2">
             <div class="font-extrabold text-blue-900">自注册简要步骤：</div>
-            <ol class="list-decimal pl-5 space-y-1 text-slate-700">
-              <li>使用电脑或手机浏览器打开 <code class="bg-white px-1.5 py-0.5 rounded border border-blue-200">appleid.apple.com</code></li>
-              <li>点击右上角“创建您的 Apple ID”，国家与地区务必选择<strong>美国 (United States)</strong></li>
-              <li>填写邮箱并完成验证码校验</li>
-              <li>登录 App Store，首次下载时选择“无 (None)”付款方式，免税州地址填选阿拉斯加或俄勒冈州地址</li>
+            <ol class="list-decimal pl-5 space-y-1.5 text-slate-700">
+              <li>使用电脑或手机浏览器打开 Apple 官方注册页 <code class="bg-white px-1.5 py-0.5 rounded border border-slate-300 font-mono">appleid.apple.com</code>。</li>
+              <li>点击右上角“创建您的 Apple ID”，国家与地区务必选择<strong>美国 (United States)</strong>。</li>
+              <li>填写您自己的中国大陆手机号（仅用于接收验证码，不影响美区属性）与常用邮箱。</li>
+              <li>登录 App Store，首次下载时选择“无 (None)”付款方式，免税州地址选择阿拉斯加 (Alaska) 或俄勒冈 (Oregon)。</li>
             </ol>
           </div>
         </div>
 
       </section>
 
-      <!-- 右侧侧栏 (图2 模板) -->
+      <!-- 右侧侧栏 -->
       <RightSidebar />
 
     </div>

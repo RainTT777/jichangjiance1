@@ -16,14 +16,33 @@ export function getStaticPaths() {
 }
 
 const { topic } = Astro.props;
+const isAiTools = topic.slug === 'ai-tools';
 
 // 获取该专题下的文章
-const topicArticles = articles.slice(0, 6);
+const topicArticles = articles.filter(a => a.tags.some(t => ['ChatGPT', 'Claude', 'AI工具', 'IP纯净度'].includes(t)) || a.category === '使用教程');
+const displayArticles = topicArticles.length > 0 ? topicArticles : articles.slice(0, 6);
+
+const aiToolsList = [
+  { name: 'ChatGPT 使用指南', desc: 'OpenAI 旗下全球首屈一指的 AI 助手，包含 GPT-4o / GPT-o1 注册使用及 Prompt 调教技巧。', tag: 'ChatGPT', href: '/blog/chatgpt-access-guide/' },
+  { name: 'Claude 3.5 使用攻略', desc: 'Anthropic 出品，长文写作与复杂代码生成最强 AI，完美避开地区屏蔽教程。', tag: 'Claude', href: '/blog/chatgpt-access-guide/' },
+  { name: 'Google Gemini 指南', desc: 'Google 最强多模态 AI，支持深度联网搜索、图文交互与 Workspace 办公整合。', tag: 'Gemini', href: '/blog/chatgpt-access-guide/' },
+  { name: 'Grok AI 注册与访问', desc: '马斯克 xAI 旗下实测，与 X (Twitter) 平台数据深度整合，实时联网抓取热点。', tag: 'Grok', href: '/blog/chatgpt-access-guide/' },
+  { name: 'Midjourney V6 绘画', desc: '全球顶级 AI 图像生成神器，Prompt 参数设定与风格连贯性完整调教指南。', tag: 'Midjourney', href: '/blog/chatgpt-access-guide/' },
+  { name: 'Cursor AI 编程编辑器', desc: 'AI 驱动的新一代 IDE 代码神器，智能代码补全与 Codebase 问答效率提升 10 倍。', tag: 'Cursor', href: '/blog/chatgpt-access-guide/' },
+  { name: 'OpenClaw (小龙虾) 机器人', desc: '手把手安装配置教程，支持接入飞书、Telegram 及微信 AI 助手自动化插件。', tag: 'OpenClaw', href: '/blog/chatgpt-access-guide/' },
+];
+
+const mirrorList = [
+  { name: 'XSimpleChat', url: 'https://xsimplechat.com/', models: 'GPT-4o, Claude 3.5, Gemini', rating: '⭐⭐⭐⭐⭐', note: '多模型集成，国内免翻墙直连' },
+  { name: '蓝鲸 AI 镜像', url: 'https://chat.lanjingchat.com/', models: 'GPT-4o + 联网搜索', rating: '⭐⭐⭐⭐', note: '响应迅速，支持图片生成与检索' },
+  { name: 'Claude 中文网', url: 'https://www.claude-chinese.com/', models: 'Claude 3.5 Sonnet', rating: '⭐⭐⭐⭐', note: '专为长文本写作与代码场景优化' },
+  { name: 'Gemini 中文网', url: 'https://www.gemini-chinese.com/', models: 'Gemini Pro / Flash', rating: '⭐⭐⭐⭐', note: '无需海外账号，国内即可流畅对话' }
+];
 ---
 
 <BaseLayout
-  title={`${topic.title} - 机场指南专题`}
-  description={topic.description}
+  title={isAiTools ? "ChatGPT与Claude专用机场推荐：2026原生住宅IP完美解锁AI工具指南 - 机场检测中心" : `${topic.title} - 机场指南专题`}
+  description={isAiTools ? "2026年 AI 工具实战使用完整指南：包含 ChatGPT、Claude、Gemini、Grok、Midjourney、Cursor 等主流 AI 工具的国内访问方法、国内免翻墙镜像站推荐及商业纯净 IP 节点挑选指南。" : topic.description}
 >
   <Header />
 
@@ -38,29 +57,111 @@ const topicArticles = articles.slice(0, 6);
       <span class="text-blue-600 font-semibold truncate max-w-xs sm:max-w-md">{topic.title}</span>
     </nav>
 
-    <!-- 响应式三栏布局: 左侧边栏 + 中间主区 + 右侧侧栏 (参考图2 模板) -->
+    <!-- 响应式三栏布局: 左侧边栏 + 中间主区 + 右侧侧栏 -->
     <div class="flex flex-col lg:flex-row gap-6 items-start">
       
-      <!-- 左侧边栏 (图2 模板) -->
+      <!-- 左侧边栏 -->
       <LeftSidebar />
 
       <!-- 主区 -->
       <section class="flex-1 min-w-0 w-full space-y-6">
         
         <!-- Header Banner -->
-        <div class="relative w-full bg-gradient-to-br from-blue-50/90 via-indigo-50/60 to-slate-50 border border-blue-200/80 rounded-3xl p-6 sm:p-8 text-slate-800 shadow-xs">
-          <h1 class="text-2xl sm:text-4xl font-black text-slate-900 mb-2">{topic.title}</h1>
-          <p class="text-sm sm:text-base text-slate-600 font-medium">{topic.description}</p>
+        <div class="relative w-full bg-gradient-to-br from-blue-900 via-indigo-950 to-slate-900 border border-blue-500/30 rounded-3xl p-6 sm:p-8 text-white shadow-lg overflow-hidden">
+          <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="relative z-10">
+            <span class="px-3 py-1 bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 text-xs font-mono font-bold rounded-full inline-block mb-3">2026 AI TOOLS HUB</span>
+            <h1 class="text-2xl sm:text-4xl font-black tracking-tight mb-2">
+              {isAiTools ? "ChatGPT 与 Claude 专用机场推荐：2026 原生住宅 IP 完美解锁 AI 工具指南" : topic.title}
+            </h1>
+            <p class="text-sm sm:text-base text-slate-300 max-w-3xl leading-relaxed font-medium">
+              {isAiTools ? "包含 ChatGPT (GPT-4o/o1)、Claude 3.5 Sonnet、Google Gemini、Midjourney 等 15 款主流 AI 工具的网络要求、IP 敏感度与国内免翻墙镜像站实测建议。" : topic.description}
+            </p>
+          </div>
         </div>
 
+        {isAiTools && (
+          <div class="space-y-6">
+            
+            <!-- 热门 AI 工具全景卡片网格 (参考 clash-jichang.com/ai/) -->
+            <div class="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-xs space-y-4">
+              <h2 class="text-xl font-black text-slate-900 flex items-center justify-between">
+                <span class="flex items-center gap-2">
+                  <span class="w-2 h-6 bg-blue-600 rounded-full inline-block"></span>
+                  热门 AI 工具使用指南与全景矩阵
+                </span>
+              </h2>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {aiToolsList.map(item => (
+                  <a href={item.href} class="p-4 bg-slate-50/80 hover:bg-blue-50/80 rounded-2xl border border-slate-200/60 hover:border-blue-300 transition-all group block no-underline space-y-2">
+                    <div class="flex items-center justify-between">
+                      <span class="font-extrabold text-slate-900 group-hover:text-blue-600 transition-colors text-sm sm:text-base">{item.name}</span>
+                      <span class="px-2 py-0.5 text-[10px] font-bold bg-blue-100 text-blue-700 rounded-md">{item.tag}</span>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">{item.desc}</p>
+                    <div class="text-[11px] font-semibold text-blue-600 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                      <span>查看完整配置教程</span>
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <!-- 国内 AI 镜像站推荐表 (无需翻墙) -->
+            <div class="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-xs space-y-4">
+              <h2 class="text-xl font-black text-slate-900 flex items-center gap-2">
+                <span class="w-2 h-6 bg-emerald-600 rounded-full inline-block"></span>
+                <span>国内免翻墙 AI 镜像站推荐表 (直连可用)</span>
+              </h2>
+              <p class="text-xs sm:text-sm text-slate-600">无需注册海外账号与梯子代理，以下镜像站均经过稳定测试支持直接访问：</p>
+
+              <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs sm:text-sm border-collapse">
+                  <thead>
+                    <tr class="bg-slate-100/80 text-slate-900 border-b border-slate-200">
+                      <th class="p-3 font-bold">平台名称</th>
+                      <th class="p-3 font-bold">支持模型</th>
+                      <th class="p-3 font-bold">推荐指数</th>
+                      <th class="p-3 font-bold">特点说明</th>
+                      <th class="p-3 font-bold text-center">访问</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-100 text-slate-700">
+                    {mirrorList.map(m => (
+                      <tr class="hover:bg-slate-50/80 transition-colors">
+                        <td class="p-3 font-bold text-slate-900">{m.name}</td>
+                        <td class="p-3 font-mono text-blue-600">{m.models}</td>
+                        <td class="p-3">{m.rating}</td>
+                        <td class="p-3 text-slate-600">{m.note}</td>
+                        <td class="p-3 text-center">
+                          <a href={m.url} target="_blank" rel="noopener noreferrer" class="px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-lg shadow-2xs transition-colors inline-block no-underline">
+                            直连访问
+                          </a>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div class="p-3 bg-amber-50 rounded-xl border border-amber-200/80 text-xs text-amber-900 flex items-start gap-2">
+                <span class="font-bold shrink-0">💡 提示：</span>
+                <span>使用商业版 API 或深度代码开发建议优先使用原生住宅 IP 机场（如云图 Yuntu、EdgeNova）直接访问官网，保障账号 100% 安全封号零风险。</span>
+              </div>
+            </div>
+
+          </div>
+        )}
+
         <!-- 专题文章网格 -->
-        <div class="space-y-4">
+        <div class="space-y-4 pt-2">
           <h2 class="text-xl font-black text-slate-900 flex items-center justify-between">
-            <span>专题精选教程 ({topicArticles.length})</span>
+            <span>{isAiTools ? "AI 深度教程与选购文章" : "专题精选教程"} ({displayArticles.length})</span>
           </h2>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {topicArticles.map(article => (
+            {displayArticles.map(article => (
               <ArticleCard article={article} />
             ))}
           </div>
@@ -68,7 +169,7 @@ const topicArticles = articles.slice(0, 6);
 
       </section>
 
-      <!-- 右侧侧栏 (图2 模板) -->
+      <!-- 右侧侧栏 -->
       <RightSidebar />
 
     </div>
@@ -77,3 +178,4 @@ const topicArticles = articles.slice(0, 6);
 
   <Footer />
 </BaseLayout>
+

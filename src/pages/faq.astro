@@ -1,0 +1,327 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import LeftSidebar from '@/components/LeftSidebar.astro';
+import RightSidebar from '@/components/RightSidebar.astro';
+
+const faqCategories = [
+  {
+    id: 'cat-1',
+    title: '1. 订阅与连接报错（最高频排障）',
+    badge: '高频故障',
+    icon: '⚡',
+    gradient: 'from-amber-500 to-red-500',
+    questions: [
+      {
+        q: '订阅更新失败 / 提示 404 / 500',
+        a: '提示 404 表明订阅 URL 拼写错误或机场后台更换了订阅域名；提示 500 表明机场后端服务器繁忙或临时维护。请重新登录机场后台复制最新的 Clash/V2Ray 订阅链接，并在客户端中关闭代理后再进行“更新订阅”。'
+      },
+      {
+        q: '订阅链接无法导入客户端',
+        a: '请先核对客户端版本（如 Clash Verge Rev、Shadowrocket），确认复制的是对应的专用订阅格式。如果机场仅提供原始节点代码，请使用通用的“订阅转换”或资源解析器转换成目标客户端格式后再粘贴导入。'
+      },
+      {
+        q: '节点全部超时 / 全部红字 / Timeout',
+        a: '超 70% 的原因为设备系统时钟与标准时间相差超过 60 秒（TLS 握手对时间极度敏感）。请进入系统设置开启“自动同步时间”；此外请核查套餐流量是否用尽或安全杀毒软件阻断了虚拟网卡。'
+      },
+      {
+        q: '节点延迟测速正常但网页打不开',
+        a: '测速成功表明 TCP 握手通畅，但网页无法打开多为系统代理开启失败或本地 DNS 被污染。请在 Clash 中确认“System Proxy”开关已勾选，并在 CMD 终端运行 ipconfig /flushdns 清理 DNS 缓存。'
+      },
+      {
+        q: '提示“系统代理已设置但无网络”',
+        a: '通常发生在异常关机或第三方软件覆盖了网络代理设置。尝试在客户端面板中先关闭系统代理，再重新勾选；或进入 Windows 系统【设置】->【网络和 Internet】->【代理】，手动将“使用代理服务器”关闭并重试。'
+      },
+      {
+        q: '系统时间未同步导致连接失败（SSL证书错误）',
+        a: 'VLESS/Trojan 等加密协议依赖高精度时间同步。如果时间误差大，服务器会认为证书过期或握手非法。打开 Windows 任务栏右下角时间设置，点击“立即同步时间”即可瞬间复原。'
+      },
+      {
+        q: '订阅链接被污染 / 订阅地址打不开',
+        a: '部分运营商 DNS 针对公开订阅域名进行了 SNI 污染。解决办法：开启代理软件的 TUN 模式后再更新订阅；或使用机场提供的“防污染短链/订阅备用域名”。'
+      },
+      {
+        q: '订阅转换失败 / 转换后节点不显示',
+        a: '第三方在线订阅转换节点可能被后端服务器拦截或掉线。推荐使用机场后台原生提供的一键订阅链接，或者在 Clash Verge Rev 中开启 Mihomo 内核的自动转换选项，避免敏感订阅 URL 泄露给三方转换平台。'
+      }
+    ]
+  },
+  {
+    id: 'cat-2',
+    title: '2. 客户端与系统设置',
+    badge: '客户端软件',
+    icon: '💻',
+    gradient: 'from-blue-500 to-indigo-600',
+    questions: [
+      {
+        q: 'Clash Verge Rev 怎么配置',
+        a: '下载最新 setup.exe 安装后，在【订阅】菜单中粘贴机场复制的 Clash 链接并点击导入。切换到【代理】菜单选择“规则模式 (Rule)”，勾选系统代理 (System Proxy)，如需全局接管可开启 TUN 模式。'
+      },
+      {
+        q: 'Shadowrocket（小火箭）怎么添加订阅',
+        a: '在 iOS 手机上打开 Shadowrocket，点击右上角 + 号，类型选择 Subscribe，在 URL 框中粘贴机场订阅链接并保存；或直接在机场后台点击“一键导入小火箭”。首页将全局路由切为“配置”，点击顶部开关连接。'
+      },
+      {
+        q: 'Sing-box 客户端怎么用',
+        a: 'Sing-box 支持通用 JSON 配置。在 Sing-box 客户端中选择“添加 Profile”，选择订阅 URL 类型，粘贴机场 Sing-box 专属链接，保存后选择节点点击启用。'
+      },
+      {
+        q: 'TUN 模式怎么开启 / 虚拟网卡安装失败',
+        a: '在 Clash Verge Rev 或 v2rayN 中找到“TUN Mode”开关。首次开启需要管理员权限安装 Service Mode 驱动。若安装失败，请关闭 360 / 火绒防护，右键“以管理员身份运行”客户端重新安装驱动。'
+      },
+      {
+        q: '规则模式（Rule）和全局模式（Global）的区别',
+        a: '规则模式（推荐）：自动识别流量，国内网站（如百度、淘宝、微信）直连，海外受限网站（如 Google、YouTube、ChatGPT）走代理。全局模式：所有流量强制走代理，会导致国内 APP 访问缓慢并浪费流量。'
+      },
+      {
+        q: '开了代理后国内网页打不开 / 微信断流',
+        a: '请检查客户端代理模式是否误切成了“全局 (Global)”。请务必切换为“规则 (Rule)”模式。此外可在 Clash 规则集中加入 GEOIP,CN 规则直连。'
+      },
+      {
+        q: '开了代理局域网设备无法访问（绕过局域网设置）',
+        a: '请在客户端配置的 Bypass / Bypass LAN 中保留 192.168.0.0/16、10.0.0.0/8 及 127.0.0.1 局域网网段，并在 Clash 中勾选“Allow LAN (允许局域网共享)”。'
+      },
+      {
+        q: '电脑关机后没网了（系统代理残留未关闭）',
+        a: '异常关机或直接强行关闭 Clash 进程，可能导致 Windows 系统代理端口未自动注销。打开 Windows【设置】->【网络和 Internet】->【代理】，把“使用代理服务器”手动开关关闭即可恢复。'
+      },
+      {
+        q: '手机/电脑多设备同时在线限制',
+        a: '视机场套餐规则而定。大部分标准套餐支持 3-5 台设备同时在线；如果超过并发数限制，后连入的设备会被拒绝握手。需要多设备共享推荐选择如 EdgeNova、可信云等不限设备并发的套餐。'
+      }
+    ]
+  },
+  {
+    id: 'cat-3',
+    title: '3. AI 与流媒体解锁',
+    badge: 'AI & 流媒体',
+    icon: '🤖',
+    gradient: 'from-purple-500 to-pink-600',
+    questions: [
+      {
+        q: 'ChatGPT 提示 Access Denied / 报错 1020',
+        a: '说明您当前节点使用的 IP 属于 AWS/DigitalOcean 等广播机房 IP，已被 Cloudflare 与 OpenAI 整体屏蔽。请切换至具备“原生住宅 IP”或“AI 风控白名单”的专线节点（如云图 Yuntu），并使用无痕模式重试。'
+      },
+      {
+        q: 'ChatGPT 提示 Unable to load site / 登录失败',
+        a: '往往是由于浏览器 WebRTC 泄露了本地真实 ISP IP 地址，或者代理节点在握手过程中丢包。建议在浏览器安装 WebRTC Control 插件禁用泄露，或开启客户端 TUN 模式全接管。'
+      },
+      {
+        q: 'Claude 提示 App unavailable in your country',
+        a: 'Anthropic 对节点 IP 要求极度苛刻（仅限美区/英区纯净 IP）。如果节点被检测为机房 IP 会直接报地区不可用。请使用纯正美国原生 IP 专线，并保持全局代理访问 anthropic.com。'
+      },
+      {
+        q: 'Netflix（网飞）提示使用了解锁工具 / 代理屏蔽',
+        a: '网飞对广播 IP 实施了版权隔离，导致只能观看自制剧或弹黄框报错。选购节点时请认准标注有“Netflix 解锁”或“原生 IP”的节点（如香港/台湾/日本原生专线）。'
+      },
+      {
+        q: 'Disney+ 报错 Error 83 / 无法加载',
+        a: 'Error 83 通常表示设备或网络兼容性阻断。请确认节点支持 Disney+ 原生 DNS 重定向，并在客户端分流规则中将 disney.com 与 bamgrid.com 强制分配至解锁节点。'
+      },
+      {
+        q: 'TikTok 无法刷新 / 进不去 / 0播放免拔卡节点',
+        a: 'TikTok 会识别国内 SIM 卡运营商信息。iOS 用户可通过小火箭配置“TikTok 解锁重写脚本”强制解封，或配合使用无 SIM 卡备用机连美区原生 IP 节点进行视频刷新。'
+      },
+      {
+        q: '原生 IP 与机房 IP 的区别',
+        a: '原生 IP (Native IP)：IP 的注册地与实际机房所在国家 100% 一致，且被数据库认定为当地 Residential 住宅/ISP 宽带，解锁流媒体与 AI 最稳。机房 IP：公共云厂商广播 IP，极易触发人机防刷拦截。'
+      },
+      {
+        q: '节点支持哪些流媒体平台解锁',
+        a: '优质机场节点通常包含全套流媒体解锁白名单，覆盖 Netflix (网飞)、Disney+、HBO Max、YouTube Premium、Spotify、Hulu、TVB 以及 Apple TV+ 等。'
+      }
+    ]
+  },
+  {
+    id: 'cat-4',
+    title: '4. 线路规格与技术术语',
+    badge: '技术原理解析',
+    icon: '🌐',
+    gradient: 'from-cyan-500 to-blue-600',
+    questions: [
+      {
+        q: '什么是 IPLC 专线',
+        a: 'IPLC（International Private Leased Circuit，国际私用出租线路）是端到端的点对点物理光纤内网专线。流量在境内入口封装后，直接走专属内网跨境送到海外，物理层面不过 GFW 防火长城审查，丢包率 0.0%。'
+      },
+      {
+        q: 'IPLC 和 IEPL 专线有什么区别',
+        a: '两者均为物理封闭光纤专线，不过 GFW。IPLC 为二层电路（物理链路层），IEPL 为三层以太网电路。在翻墙体验上二者性能完全一致，均具备毫秒级响应与晚高峰不丢包特性。'
+      },
+      {
+        q: '专线和普通 BGP 中转有什么不同',
+        a: 'BGP 中转：流量走国内 BGP 机房接驳公网出口出境，仍会经过 GFW 审查，敏感时期可能会遭遇干扰。专线 (IEPL/IPLC)：完全走物理封闭内网，物理不过 GFW，晚高峰稳定性 100%。'
+      },
+      {
+        q: '什么是节点倍率（0.5x / 1.0x / 3.0x 怎么扣流量）',
+        a: '节点倍率指实际消耗流量的结算系数。1.0x（标准）：使用 1GB 扣 1GB；0.5x（低倍率）：使用 1GB 仅扣 0.5GB，适合大文件下载；3.0x/5.0x（高倍率）：使用 1GB 扣 3GB/5GB，通常用于稀缺的高成本专线。'
+      },
+      {
+        q: '晚高峰节点卡顿 / 丢包 / 断流原因',
+        a: '每天 20:00 - 23:00 为民用国际骨干网出口流量峰值期。直连或廉价中转线路遭遇 QOS 限速导致严重丢包。解决办法是升级至物理 IEPL 专线机场（如 EdgeNova、速界）。'
+      },
+      {
+        q: '为什么测速很快但实际使用卡顿',
+        a: '测速工具（如 Speedtest）测试的是单线程最高吞吐量，而实际网页/AI 交互依赖的是“首包响应时间 (TTFB)”与“网络抖动 (Jitter)”。抖动大或 DNS 污染会导致加载卡顿。'
+      },
+      {
+        q: '是否支持 UDP 转发（主机游戏加速 / 电报语音）',
+        a: '高品质机场（如速界、EdgeNova）全节点支持 Full-Cone NAT (全锥形 NAT) 与 UDP 转发，完美支持 PS5 / Switch / Xbox 联机游戏加速及 Telegram 高清语音通话。'
+      }
+    ]
+  },
+  {
+    id: 'cat-5',
+    title: '5. 账户、套餐与购买规则',
+    badge: '购买与退款',
+    icon: '💳',
+    gradient: 'from-emerald-500 to-teal-600',
+    questions: [
+      {
+        q: '流量重置日按自然月还是购买日计算',
+        a: '绝大部分现代机场（使用 sspanel / v2board 后台）均采用“账单日重置”模式，即从您成功购买订阅的日期起算，每满 30 天自动重置套餐流量，而非每月 1 号重置。'
+      },
+      {
+        q: '当月流量用完了可以提前重置吗',
+        a: '可以。绝大多数机场后台均提供“提前重置流量”按钮（通常需支付少许重置手续费），或者您可以直接在后台重新购买当前套餐重置账单周期。'
+      },
+      {
+        q: '没用完的流量是否会结转到下个月',
+        a: '包月套餐的剩余流量在重置日会自动清零，无法结转到下月。如果您用量极不稳定，建议选择“按量计费 (Pay-As-You-Go) 套餐”（如瞬云），流量永久有效不过期。'
+      },
+      {
+        q: '怎么升级套餐 / 补差价换更高配置',
+        a: '登录机场后台，进入【订阅商店/购买套餐】，选择需要升级的目标套餐，系统会自动计算当前剩余天数的折旧抵扣金额，您只需支付差价即可无缝升级。'
+      },
+      {
+        q: '支持哪些支付方式（支付宝 / 微信 / USDT）',
+        a: '本站推荐的各大机场均全面支持支付宝 (Alipay)、微信支付 (WeChat Pay) 快捷扫码，部分海外高端专线机场同步支持 USDT (TRC-20) 链上加密货币匿名支付。'
+      },
+      {
+        q: '购买后不满意是否支持退款',
+        a: '科学上网服务包含服务器与带宽固有成本，绝大多数机场不支持无理由退款。因此强烈建议新手首次体验时坚持月付试错，满意后再考虑季度或年度订阅。'
+      },
+      {
+        q: '优惠码 / 促销码怎么使用',
+        a: '在机场结算页面，找到“优惠码 / 折扣码 (Coupon Code)”输入框，粘贴本站评测文章中提供的优惠码（如 xk808 或 YUNTU2026），点击验证应用即可享 8 折或 9 折立减。'
+      },
+      {
+        q: '官网打不开怎么获取最新备用域名',
+        a: '由于机场官网主域名偶尔会被国内运营商屏蔽，建议收藏本站导航与 Telegram 官方频道。本站会实时同步最新的防封发布页与备用官网镜像入口。'
+      },
+      {
+        q: '怎么加入官方 Telegram 交流群 / 频道',
+        a: '登录您的机场后台，在用户仪表盘首页侧边栏或底部，点击“加入 Telegram 官方频道 / 交流群”链接即可快速跳转进群获取最新节点公告。'
+      }
+    ]
+  }
+];
+
+const totalQuestions = faqCategories.reduce((acc, cat) => acc + cat.questions.length, 0);
+---
+
+<BaseLayout
+  title="机场与科学上网问题库 (FAQ) - 41 大常见故障排除全集"
+  description="收录订阅报错、连接 Timeout、Clash/小火箭客户端配置、ChatGPT/Netflix 解锁及线路规格计费等 41 大常见问题的高效解决方案。"
+>
+  <Header />
+
+  <main class="w-full max-w-[1920px] mx-auto px-3 sm:px-6 lg:px-8 py-6 min-h-screen bg-slate-50/50">
+    
+    <!-- 面包屑 -->
+    <nav class="flex items-center gap-2 text-sm text-slate-500 font-medium px-1 mb-6">
+      <a href="/" class="hover:text-blue-600 transition-colors">首页</a>
+      <span>/</span>
+      <span class="text-blue-600 font-semibold">机场与科学上网问题库 (FAQ)</span>
+    </nav>
+
+    <!-- 响应式三栏布局: 左侧边栏 + 中间主区 + 右侧侧栏 -->
+    <div class="flex flex-col lg:flex-row gap-6 items-start">
+      
+      <!-- 左侧边栏 -->
+      <LeftSidebar />
+
+      <!-- 主区 -->
+      <section class="flex-1 min-w-0 w-full space-y-6">
+        
+        <!-- Header Banner -->
+        <div class="relative w-full bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 border border-blue-500/30 rounded-3xl p-6 sm:p-8 text-white shadow-lg overflow-hidden">
+          <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="relative z-10 space-y-3">
+            <div class="flex items-center gap-3">
+              <span class="px-3 py-1 bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 text-xs font-mono font-bold rounded-full">KNOWLEDGE BASE & FAQ</span>
+              <span class="text-xs text-slate-400 font-mono font-semibold">共收录 {totalQuestions} 个典型问答</span>
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-black tracking-tight">机场与科学上网问题库 (FAQ)</h1>
+            <p class="text-sm sm:text-base text-slate-300 max-w-3xl leading-relaxed font-medium">
+              汇总用户在使用 Clash、Shadowrocket、V2Ray 客户端、更新订阅、解锁 ChatGPT 与 Netflix 流媒体过程中遇到的 41 大高频报错与终极排错指南。
+            </p>
+          </div>
+        </div>
+
+        <!-- 5 大分类锚点快捷导航 -->
+        <div class="bg-white rounded-2xl border border-slate-200/80 p-4 shadow-xs">
+          <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">快速跳转分类</div>
+          <div class="flex flex-wrap gap-2">
+            {faqCategories.map(cat => (
+              <a
+                href={`#${cat.id}`}
+                class="px-3 py-2 bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-600 rounded-xl text-xs font-bold transition-all border border-slate-200/60 no-underline flex items-center gap-1.5"
+              >
+                <span>{cat.icon}</span>
+                <span>{cat.title}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- 5 大 FAQ 问答区块 -->
+        <div class="space-y-8">
+          {faqCategories.map(cat => (
+            <div id={cat.id} class="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-xs space-y-4">
+              <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <h2 class="text-xl font-black text-slate-900 flex items-center gap-2">
+                  <span class="text-2xl">{cat.icon}</span>
+                  <span>{cat.title}</span>
+                </h2>
+                <span class="px-2.5 py-1 text-xs font-bold bg-blue-50 text-blue-600 border border-blue-100 rounded-full font-mono">
+                  {cat.questions.length} Qs
+                </span>
+              </div>
+
+              <!-- 问答折叠列表 / 卡片网格 -->
+              <div class="space-y-3">
+                {cat.questions.map((item, idx) => (
+                  <details class="group bg-slate-50/70 hover:bg-slate-50 rounded-2xl border border-slate-200/70 transition-all overflow-hidden">
+                    <summary class="p-4 font-bold text-slate-900 text-sm sm:text-base cursor-pointer flex items-center justify-between gap-3 list-none select-none">
+                      <span class="flex items-center gap-2.5">
+                        <span class="w-6 h-6 rounded-lg bg-blue-100 text-blue-700 text-xs font-mono font-extrabold flex items-center justify-center shrink-0">
+                          {idx + 1}
+                        </span>
+                        <span class="group-open:text-blue-600 transition-colors">{item.q}</span>
+                      </span>
+                      <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                      </svg>
+                    </summary>
+                    <div class="px-4 pb-4 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-200/40 bg-white/60 space-y-2">
+                      <p>{item.a}</p>
+                    </div>
+                  </details>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </section>
+
+      <!-- 右侧侧栏 -->
+      <RightSidebar />
+
+    </div>
+
+  </main>
+
+  <Footer />
+</BaseLayout>

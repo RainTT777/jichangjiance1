@@ -2,99 +2,32 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
-import LeftSidebar from '@/components/LeftSidebar.astro';
-import RightSidebar from '@/components/RightSidebar.astro';
 ---
 
 <BaseLayout
-  title="免费节点风险与选购指南 - 2026 稳定翻墙机场推荐"
-  description="深度解析免费 v2ray/clash 节点的安全风险、隐私隐患与经常断流失效原因，提供高性价比专线机场替代方案。"
+  title="跳转中 - 问题库 (FAQ) - 机场检测中心"
+  description="页面已迁移至机场与科学上网问题库 (FAQ)。"
 >
   <Header />
 
-  <main class="w-full max-w-[1920px] mx-auto px-3 sm:px-6 lg:px-8 py-6 min-h-screen bg-slate-50/50">
-    
-    <!-- 面包屑 -->
-    <nav class="flex items-center gap-2 text-sm text-slate-500 font-medium px-1 mb-6">
-      <a href="/" class="hover:text-blue-600 transition-colors">首页</a>
-      <span>/</span>
-      <span class="text-blue-600 font-semibold">免费节点与安全说明</span>
-    </nav>
+  <script is:inline>
+    window.location.replace('/faq/');
+  </script>
 
-    <!-- 响应式布局: 左侧边栏 + 中间主区 + 右侧侧栏 (参考图2 模板) -->
-    <div class="flex flex-col lg:flex-row gap-6 items-start">
-      
-      <!-- 左侧边栏 (图2 模板) -->
-      <LeftSidebar />
-
-      <!-- 主内容区 -->
-      <section class="flex-1 min-w-0 w-full space-y-6">
-        
-        <!-- Header Banner -->
-        <div class="relative w-full bg-gradient-to-br from-amber-50/90 via-orange-50/60 to-slate-50 border border-amber-200/80 rounded-3xl p-6 sm:p-8 text-slate-800 shadow-xs">
-          <h1 class="text-2xl sm:text-4xl font-black text-amber-900 mb-2">免费节点风险与选购说明</h1>
-          <p class="text-sm sm:text-base text-slate-600 font-medium">天下没有免费的午餐——为什么我们强烈不建议长期使用公开免费节点？</p>
-        </div>
-
-        <!-- 风险警示 -->
-        <div class="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-xs space-y-4">
-          <h2 class="text-xl font-black text-slate-900 flex items-center gap-2">
-            <span class="w-2 h-6 bg-amber-500 rounded-full inline-block"></span>
-            <span>免费节点的 4 大致命隐患</span>
-          </h2>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="p-5 bg-rose-50/60 border border-rose-200/80 rounded-2xl space-y-2">
-              <h3 class="font-extrabold text-rose-900 text-base">1. 中间人攻击与数据劫持</h3>
-              <p class="text-xs text-slate-600 leading-relaxed">免费节点所有者可在落地服务器端解密抓包，记录您的登录 Cookie、密码与隐私浏览痕迹。</p>
-            </div>
-            <div class="p-5 bg-amber-50/60 border border-amber-200/80 rounded-2xl space-y-2">
-              <h3 class="font-extrabold text-amber-900 text-base">2. 极端拥堵与随时断流</h3>
-              <p class="text-xs text-slate-600 leading-relaxed">上千人挤同一条廉价公网中转，晚高峰延迟数千毫秒，拖动 1080P 视频严重缓冲转圈。</p>
-            </div>
-            <div class="p-5 bg-slate-50 border border-slate-200/80 rounded-2xl space-y-2">
-              <h3 class="font-extrabold text-slate-900 text-base">3. IP 极度污染与 AI 封锁</h3>
-              <p class="text-xs text-slate-600 leading-relaxed">免费 IP 段频繁被 ChatGPT、Claude、Netflix 和 Google 标记为高风险，频繁弹出验证码或 403 阻断。</p>
-            </div>
-            <div class="p-5 bg-slate-50 border border-slate-200/80 rounded-2xl space-y-2">
-              <h3 class="font-extrabold text-slate-900 text-base">4. 恶意注入与广告弹窗</h3>
-              <p class="text-xs text-slate-600 leading-relaxed">部分公开订阅源会在网页中暗中注入挖矿脚本或强制弹窗广告，严重影响设备安全。</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- 替代方案 -->
-        <div class="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-xs space-y-4">
-          <h2 class="text-xl font-black text-slate-900 flex items-center gap-2">
-            <span class="w-2 h-6 bg-blue-600 rounded-full inline-block"></span>
-            <span>更合理的替代方案：百元内专线机场</span>
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-            2026 年的专线机场门槛已大幅降低，折后低至 <strong>¥6.5/月</strong> 即可体验全节点独享 IEPL 物理专线，纯净 IP 直通 4K 视频与 AI 生产力工具。
-          </p>
-
-          <div class="p-5 bg-gradient-to-r from-blue-50 to-indigo-50/60 rounded-2xl border border-blue-200/80 flex items-center justify-between gap-4 flex-wrap">
-            <div class="flex items-center gap-3">
-              <img src="../edgenova_logo.png" alt="EdgeNova" class="w-10 h-10 rounded-xl object-cover border border-slate-200 shadow-2xs shrink-0" onerror="if(!this.dataset.retry){this.dataset.retry='1';var f=this.src.split('/').pop();this.src='./'+f;}else if(this.dataset.retry==='1'){this.dataset.retry='2';var f=this.src.split('/').pop();this.src='../'+f;}else if(this.dataset.retry==='2'){this.dataset.retry='3';var f=this.src.split('/').pop();this.src='../../'+f;}else if(this.dataset.retry==='3'){this.dataset.retry='4';var f=this.src.split('/').pop();this.src='/'+f;}" />
-              <div>
-                <div class="font-black text-slate-900 text-base">EdgeNova IEPL 专线 (推荐首选)</div>
-                <p class="text-xs text-slate-600">纯血 IEPL 专线，全节点 1.0x 计费，年付使用 8 折优惠码 xk808 折后仅 ¥78.4/年。</p>
-              </div>
-            </div>
-            <a href="/reviews/edgenova-2026/" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm rounded-xl shadow-2xs transition-all inline-flex items-center gap-1.5 cursor-pointer no-underline" style="color: #ffffff !important;">
-              <span style="color: #ffffff !important;">阅读 EdgeNova 实测评测</span>
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-            </a>
-          </div>
-        </div>
-
-      </section>
-
-      <!-- 右侧侧栏 (图2 模板) -->
-      <RightSidebar />
-
+  <main class="w-full max-w-4xl mx-auto px-4 py-20 text-center min-h-[60vh] flex flex-col items-center justify-center space-y-6">
+    <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl font-bold animate-bounce mx-auto">
+      🔄
     </div>
-
+    <h1 class="text-2xl sm:text-3xl font-black text-slate-900">页面已升级为【问题库 (FAQ)】</h1>
+    <p class="text-slate-600 text-sm sm:text-base max-w-md mx-auto">
+      我们已将免费节点说明升级为包含 41 大常见报错与连接排障的全量【问题库 (FAQ)】。正在为您自动跳转...
+    </p>
+    <div>
+      <a href="/faq/" class="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm rounded-xl shadow-md transition-all inline-flex items-center gap-2 no-underline">
+        <span>立即跳转至问题库</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+      </a>
+    </div>
   </main>
 
   <Footer />
