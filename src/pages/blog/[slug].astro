@@ -4,6 +4,7 @@ import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import ArticleCard from '@/components/ArticleCard.astro';
 import { articles } from '@/data/articles';
+import { blogContentMap } from '@/data/blogContent';
 
 export function getStaticPaths() {
   return articles.map(article => ({
@@ -13,6 +14,7 @@ export function getStaticPaths() {
 }
 
 const { article } = Astro.props;
+const contentHtml = blogContentMap[article.slug] || '';
 
 // 获取相关文章（同分类的其他文章）
 const relatedArticles = articles
@@ -87,51 +89,7 @@ const faqs = [
 
           <!-- 文章正文内容 -->
           <div class="blog-article-content text-slate-700 leading-relaxed space-y-4 text-base sm:text-lg">
-            <h2>一、引言与背景</h2>
-            <p>
-              在现代网络使用环境中，掌握科学的客户端配置与节点选择机制对于保持长期稳定的数字体验至关重要。无论是为了解锁 Netflix 4K 高清流媒体、稳定调用 ChatGPT (GPT-4o) 生产力，还是为了在晚高峰期间获得流畅的网络体验，合理的配置方案都能带来事半功倍的效果。
-            </p>
-
-            <h2>二、核心配置要点与步骤</h2>
-            <p>
-              请按照以下标准化步骤在您的设备上完成客户端环境搭建：
-            </p>
-
-            <div class="bg-blue-50/80 border border-blue-200 p-5 rounded-2xl space-y-2 text-sm text-slate-800 my-4">
-              <div class="font-extrabold text-blue-900 text-base">准备工作清单：</div>
-              <ul class="list-disc pl-5 space-y-1 text-slate-700 font-medium">
-                <li>准备已订阅且正常运行的节点订阅链接（支持 VLESS / Trojan / Clash 协议）</li>
-                <li>从官方正规渠道下载并安装对应系统的客户端（Windows 推荐 Clash Verge Rev；iOS 推荐 Shadowrocket）</li>
-                <li>确保系统时间已与标准北京时间校准同步</li>
-              </ul>
-            </div>
-
-            <h3>步骤 1：导入订阅与分流规则</h3>
-            <p>
-              在客户端中找到“订阅管理”或“配置”入口，将机场后台复制的完整订阅 URL 粘贴填入。点击“更新”后，客户端会自动抓取最新的节点列表与规则集。建议切换分流模式为<strong>“规则模式 (Rule Mode)”</strong>，使国内流量直连、海外流量自动走代理。
-            </p>
-
-            <h3>步骤 2：开启系统代理与 TUN 模式</h3>
-            <p>
-              对于 Windows / macOS 平台，开启“系统代理 (System Proxy)”开关；如果需要接管游戏客户端、Telegram 软件或终端命令行流量，建议勾选开启“TUN 模式 (Tun Mode)”。
-            </p>
-
-            <h2>三、晚高峰排查与避坑建议</h2>
-            <p>
-              如果在晚高峰 20:00 - 23:00 遇节点卡顿，请尝试以下操作：
-            </p>
-            <ul>
-              <li><strong>优先选用 IEPL 专线节点：</strong> 物理内网光纤不经过 GFW，彻底从底层避免丢包抖动。</li>
-              <li><strong>更换 DNS 协议：</strong> 将客户端本地 DNS 切换为 DoH (DNS over HTTPS) 或 8.8.8.8，防止域名污染。</li>
-            </ul>
-
-            <div class="my-6 text-center">
-              <a href="/reviews/edgenova-2026/" class="px-8 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-black text-sm sm:text-base rounded-2xl shadow-md transition-all inline-flex items-center justify-center gap-2 no-underline" style="color: #ffffff !important;">
-                <span style="color: #ffffff !important;">查看 2026 物理专线旗舰 EdgeNova 实测评测</span>
-                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-              </a>
-            </div>
-
+            <Fragment set:html={contentHtml} />
           </div>
 
           <!-- FAQ 卡片 -->
