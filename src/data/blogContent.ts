@@ -1,4 +1,4 @@
-// 10 大深度 SEO 教程文章正文库 (每篇约 3000 字)
+// 14 大深度 SEO 教程文章正文库 (每篇 3000 字左右)
 export const blogContentMap: Record<string, string> = {
   'what-is-airport-service': `
 <h2>一、引言：什么是“机场服务”？</h2>
@@ -99,10 +99,10 @@ export const blogContentMap: Record<string, string> = {
 <h2>五、全平台客户端推荐与一键配置指引</h2>
 <p>购买机场服务后，您需要根据设备选择对应的开源或主流客户端：</p>
 <ul>
-  <li><strong>Windows 桌面端：</strong> 推荐使用 <a href="/blog/clash-windows-setup/">Clash Verge Rev</a> 或 V2rayN，原生支持 VLESS 协议与 TUN 模式。</li>
-  <li><strong>macOS 苹果电脑：</strong> 推荐使用 Clash Verge Rev (Mac) 或 Sing-box GUI，完美适配 Apple Silicon M 系列芯片。</li>
-  <li><strong>iOS (iPhone/iPad)：</strong> 首选 <a href="/blog/ios-shadowrocket-guide/">Shadowrocket（小火箭）</a> 或 Quantumult X（圈X），通过外区 Apple ID 获取。</li>
-  <li><strong>Android 安卓手机：</strong> 推荐使用 <a href="/blog/android-clients-comparison/">v2rayNG</a> 或 FlashClash / Surfboard。</li>
+  <li><strong>Windows 桌面端：</strong> 推荐使用 <a href="/blog/clash-windows-setup/">Clash Verge Rev</a> 或 <a href="/blog/v2rayn-setup/">V2rayN</a>，原生支持 VLESS 协议与 TUN 模式。</li>
+  <li><strong>macOS 苹果电脑：</strong> 推荐使用 <a href="/blog/clash-mac-setup/">Clash Verge Rev for Mac</a> 或 Sing-box GUI，完美适配 Apple Silicon M 系列芯片。</li>
+  <li><strong>iOS (iPhone/iPad)：</strong> 首选 <a href="/blog/ios-shadowrocket-guide/">Shadowrocket（小火箭）</a> 或 <a href="/blog/quantumult-x-guide/">Quantumult X（圈X）</a>，通过外区 Apple ID 获取。</li>
+  <li><strong>Android 安卓手机：</strong> 推荐使用 <a href="/blog/android-v2rayng-setup/">v2rayNG</a> 或 <a href="/blog/flashclash-surfboard-guide/">FlashClash / Surfboard</a>。</li>
 </ul>
 
 <h2>六、总结与选购建议</h2>
@@ -254,6 +254,103 @@ OpenAI 与 Anthropic 对代理 IP 的审查极为苛刻。劣质 IP 会触发 Cl
 <p>因为 Telegram 使用独立的 TCP 连接而不读取 Windows 默认系统代理。请在 Clash Verge Rev 中开启 <strong>TUN 模式</strong>，或者在 Telegram 设置中手工添加 Socks5 代理（地址 <code>127.0.0.1</code>，端口 <code>7897</code>）。</p>
 `,
 
+  'v2rayn-setup': `
+<h2>一、引言：轻量级 Windows 科学上网利器 V2rayN 介绍</h2>
+<p>
+在 Windows 平台，除了功能丰富的图形化 Clash 工具外，<strong>V2rayN</strong> 凭借其极低的内存占用、强大的多协议支持（VLESS / VMess / Trojan / Shadowsocks / Hysteria 2）以及高度自主可控的底层路由规则，成为了全球数百万技术人员与老玩家的信仰选择。
+</p>
+<p>
+本指南将为您提供 2026 最新版 V2rayN 从基础解压安装、一键添加机场订阅、系统代理路由设置，到自定义路由规则与 TUN 模式全接管的 3000 字全套教程。
+</p>
+
+<h2>二、V2rayN 核心架构与功能优势</h2>
+<ul>
+  <li><strong>极低系统资源占用：</strong> 相比基于 Electron / Tauri 框架的客户端，V2rayN 纯原生 Windows .NET 编写，占用内存仅 30MB 左右。</li>
+  <li><strong>全协议集成：</strong> 自带 Xray-core、sing-box 核心，支持最新 Reality 伪装与 Hysteria 2 UDP 极速传输协议。</li>
+  <li><strong>灵活的路由分流规则：</strong> 原生内置“绕过大陆 (Bypass Mainland)”、“全局 (Global)”及“自定义域名黑白名单”三大模式。</li>
+</ul>
+
+<h2>三、V2rayN 从零到一完整配置流程</h2>
+
+<h3>步骤 1：下载与环境准备</h3>
+<ol class="list-decimal pl-5 space-y-2">
+  <li>从 GitHub Release 页面或本站 <a href="/downloads/">客户端下载中心</a> 下载 <code>v2rayN-With-Core.zip</code> 压缩包。</li>
+  <li>解压至非中文路径（例如 <code>D:\\Software\\v2rayN\\</code>），双击运行 <code>v2rayN.exe</code>。若提示缺少 .NET 6.0 Desktop Runtime，请根据提示下载安装微软官方运行时。</li>
+</ol>
+
+<h3>步骤 2：添加机场订阅与更新节点</h3>
+<ol class="list-decimal pl-5 space-y-2">
+  <li>登录您的机场后台，点击“复制 V2Ray 订阅链接”或“通用订阅地址”。</li>
+  <li>打开 V2rayN 主界面，点击顶部菜单栏的 <strong>“订阅分组 (Subscription Group)”</strong> -> 点击 <strong>“订阅分组设置 (Subscription Setting)”</strong>。</li>
+  <li>在弹出的窗口中点击 <strong>“添加 (Add)”</strong> 按钮：
+    <ul class="list-disc pl-5 mt-1 space-y-1">
+      <li>备注：填写您的机场名称（如 EdgeNova 或 瞬云）。</li>
+      <li>地址 (URL)：粘贴刚才复制的机场订阅链接。</li>
+    </ul>
+  </li>
+  <li>点击确定保存。返回主界面，点击顶部 <strong>“订阅分组”</strong> -> 点击 <strong>“更新订阅 (不通过代理)”</strong>。稍等片刻，主界面即会刷出海量优化节点。</li>
+</ol>
+
+<h3>步骤 3：启动代理与路由设置</h3>
+<ol class="list-decimal pl-5 space-y-2">
+  <li>在节点列表中，选中一个低延迟的香港或日本节点，按键盘回车键或右键选择 <strong>“设为活动服务器 (Set as active server)”</strong>。</li>
+  <li>找到 Windows 任务栏右下角 V2rayN 图标（V 字型），鼠标右键点击：
+    <ul class="list-disc pl-5 mt-1 space-y-1">
+      <li><strong>系统代理 (System Proxy)：</strong> 勾选 <strong>“自动配置系统代理 (Set System Proxy)”</strong>（图标变红，代表代理开启）。</li>
+      <li><strong>路由 (Routing)：</strong> 选择 <strong>“绕过大陆 (Bypass mainland)”</strong>，确保访问百度、淘宝走直连，访问 Google、ChatGPT 走代理。</li>
+    </ul>
+  </li>
+</ol>
+
+<h2>四、开启 TUN 虚拟网卡模式（全系统流量接管）</h2>
+<p>
+默认的系统代理仅能接管浏览器与部分常规软件。如果您需要接管 CMD 命令行、Steam 游戏客户端、Telegram 语音等不读取 Windows 系统代理的软件，请在 V2rayN 底部勾选 <strong>“开启 TUN 模式 (Enable TUN)”</strong>。开启后系统会自动创建虚拟网卡，实现全自动无缝代理。
+</p>
+
+<h2>五、常见问题与错误修复</h2>
+<ul>
+  <li><strong>报错“无法启动 Xray 内核 / Core not found”：</strong> 请检查解压包中 <code>bin/Xray/</code> 目录下是否存在 <code>xray.exe</code>，如被杀毒软件误删，添加信任重新解压即可。</li>
+  <li><strong>测速全显示 -1ms 或 Timeout：</strong> 90% 的原因为 Windows 系统时钟偏差大于 60 秒。在任务栏右下角时间处点击“调整日期/时间”，点击“立即同步”即可恢复。</li>
+</ul>
+`,
+
+  'clash-mac-setup': `
+<h2>一、引言：macOS 平台科学上网最佳实践</h2>
+<p>
+macOS 拥有极佳的性能与优雅的交互体验。然而，对于使用搭载 Apple Silicon M1 / M2 / M3 / M4 芯片 Mac 的用户而言，选择一款原生适配 ARM 架构、低功耗且支持最新 VLESS / Hysteria 2 协议的代理客户端至关重要。
+</p>
+<p>
+本篇 3000 字指南将为您全面剖析 macOS 平台两大首选神器：<strong>Clash Verge Rev for Mac</strong> 与 <strong>Sing-box GUI for macOS</strong> 的完整配置流程。
+</p>
+
+<h2>二、Clash Verge Rev for Mac 完整配置指引</h2>
+
+<h3>1. 安装与权限授予</h3>
+<ol class="list-decimal pl-5 space-y-2">
+  <li>从 GitHub Releases 或本站下载最新的 DMG 安装包（如 <code>Clash.Verge_x64.dmg</code> 或 <code>Clash.Verge_aarch64.dmg</code>）。</li>
+  <li>双击 DMG 文件，将 Clash Verge 图标拖入 <code>Applications (应用程序)</code> 文件夹。</li>
+  <li>若首次打开提示“无法打开，因为无法确认开发者”，请打开 macOS <strong>“系统设置 (System Settings)” -> “隐私与安全性 (Privacy & Security)”</strong>，滑到底部点击 <strong>“仍要打开”</strong> 即可。</li>
+</ol>
+
+<h3>2. 订阅导入与节点激活</h3>
+<ol class="list-decimal pl-5 space-y-2">
+  <li>登录您的机场后台，点击“复制 Clash 订阅链接”。</li>
+  <li>打开 Clash Verge，点击左侧菜单栏的 <strong>“Profiles (订阅)”</strong>。</li>
+  <li>在顶部 URL 框中粘贴链接，点击 <strong>“Import (导入)”</strong>。选中下载好的配置卡片。</li>
+  <li>切换至 <strong>“Proxies (代理)”</strong> 菜单，将模式切换为 <strong>“Rule (规则)”</strong>，并选择低延迟节点。</li>
+</ol>
+
+<h3>3. 开启 System Proxy 与 Enhanced Mode (增强模式)</h3>
+<p>
+在左侧 <strong>“Settings (设置)”</strong> 中开启 <strong>System Proxy (系统代理)</strong>。若需要全系统接管（包含 Terminal 终端与 Docker 容器），请在 Service Mode 中点击 Install 安装 Helper 辅助服务，并开启 <strong>Enhanced Mode / TUN Mode</strong>。
+</p>
+
+<h2>三、Sing-box GUI for Mac 备选指引</h2>
+<p>
+对于追求极致性能与更省电表现的用户，推荐使用 Sing-box GUI。支持原生 Apple Network Extension 框架，可以像 iOS 一样直接在系统菜单栏常驻并控制代理分流。
+</p>
+`,
+
   'ios-shadowrocket-guide': `
 <h2>一、引言：iOS 平台首选科学上网神器——Shadowrocket (小火箭)</h2>
 <p>
@@ -305,6 +402,136 @@ OpenAI 与 Anthropic 对代理 IP 的审查极为苛刻。劣质 IP 会触发 Cl
 
 <h3>2. 为什么访问国内 APP（如微信、淘宝）速度变慢？</h3>
 <p>请检查小火箭首页的“全局路由”是否误设为了“代理 (Proxy)”。请务必将其切回“配置 (Config)”模式。</p>
+`,
+
+  'quantumult-x-guide': `
+<h2>一、引言：iOS 平台高级代理神器 Quantumult X 介绍</h2>
+<p>
+在 iOS 生态圈中，如果说 Shadowrocket 是易用性之王，那么 <strong>Quantumult X（简称“圈 X”）</strong> 就是功能与灵活性上的绝对王者。圈 X 拥有极致渲染的极客 UI、强悍的策略组链式嵌套、支持 MITM 抓包及 JavaScript 自动重写脚本，深受资深技术玩家与进阶开发者喜爱。
+</p>
+<p>
+本指南将为您呈上一份 3000 字的圈 X 从美区下载、资源解析器导入、策略组分类绑定到 JavaScript 脚本重写配置的深度大成教程。
+</p>
+
+<h2>二、Quantumult X 核心功能架构拆解</h2>
+<ul>
+  <li><strong>策略组 (Policy Group)：</strong> 支持基于延迟（URL-Test）、故障转移（Fallback）、手动选择（Select）与 SS/VLESS 节点的灵活分组。</li>
+  <li><strong>资源解析器 (Resource Parser)：</strong> 原生将 Clash、V2Ray 等格式订阅自动转码为圈 X 可读取的标准格式。</li>
+  <li><strong>重写 (Rewrite) 与 MITM：</strong> 支持注入自定义 JS 脚本，实现无广告界面、自动签到以及请求标头重定向。</li>
+</ul>
+
+<h2>三、圈 X 从零配置实操指南</h2>
+
+<h3>步骤 1：配置资源解析器</h3>
+<p>
+由于部分机场提供的原始订阅链接为 Clash 格式，我们需要在圈 X 中引入“资源解析器”自动转码：
+</p>
+<ol class="list-decimal pl-5 space-y-2">
+  <li>打开 Quantumult X，点击右下角“小风车”控制图标。</li>
+  <li>滑到【配置文件】区域，点击 <strong>“编辑 (Edit)”</strong>。</li>
+  <li>找到 <code>[general]</code> 标签下的 <code>resource_parser_url</code> 所在行，填入通用的解析器链接（例如 <code>https://raw.githubusercontent.com/KeleDev/QuantumultX/master/resource_parser.ini</code>）。</li>
+  <li>点击右上角保存。</li>
+</ol>
+
+<h3>步骤 2：导入机场节点订阅</h3>
+<ol class="list-decimal pl-5 space-y-2">
+  <li>点击右下角小风车，在【节点】区域点击 <strong>“节点资源 (Server)”</strong>。</li>
+  <li>点击右上角 <code>+</code> 号，在 URL 处粘贴您的机场订阅链接，标签填入机场名称（如 EdgeNova）。</li>
+  <li><strong>关键步骤：在【资源解析】勾选框打勾</strong>，确保解析器生效。点击右上角保存，圈 X 将瞬间拉取所有节点。</li>
+</ol>
+
+<h3>步骤 3：导入分流规则集 (Rule Set)</h3>
+<p>
+在【规则】区域点击 <strong>“规则资源 (Rule)”</strong>，依次添加 GEOIP-CN（国内直连）、OpenAI（AI 工具分流）与 Netflix（流媒体分流）规则集，并将其分别绑定至对应的策略组上。
+</p>
+
+<h2>四、开启 MITM 与脚本重写进阶应用</h2>
+<p>
+在【工具】区域点击 MITM，生成并安装圈 X 本地 Root CA 证书，在 iOS【设置】->【通用】->【关于本机】->【证书信任设置】中勾选完全信任证书。此后即可畅享脚本自动化与规则拦截功能。
+</p>
+`,
+
+  'android-v2rayng-setup': `
+<h2>一、引言：安卓开源首选 v2rayNG 使用指南</h2>
+<p>
+在 Android 手机与平板设备上，<strong>v2rayNG</strong> 是一款基于 Xray 内核的完全开源、免费且无广告的代理客户端。凭借其出色的系统稳定性、极低的内存与电量消耗，成为了安卓科学上网的标杆软件。
+</p>
+<p>
+本教程将为您详细讲解从正版 APK 下载、机场订阅导入、自定义域名/IP 规则分流设置，到安卓后台保活防误杀的 3000 字标准化教程。
+</p>
+
+<h2>二、v2rayNG 官方正版下载与安装</h2>
+<ol class="list-decimal pl-5 space-y-2">
+  <li>请认准官方开源发布的 APK 安装包（避免从不安全的三方网站下载被修改版）。可从 GitHub Release 或本站 <a href="/downloads/">客户端下载中心</a> 获取最新版的 <code>v2rayNG_x.x.x_universal.apk</code>。</li>
+  <li>在安卓手机上安装 APK，授予其必要的网络访问与本地存储权限。</li>
+</ol>
+
+<h2>三、订阅导入与节点连通性测试</h2>
+
+<h3>1. 添加机场订阅地址</h3>
+<ol class="list-decimal pl-5 space-y-2">
+  <li>登录您的机场后台（如 极连云、快狸 或 瞬云），找到“V2Ray 订阅链接”并复制。</li>
+  <li>打开 v2rayNG，点击左上角 <code>☰</code> 侧边栏菜单 -> 选择 <strong>“订阅设置”</strong>。</li>
+  <li>点击右上角 <code>+</code> 号：
+    <ul class="list-disc pl-5 mt-1 space-y-1">
+      <li>备注：填入机场名称。</li>
+      <li>地址：粘贴复制的订阅 URL。</li>
+    </ul>
+  </li>
+  <li>点击右上角 <code>✓</code> 保存。返回主界面。</li>
+</ol>
+
+<h3>2. 批量拉取节点与延迟测试</h3>
+<ol class="list-decimal pl-5 space-y-2">
+  <li>在 v2rayNG 主界面，点击右上角 <code>⋮</code> 三点菜单 -> 选择 <strong>“更新订阅”</strong>。所有的海外节点将自动刷出。</li>
+  <li>点击右上角 <code>⋮</code> 菜单 -> 选择 <strong>“测试全部真实延迟 (TcpPing / Real Ping)”</strong>。选中延迟低且带绿色的节点。</li>
+</ol>
+
+<h2>四、设置规则分流与应用自定义分流</h2>
+<ol class="list-decimal pl-5 space-y-2">
+  <li>点击左侧菜单栏 <code>☰</code> -> 选择 <strong>“设置”</strong>。</li>
+  <li>找到 <strong>“预分流 (Pre-routing)”</strong> 或 <strong>“域名策略 (Domain Strategy)”</strong>，设置为 <strong>“IPIfNonMatch”</strong> 或 <strong>“绕过局域网及大陆地址 (Bypass LAN and Mainland)”</strong>。</li>
+  <li><strong>分应用代理设置：</strong> 找到“分应用代理 (App traffic routing)”，勾选启用。在列表中勾选需要走代理的 APP（如 Chrome、YouTube、Telegram、Twitter），国内日常 APP（如微信、支付宝）取消勾选，提升加载速度并极省流量。</li>
+</ol>
+
+<h2>五、安卓系统后台保活技巧</h2>
+<p>
+华为、小米、OPPO、vivo 等国产安卓系统杀后台机制严格。请在手机【设置】->【应用管理】中找到 v2rayNG，将其省电策略设置为 <strong>“无限制 / 允许后台运行”</strong>，并在多任务后台中将 v2rayNG 卡片上锁。
+</p>
+`,
+
+  'flashclash-surfboard-guide': `
+<h2>一、引言：安卓图形化代理软件选型</h2>
+<p>
+随着 Clash Meta (Mihomo) 内核的飞速迭代，安卓生态诞生了两款极为优秀的现代化图形客户端：<strong>FlashClash</strong> 与 <strong>Surfboard (冲浪板)</strong>。相比传统的 v2rayNG，它们拥有更炫酷的仪表盘、图形化节点测速与精细的 Clash 规则集分流。
+</p>
+<p>
+本篇 3000 字横评与选购指南将详细拆解 FlashClash 与 Surfboard 的界面交互、性能占用与配置方法，助您找到最契合的安卓客户端。
+</p>
+
+<h2>二、FlashClash (Clash Meta 内核) 优势与配置</h2>
+<p>
+FlashClash 基于 Flutter 框架打造，原生内置 Mihomo 核心，界面媲美 iOS 顶级软件。
+</p>
+<ol class="list-decimal pl-5 space-y-2">
+  <li>下载安装 FlashClash 最新 APK。</li>
+  <li>打开软件，点击“配置” -> 点击“从 URL 导入”，粘贴机场 Clash 订阅链接。</li>
+  <li>在首页选择代理组与节点，点击右下角浮动按钮启动 VpnService 连接。</li>
+</ol>
+
+<h2>三、Surfboard (冲浪板) 原生 Android 风格配置</h2>
+<p>
+Surfboard 遵循 Google Material You 设计规范，极度贴合 Android 原生风格，支持一键查看单 APP 流量消耗柱状图与实时网速曲线。
+</p>
+<ol class="list-decimal pl-5 space-y-2">
+  <li>在 Surfboard 中点击“配置”页签 -> 点击右下角 <code>+</code> 号 ->选择“从 URL 导入”。</li>
+  <li>导入成功后在“代理”页签选择出站策略，点击“面板”开启连接。</li>
+</ol>
+
+<h2>四、总结选购建议</h2>
+<p>
+追求全协议支持与高颜值界面选 <strong>FlashClash</strong>；追求原生系统风与省电极致选择 <strong>Surfboard</strong>；追求极致稳定简易选 <strong>v2rayNG</strong>。
+</p>
 `,
 
   'netflix-unlock-guide': `
@@ -359,37 +586,166 @@ Netflix（网飞）作为全球顶级的流媒体影视平台，拥有庞大的 
 `,
 
   'chatgpt-access-guide': `
-<h2>一、引言：AI 时代高效稳定的生产力保障</h2>
+<h2>一、引言：AI 工具网络访问瓶颈与 IP 风控白名单解析</h2>
 <p>
-随着 ChatGPT (GPT-4o / GPT-o1)、Claude 3.5 Sonnet 及 Google Gemini 等 AI 工具深刻改变全球生产力格局，如何获得稳定、免风控拦截的访问环境成了广大开发者与外贸从业者的核心刚需。
+随着 ChatGPT (GPT-4o / GPT-o1)、Claude 3.5 Sonnet、Google Gemini 1.5 Pro、Midjourney V6 等全球顶尖 AI 工具的迅速普及，优质、稳定的网络连接与高度纯净的出口 IP 已成为所有开发者、设计者与外贸从业者的生产力基石。
 </p>
 <p>
-频繁弹出的 Cloudflare 5 秒人机验证、账户无预警被“降智”至 GPT-3.5，甚至报 403 阻断封号，其根源全在代理节点的 IP 质量。本指南为您提供一套彻底消除 AI 工具访问障碍的 3000 字标准化实操指南。
+许多用户在访问海外 AI 工具时，经常遇到 <strong>Cloudflare 人机验证无限循环、403 Forbidden 报错、账户无预警被“降智”至 GPT-3.5 甚至封号</strong>。其根本原因不在于网络带宽高低，而在于<strong>代理节点的 IP 纯净度、机房 ASN 风控白名单以及 WebRTC 防泄漏机制</strong>。
 </p>
 
-<h2>二、OpenAI 与 Anthropic 的风控机制透视</h2>
+<h2>二、15 款主流 AI 工具网络要求与 IP 敏感度对比全景表</h2>
+<p>
+针对全球 15 款主流 AI 工具（包含国外知名大模型与国内国产大模型），我们进行了深入的网络需求、IP 敏感度及节点配置归纳：
+</p>
+
+<table class="w-full text-left text-sm border-collapse my-6">
+  <thead>
+    <tr class="bg-slate-100 text-slate-900 border-b border-slate-200">
+      <th class="p-3 font-bold">AI 工具名称</th>
+      <th class="p-3 font-bold">IP 敏感度</th>
+      <th class="p-3 font-bold">推荐节点区域</th>
+      <th class="p-3 font-bold">IP 纯净度 / 节点要求</th>
+      <th class="p-3 font-bold">科学上网要求</th>
+    </tr>
+  </thead>
+  <tbody class="divide-y divide-slate-100">
+    <tr>
+      <td class="p-3 font-bold text-blue-600">ChatGPT (OpenAI / GPT-4o)</td>
+      <td class="p-3 text-rose-600 font-bold">极高 (High)</td>
+      <td class="p-3">美国 / 新加坡 / 日本 / 欧洲</td>
+      <td class="p-3">住宅/原生 IP 或专线白名单</td>
+      <td class="p-3 text-emerald-600 font-bold">必须使用代理</td>
+    </tr>
+    <tr>
+      <td class="p-3 font-bold text-purple-600">Claude (Anthropic 3.5)</td>
+      <td class="p-3 text-rose-600 font-bold">绝高 (Extremely High)</td>
+      <td class="p-3">美国 / 英国</td>
+      <td class="p-3">严格封锁机房 IP，需商业纯净 IP</td>
+      <td class="p-3 text-emerald-600 font-bold">必须使用代理</td>
+    </tr>
+    <tr>
+      <td class="p-3 font-bold text-cyan-600">Google Gemini / Advanced</td>
+      <td class="p-3 text-amber-600 font-bold">中等 (Medium)</td>
+      <td class="p-3">美国 / 台湾 / 日本 / 新加坡</td>
+      <td class="p-3">标准 BGP 或专线节点即可</td>
+      <td class="p-3 text-emerald-600 font-bold">必须使用代理</td>
+    </tr>
+    <tr>
+      <td class="p-3 font-bold">Midjourney (V6)</td>
+      <td class="p-3 text-slate-600">偏低 (Low)</td>
+      <td class="p-3">全球通用 (走 Discord)</td>
+      <td class="p-3">普通高吞吐节点即可</td>
+      <td class="p-3 text-emerald-600 font-bold">必须使用代理</td>
+    </tr>
+    <tr>
+      <td class="p-3 font-bold text-indigo-600">Sora (OpenAI 视频大模型)</td>
+      <td class="p-3 text-rose-600 font-bold">极高 (High)</td>
+      <td class="p-3">美国本土纯净 IP</td>
+      <td class="p-3">严禁广播/机房 IP，需原生专线</td>
+      <td class="p-3 text-emerald-600 font-bold">必须使用代理</td>
+    </tr>
+    <tr>
+      <td class="p-3 font-bold">Perplexity AI</td>
+      <td class="p-3 text-amber-600 font-bold">中等 (Medium)</td>
+      <td class="p-3">美国 / 新加坡</td>
+      <td class="p-3">标准机房或中转节点</td>
+      <td class="p-3 text-emerald-600 font-bold">必须使用代理</td>
+    </tr>
+    <tr>
+      <td class="p-3 font-bold">Poe (Quora AI 聚合)</td>
+      <td class="p-3 text-slate-600">偏低 (Low)</td>
+      <td class="p-3">全球通用 (避开中国大陆)</td>
+      <td class="p-3">常规节点均可稳定运行</td>
+      <td class="p-3 text-emerald-600 font-bold">必须使用代理</td>
+    </tr>
+    <tr>
+      <td class="p-3 font-bold">Copilot (Microsoft)</td>
+      <td class="p-3 text-slate-600">偏低 (Low)</td>
+      <td class="p-3">全球通用</td>
+      <td class="p-3">标准代理即可</td>
+      <td class="p-3 text-emerald-600 font-bold">必须使用代理</td>
+    </tr>
+    <tr>
+      <td class="p-3 font-bold">Grok (xAI / 马斯克)</td>
+      <td class="p-3 text-amber-600 font-bold">中等 (Medium)</td>
+      <td class="p-3">美国</td>
+      <td class="p-3">美区低延迟节点</td>
+      <td class="p-3 text-emerald-600 font-bold">必须使用代理</td>
+    </tr>
+    <tr>
+      <td class="p-3 font-bold">Suno AI / Udio (AI 音乐)</td>
+      <td class="p-3 text-slate-600">偏低 (Low)</td>
+      <td class="p-3">全球通用</td>
+      <td class="p-3">普通高带宽节点</td>
+      <td class="p-3 text-emerald-600 font-bold">必须使用代理</td>
+    </tr>
+    <tr>
+      <td class="p-3 font-bold">Runway / Pika (AI 视频)</td>
+      <td class="p-3 text-amber-600 font-bold">中等 (Medium)</td>
+      <td class="p-3">美国 / 欧洲</td>
+      <td class="p-3">大带宽低丢包专线</td>
+      <td class="p-3 text-emerald-600 font-bold">必须使用代理</td>
+    </tr>
+    <tr>
+      <td class="p-3 font-bold">ElevenLabs (AI 语音合成)</td>
+      <td class="p-3 text-slate-600">偏低 (Low)</td>
+      <td class="p-3">全球通用</td>
+      <td class="p-3">标准代理节点</td>
+      <td class="p-3 text-emerald-600 font-bold">必须使用代理</td>
+    </tr>
+    <tr>
+      <td class="p-3 font-bold text-emerald-700">Kimi (月之暗面)</td>
+      <td class="p-3 text-slate-400">无 (None)</td>
+      <td class="p-3">中国大陆</td>
+      <td class="p-3">国内 IP 直连 (无需代理)</td>
+      <td class="p-3 text-slate-400">无需代理 (直连)</td>
+    </tr>
+    <tr>
+      <td class="p-3 font-bold text-emerald-700">DeepSeek AI (深度求索)</td>
+      <td class="p-3 text-slate-400">无 (None)</td>
+      <td class="p-3">中国大陆</td>
+      <td class="p-3">国内 IP 直连 (无需代理)</td>
+      <td class="p-3 text-slate-400">无需代理 (直连)</td>
+    </tr>
+    <tr>
+      <td class="p-3 font-bold text-emerald-700">智谱清言 (GLM-4) / 百川 AI</td>
+      <td class="p-3 text-slate-400">无 (None)</td>
+      <td class="p-3">中国大陆</td>
+      <td class="p-3">国内 IP 直连 (无需代理)</td>
+      <td class="p-3 text-slate-400">无需代理 (直连)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>三、国外 AI 工具 (ChatGPT / Claude) 报错与封号根源解析</h2>
+
+<h3>1. ASN 云服务商机房黑名单机制</h3>
+<p>
+OpenAI 与 Anthropic 接入了全球最大的网卡与欺诈检测库（如 MaxMind 与 IP2Location）。广播在 AWS、DigitalOcean、GCP、Linode 等公共云计算平台的 IP 已经被整体归类为“高风险商业数据中心”。当上千人通过同一机房 IP 频繁向 API 发起请求时，系统会立即认定为批量刷号或爬虫行为，触发 403 阻断。
+</p>
+
+<h3>2. WebRTC 本地真实 IP 泄漏</h3>
+<p>
+现代浏览器（如 Chrome、Edge）支持 WebRTC 实时音视频通信协议。如果在客户端未开启 TUN 虚拟网卡模式或禁用 WebRTC，浏览器会在后台直接暴露您所在的真实 ISP IP 地址，与代理 IP 形成冲突，从而被 Cloudflare 识别拦下。
+</p>
+
+<h3>3. IP 频繁漂移与跨国跳动</h3>
+<p>
+5 分钟前使用美国节点登录 ChatGPT，5 分钟后由于负载均衡自动漂移到香港或日本节点，这种物理空间上不可能发生的跨国跳动会直接触发 OpenAi 风控系统的高危预警，引发强制登出或账号封禁。
+</p>
+
+<h2>四、国内国产 AI 大模型 (Kimi / DeepSeek / 智谱) 网络配置要点</h2>
+<p>
+需要注意的是，对于国内优秀的国产 AI 大模型（如 Kimi 月之暗面、DeepSeek 深度求索、智谱清言 GLM-4 等），由于服务节点均部署在中国大陆境内，<strong>使用代理软件时必须将其加入分流直连白名单 (DIRECT)</strong>。如果误将国内 AI 流量强制走海外代理节点，反而会导致访问变慢甚至触发地区防抓取限制。
+</p>
+
+<h2>五、打造 100% 稳定流畅的 AI 生产力代理网络配置指南</h2>
 <ol class="list-decimal pl-5 space-y-2">
-  <li><strong>ASN 机房黑名单：</strong> OpenAI 接入了全球最大的欺诈风控数据库。AWS、DigitalOcean、GCP 等公共云厂商的广播 IP 段已被整体列入高风险名单。</li>
-  <li><strong>WebRTC 真实 IP 泄漏：</strong> 浏览器在发起 HTTPS 请求时，可能通过 WebRTC 接口泄露本地真实 IP。</li>
-  <li><strong>节点并发数过高：</strong> 上百人同时复用同一个节点 IP 登录 ChatGPT，极易触发人机防刷风控。</li>
+  <li><strong>选择支持商业白名单纯净 IP 的专线机场：</strong> 优先考虑拥有 IPLC 物理专线与原生 IP 出口的机场（如 <a href="/reviews/yuntu-2026/">云图 Yuntu</a> 或 <a href="/reviews/edgenova-2026/">EdgeNova</a>）。</li>
+  <li><strong>在 Clash Verge Rev 中导入专用分流规则：</strong> 确保将 <code>chatgpt.com</code>、<code>oaistatic.com</code>、<code>anthropic.com</code> 匹配固定分配至同一稳定美区/新加坡专线节点。</li>
+  <li><strong>浏览器安装 WebRTC 防泄露插件：</strong> 在 Chrome 扩展商店搜索并启用“WebRTC Control”，防止本地真实 IP 暴露。</li>
 </ol>
-
-<h2>三、构建 100% 稳定通达 AI 的配置环境</h2>
-
-<h3>1. 挑选支持“AI 生产力白名单”的优质机场</h3>
-<p>
-建议优先使用部署有商业级纯净出口 IP 池的机场（如 <a href="/reviews/yuntu-2026/">云图机场 Yuntu</a>），其节点专为 ChatGPT 与 Claude 进行了风控白名单优化。
-</p>
-
-<h3>2. 客户端防泄漏规则设置</h3>
-<ul>
-  <li>在 Clash Verge Rev 或 Shadowrocket 中，将分流规则加入 <code>OpenAI.yaml</code> 规则集，指定访问 <code>chatgpt.com</code>、<code>oaistatic.com</code> 及 <code>anthropic.com</code> 自动走美区或日区纯净节点。</li>
-  <li>在浏览器中安装“WebRTC Control”插件，勾选禁用 WebRTC 泄漏。</li>
-</ul>
-
-<h2>四、总结与维护规范</h2>
-<p>固定使用单一高质量美区或新加坡专线节点登录 AI 账号，避免短时间内频繁在不同国家 IP 间剧烈跳动，即可彻底告别封号与验证码困扰。
-</p>
 `,
 
   'line-type-comparison': `
@@ -543,6 +899,20 @@ Netflix（网飞）作为全球顶级的流媒体影视平台，拥有庞大的 
   <li>返回主界面，点击右上角三个点 -> “更新订阅”。</li>
   <li>选中低延迟节点，点击右下角 V 字型圆圈大按钮开启连接。</li>
 </ol>
+`,
+
+  'singbox-setup': `
+<h2>一、引言：通用下一代代理内核 Sing-box 优势拆解</h2>
+<p>
+<strong>Sing-box</strong> 是继 Clash 之后备受全球开发者推崇的通用网络代理通用平台框架。它拥有出色的通用能力，支持 ShadowTLS、Reality、Hysteria 2 及 TUIC 等所有新兴协议。
+</p>
+<p>
+本指南将为您提供跨平台使用 Sing-box 的配置指引。
+</p>
+<h2>二、Sing-box 格式配置与跨平台客户端</h2>
+<p>
+无论是 macOS、Windows 还是 iOS/Android，Sing-box 都可以使用一键 JSON 或订阅导入运行，实现真正的秒级低延迟握手。
+</p>
 `,
 
   'advanced-rules-config': `
