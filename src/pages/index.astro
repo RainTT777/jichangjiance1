@@ -314,7 +314,7 @@ const airports = [
     rating: '8.4',
     badge: 'NO.15 特惠备用',
     icon: '15',
-    logo: '',
+    logo: prefix + 'jiuyun_logo.png',
     gradient: 'from-indigo-950 via-slate-900 to-blue-950',
     ping: '48',
     pingStatus: '稳定中转',
@@ -335,7 +335,7 @@ const airports = [
     rating: '8.3',
     badge: 'NO.16 传世特惠',
     icon: '16',
-    logo: '',
+    logo: prefix + 'baoyun_logo.png',
     gradient: 'from-amber-950 via-slate-900 to-rose-950',
     ping: '115',
     pingStatus: '海量带宽',
@@ -444,7 +444,7 @@ const airports = [
               <circle cx="190" cy="190" r="145" fill="none" stroke-width="1" stroke-opacity="0.25"></circle>
             </svg>
 
-            <!-- 3D 旋转走马灯容器 (9大机场 Logo 360度环绕插画核心) -->
+            <!-- 3D 旋转走马灯容器 (16大机场 Logo 360度环绕插画核心) -->
             <style is:inline>
               @keyframes orbitSpin {
                 0% { transform: rotate(0deg); }
@@ -677,7 +677,7 @@ const airports = [
           </div>
 
           <div class="flex flex-wrap gap-2 text-xs border-t border-slate-100 pt-4">
-            <span class="px-3.5 py-1.5 bg-slate-800 text-white rounded-lg font-medium shadow-2xs">ALL_MONITORS (9)</span>
+            <span class="px-3.5 py-1.5 bg-slate-800 text-white rounded-lg font-medium shadow-2xs">ALL_MONITORS (16)</span>
             <span class="px-3.5 py-1.5 bg-slate-100/80 hover:bg-slate-200/80 text-slate-700 rounded-lg font-medium transition-colors border border-slate-200/50">IPLC物理专线</span>
             <span class="px-3.5 py-1.5 bg-slate-100/80 hover:bg-slate-200/80 text-slate-700 rounded-lg font-medium transition-colors border border-slate-200/50">三网 CN2 GIA</span>
             <span class="px-3.5 py-1.5 bg-slate-100/80 hover:bg-slate-200/80 text-slate-700 rounded-lg font-medium transition-colors border border-slate-200/50">游戏加速</span>
@@ -685,7 +685,7 @@ const airports = [
           </div>
         </div>
 
-        <!-- 9 大机场检测卡片列表 -->
+        <!-- 16 大机场检测卡片列表 -->
         <div class="space-y-6">
           {airports.map((ap) => {
             return (
