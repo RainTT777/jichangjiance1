@@ -7,20 +7,27 @@ import RightSidebar from '@/components/RightSidebar.astro';
 
 const compareData = [
   { name: 'EdgeNova 专线', logo: '../edgenova_logo.png', type: '纯血 IEPL 专线', nodes: '60+', rate: '1.0x 真实扣费', score: '9.8', price: '¥15/月 (折后¥6.5/月)', link: '/reviews/edgenova-2026/' },
-  { name: '速界 SpeedWorld', logo: '../sujie_logo.png', type: '电竞级 IEPL 专线', nodes: '45+', rate: '1.0x 真实扣费', score: '9.6', price: '¥15/月起', link: '/reviews/' },
-  { name: '可信云 Kosing', logo: '../kexinyun_logo.png', type: 'IEPL 物理专线', nodes: '40+', rate: '1.0x 真实扣费', score: '9.5', price: '¥15/月 (年付¥96起)', link: '/reviews/' },
-  { name: '快狸 Kuaili', logo: '../kuaili_logo.png', type: '大带宽优化直连', nodes: '35+', rate: '1.0x 真实扣费', score: '9.4', price: '平民按量价', link: '/reviews/' },
-  { name: '云图机场 Yuntu', logo: '../yuntu_logo.png', type: '金融级物理专线', nodes: '50+', rate: '1.0x 真实扣费', score: '9.3', price: '¥22/月起', link: '/reviews/' },
-  { name: '极速机场 Jisuyun', logo: '../jisuyun_logo.png', type: '三网 CN2 GIA/9929', nodes: '30+', rate: '1.0x 真实扣费', score: '9.1', price: '¥18/月起', link: '/reviews/' },
-  { name: '瞬云 Shunyun', logo: '../shunyun_logo.png', type: 'BGP 中转 / 按量', nodes: '28+', rate: '按量扣费', score: '9.0', price: '¥12/月起', link: '/reviews/' },
-  { name: '极连云 Jilianyun', logo: '../jilianyun_logo.png', type: '多站 BGP 中转', nodes: '25+', rate: '1.0x 真实扣费', score: '8.9', price: '¥10/月起', link: '/reviews/' },
-  { name: '光年梯 Guangnianti', logo: '../guangnianti_logo.png', type: 'AES-256 加密专线', nodes: '32+', rate: '1.0x 真实扣费', score: '8.8', price: '¥9.9/月起', link: '/reviews/' },
+  { name: '极连云 Jilianyun', logo: '../jilianyun_logo.png', type: '多站 BGP 中转', nodes: '45+', rate: '1.0x 真实扣费', score: '9.7', price: '¥10/月起', link: '/reviews/jilianyun-2026/' },
+  { name: '光年梯 Guangnianti', logo: '../guangnianti_logo.png', type: 'AES-256 加密专线', nodes: '50+', rate: '1.0x 真实扣费', score: '9.6', price: '¥9.9/月起', link: '/reviews/guangnianti-2026/' },
+  { name: '速界 SpeedWorld', logo: '../sujie_logo.png', type: '电竞级 IEPL 专线', nodes: '45+', rate: '1.0x 真实扣费', score: '9.5', price: '¥15/月起', link: '/reviews/sujie-2026/' },
+  { name: '鲤云 Liyun', logo: '../liyun_logo.png', type: '优质 BGP 中转', nodes: '35+', rate: '1.0x 真实扣费', score: '9.4', price: '¥5/月起 (100G)', link: '/reviews/liyun-2026/' },
+  { name: '可信云 Kosing', logo: '../kexinyun_logo.png', type: 'IEPL 物理专线', nodes: '40+', rate: '1.0x 真实扣费', score: '9.3', price: '¥15/月 (年付¥96起)', link: '/reviews/kexinyun-2026/' },
+  { name: '山水云 Shanshuiyun', logo: '../shanshuiyun_logo.png', type: '古风 BGP 中转', nodes: '38+', rate: '1.0x 真实扣费', score: '9.2', price: '¥12/月起', link: '/reviews/shanshuiyun-2026/' },
+  { name: '快狸 Kuaili', logo: '../kuaili_logo.png', type: '大带宽优化直连', nodes: '35+', rate: '1.0x 真实扣费', score: '9.1', price: '平民按量价', link: '/reviews/kuaili-2026/' },
+  { name: '秒秒云 Miaomiaoyun', logo: '../miaomiaoyun_logo.png', type: '极速 BGP 多线', nodes: '40+', rate: '1.0x 真实扣费', score: '9.0', price: '¥9/月起 (128G)', link: '/reviews/miaomiaoyun-2026/' },
+  { name: '云图机场 Yuntu', logo: '../yuntu_logo.png', type: '金融级物理专线', nodes: '50+', rate: '1.0x 真实扣费', score: '8.9', price: '¥22/月起', link: '/reviews/yuntu-2026/' },
+  { name: '锦云 Jinyun', logo: '../jinyun_logo.png', type: 'BGP 多中转线路', nodes: '30+', rate: '1.0x 真实扣费', score: '8.8', price: '¥6/月起 (体验版)', link: '/reviews/jinyun-2026/' },
+  { name: '极速机场 Jisuyun', logo: '../jisuyun_logo.png', type: '三网 CN2 GIA/9929', nodes: '30+', rate: '1.0x 真实扣费', score: '8.7', price: '¥18/月起', link: '/reviews/jisuyun-2026/' },
+  { name: '熊猫cloud Xiongmao', logo: '../xiongmaocloud_logo.png', type: '大带宽巨量吞吐', nodes: '55+', rate: '1.0x 真实扣费', score: '8.6', price: '¥6/月起 (300G)', link: '/reviews/xiongmaocloud-2026/' },
+  { name: '瞬云 Shunyun', logo: '../shunyun_logo.png', type: 'BGP 中转 / 按量', nodes: '28+', rate: '按量扣费', score: '8.5', price: '¥12/月起', link: '/reviews/shunyun-2026/' },
+  { name: '九云 Jiuyun', logo: '', type: '招财多线中转', nodes: '32+', rate: '1.0x 真实扣费', score: '8.4', price: '¥6/月起 (150G)', link: '/reviews/jiuyun-2026/' },
+  { name: '宝云 Baoyun', logo: '', type: '福宝长效中转', nodes: '30+', rate: '1.0x 真实扣费', score: '8.3', price: '¥4/月起 (200G)', link: '/reviews/baoyun-2026/' },
 ];
 ---
 
 <BaseLayout
   title="2026 翻墙机场多维度对比分析工具 - 机场指南"
-  description="对比 EdgeNova、速界、可信云、快狸、云图等主流机场的线路架构、真实扣费倍率、流媒体/AI 解锁能力与起步资费。"
+  description="对比 EdgeNova、极连云、光年梯、速界、鲤云、可信云、山水云等 16 大主流机场的线路架构、真实扣费倍率、流媒体/AI 解锁能力与起步资费。"
 >
   <Header />
 
@@ -51,7 +58,7 @@ const compareData = [
         <!-- 对比数据大表 -->
         <div class="bg-white rounded-2xl border border-slate-200/80 shadow-xs overflow-hidden">
           <div class="p-5 border-b border-slate-100 flex items-center justify-between">
-            <h2 class="text-lg font-black text-slate-900">主流机场实测指标对比</h2>
+            <h2 class="text-lg font-black text-slate-900">主流 16 大机场实测指标对比</h2>
             <span class="text-xs text-blue-600 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded font-mono font-bold">2026 最新核验</span>
           </div>
 
@@ -73,7 +80,11 @@ const compareData = [
                   <tr class="hover:bg-slate-50 transition-colors">
                     <td class="py-3.5 px-4 font-extrabold text-slate-900">
                       <div class="flex items-center gap-2">
-                        <img src={item.logo} alt={item.name} class="w-6 h-6 rounded-md object-cover border border-slate-200 shrink-0" onerror="if(!this.dataset.retry){this.dataset.retry='1';var f=this.src.split('/').pop();this.src='./'+f;}else if(this.dataset.retry==='1'){this.dataset.retry='2';var f=this.src.split('/').pop();this.src='../'+f;}else if(this.dataset.retry==='2'){this.dataset.retry='3';var f=this.src.split('/').pop();this.src='../../'+f;}else if(this.dataset.retry==='3'){this.dataset.retry='4';var f=this.src.split('/').pop();this.src='/'+f;}" />
+                        {item.logo ? (
+                          <img src={item.logo} alt={item.name} class="w-6 h-6 rounded-md object-cover border border-slate-200 shrink-0" onerror="if(!this.dataset.retry){this.dataset.retry='1';var f=this.src.split('/').pop();this.src='./'+f;}else if(this.dataset.retry==='1'){this.dataset.retry='2';var f=this.src.split('/').pop();this.src='../'+f;}else if(this.dataset.retry==='2'){this.dataset.retry='3';var f=this.src.split('/').pop();this.src='../../'+f;}else if(this.dataset.retry==='3'){this.dataset.retry='4';var f=this.src.split('/').pop();this.src='/'+f;}" />
+                        ) : (
+                          <span class="w-6 h-6 rounded-md bg-blue-600 text-white flex items-center justify-center font-bold text-xs shrink-0">{item.name.charAt(0)}</span>
+                        )}
                         <span>{item.name}</span>
                       </div>
                     </td>

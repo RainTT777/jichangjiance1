@@ -35,6 +35,8 @@ if (fs.existsSync('dist')) {
     'edgenova_logo.png', 'sujie_logo.png', 'kexinyun_logo.png',
     'kuaili_logo.png', 'yuntu_logo.png', 'jisuyun_logo.png', 'jisu_logo.png',
     'shunyun_logo.png', 'jilianyun_logo.png', 'guangnianti_logo.png',
+    'liyun_logo.png', 'shanshuiyun_logo.png', 'miaomiaoyun_logo.png',
+    'jinyun_logo.png', 'xiongmaocloud_logo.png',
     'hero_tech_illust_core.png', 'hero_illust_core.png', 'ghibli_forest_core.png',
     'hero_forest_core.png', 'hero_tech_core.png'
   ];

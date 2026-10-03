@@ -61,6 +61,48 @@ export const redirects: Record<string, RedirectLink> = {
     url: 'https://gnt001.gntvipaff.cc/#/?code=yAzo4IqK',
     description: 'AES-256 加密 · 支持 Hysteria2',
   },
+  liyun: {
+    id: 'liyun',
+    name: '鲤云 官网',
+    url: 'https://鲤云.com',
+    description: '海量高速流量 · 性价比首选',
+  },
+  shanshuiyun: {
+    id: 'shanshuiyun',
+    name: '山水云 官网',
+    url: 'https://山水云.com',
+    description: '琴棋书画套餐 · 稳定高质感',
+  },
+  miaomiaoyun: {
+    id: 'miaomiaoyun',
+    name: '秒秒云 官网',
+    url: 'https://秒秒云.com',
+    description: '探花榜眼状元 · 秒开极速',
+  },
+  jinyun: {
+    id: 'jinyun',
+    name: '锦云 官网',
+    url: 'https://锦云111.com',
+    description: '多元办公体验 · 低门槛接入',
+  },
+  xiongmaocloud: {
+    id: 'xiongmaocloud',
+    name: '熊猫cloud 官网',
+    url: 'https://熊猫导航.com',
+    description: '大流量畅享 · 稳定全端支持',
+  },
+  jiuyun: {
+    id: 'jiuyun',
+    name: '九云 官网',
+    url: 'https://cristyc.jiuyyq.com',
+    description: '招财聚财旺财 · 高速好用',
+  },
+  baoyun: {
+    id: 'baoyun',
+    name: '宝云 官网',
+    url: 'https://宝云.com',
+    description: '福宝财宝金宝 · 传世大流量',
+  },
   liangxinyun: {
     id: 'liangxinyun',
     name: '良心云官网入口',

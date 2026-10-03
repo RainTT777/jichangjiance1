@@ -20,7 +20,7 @@ const masterArticle = {
   score: "9.9"
 };
 
-// 9 大单体机场深度测评文章列表
+// 16 大单体机场深度测评文章列表
 const reviewArticles = [
   {
     id: "edgenova",
@@ -41,121 +41,13 @@ const reviewArticles = [
     reviewLink: "/reviews/edgenova-2026/"
   },
   {
-    id: "sujie",
-    name: "速界",
-    title: "告别晚高峰跳 ping 与频繁丢包：速界 SpeedWorld 机场深度实测（IEPL 低抖动专线、全套餐价格表与选购指南）",
-    category: "游戏加速评测",
-    rating: "9.6",
-    badge: "电竞游戏优选",
-    date: "2026-09-14",
-    logo: "/sujie_logo.png",
-    price: "¥15/月起 (平民体验包)",
-    promo: "限时特惠",
-    architecture: "企业级 IEPL 专线 + 多协议",
-    unlocks: ["外服游戏加速", "Discord 语音", "4K秒开"],
-    summary: "主打低抖动 IEPL 企业级专线与端到端内网闭环传输，全节点 1.0 倍率扣费不限在线设备数，轻松应对晚高峰跨国长连接与高品质影音需求。",
-    highlights: ["极低 Jitter 抖动", "真实 1.0 倍率不限设备", "游戏专线低丢包"],
-    link: "https://wudaogang.speedworldaff.com/#/register?code=HOJbbjuY",
-    reviewLink: "/reviews/sujie-2026/"
-  },
-  {
-    id: "kexinyun",
-    name: "可信云",
-    title: "可信云 Kosing Cloud 深度评测：高强度加密无日志与全套餐不限设备并发",
-    category: "高性价比/按量",
-    rating: "9.5",
-    badge: "不限并发设备",
-    date: "2026-09-10",
-    logo: "/kexinyun_logo.png",
-    price: "¥15/月 (年付¥96起)",
-    promo: "首发特惠",
-    architecture: "IEPL 物理专线 + 纯净 IP 池",
-    unlocks: ["隐私加密", "全设备共享", "ChatGPT"],
-    summary: "主打高强度加密与隐私安全防护，物理专线内网闭环传输，全套餐不限制连接设备数。年付仅需 96 元起，适合家庭与多设备共享。",
-    highlights: ["全过程无日志记录", "不限设备同时连接", "年付折合仅 8 元/月"],
-    link: "https://shadow_vps.kosingaff.com/#/register?code=UvY3PsfK",
-    reviewLink: "/reviews/kexinyun-2026/"
-  },
-  {
-    id: "kuaili",
-    name: "快狸",
-    title: "快狸 Kuaili 机场评测：海量吞吐怪兽，300MB/s 极限带宽与 1.0x 诚实扣费",
-    category: "大流量/高吞吐",
-    rating: "9.4",
-    badge: "海量吞吐怪兽",
-    date: "2026-09-10",
-    logo: "/kuaili_logo.png",
-    price: "极低平民价 (1.0x计费)",
-    promo: "周期特惠",
-    architecture: "大带宽优化直连 + Vless",
-    unlocks: ["大文件下载", "YouTube 4K", "ChatGPT"],
-    summary: "专注大带宽 UDP 优化与流媒体解锁，多线程并发下载测试可轻松达到 100MB/s - 300MB/s，全节点统一 1.0 倍率计费，绝无隐形加倍扣费。",
-    highlights: ["300MB/s 极限峰值带宽", "不设隐形高倍率", "新手一键配置"],
-    link: "https://yj2081.kuailiaff.com/#/register?code=531W9eSU",
-    reviewLink: "/reviews/kuaili-2026/"
-  },
-  {
-    id: "yuntu",
-    name: "云图机场",
-    title: "云图机场 Yuntu 深度评测：金融级物理专线与 ChatGPT / Claude 商业纯净 IP",
-    category: "外贸&AI解锁",
-    rating: "9.3",
-    badge: "金融级外贸AI",
-    date: "2026-09-09",
-    logo: "/yuntu_logo.png",
-    price: "¥22/月起 (标配5设备)",
-    promo: "9折码：YUNTU2026",
-    architecture: "金融级物理专线 (不过 GFW)",
-    unlocks: ["ChatGPT 4o", "Claude 3.5", "外贸风控"],
-    summary: "金融级物理专线不过 GFW 过滤，独享商业原生 IP 池，针对 ChatGPT、Claude 及外贸邮件服务进行白名单风控优化，基础套餐默认 5 设备并发。",
-    highlights: ["真物理专线不过 GFW", "商业白名单纯净 IP", "外贸/AI 生产力首选"],
-    link: "https://vip.ytjcok.org/#/register?code=75w0GoY2",
-    reviewLink: "/reviews/yuntu-2026/"
-  },
-  {
-    id: "jisuyun",
-    name: "极速机场",
-    title: "极速机场 2026 实测：三网 CN2 GIA/9929 顶级物理直连 24h 无视晚高峰",
-    category: "IEPL专线评测",
-    rating: "9.1",
-    badge: "三网精品直连",
-    date: "2026-09-08",
-    logo: "/jisuyun_logo.png",
-    price: "¥18/月起",
-    promo: "三网优选",
-    architecture: "三网 CN2 GIA / 9929 / CMIN2",
-    unlocks: ["Apple TV", "Netflix 4K", "ChatGPT"],
-    summary: "采用国内三网顶级精品优化线路与物理落地，提供 28ms 超低延迟与 990M 带宽，支持 Apple TV、Netflix 4K 与 ChatGPT。",
-    highlights: ["28ms 国内极低延迟", "三网 CN2 GIA 9929", "24小时无视晚高峰"],
-    link: "http://liangxinyun.club/",
-    reviewLink: "/reviews/jisuyun-2026/"
-  },
-  {
-    id: "shunyun",
-    name: "瞬云",
-    title: "瞬云 Shunyun 评测：轻量极速与灵活按量计费备用机场推荐",
-    category: "高性价比/按量",
-    rating: "9.0",
-    badge: "按量备用首选",
-    date: "2026-09-07",
-    logo: "/shunyun_logo.png",
-    price: "¥12/月起 (支持按量扣费)",
-    promo: "随用随清",
-    architecture: "BGP 中转 + Trojan",
-    unlocks: ["Disney+", "ChatGPT", "4K秒开"],
-    summary: "主打轻量与极速连接，支持灵活的按量付费模式，非常适合作为主线之外的备用机场，随用随扣不浪费。",
-    highlights: ["灵活按量计费模式", "轻量极速握手连接", "备用永不失联"],
-    link: "https://aaa.jichang.best/#/register?code=M4UujXjz",
-    reviewLink: "/reviews/shunyun-2026/"
-  },
-  {
     id: "jilianyun",
     name: "极连云",
     title: "极连云 Jilianyun 深度评测：多站 BGP 中转高性价比稳定机场推荐",
     category: "高性价比/按量",
-    rating: "8.9",
-    badge: "低延迟性价比",
-    date: "2026-09-06",
+    rating: "9.7",
+    badge: "NO.02 低延迟推荐",
+    date: "2026-09-15",
     logo: "/jilianyun_logo.png",
     price: "¥10/月起",
     promo: "低延迟推荐",
@@ -171,9 +63,9 @@ const reviewArticles = [
     name: "光年梯",
     title: "光年梯 Guangnianti 评测：AES-256 高强加密与大流量性价比机场推荐",
     category: "大流量/高吞吐",
-    rating: "8.8",
-    badge: "大流量性价比",
-    date: "2026-09-05",
+    rating: "9.6",
+    badge: "NO.03 大流量性价比",
+    date: "2026-09-15",
     logo: "/guangnianti_logo.png",
     price: "¥9.9/月起",
     promo: "海量流量",
@@ -183,6 +75,240 @@ const reviewArticles = [
     highlights: ["9.9 元起大流量套餐", "AES-256 高强加密", "1020M 海量带宽秒开"],
     link: "https://gnt001.gntvipaff.cc/#/?code=yAzo4IqK",
     reviewLink: "/reviews/guangnianti-2026/"
+  },
+  {
+    id: "sujie",
+    name: "速界",
+    title: "告别晚高峰跳 ping 与频繁丢包：速界 SpeedWorld 机场深度实测（IEPL 低抖动专线、全套餐价格表与选购指南）",
+    category: "游戏加速评测",
+    rating: "9.5",
+    badge: "电竞游戏优选",
+    date: "2026-09-14",
+    logo: "/sujie_logo.png",
+    price: "¥15/月起 (平民体验包)",
+    promo: "限时特惠",
+    architecture: "企业级 IEPL 专线 + 多协议",
+    unlocks: ["外服游戏加速", "Discord 语音", "4K秒开"],
+    summary: "主打低抖动 IEPL 企业级专线与端到端内网闭环传输，全节点 1.0 倍率扣费不限在线设备数，轻松应对晚高峰跨国长连接与高品质影音需求。",
+    highlights: ["极低 Jitter 抖动", "真实 1.0 倍率不限设备", "游戏专线低丢包"],
+    link: "https://wudaogang.speedworldaff.com/#/register?code=HOJbbjuY",
+    reviewLink: "/reviews/sujie-2026/"
+  },
+  {
+    id: "liyun",
+    name: "鲤云",
+    title: "鲤云 Liyun 深度评测：5元超低价百G套餐与不限时特惠方案推荐",
+    category: "高性价比/按量",
+    rating: "9.4",
+    badge: "入门性价比王",
+    date: "2026-09-16",
+    logo: "/liyun_logo.png",
+    price: "¥5/月起 (100G 小鲤)",
+    promo: "59元不限时200G",
+    architecture: "优质 BGP 中转 + VLESS",
+    unlocks: ["4K 视频", "ChatGPT", "全平台订阅"],
+    summary: "鲤云主打极致高性价比，5元即可享100GB月流量，更提供59元不限时200G特惠包与96元特惠年付256G，适合低预算与长效备用用户。",
+    highlights: ["5元/月超低起步价", "59元不限时流量包", "4K高清无感秒开"],
+    link: "https://鲤云.com",
+    reviewLink: "/reviews/liyun-2026/"
+  },
+  {
+    id: "kexinyun",
+    name: "可信云",
+    title: "可信云 Kosing Cloud 深度评测：高强度加密无日志与全套餐不限设备并发",
+    category: "高性价比/按量",
+    rating: "9.3",
+    badge: "不限并发设备",
+    date: "2026-09-10",
+    logo: "/kexinyun_logo.png",
+    price: "¥15/月 (年付¥96起)",
+    promo: "首发特惠",
+    architecture: "IEPL 物理专线 + 纯净 IP 池",
+    unlocks: ["隐私加密", "全设备共享", "ChatGPT"],
+    summary: "主打高强度加密与隐私安全防护，物理专线内网闭环传输，全套餐不限制连接设备数。年付仅需 96 元起，适合家庭与多设备共享。",
+    highlights: ["全过程无日志记录", "不限设备同时连接", "年付折合仅 8 元/月"],
+    link: "https://shadow_vps.kosingaff.com/#/register?code=UvY3PsfK",
+    reviewLink: "/reviews/kexinyun-2026/"
+  },
+  {
+    id: "shanshuiyun",
+    name: "山水云",
+    title: "山水云 Shanshuiyun 评测：琴棋书画经典套餐与轻量季付/年付方案大盘点",
+    category: "高性价比/按量",
+    rating: "9.2",
+    badge: "国风精品中转",
+    date: "2026-09-16",
+    logo: "/shanshuiyun_logo.png",
+    price: "¥12/月起 (琴套餐 100G)",
+    promo: "99元不限时100G",
+    architecture: "高质感 BGP 中转",
+    unlocks: ["4K秒开", "全平台客户端", "ChatGPT"],
+    summary: "山水云采用琴、棋、书经典古风命名套餐，起步 12元/100G，更提供 36元季付128G与 88元年付64G轻量套餐，稳定持久。",
+    highlights: ["琴棋书丰富套餐搭配", "88元年付轻量方案", "节点高速稳定"],
+    link: "https://山水云.com",
+    reviewLink: "/reviews/shanshuiyun-2026/"
+  },
+  {
+    id: "kuaili",
+    name: "快狸",
+    title: "快狸 Kuaili 机场评测：海量吞吐怪兽，300MB/s 极限带宽与 1.0x 诚实扣费",
+    category: "大流量/高吞吐",
+    rating: "9.1",
+    badge: "海量吞吐怪兽",
+    date: "2026-09-10",
+    logo: "/kuaili_logo.png",
+    price: "极低平民价 (1.0x计费)",
+    promo: "周期特惠",
+    architecture: "大带宽优化直连 + Vless",
+    unlocks: ["大文件下载", "YouTube 4K", "ChatGPT"],
+    summary: "专注大带宽 UDP 优化与流媒体解锁，多线程并发下载测试可轻松达到 100MB/s - 300MB/s，全节点统一 1.0 倍率计费，绝无隐形加倍扣费。",
+    highlights: ["300MB/s 极限峰值带宽", "不设隐形高倍率", "新手一键配置"],
+    link: "https://yj2081.kuailiaff.com/#/register?code=531W9eSU",
+    reviewLink: "/reviews/kuaili-2026/"
+  },
+  {
+    id: "miaomiaoyun",
+    name: "秒秒云",
+    title: "秒秒云 Miaomiaoyun 实测：探花/榜眼/状元三阶套餐与不限时特惠解析",
+    category: "高性价比/按量",
+    rating: "9.0",
+    badge: "极速极客选择",
+    date: "2026-09-16",
+    logo: "/miaomiaoyun_logo.png",
+    price: "¥9/月起 (探花 128G)",
+    promo: "88元100G年付",
+    architecture: "高速 BGP 多线中转",
+    unlocks: ["4K视频秒开", "全平台协议", "ChatGPT"],
+    summary: "秒秒云提供探花(9元/128G)、榜眼(15元/256G)、状元(29元/512G)梯队方案，兼备 18元季付与 59元不限时套餐，极速响应。",
+    highlights: ["探花榜眼状元灵活档位", "18元季付低门槛体验", "节点响应极速"],
+    link: "https://秒秒云.com",
+    reviewLink: "/reviews/miaomiaoyun-2026/"
+  },
+  {
+    id: "yuntu",
+    name: "云图机场",
+    title: "云图机场 Yuntu 深度评测：金融级物理专线与 ChatGPT / Claude 商业纯净 IP",
+    category: "外贸&AI解锁",
+    rating: "8.9",
+    badge: "金融级外贸AI",
+    date: "2026-09-09",
+    logo: "/yuntu_logo.png",
+    price: "¥22/月起 (标配5设备)",
+    promo: "9折码：YUNTU2026",
+    architecture: "金融级物理专线 (不过 GFW)",
+    unlocks: ["ChatGPT 4o", "Claude 3.5", "外贸风控"],
+    summary: "金融级物理专线不过 GFW 过滤，独享商业原生 IP 池，针对 ChatGPT、Claude 及外贸邮件服务进行白名单风控优化，基础套餐默认 5 设备并发。",
+    highlights: ["真物理专线不过 GFW", "商业白名单纯净 IP", "外贸/AI 生产力首选"],
+    link: "https://vip.ytjcok.org/#/register?code=75w0GoY2",
+    reviewLink: "/reviews/yuntu-2026/"
+  },
+  {
+    id: "jinyun",
+    name: "锦云",
+    title: "锦云 Jinyun 深度评测：6元体验版与99元不限时/年付特惠方案",
+    category: "高性价比/按量",
+    rating: "8.8",
+    badge: "实惠多档方案",
+    date: "2026-09-16",
+    logo: "/jinyun_logo.png",
+    price: "¥6/月起 (体验版 50G)",
+    promo: "99元不限时100G",
+    architecture: "BGP 多中转线路",
+    unlocks: ["日常办公", "高清流媒体", "ChatGPT"],
+    summary: "锦云主打平价办公与观影需求，6元体验版、9元日常版、16元办公版，更提供 99元128G年付特惠与 18元季付方案。",
+    highlights: ["6元超低体验价", "99元不限时包", "办公与观影全满足"],
+    link: "https://锦云111.com",
+    reviewLink: "/reviews/jinyun-2026/"
+  },
+  {
+    id: "jisuyun",
+    name: "极速机场",
+    title: "极速机场 2026 实测：三网 CN2 GIA/9929 顶级物理直连 24h 无视晚高峰",
+    category: "IEPL专线评测",
+    rating: "8.7",
+    badge: "三网精品直连",
+    date: "2026-09-08",
+    logo: "/jisuyun_logo.png",
+    price: "¥18/月起",
+    promo: "三网优选",
+    architecture: "三网 CN2 GIA / 9929 / CMIN2",
+    unlocks: ["Apple TV", "Netflix 4K", "ChatGPT"],
+    summary: "采用国内三网顶级精品优化线路与物理落地，提供 28ms 超低延迟与 990M 带宽，支持 Apple TV、Netflix 4K 与 ChatGPT。",
+    highlights: ["28ms 国内极低延迟", "三网 CN2 GIA 9929", "24小时无视晚高峰"],
+    link: "http://liangxinyun.club/",
+    reviewLink: "/reviews/jisuyun-2026/"
+  },
+  {
+    id: "xiongmaocloud",
+    name: "熊猫cloud",
+    title: "熊猫cloud 实测：6元300G超大流量与66元不限时600G特惠评测",
+    category: "大流量/高吞吐",
+    rating: "8.6",
+    badge: "巨量流量巨无霸",
+    date: "2026-09-16",
+    logo: "/xiongmaocloud_logo.png",
+    price: "¥6/月起 (300G)",
+    promo: "66元不限时600G",
+    architecture: "大带宽 BGP 优化",
+    unlocks: ["巨量下载", "8K超高清", "ChatGPT"],
+    summary: "熊猫cloud 提供 6元300G、10元600G、15元1200G的海量吞吐方案，更拥有 66元不限时600G与 24元季付500G，极其适合大流量用户。",
+    highlights: ["6元即享 300GB 流量", "66元不限时 600G", "大文件下载无压力"],
+    link: "https://熊猫导航.com",
+    reviewLink: "/reviews/xiongmaocloud-2026/"
+  },
+  {
+    id: "shunyun",
+    name: "瞬云",
+    title: "瞬云 Shunyun 评测：轻量极速与灵活按量计费备用机场推荐",
+    category: "高性价比/按量",
+    rating: "8.5",
+    badge: "按量备用首选",
+    date: "2026-09-07",
+    logo: "/shunyun_logo.png",
+    price: "¥12/月起 (支持按量扣费)",
+    promo: "随用随清",
+    architecture: "BGP 中转 + Trojan",
+    unlocks: ["Disney+", "ChatGPT", "4K秒开"],
+    summary: "主打轻量与极速连接，支持灵活的按量付费模式，非常适合作为主线之外的备用机场，随用随扣不浪费。",
+    highlights: ["灵活按量计费模式", "轻量极速握手连接", "备用永不失联"],
+    link: "https://aaa.jichang.best/#/register?code=M4UujXjz",
+    reviewLink: "/reviews/shunyun-2026/"
+  },
+  {
+    id: "jiuyun",
+    name: "九云",
+    title: "九云 Jiuyun 实测：招财/聚财/旺财版与 99元300G一次性鸿运包",
+    category: "高性价比/按量",
+    rating: "8.4",
+    badge: "财运满满方案",
+    date: "2026-09-16",
+    logo: "",
+    price: "¥6/月起 (招财版 150G)",
+    promo: "99元一次性300G",
+    architecture: "优质 BGP 多中转",
+    unlocks: ["全平台客户端", "4K视频", "ChatGPT"],
+    summary: "九云包含 6元150G招财版、9元300G聚财版、16元600G旺财版，更推出 99元300G一次性鸿运版与 特惠年付400G 99元。",
+    highlights: ["招财聚财旺财吉祥组合", "99元一次性鸿运包", "18元季付200G体验"],
+    link: "https://cristyc.jiuyyq.com",
+    reviewLink: "/reviews/jiuyun-2026/"
+  },
+  {
+    id: "baoyun",
+    name: "宝云",
+    title: "宝云 Baoyun 评测：4元福宝 200G 与传家宝/传世宝一次性特惠方案",
+    category: "高性价比/按量",
+    rating: "8.3",
+    badge: "传家宝不限时",
+    date: "2026-09-16",
+    logo: "",
+    price: "¥4/月起 (福宝 200G)",
+    promo: "29元一次性传家宝",
+    architecture: "稳定 BGP 中转",
+    unlocks: ["4K秒开", "全平台支持", "ChatGPT"],
+    summary: "宝云以福宝(4元/200G)、财宝(8元/500G)、金宝(13元/1000G)超高性价比闻名，传家宝(29元/100G)与传世宝(39元/500G)一次性不清零更属长效备用神包。",
+    highlights: ["4元/月 200G 极低门槛", "29元一次性传家宝", "19元季付 500G 特惠"],
+    link: "https://宝云.com",
+    reviewLink: "/reviews/baoyun-2026/"
   }
 ];
 
@@ -251,7 +377,7 @@ const categories = [
               <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 10a1 1 0 011-1h5a1 1 0 011 1v6a1 1 0 01-1 1h-5a1 1 0 01-1-1v-6z"></path></svg>
               机场分类速查
             </span>
-            <span class="text-xs text-blue-600 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded font-mono font-bold">9 Brands</span>
+            <span class="text-xs text-blue-600 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded font-mono font-bold">16 Brands</span>
           </h4>
           <div class="space-y-1.5 text-sm">
             {reviewArticles.map(ap => (
@@ -324,7 +450,7 @@ const categories = [
             </h1>
 
             <p class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-3xl font-medium">
-              由专业测评团队基于分布式探针全天候对站内 9 大机场进行延迟、晚高峰丢包率、4K/8K 流媒体及 ChatGPT 解锁测试，发布详实的单体机场深度测评文章与选购指南。
+              由专业测评团队基于分布式探针全天候对站内 16 大机场进行延迟、晚高峰丢包率、4K/8K 流媒体及 ChatGPT 解锁测试，发布详实的单体机场深度测评文章与选购指南。
             </p>
 
           </div>
@@ -421,7 +547,7 @@ const categories = [
             </div>
 
             <div class="text-sm text-slate-500 font-mono">
-              共收录 <strong class="text-slate-900 font-extrabold text-base" id="visible-article-count">9</strong> 篇机场评测文章
+              共收录 <strong class="text-slate-900 font-extrabold text-base" id="visible-article-count">16</strong> 篇机场评测文章
             </div>
           </div>
         </div>
@@ -431,7 +557,7 @@ const categories = [
         <div class="space-y-4">
           <div class="flex items-center justify-between">
             <h2 class="text-xl sm:text-2xl font-black text-slate-900 flex items-center gap-2">
-              <span>9 大品牌机场单体深度测评文章</span>
+              <span>16 大品牌机场单体深度测评文章</span>
             </h2>
             <span class="text-xs text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full font-mono font-bold">
               包含实测数据 & 优惠码
